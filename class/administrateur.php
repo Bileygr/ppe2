@@ -1,5 +1,4 @@
 <?php
-namespace class;
 
 class administrateur{
 	private $administrateur_id;
@@ -14,19 +13,6 @@ class administrateur{
 	private $administrateur_code_postal;
 	private $administrateur_derniere_connexion;
 	private $administrateur_date_ajout;
-
-	settype($administrateur_id, "integer");
-	settype($super_administrateur, "integer");
-	settype($administrateur_nom, "string");
-	settype($administrateur_prenom, "string");
-	settype($administrateur_mot_de_passe_hash, "string");
-	setttype($administrateur_email, "string");
-	settype($administrateur_telephone, "string");
-	settype($administrateur_adresse, "string");
-	settype($administrateur_ville, "string");
-	settype($administrateur_code_postal, "string");
-	settype($administrateur_derniere_connexion, "string");
-	settype($administrateur_date_ajout, "string");
 
 	private function getAdministrateur_id($administrateur_id){$this->administrateur_id = $administrateur_id;}
 	private function getSuper_administrateur($super_administrateur){$this->super_administrateur = $super_administrateur;}

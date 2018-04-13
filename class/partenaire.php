@@ -19,7 +19,7 @@ class partenaire{
 	settype($partenaire_nom, "string");
 	settype($partenaire_prenom, "string");
 	settype($partenaire_mot_de_passe_hash, "string");
-	setttype($partenaire_email, "string");
+	settype($partenaire_email, "string");
 	settype($partenaire_telephone, "string");
 	settype($partenaire_adresse, "string");
 	settype($partenaire_ville, "string");
@@ -28,7 +28,7 @@ class partenaire{
 	settype($partenaire_date_ajout, "string");
 
 	private function getPartenaire_id($partenaire_id){$this->partenaire_id = $partenaire_id;}
-	private function getPartenaire_siret$partenaire_siret){$this->partenaire_siret = $partenaire_siret;}
+	private function getPartenaire_siret($partenaire_siret){$this->partenaire_siret = $partenaire_siret;}
 	private function getPartenaire_nom($partenaire_nom){$this->partenaire_nom = $partenaire_nom;}
 	private function getPartenaire_mot_de_passe_hash($partenaire_mot_de_passe_hash){$this->partenaire_mot_de_passe_hash = $partenaire_mot_de_passe_hash;}
 	private function getPartenaire_email($partenaire_email){$this->partenaire_email = $partenaire_email;}

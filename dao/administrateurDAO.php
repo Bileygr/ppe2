@@ -1,10 +1,14 @@
 <?php
-namespace dao;
 require('connexion.php');
 require('../class/administrateur.php');
 
 class administrateurDAO{
-	function connecter($email, $mot_de_passe){
+	public function connecter($email, $mot_de_passe){
+		try{
+	$bdd = new PDO('mysql:host=localhost;dbname=ppe;charset=utf8', 'root', '');
+}catch(Exception $e){
+	echo 'Échec lors de la connexion:' . $e->getMessage();
+}
 		session_start();
 		if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 
@@ -23,7 +27,7 @@ class administrateurDAO{
 					$_SESSION['super_administarteur'] = $resultat['super_administrateur'];
 					$_SESSION['administrateur_nom'] = $resultat['administrateur_nom'];
 					$_SESSION['administrateur_prenom'] = $resultat['administrateur_prenom'];
-					$_SESSION['administrateur_mot_de_passe_hash'] = $resultat['administrateur_mot_de_passe_hash'];
+					$_SESSION['administrateur_mot_de_passe_hash'] = $hash;
 					$_SESSION['administrateur_email'] = $resultat['administrateur_email'];
 					$_SESSION['administrateur_telephone'] = $resultat['administrateur_telephone'];
 					$_SESSION['administrateur_adresse'] = $resultat['administrateur_adresse'];
@@ -33,12 +37,13 @@ class administrateurDAO{
 					$_SESSION['administrateur_date_ajout'] = $resultat['administrateur_date_ajout'];
 
 					if($resultat){
-						header("Location: ../index.php");
+						echo 'Connexion réussi.';
+						var_dump($_SESSION);
 					}else{
 						echo 'La requete a echouee.';
 					}
 				}else{
-					echo 'Mot de passe errone.'
+					echo 'Mot de passe errone.';
 				}
 			}else{
 				echo 'La longeur du mot de passe est insuffisante, le mot de passe doit posseder 12 caracteres ou plus.';
@@ -48,7 +53,7 @@ class administrateurDAO{
 		}
 	}
 
-	function inscrire($super_administrateur, $nom, $prenom, $mot_de_passe, $email, $telephone, $adresse, $ville, $code_postal){
+	public function inscrire($super_administrateur, $nom, $prenom, $mot_de_passe, $email, $telephone, $adresse, $ville, $code_postal){
 		if(strlen($mot_de_passe) >= 12){
 			$hash = password_hash($mot_de_passe, PASSWORD_BCRYPT);
 
@@ -63,7 +68,7 @@ class administrateurDAO{
 							if(strlen($ville) <= 32){
 
 								if(strlen($code_postal) <= 5){
-
+									//$requete = $bdd->();
 								}else{
 									echo'Un code postal devrait avoir 5 chiffre.';
 								}

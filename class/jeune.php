@@ -19,7 +19,7 @@ class jeune{
 	settype($jeune_nom, "string");
 	settype($jeune_prenom, "string");
 	settype($jeune_mot_de_passe_hash, "string");
-	setttype($jeune_email, "string");
+	settype($jeune_email, "string");
 	settype($jeune_telephone, "string");
 	settype($jeune_adresse, "string");
 	settype($jeune_ville, "string");

@@ -19,7 +19,7 @@ class offre{
 	settype($formation_id, "integer");
 	settype($offre_titre, "string");
 	settype($offre_description, "string");
-	setttype($offre_adresse, "string");
+	settype($offre_adresse, "string");
 	settype($offre_ville, "string");
 	settype($offre_code_postal, "string");
 	settype($offre_debut, "string");
