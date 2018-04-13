@@ -1,5 +1,4 @@
 <?php
-namespace class;
 
 class jeune{
 	private $jeune_id;
@@ -13,19 +12,6 @@ class jeune{
 	private $jeune_code_postal;
 	private $jeune_derniere_connexion;
 	private $jeune_date_ajout;
-
-	settype($jeune_id, "integer");
-	settype($super_jeune, "integer");
-	settype($jeune_nom, "string");
-	settype($jeune_prenom, "string");
-	settype($jeune_mot_de_passe_hash, "string");
-	settype($jeune_email, "string");
-	settype($jeune_telephone, "string");
-	settype($jeune_adresse, "string");
-	settype($jeune_ville, "string");
-	settype($jeune_code_postal, "string");
-	settype($jeune_derniere_connexion, "string");
-	settype($jeune_date_ajout, "string");
 
 	private function getJeune_id($jeune_id){$this->jeune_id = $jeune_id;}
 	private function getJeune_nom($jeune_nom){$this->jeune_nom = $jeune_nom;}

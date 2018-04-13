@@ -5,10 +5,11 @@ require('../class/administrateur.php');
 class administrateurDAO{
 	public function connecter($email, $mot_de_passe){
 		try{
-	$bdd = new PDO('mysql:host=localhost;dbname=ppe;charset=utf8', 'root', '');
-}catch(Exception $e){
-	echo 'Échec lors de la connexion:' . $e->getMessage();
-}
+			$bdd = new PDO('mysql:host=localhost;dbname=ppe;charset=utf8', 'root', '');
+		}catch(Exception $e){
+			echo 'Échec lors de la connexion:' . $e->getMessage();
+		}
+
 		session_start();
 		if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 
@@ -54,6 +55,12 @@ class administrateurDAO{
 	}
 
 	public function inscrire($super_administrateur, $nom, $prenom, $mot_de_passe, $email, $telephone, $adresse, $ville, $code_postal){
+		try{
+			$bdd = new PDO('mysql:host=localhost;dbname=ppe;charset=utf8', 'root', '');
+		}catch(Exception $e){
+			echo 'Échec lors de la connexion:' . $e->getMessage();
+		}
+
 		if(strlen($mot_de_passe) >= 12){
 			$hash = password_hash($mot_de_passe, PASSWORD_BCRYPT);
 
@@ -68,7 +75,15 @@ class administrateurDAO{
 							if(strlen($ville) <= 32){
 
 								if(strlen($code_postal) <= 5){
-									//$requete = $bdd->();
+									$requete = $bdd->prepare("INSERT INTO administrateur(super_administrateur, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, administrateur_email, administrateur_telephone, administrateur_adresse, administrateur_ville, administrateur_code_postal, administrateur_derniere_connexion, administrateur_date_ajout) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+									$requete->execute(array($super_administrateur, $nom, $prenom, $hash, $email, $telephone, $adresse, $ville, $code_postal));
+									$resultat = $requete->rowCount();
+
+									if($resultat){
+										header("Location: test.html");
+									}else{
+										echo 'La requete a echouee.';
+									}
 								}else{
 									echo'Un code postal devrait avoir 5 chiffre.';
 								}
