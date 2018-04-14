@@ -1,7 +1,6 @@
 <?php
-namespace class;
 
-class partenaire{
+class Partenaire{
 	private $partenaire_id;
 	private $partenaire_siret;
 	private $partenaire_nom;
@@ -14,18 +13,21 @@ class partenaire{
 	private $partenaire_derniere_connexion;
 	private $partenaire_date_ajout;
 
-	settype($partenaire_id, "integer");
-	settype($partenaire_siret, "integer");
-	settype($partenaire_nom, "string");
-	settype($partenaire_prenom, "string");
-	settype($partenaire_mot_de_passe_hash, "string");
-	settype($partenaire_email, "string");
-	settype($partenaire_telephone, "string");
-	settype($partenaire_adresse, "string");
-	settype($partenaire_ville, "string");
-	settype($partenaire_code_postal, "string");
-	settype($partenaire_derniere_connexion, "string");
-	settype($partenaire_date_ajout, "string");
+	function __construct($partenaire_id, $partenaire_siret, $partenaire_nom, $partenaire_mot_de_passe_hash, 
+						 $partenaire_email, $partenaire_telephone, $partenaire_adresse, $partenaire_ville,
+						 $partenaire_code_postal, $partenaire_derniere_connexion, $partenaire_date_ajout){
+		$this->partenaire_id = $partenaire_id;
+		$this->partenaire_siret = $partenaire_siret;
+		$this->partenaire_nom = $partenaire_nom;
+		$this->partenaire_mot_de_passe_hash = $partenaire_mot_de_passe_hash;
+		$this->partenaire_email = $partenaire_email;
+		$this->partenaire_telephone = $partenaire_telephone;
+		$this->partenaire_adresse = $partenaire_adresse;
+		$this->partenaire_ville = $partenaire_ville;
+		$this->partenaire_code_postal = $partenaire_code_postal;
+		$this->partenaire_derniere_connexion = $partenaire_derniere_connexion;
+		$this->partenaire_date_ajout = $partenaire_date_ajout;
+	}
 
 	private function getPartenaire_id($partenaire_id){$this->partenaire_id = $partenaire_id;}
 	private function getPartenaire_siret($partenaire_siret){$this->partenaire_siret = $partenaire_siret;}

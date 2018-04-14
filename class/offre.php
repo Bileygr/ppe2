@@ -1,7 +1,6 @@
 <?php
-namespace class;
 
-class offre{
+class Offre{
 	private $offre_id;
 	private $partenaire_id;
 	private $formation_id;
@@ -14,17 +13,20 @@ class offre{
 	private $offre_fin;
 	private $offre_date_ajout;
 
-	settype($offre_id, "integer");
-	settype($partenaire_id, "integer");
-	settype($formation_id, "integer");
-	settype($offre_titre, "string");
-	settype($offre_description, "string");
-	settype($offre_adresse, "string");
-	settype($offre_ville, "string");
-	settype($offre_code_postal, "string");
-	settype($offre_debut, "string");
-	settype($offre_fin, "string");
-	settype($offre_date_ajout, "string");
+	function __construct($offre_id, $partenaire_id, $formation_id, $offre_titre, $offre_description, 
+						 $offre_adresse, $offre_ville, $offre_code_postal, $offre_debut, $offre_fin, $offre_date_ajout){
+		$this->offre_id = $offre_id;
+		$this->partenaire_id = $partenaire_id;
+		$this->formation_id = $formation_id;
+		$this->offre_titre = $offre_titre;
+		$this->offre_description = $offre_description;
+		$this->offre_adresse = $offre_adresse;
+		$this->offre_ville = $offre_ville;
+		$this->offre_code_postal = $offre_code_postal;
+		$this->offre_debut = $offre_debut;
+		$this->offre_fin = $offre_fin;
+		$this->offre_date_ajout = $offre_date_ajout;
+	}
 
 	private function getOffre_id($offre_id){$this->offre_id = $offre_id;}
 	private function getPartenaire_id($partenaire_id){$this->partenaire_id = $parteniare_id;}

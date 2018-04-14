@@ -1,8 +1,9 @@
 <?php
 require('connexion.php');
 require('../class/administrateur.php');
+require('../interface/administrateurDAOInterface.php');
 
-class administrateurDAO{
+class AdministrateurDAO implements AdministrateurDAOInterface{
 	public function connecter($email, $mot_de_passe){
 		try{
 			$bdd = new PDO('mysql:host=localhost;dbname=ppe;charset=utf8', 'root', '');
@@ -60,6 +61,19 @@ class administrateurDAO{
 		}catch(Exception $e){
 			echo 'Échec lors de la connexion:' . $e->getMessage();
 		}
+
+		/*
+		$administrateur = new administrateur();
+		$administrateur->super_administrateur = $super_administrateur->getSuper_administrateur();
+		$administrateur->administrateur_nom = $nom->getAdministratreur_nom();
+		$administrateur->amdinistrateur_prenom = $prenom->getAdministrateur_prenom();
+		$administrateur->administrateur_mot_de_passe_hash = $hash->getAdministrateur_mot_de_passe_hash();
+		$administrateur->administrateur_email = $email->getAdministrateur_email();
+		$administrateur->administrateur_telephone = $telephone->getAdministrateur_telephone();
+		$administrateur->administrateur_adresse = $adresse->getAdministrateur_adresse();
+		$administrateur->administrateur_ville = $ville->getAdministrateur_ville();
+		$administrateur->administrateur_code_postal = $code_postal->getAdministrateur_code_postal();
+		*/
 
 		if(strlen($mot_de_passe) >= 12){
 			$hash = password_hash($mot_de_passe, PASSWORD_BCRYPT);

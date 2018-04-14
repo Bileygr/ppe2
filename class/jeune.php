@@ -1,6 +1,6 @@
 <?php
 
-class jeune{
+class Jeune{
 	private $jeune_id;
 	private $jeune_nom;
 	private $jeune_prenom;
@@ -12,6 +12,20 @@ class jeune{
 	private $jeune_code_postal;
 	private $jeune_derniere_connexion;
 	private $jeune_date_ajout;
+
+	function __construct($jeune_id, $jeune_nom, $jeune_prenom, $jeune_mot_de_passe_hash, $jeune_email, $jeune_telephone, $jeune_adresse, $jeune_ville, $jeune_code_postal, $jeune_derniere_connexion, $jeune_date_ajout){
+		$this->jeune_id = $jeune_id;
+		$this->jeune_nom = $jeune_nom;
+		$this->jeune_prenom = $jeune_prenom;
+		$this->jeune_mot_de_passe_hash = $jeune_mot_de_passe_hash;
+		$this->jeune_email = $jeune_email;
+		$this->jeune_telephone = $jeune_telephone;
+		$this->jeune_adresse = $jeune_adresse;
+		$this->jeune_ville = $jeune_ville;
+		$this->jeune_code_postal = $jeune_code_postal;
+		$this->jeune_derniere_connexion = $jeune_derniere_connexion;
+		$this->jeune_date_ajout = $jeune_date_ajout;
+	}
 
 	private function getJeune_id($jeune_id){$this->jeune_id = $jeune_id;}
 	private function getJeune_nom($jeune_nom){$this->jeune_nom = $jeune_nom;}
