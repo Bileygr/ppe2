@@ -1,5 +1,4 @@
 <?php
-require('../class/administrateur.php');
 
 interface administrateurDAOInterface{
 	public function connecter($email, $mot_de_passe);

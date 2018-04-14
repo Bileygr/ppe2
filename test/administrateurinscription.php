@@ -18,7 +18,7 @@ if(isset($_POST['form_auth'])){
 		$super_administrateur = 0;
 	}
 
-	$inscription = new administrateurDAO();
+	$inscription = new AdministrateurDAO();
 	$inscription->inscrire($super_administrateur, $nom, $prenom, $mot_de_passe, $email, $telephone, $adresse, $ville, $code_postal);
 }
 ?>

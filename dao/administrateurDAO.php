@@ -21,20 +21,18 @@ class AdministrateurDAO implements AdministrateurDAOInterface{
 				$hash = $resultat['administrateur_mot_de_passe_hash'];
 
 				if(password_verify($mot_de_passe, $hash)) {
-					$requete = $bdd->prepare("SELECT administrateur_id, super_administrateur, administrateur_nom, administrateur_prenom, administrateur_email, administrateur_telephone, administrateur_adresse, administrateur_ville, administrateur_code_postal, administrateur_derniere_connexion, administrateur_date_ajout FROM administrateur WHERE administrateur_email = ? AND administrateur_mot_de_passe_hash = ?");
+					$requete = $bdd->prepare("SELECT administrateur_id, adresse_id, super_administrateur, administrateur_nom, administrateur_prenom, administrateur_email, administrateur_telephone, administrateur_derniere_connexion, administrateur_date_ajout FROM administrateur WHERE administrateur_email = ? AND administrateur_mot_de_passe_hash = ?");
 					$requete->execute(array($email, $hash));
 					$resultat = $requete->fetch();
 
 					$_SESSION['administrateur_id'] = $resultat['administrateur_id'];
+					$_SESSION['adresse_id'] = $resultat['adresse_id'];
 					$_SESSION['super_administarteur'] = $resultat['super_administrateur'];
 					$_SESSION['administrateur_nom'] = $resultat['administrateur_nom'];
 					$_SESSION['administrateur_prenom'] = $resultat['administrateur_prenom'];
 					$_SESSION['administrateur_mot_de_passe_hash'] = $hash;
 					$_SESSION['administrateur_email'] = $resultat['administrateur_email'];
 					$_SESSION['administrateur_telephone'] = $resultat['administrateur_telephone'];
-					$_SESSION['administrateur_adresse'] = $resultat['administrateur_adresse'];
-					$_SESSION['administrateur_ville'] = $resultat['administrateur_ville'];
-					$_SESSION['administrateur_code_postal'] = $resultat['administrateur_code_postal'];
 					$_SESSION['administrateur_derniere_connexion'] = $resultat['administrateur_derniere_connexion'];
 					$_SESSION['administrateur_date_ajout'] = $resultat['administrateur_date_ajout'];
 
@@ -62,19 +60,6 @@ class AdministrateurDAO implements AdministrateurDAOInterface{
 			echo 'Échec lors de la connexion:' . $e->getMessage();
 		}
 
-		/*
-		$administrateur = new administrateur();
-		$administrateur->super_administrateur = $super_administrateur->getSuper_administrateur();
-		$administrateur->administrateur_nom = $nom->getAdministratreur_nom();
-		$administrateur->amdinistrateur_prenom = $prenom->getAdministrateur_prenom();
-		$administrateur->administrateur_mot_de_passe_hash = $hash->getAdministrateur_mot_de_passe_hash();
-		$administrateur->administrateur_email = $email->getAdministrateur_email();
-		$administrateur->administrateur_telephone = $telephone->getAdministrateur_telephone();
-		$administrateur->administrateur_adresse = $adresse->getAdministrateur_adresse();
-		$administrateur->administrateur_ville = $ville->getAdministrateur_ville();
-		$administrateur->administrateur_code_postal = $code_postal->getAdministrateur_code_postal();
-		*/
-
 		if(strlen($mot_de_passe) >= 12){
 			$hash = password_hash($mot_de_passe, PASSWORD_BCRYPT);
 
@@ -89,12 +74,22 @@ class AdministrateurDAO implements AdministrateurDAOInterface{
 							if(strlen($ville) <= 32){
 
 								if(strlen($code_postal) <= 5){
-									$requete = $bdd->prepare("INSERT INTO administrateur(super_administrateur, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, administrateur_email, administrateur_telephone, administrateur_adresse, administrateur_ville, administrateur_code_postal, administrateur_derniere_connexion, administrateur_date_ajout) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
-									$requete->execute(array($super_administrateur, $nom, $prenom, $hash, $email, $telephone, $adresse, $ville, $code_postal));
+									$requete = $bdd->prepare("INSERT INTO adresse(adresse_adresse, adresse_ville, adresse_code_postal, adresse_date_ajout) 
+															  VALUES(?, ?, ?, NOW());");
+									$requete->execute(array($adresse, $ville, $code_postal));
 									$resultat = $requete->rowCount();
+									$adresse_id = intval($bdd->lastInsertId());
 
 									if($resultat){
-										header("Location: test.html");
+										$requete = $bdd->prepare("INSERT INTO administrateur(adresse_id, super_administrateur, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, administrateur_email, administrateur_telephone, administrateur_derniere_connexion, administrateur_date_ajout) VALUES(?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+										$requete->execute(array($adresse_id, $super_administrateur, $nom, $prenom, $hash, $email, $telephone));
+										$resultat = $requete->rowCount();
+
+										if($resultat){
+											header("Location: test.html");
+										}else{
+											echo 'La requete a echouee.';
+										}
 									}else{
 										echo 'La requete a echouee.';
 									}
