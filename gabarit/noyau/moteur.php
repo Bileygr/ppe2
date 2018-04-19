@@ -16,8 +16,10 @@ class Moteur{
 			$contenu = file_get_contents("http://127.0.0.1/ppe2/gabarit/vue/".$gabarit);
 
 			if(preg_match($pattern, $contenu, $sortie)){
-				if(file_exists($repertoire."/".$sortie[3])){
-					$contenu2 = file_get_contents("http://127.0.0.1/ppe2/gabarit/vue/".$sortie[3]);
+				$sortie2 = $sortie[3];
+
+				if(file_exists($repertoire."/".$sortie2)){
+					$contenu2 = file_get_contents("http://127.0.0.1/ppe2/gabarit/vue/".$sortie2);
 					$contenu = $contenu2;
 				}else{
 					echo "Ce fichier n'existe pas.";
@@ -30,7 +32,7 @@ class Moteur{
 				$contenu = str_replace('[parent['.$parametres.']]', $valeurs, $contenu);
 				$contenu = str_replace('[! finblock !]', '', $contenu);
 			}
-			print_r($scan_repertoire);
+			//print_r($scan_repertoire);
 			echo $contenu;
 		}else{
 			exit('<h1>Erreur de Template</h1>');
