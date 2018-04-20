@@ -9,7 +9,6 @@ class Moteur{
 
 	public function render($gabarit){
 		$repertoire = "gabarit/vue";
-		$scan_repertoire = scandir($repertoire); 
 		$pattern = '/\[\! extends \"(.*?)\" \!\]/';
 
 		if(file_exists($repertoire."/".$gabarit)){
@@ -32,7 +31,6 @@ class Moteur{
 				$contenu = str_replace('[parent['.$parametres.']]', $valeurs, $contenu);
 				$contenu = str_replace('[! finblock !]', '', $contenu);
 			}
-			//print_r($scan_repertoire);
 			echo $contenu;
 		}else{
 			exit('<h1>Erreur de Template</h1>');
