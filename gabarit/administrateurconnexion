@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>[[ titre ]]</title>
+  </head>
+
+  <body>
+  	<h1>[parent[titre]]</h1>
+    <form method="POST">
+    	<label>Email</label>
+    	<input type="email" name="administrateur_email" placeholder="Email"><br/>
+    	<label>Mot de passe</label>
+    	<input type="password" name="administrateur_mot_de_passe" placeholder="Mot de passe"><br/>
+    	<input type="submit" name="form_auth" value="Connexion">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>[[ titre ]]</title>
+  </head>
+
+  <body>
+  	<h1>[parent[titre]]</h1>
+    	<a href="administrateurconnexion.php">Administreur Connexion</a><br/>
+    	<a href="administrateurinscription.php">Administrateur Inscription</a><br/>
+    	<a href="administrateurmenu.php">Administrateur Menu</a><br/>
+    	<a href="partenaireconnexion.php">Partenaire Connexion</a><br/>
+    	<a href="partenaireinscription.php">Partenaire Inscription</a><br/>
+      <a href="partenairemenu.php">Partenaire Menu</a><br/>
+      <a href="jeuneconnexion.php">Jeune Connexion</a><br/>
+      <a href="jeuneinscription.php">Jeune Inscription</a><br/>
+      <a href="jeunemenu.php">Jeune Menu</a><br/>
+      <a href="offres.php">Offres</a><br/>
+      <a href="deconnexion.php">Deconnexion</a>
+  </body>
+</html>

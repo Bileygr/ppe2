@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>[[ titre ]]</title>
+  </head>
+
+  <body>
+  	<h1>[parent[titre]]</h1>
+    <form method="POST">
+      <label>Nom</label>
+      <input type="text" name="administrateur_nom" placeholder="Nom"><br/>
+      <label>Prenom</label>
+      <input type="text" name="administrateur_prenom" placeholder="Prenom"><br/>
+      <label>Mot de passe</label>
+      <input type="password" name="administrateur_mot_de_passe" placeholder="Mot de passe"><br/>
+      <label>Mot de passe confirmation</label>
+      <input type="password" name="administrateur_mot_de_passe_confirmation" placeholder="Mot de passe confirmation"><br/>
+      <label>Telephone</label>
+      <input type="text" name="administrateur_telephone" placeholder="Telephone"><br/>
+    	<label>Email</label>
+    	<input type="email" name="administrateur_email" placeholder="Email"><br/>
+    	<label>Adresse</label>
+    	<input type="text" name="administrateur_adresse" placeholder="Adresse"><br/>
+      <label>Ville</label>
+      <input type="text" name="administrateur_ville" placeholder="Ville"><br/>
+      <label>Code_postal</label>
+      <input type="text" name="administrateur_code_postal" placeholder="Code postal"><br/>
+      <input type="checkbox" id="administrateur_super" name="administrateur_super" placeholder="Super Administrateur" ><br/>
+    	<input type="submit" name="form_auth" value="Connexion">
+    </form>
+  </body>
+</html>
