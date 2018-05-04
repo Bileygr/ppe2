@@ -27,7 +27,7 @@
       <input type="text" id="partenaire_ville" name="partenaire_ville" class="form-control" placeholder="Ville" required><br/>
       <label for="partenaire_code_postal" class="sr-only">Code postal</label>
       <input type="text" id="partenaire_code_postal" name="partenaire_code_postal" class="form-control" placeholder="Code postal" required><br/>
-      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Inscription">
+      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Inscription"><br/>
     </form>
   </body>
 </html>

@@ -13,7 +13,8 @@
     	<input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" required autofocused><br/>
     	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
     	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
-    	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion">
+    	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
+      <a href="partenaireinscription.php">Inscription</a>
     </form>
   </body>
 </html>
