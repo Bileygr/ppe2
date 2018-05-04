@@ -1,11 +1,10 @@
 <?php
-
 class Partenaire{
 	private $partenaire_id;
 	private $partenaire_siret;
 	private $partenaire_nom;
-	private $partenaire_mot_de_passe_hash;
-	private $partenaire_telephone;
+	private $partenaire_mot_de_passe_hash
+;	private $partenaire_telephone;
 	private $partenaire_email;
 	private $partenaire_adresse;
 	private $partenaire_ville;
@@ -41,16 +40,16 @@ class Partenaire{
 	public function setPartenaire_derniere_connexion($partenaire_derniere_connexion){return $this->partenaire_derniere_connexion = $partenaire_derniere_connexion;}
 	public function setPartenaire_creation($partenaire_creation){return $this->partenaire_creation = $partenaire_creation;}
 
-	public function getPartenaire_id(){$this->partenaire_id;}
-	public function getPartenaire_siret(){$this->partenaire_siret;}
-	public function getPartenaire_nom(){$this->partenaire_nom;}
-	public function getPartenaire_mot_de_passe_hash(){$this->partenaire_mot_de_passe_hash;}
-	public function getPartenaire_telephone(){$this->partenaire_telephone;}
-	public function getPartenaire_email(){$this->partenaire_email;}
-	public function getPartenaire_adresse(){$this->partenaire_adresse;}
-	public function getPartenaire_ville(){$this->partenaire_ville;}
-	public function getPartenaire_code_postal(){$this->partenaire_code_postal;}
-	public function getPartenaire_derniere_connexion(){$this->partenaire_derniere_connexion;}
-	public function getPartenaire_creation(){$this->partenaire_creation;}
+	public function getPartenaire_id(){return $this->partenaire_id;}
+	public function getPartenaire_siret(){return $this->partenaire_siret;}
+	public function getPartenaire_nom(){return $this->partenaire_nom;}
+	public function getPartenaire_mot_de_passe_hash(){return $this->partenaire_mot_de_passe_hash;}
+	public function getPartenaire_telephone(){return $this->partenaire_telephone;}
+	public function getPartenaire_email(){return $this->partenaire_email;}
+	public function getPartenaire_adresse(){return $this->partenaire_adresse;}
+	public function getPartenaire_ville(){return $this->partenaire_ville;}
+	public function getPartenaire_code_postal(){return $this->partenaire_code_postal;}
+	public function getPartenaire_derniere_connexion(){return $this->partenaire_derniere_connexion;}
+	public function getPartenaire_creation(){return $this->partenaire_creation;}
 }
 ?>

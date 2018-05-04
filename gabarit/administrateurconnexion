@@ -2,16 +2,18 @@
 <html>
   <head>
     <title>[[ titre ]]</title>
+    <link href="ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ressources/css/signin.css" rel="stylesheet">
   </head>
 
-  <body>
-  	<h1>[parent[titre]]</h1>
-    <form method="POST">
-    	<label>Email</label>
-    	<input type="email" name="administrateur_email" placeholder="Email"><br/>
-    	<label>Mot de passe</label>
-    	<input type="password" name="administrateur_mot_de_passe" placeholder="Mot de passe"><br/>
-    	<input type="submit" name="form_auth" value="Connexion">
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">[parent[titre]]</h1>
+    	<label for="administrateur_email" class="sr-only">Email</label>
+    	<input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" required autofocused><br/>
+    	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
+    	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
+    	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion">
     </form>
   </body>
 </html>

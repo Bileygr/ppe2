@@ -2,31 +2,37 @@
 <html>
   <head>
     <title>[[ titre ]]</title>
+    <link href="ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ressources/css/signin.css" rel="stylesheet">
   </head>
 
-  <body>
-  	<h1>[parent[titre]]</h1>
-    <form method="POST">
-      <label>Nom</label>
-      <input type="text" name="administrateur_nom" placeholder="Nom"><br/>
-      <label>Prenom</label>
-      <input type="text" name="administrateur_prenom" placeholder="Prenom"><br/>
-      <label>Mot de passe</label>
-      <input type="password" name="administrateur_mot_de_passe" placeholder="Mot de passe"><br/>
-      <label>Mot de passe confirmation</label>
-      <input type="password" name="administrateur_mot_de_passe_confirmation" placeholder="Mot de passe confirmation"><br/>
-      <label>Telephone</label>
-      <input type="text" name="administrateur_telephone" placeholder="Telephone"><br/>
-    	<label>Email</label>
-    	<input type="email" name="administrateur_email" placeholder="Email"><br/>
-    	<label>Adresse</label>
-    	<input type="text" name="administrateur_adresse" placeholder="Adresse"><br/>
-      <label>Ville</label>
-      <input type="text" name="administrateur_ville" placeholder="Ville"><br/>
-      <label>Code_postal</label>
-      <input type="text" name="administrateur_code_postal" placeholder="Code postal"><br/>
-      <input type="checkbox" id="administrateur_super" name="administrateur_super" placeholder="Super Administrateur" ><br/>
-    	<input type="submit" name="form_auth" value="Connexion">
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <a href="index.php"><h1 class="h3 mb-3 font-weight-normal">[parent[titre]]</h1></a>
+      <label for="administrateur_nom" class="sr-only">Nom</label>
+      <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Nom" required autofocused><br/>
+      <label for="administrateur_prenom" class="sr-only">Prenom</label>
+      <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Prenom" required><br/>
+      <label form="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
+      <input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
+      <label for="administrateur_mot_de_passe_confirmation" class="sr-only">Mot de passe confirmation</label>
+      <input type="password" id="administrateur_mot_de_passe_confirmation" name="administrateur_mot_de_passe_confirmation" class="form-control" placeholder="Mot de passe confirmation" required><br/>
+      <label for="administrateur_telephone" class="sr-only">Telephone</label>
+      <input type="text" id="administrateur_telephone" name="administrateur_telephone" class="form-control" placeholder="Telephone" required><br/>
+      <label for="administrateur_email" class="sr-only">Email</label>
+      <input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" required><br/>
+      <label type="administrateur_adresse" class="sr-only">Adresse</label>
+      <input type="text" id="administrateur_adresse" name="administrateur_adresse" class="form-control" placeholder="Adresse" required><br/>
+      <label for="administrateur_ville" class="sr-only">Ville</label>
+      <input type="text" id="administrateur_ville" name="administrateur_ville" class="form-control" placeholder="Ville" required><br/>
+      <label for="administrateur_code_postal" class="sr-only">Code postal</label>
+      <input type="text" id="administrateur_code_postal" name="administrateur_code_postal" class="form-control" placeholder="Code postal" required><br/>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" id="administrateur_super" name="administrateur_super" value=""> Super Administrateur
+        </label>
+      </div>
+      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Inscription">
     </form>
   </body>
 </html>

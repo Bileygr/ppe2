@@ -1,13 +1,79 @@
 <?php
-$mdp = "passwordpasswordpassword";
-$hash = password_hash($mdp, PASSWORD_BCRYPT);
+require('../dao/classes/connexion.php');
 
-echo '<p>Mot de passe clair: '.$mdp.'</p>';
-echo '<p>Mot de passe hashe: '.$hash.'</p>';
+$connect = new Connect();
+$connexion = $connect->connexion();
 
-if(password_verify($mdp, $hash)){
-	echo '<p>Ca marche!</p>';
-}else{
-	echo '<p>Ca ne marche pas</p>';
+$requete = $connexion->query("SELECT partenaire_nom, partenaire_mot_de_passe_hash FROM partenaire");
+$requete2 = $connexion->query("SELECT administrateur_mot_de_passe_hash FROM administrateur");
+$requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
+?>
+
+<h1>Test du mot de passe et du hash</h1>
+<form method="POST">
+	<label>Mot de passe</label>
+	<input type="text" name="mdp" placeholder="Mot de passe">
+	<input type="submit" name="form_auth" value="Validation">
+</form>
+
+<h1>Tableau des hash</h1>
+<h2>Partenaires</h2>
+<table>
+	<tr>
+		<th>Nom</th>
+		<th>Hash</th>
+	</tr>
+	<?php
+		while($resultat = $requete->fetch()){
+			echo '<tr>
+					<td>'.$resultat['partenaire_nom'].'</td>
+					<td>'.$resultat['partenaire_mot_de_passe_hash'].'</td>
+				  </tr>
+				 ';
+		}
+	?>
+</table>
+
+<table>
+	<tr>
+		<th>Administrateurs</th>
+	</tr>
+	<?php
+		while($resultat = $requete2->fetch()){
+			echo '<tr>
+					<td>'.$resultat['administrateur_mot_de_passe_hash'].'</td>
+				  </tr>
+				 ';
+		}
+	?>
+</table>
+
+<table>
+	<tr>
+		<th>Jeunes</th>
+	</tr>
+	<?php
+		while($resultat = $requete2->fetch()){
+			echo '<tr>
+					<td>'.$resultat['jeune_mot_de_passe_hash'].'</td>
+				  </tr>
+				 ';
+		}
+	?>
+</table>
+
+<?php
+if(isset($_POST['form_auth'])){
+	$mdp = $_POST['mdp'];
+	$hash = '$2y$10$sEJtPhBC7zCsi.iW8oOf5uUG69wRCm9LeysRMubngX6YxUtvxeSh6';
+
+	echo 'Hash: '.$hash;
+
+	if(password_verify($mdp, $hash)){
+		exit('<h1>CA CORRESPOND :D</h1>');
+	}else{
+		exit('<h1>CA NE CORRESPOND PAS :\'(</h1>');
+	}
+
 }
 ?>

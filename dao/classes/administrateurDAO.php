@@ -53,28 +53,32 @@ class AdministrateurDAO implements AdministrateurInterface{
 	}
 
 	public function inscrire($administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash,
-							 $administrateur_telephone, $administrateur_email, $administrateur_adresse,
-							 $administrateur_ville, $administrateur_code_postal){
+								$administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal){
 		$connect = new Connect();
-		$connexion = $connect->connexion();
+		$connexion = $connect->connexion(); 
 
-		$retour = false;
+		/*
+		$administrateur_super = $administrateur->getAdministrateur_super();
+		$administrateur_nom = $administrateur->getAdministrateur_nom();
+		$administrateur_prenom = $administrateur->getAdministrateur_prenom();
+		$administrateur_mot_de_passe_hash = $administrateur->getAdministrateur_mot_de_passe_hash();
+		$dministrateur_telephone = $administrateur->getAdministrateur_telephone();
+		$administrateur_email = $administrateur->getAdministrateur_email();
+		$administrateur_adresse = $administrateur->getAdministrateur_adresse();
+		$administrateur_ville = $administrateur->getAdministrateur_ville();
+		$administrateur_code_postal = $administrateur->getAdministrateur_code_postal(); 
+		*/
 
-		$requete = $connexion->prepare("INSERT INTO administrateur(administrateur_super, $administrateur_nom, $administrateur_prenom, 
+		$requete = $connexion->prepare("INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, 
 													administrateur_mot_de_passe_hash, administrateur_telephone, administrateur_email,
-													administrateur_adresse, administrateur_ville,administrateur_code_postal,
+													administrateur_adresse, administrateur_ville, administrateur_code_postal,
 													administrateur_derniere_connexion, administrateur_creation)
 												VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
 		$requete->execute(array($administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash,
 								$administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal));
 
-		if($requete->mysql_affected_rows()){
-			$retour = true;
-		}else{
-			$retour = false;
-		}
-
-		return retour;
+		$requete = null;
+		$connexion = null;	
 	}
 }
 ?>

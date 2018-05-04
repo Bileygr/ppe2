@@ -13,7 +13,7 @@ class Administrateur{
 	public $administrateur_derniere_connexion;
 	public $administrateur_creation;
 
-	function __construct($administrateur_id, $administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash, $administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal, $administrateur_derniere_connexion, $administrateur_creation){
+	function __construct($administrateur_id,$administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash, $administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal, $administrateur_derniere_connexion, $administrateur_creation = null){
 		$this->administrateur_id = $administrateur_id;
 		$this->administrateur_super = $administrateur_super;
 		$this->administrateur_nom = $administrateur_nom;
@@ -28,9 +28,9 @@ class Administrateur{
 	 	$this->administrateur_creation = $administrateur_creation;																				
 	}
 
-	public function setAdministrateur_id($administrateur_id){
+	public function setAdministrateur_id($administrateur_id){return
 		$this->administrateur_id = $administrateur_id;}
-	public function setAdministrateur_super($administrateur_super){$this->administrateur_super = $administrateur_super;}
+	public function setAdministrateur_super($administrateur_super){return $this->administrateur_super = $administrateur_super;}
 	public function setAdministrateur_nom($administrateur_nom){$this->administrateur_nom = $administrateur_nom;}
 	public function setAdministrateur_prenom($administrateur_prenom){return $this->administrateur_prenom = $administrateur_prenom;}
 	public function setAdministrateur_mot_de_passe_hash($administrateur_mot_de_passe_hash){return $this->administrateur_mot_de_passe_hash = $administrateur_mot_de_passe_hash;}
