@@ -7,7 +7,7 @@ $moteur->assigner('titre', 'Connexion Partenaire');
 $moteur->render('partenaireconnexion');
 
 if(isset($_POST['form_auth'])){
-	$partenaire_siret= $_POST['partenaire_siret'];
+	$partenaire_siret = $_POST['partenaire_siret'];
 	$partenaire_mot_de_passe = $_POST['partenaire_mot_de_passe'];
 
 	if(filter_var(strlen($partenaire_siret) == 9)){
@@ -28,8 +28,11 @@ if(isset($_POST['form_auth'])){
 			$_SESSION['partenaire_derniere_connexion'] = $partenaire->getPartenaire_derniere_connexion();
 			$_SESSION['partenaire_creation'] = $partenaire->getPartenaire_creation();
 
+			var_dump($partenaire);
 			header("Location: index.php");
 		}
+	}else{
+		exit("<h1>Erreur: La longeur du SIRET est incorrecte.");
 	}
 }
 ?>

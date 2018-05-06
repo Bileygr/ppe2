@@ -1,5 +1,6 @@
 <?php
 require('framework/noyau/moteur.php');
+require_once('classes/administrateur.php');
 require_once('dao/classes/administrateurDAO.php');
 
 $moteur = new Moteur();
@@ -25,7 +26,7 @@ if(isset($_POST['form_auth'])){
 	$administrateur_ville = $_POST['administrateur_ville'];
 	$administrateur_code_postal = $_POST['administrateur_code_postal'];
 
-	if(/*!empty($administrateur_super) &&*/ !empty($administrateur_nom) && !empty($administrateur_prenom) && !empty($administrateur_mot_de_passe) &&
+	if(!empty($administrateur_nom) && !empty($administrateur_prenom) && !empty($administrateur_mot_de_passe) &&
 		!empty($administrateur_mot_de_passe_confirmation) && !empty($administrateur_telephone) && !empty($administrateur_email) && !empty($administrateur_adresse) && !empty($administrateur_code_postal)){
 		if(strlen($administrateur_mot_de_passe) >=12 && strlen($administrateur_mot_de_passe_confirmation) >= 12){
 			if($administrateur_mot_de_passe == $administrateur_mot_de_passe_confirmation){
@@ -35,9 +36,20 @@ if(isset($_POST['form_auth'])){
 						if(strlen($administrateur_adresse) <= 38){
 							if(strlen($administrateur_ville) <= 32){
 								if(strlen($administrateur_code_postal) == 5){
+									$administrateur = new Administrateur(null,
+																		 $administrateur_super, 
+																		 $administrateur_nom, 
+																		 $administrateur_prenom, 
+																		 $administrateur_mot_de_passe_hash,
+																		 $administrateur_telephone, 
+																		 $administrateur_email, 
+																		 $administrateur_adresse, 
+																		 $administrateur_ville, 
+																		 $administrateur_code_postal,
+																		 null,
+																		 null);
 									$administrateurDAO = new AdministrateurDAO();
-									$administrateurDAO->inscrire($administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash,
-								$administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal);
+									$administrateurDAO->inscrire($administrateur);
 
 									header("Location: administrateurconnexion.php");
 								}else{

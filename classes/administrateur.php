@@ -1,19 +1,19 @@
 <?php
 class Administrateur{
-	public $administrateur_id;
-	public $administrateur_super;
-	public $administrateur_nom;
-	public $administrateur_prenom;
-	public $administrateur_mot_de_passe_hash;
-	public $administrateur_email;
-	public $administrateur_telephone;
-	public $administrateur_adresse;
-	public $administrateur_ville;
-	public $administrateur_code_postal;
-	public $administrateur_derniere_connexion;
-	public $administrateur_creation;
-
-	function __construct($administrateur_id,$administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash, $administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal, $administrateur_derniere_connexion, $administrateur_creation = null){
+	private $administrateur_id;
+	private $administrateur_super;
+	private $administrateur_nom;
+	private $administrateur_prenom;
+	private $administrateur_mot_de_passe_hash;
+	private $administrateur_email;
+	private $administrateur_telephone;
+	private $administrateur_adresse;
+	private $administrateur_ville;
+	private $administrateur_code_postal;
+	private $administrateur_derniere_connexion;
+	private $administrateur_creation;
+	
+	function __construct($administrateur_id = null, $administrateur_super, $administrateur_nom, $administrateur_prenom, $administrateur_mot_de_passe_hash, $administrateur_telephone, $administrateur_email, $administrateur_adresse, $administrateur_ville, $administrateur_code_postal, $administrateur_derniere_connexion = null, $administrateur_creation = null){
 		$this->administrateur_id = $administrateur_id;
 		$this->administrateur_super = $administrateur_super;
 		$this->administrateur_nom = $administrateur_nom;

@@ -43,7 +43,7 @@ CREATE TABLE jeune(
 	jeune_id					INT(11) NOT NULL AUTO_INCREMENT,
 	jeune_nom					VARCHAR(50) NOT NULL,
 	jeune_prenom				VARCHAR(50) NOT NULL,
-	jeune_mot_De_passe_hash 	CHAR(50) NOT NULL,
+	jeune_mot_de_passe_hash 	CHAR(50) NOT NULL,
 	jeune_telephone 			VARCHAR(10) NOT NULL,
 	jeune_email 				VARCHAR(50) NOT NULL,
 	jeune_adresse 				VARCHAR(38) NOT NULL,

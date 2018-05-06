@@ -1,5 +1,6 @@
 <?php
 require('framework/noyau/moteur.php');
+require_once('classes/partenaire.php');
 require_once('dao/classes/partenaireDAO.php');
 
 $moteur = new Moteur();
@@ -26,8 +27,19 @@ if(isset($_POST['form_auth'])){
 						if(strlen($partenaire_adresse) <= 38){
 							if(strlen($partenaire_ville) <= 32){
 								if(strlen($partenaire_code_postal) == 5){
+										$partenaire = new Partenaire(null,
+																     $partenaire_siret, 
+																     $partenaire_nom, 
+																     $partenaire_mot_de_passe_hash, 
+																     $partenaire_telephone, 
+																     $partenaire_email, 
+																     $partenaire_adresse, 
+																     $partenaire_ville, 
+																     $partenaire_code_postal,
+																     null,
+																     null);
 										$partenaireDAO = new PartenaireDAO();
-										$partenaireDAO->inscrire($partenaire_siret, $partenaire_nom, $partenaire_mot_de_passe_hash, $partenaire_telephone, $partenaire_email, $partenaire_adresse, $partenaire_ville, $partenaire_code_postal);
+										$partenaireDAO->inscrire($partenaire);
 
 									header("Location: partenaireconnexion.php");
 								}else{

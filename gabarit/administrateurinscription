@@ -12,7 +12,7 @@
       <label for="administrateur_nom" class="sr-only">Nom</label>
       <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Nom" required autofocused><br/>
       <label for="administrateur_prenom" class="sr-only">Prenom</label>
-      <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Prenom" required><br/>
+      <input type="text" id="administrateur_prenom" name="administrateur_prenom" class="form-control" placeholder="Prenom" required><br/>
       <label form="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
       <input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
       <label for="administrateur_mot_de_passe_confirmation" class="sr-only">Mot de passe confirmation</label>

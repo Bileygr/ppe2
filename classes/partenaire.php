@@ -1,20 +1,20 @@
 <?php
 class Partenaire{
-	private $partenaire_id;
-	private $partenaire_siret;
-	private $partenaire_nom;
-	private $partenaire_mot_de_passe_hash
-;	private $partenaire_telephone;
-	private $partenaire_email;
-	private $partenaire_adresse;
-	private $partenaire_ville;
-	private $partenaire_code_postal;
-	private $partenaire_derniere_connexion;
-	private $partenaire_creation;
+	public $partenaire_id;
+	public $partenaire_siret;
+	public $partenaire_nom;
+	public $partenaire_mot_de_passe_hash
+;	public $partenaire_telephone;
+	public $partenaire_email;
+	public $partenaire_adresse;
+	public $partenaire_ville;
+	public $partenaire_code_postal;
+	public $partenaire_derniere_connexion;
+	public $partenaire_creation;
 
-	function __construct($partenaire_id, $partenaire_siret, $partenaire_nom, $partenaire_mot_de_passe_hash, 
-						 $partenaire_telephone, $partenaire_email, $partenaire_adresse, $partenaire_ville,
-						 $partenaire_code_postal, $partenaire_derniere_connexion, $partenaire_creation){
+	function __construct($partenaire_id = null, $partenaire_siret = null, $partenaire_nom = null , $partenaire_mot_de_passe_hash = null, 
+						 $partenaire_telephone = null, $partenaire_email = null, $partenaire_adresse = null, $partenaire_ville = null,
+						 $partenaire_code_postal = null, $partenaire_derniere_connexion = null, $partenaire_creation = null){
 		$this->partenaire_id = $partenaire_id;
 		$this->partenaire_siret = $partenaire_siret;
 		$this->partenaire_nom = $partenaire_nom;
