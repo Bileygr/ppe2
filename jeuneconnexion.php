@@ -10,7 +10,7 @@ if(isset($_POST['form_auth'])){
 	$jeune_email = $_POST['jeune_email'];
 	$jeune_mot_de_passe = $_POST['jeune_mot_de_passe'];
 
-	if(filter_var(strlen($jeune_siret) == 9)){
+	if(filter_var($jeune_email, FILTER_VALIDATE_EMAIL)){
 		if(strlen($jeune_mot_de_passe) >= 12){
 			$jeuneDAO = new JeuneDAO();
 			$jeune = $jeuneDAO->connecter($jeune_email, $jeune_mot_de_passe);
@@ -30,6 +30,8 @@ if(isset($_POST['form_auth'])){
 
 			header("Location: index.php");
 		}
+	}else{
+
 	}
 }
 ?>

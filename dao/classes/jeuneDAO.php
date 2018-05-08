@@ -3,7 +3,7 @@ require('connexion.php');
 require_once('dao/interfaces/jeuneInterface.php');
 require_once('classes/jeune.php');
 
-class jeuneDAO implements JeuneInterface{
+class JeuneDAO implements JeuneInterface{
 	public function connecter($jeune_email, $jeune_mot_de_passe){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
@@ -43,15 +43,20 @@ class jeuneDAO implements JeuneInterface{
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
-		$requete = $connexion->prepare("INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, jeune_derniere_connexion, jeune_date_ajout) VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
-		$requete->execute(array($jeune->getJeune_nom(),
-								$jeune->getJeune_prenom(),
-								$jeune->getJeune_mot_de_passe_hash(),
-								$jeune->getJeune_telephone(),
-								$jeune->getJeune_email(),
-								$jeune->getJeune_adresse(),
-								$jeune->getJeune_ville(),
-								$jeune->getJeune_code_postal()));
+		try{
+			$requete = $connexion->prepare("INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, jeune_derniere_connexion, jeune_creation) VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+			$requete->execute(array($jeune->getJeune_nom(),
+									$jeune->getJeune_prenom(),
+									$jeune->getJeune_mot_de_passe_hash(),
+									$jeune->getJeune_telephone(),
+									$jeune->getJeune_email(),
+									$jeune->getJeune_adresse(),
+									$jeune->getJeune_ville(),
+									$jeune->getJeune_code_postal()));
+		}catch(Exception $e){
+			print $e->getMessage();
+		}
+		
 		$requete = null;
 		$connexion = null;
 	}

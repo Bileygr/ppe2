@@ -8,7 +8,7 @@
 
   <body class="text-center">
     <form method="POST" class="form-signin">
-      <h1 class="h3 mb-3 font-weight-normal">[parent[titre]]</h1>
+      <a href="index.php"><h1 class="h3 mb-3 font-weight-normal">[parent[titre]]</h1></a>
       <label for="jeune_email" class="sr-only">EMAIL</label>
       <input type="text" id="jeune_email" name="jeune_email" class="form-control" placeholder="EMAIL" required autofocused><br/>
       <label for="jeune_mot_de_passe" class="sr-only">Mot de passe</label>
