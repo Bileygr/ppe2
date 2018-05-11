@@ -15,7 +15,7 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<input type="text" name="mdp" placeholder="Mot de passe">
 	<input type="submit" name="form_auth" value="Validation">
 </form>
-
+<!--
 <h1>Tableau des hash</h1>
 <h2>Partenaires</h2>
 <table>
@@ -23,14 +23,14 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 		<th>Nom</th>
 		<th>Hash</th>
 	</tr>
-	<?php
+	<?php/*
 		while($resultat = $requete->fetch()){
 			echo '<tr>
 					<td>'.$resultat['partenaire_nom'].'</td>
 					<td>'.$resultat['partenaire_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}
+		}*/
 	?>
 </table>
 
@@ -38,13 +38,13 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<tr>
 		<th>Administrateurs</th>
 	</tr>
-	<?php
+	<?php/*
 		while($resultat = $requete2->fetch()){
 			echo '<tr>
 					<td>'.$resultat['administrateur_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}
+		}*/
 	?>
 </table>
 
@@ -52,28 +52,30 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<tr>
 		<th>Jeunes</th>
 	</tr>
-	<?php
+	<?php/*
 		while($resultat = $requete2->fetch()){
 			echo '<tr>
 					<td>'.$resultat['jeune_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}
+		}*/
 	?>
 </table>
-
+-->
 <?php
 if(isset($_POST['form_auth'])){
 	$mdp = $_POST['mdp'];
-	$hash = '$2y$10$sEJtPhBC7zCsi.iW8oOf5uUG69wRCm9LeysRMubngX6YxUtvxeSh6';
+	$hash = password_hash($mdp, PASSWORD_BCRYPT);
 
-	echo 'Hash: '.$hash;
+	echo '<p>Mot de passe: '.$mdp.'</p>';
+	echo '<p>Hash: '.$hash.'</p>';
 
+	/*
 	if(password_verify($mdp, $hash)){
 		exit('<h1>CA CORRESPOND :D</h1>');
 	}else{
 		exit('<h1>CA NE CORRESPOND PAS :\'(</h1>');
 	}
-
+	*/
 }
 ?>

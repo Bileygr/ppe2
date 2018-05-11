@@ -40,16 +40,16 @@ class Offre{
 	private function setOffre_fin($offre_fin){return $this->offre_fin = $offre_fin;}
 	private function setOffre_creation($offre_creation){return $this->offre_creation = $offre_creation;}
 
-	private function getOffre_id(){$this->offre_id;}
-	private function getPartenaire_id(){$this->partenaire_id;}
-	private function getFormation_id(){$this->formation_id;}
-	private function getOffre_titre(){$this->offre_titre;}
-	private function getOffre_description(){$this->offre_description;}
-	private function getOffre_adresse(){$this->offre_adresse;}
-	private function getOffre_ville(){$this->offre_ville;}
-	private function getOffre_code_postal(){$this->offre_code_postal;}
-	private function getOffre_debut(){$this->offre_debut;}
-	private function getOffre_fin(){$this->offre_fin;}
-	private function getOffre_creation(){$this->offre_creation;}
+	private function getOffre_id(){return $this->offre_id;}
+	private function getPartenaire_id(){return $this->partenaire_id;}
+	private function getFormation_id(){return $this->formation_id;}
+	private function getOffre_titre(){return $this->offre_titre;}
+	private function getOffre_description(){return $this->offre_description;}
+	private function getOffre_adresse(){return $this->offre_adresse;}
+	private function getOffre_ville(){return $this->offre_ville;}
+	private function getOffre_code_postal(){return $this->offre_code_postal;}
+	private function getOffre_debut(){return $this->offre_debut;}
+	private function getOffre_fin(){return $this->offre_fin;}
+	private function getOffre_creation(){return $this->offre_creation;}
 }
 ?>

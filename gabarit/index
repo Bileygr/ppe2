@@ -1,21 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang="FR">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>[[ titre ]]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="ressources/css/sticky-footer.css" rel="stylesheet">
   </head>
 
   <body>
-  	<h1>[parent[titre]]</h1>
-    	<a href="administrateurconnexion.php">Administreur Connexion</a><br/>
-    	<a href="administrateurinscription.php">Administrateur Inscription</a><br/>
-    	<a href="administrateurmenu.php">Administrateur Menu</a><br/>
-    	<a href="partenaireconnexion.php">Partenaire Connexion</a><br/>
-    	<a href="partenaireinscription.php">Partenaire Inscription</a><br/>
-      <a href="partenairemenu.php">Partenaire Menu</a><br/>
-      <a href="jeuneconnexion.php">Jeune Connexion</a><br/>
-      <a href="jeuneinscription.php">Jeune Inscription</a><br/>
-      <a href="jeunemenu.php">Jeune Menu</a><br/>
-      <a href="offres.php">Offres</a><br/>
-      <a href="deconnexion.php">Deconnexion</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">PPE 2</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Administrateur
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="administrateurconnexion.php">Connexion</a>
+              <a class="dropdown-item" href="administrateurinscription.php">Inscription</a>
+              <a class="dropdown-item" href="jeuneinscription.php">Profil</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Partenaire
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="partenaireconnexion.php">Connexion</a>
+              <a class="dropdown-item" href="partenaireinscription.php">Inscription</a>
+              <a class="dropdown-item" href="jeuneinscription.php">Profil</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Jeune
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="jeuneconnexion.php">Connexion</a>
+              <a class="dropdown-item" href="jeuneinscription.php">Inscription</a>
+              <a class="dropdown-item" href="jeuneinscription.php">Profil</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">&copy; Cheik-Siramakan Keita 2018</span>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

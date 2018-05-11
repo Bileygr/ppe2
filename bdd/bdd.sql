@@ -74,16 +74,54 @@ CREATE TABLE offre(
 	offre_code_postal	VARCHAR(5) NOT NULL,
 	offre_debut			DATE NOT NULL,
 	offre_fin			DATE NOT NULL,
-	offre_ceration		DATETIME NOT NULL,
+	offre_creation		DATETIME NOT NULL,
 	PRIMARY KEY(offre_id),
 	CONSTRAINT FK_offre_partenaire_id FOREIGN KEY (partenaire_id) REFERENCES partenaire(partenaire_id),
 	CONSTRAINT FK_offre_formation_id FOREIGN KEY (formation_id) REFERENCES formation(formation_id),
 	UNIQUE(offre_id)
 )ENGINE=InnoDB;
 
-
-INSERT INTO administrateur(administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
+INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
-		VALUES('Keita', 'Cheik', '$2y$10$FP4dnjrnhbedPYOAiHF7AOPlAsiyrXXXYKHV/27.e2pnDnudtLc/q', '0605557802', 
-				'cheiksiramakankeita@gmail.com', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW())
+		VALUES(1, 'Guerfi', 'Souhila', '$2y$10$FP4dnjrnhbedPYOAiHF7AOPlAsiyrXXXYKHV/27.e2pnDnudtLc/q', '0605557801', 
+				'sguerfi12@yahoo.fr', '128 Allée des Champs Elysées', 'Evry', '91000', NOW(), NOW());
+
+INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
+							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
+							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
+		VALUES(0, 'Keita', 'Cheik', '$2y$10$OsPC/94ePn/KFbmG0tBKM.fEdgPr/8A2IqAyQlY3OCkKY2qnE6hI.' , '0605557802', 
+				'cheiksiramakankeita@gmail.com', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW());
+
+INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
+						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
+		VALUES('123456781', 'Immo', '$2y$10$msDnSbC7BiryX0Uz6gykvebC6wUcwOCS4yRj1pgRhZx1H/UhbNiCu', '0605557803',
+				'infamousimmo@gmail.com', '9 Rue du Caire', 'Paris', '75002', NOW(), NOW());
+
+INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
+						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
+		VALUES('123456782', 'Prop', '$2y$10$ybSNu7ky5S0BwyZO/XLRquRSPTN1YzHFIoRtwAIyKlMQVIbBIT4au', '0605557804',
+				'prop@gmail.com', '11 Rue Jarry', 'Paris', '75010', NOW(), NOW());
+
+INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
+					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
+		VALUES('Benoit', 'Florian', '$2y$10$AnONBJys2pp5dTLc5TiynOsIXcclSr/H7duBXusHryDmksW8qxooy', '0605557805',
+				'floben@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
+
+INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
+					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
+		VALUES('Badri', 'Brahim', '$2y$10$LqiCM2VXijaKf3pLX3/pEOk1HhqC93L2J0TbEa4wWQu3xxj4tJ38e', '0605557806',
+				'badbra@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
+
+INSERT INTO formation(formation_nom, formation_creation) VALUES('Dépannage informatique', NOW());
+INSERT INTO formation(formation_nom, formation_creation) VALUES('Développement', NOW());
+INSERT INTO formation(formation_nom, formation_creation) VALUES('Réseau', NOW());
+
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
+		VALUES(1, 1, 'Formation d\'Été', 'bla bla bla bla bla bla bla bla bla bla', '2018-07-01', '2018-08-01', NOW());
+
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
+		VALUES(1, 2, 'Formation d\'Automne', 'bla bla bla bla bla bla bla bla bla bla', '2018-10-01', '2018-11-01', NOW());
+
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
+		VALUES(2, 3, 'Formation d\'Hiver', 'bla bla bla bla bla bla bla bla bla bla', '2019-01-01', '2019-02-01', NOW());

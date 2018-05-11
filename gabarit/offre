@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>[[ titre ]]</title>
+	</head>
+
+	<body>
+		<h1>[parent[titre]]</h1>
+		<table>
+			<tr>
+				<td>Partenaire</td>
+				<td>Formation</td>
+				<td>Nom</td>
+				<td>Début</td>
+				<td>Fin</td>
+				<td>Création</td>
+			</tr>
+			<tr>
+				[% block offre %]
+			</tr>
+		</table>
+	</body>
+</html>
