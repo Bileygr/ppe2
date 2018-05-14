@@ -7,6 +7,10 @@ $connexion = $connect->connexion();
 $requete = $connexion->query("SELECT partenaire_nom, partenaire_mot_de_passe_hash FROM partenaire");
 $requete2 = $connexion->query("SELECT administrateur_mot_de_passe_hash FROM administrateur");
 $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
+$requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.formation_nom, 
+										     offre_nom, offre_debut, offre_fin, offre_creation
+										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
+										    		   JOIN formation ON offre.formation_id = formation.formation_id");
 ?>
 
 <h1>Test du mot de passe et du hash</h1>
@@ -15,7 +19,31 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<input type="text" name="mdp" placeholder="Mot de passe">
 	<input type="submit" name="form_auth" value="Validation">
 </form>
-<!--
+
+<h1>Offre<h1>
+		<table>
+			<tr>
+				<td>Partenaire</td>
+				<td>Formation</td>
+				<td>Nom</td>
+				<td>Début</td>
+				<td>Fin</td>
+				<td>Création</td>
+			</tr>
+				<?php
+					while($resultat = $requete->fetch()){
+						echo '<tr>';
+						echo '<td>'.$resultat['partenaire_nom'].'</td>';
+						echo '<td>'.$resultat['formation_nom'].'</td>';
+						echo '<td>'.$resultat['offre_nom'].'</td>';
+						echo '<td>'.$resultat['offre_debut'].'</td>';
+						echo '<td>'.$resultat['offre_fin'].'</td>';
+						echo '<td>'.$resultat['offre_creation'].'</td>';
+						echo '</td>';
+					}
+				?>
+		</table>
+
 <h1>Tableau des hash</h1>
 <h2>Partenaires</h2>
 <table>
@@ -23,14 +51,14 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 		<th>Nom</th>
 		<th>Hash</th>
 	</tr>
-	<?php/*
+	<?php
 		while($resultat = $requete->fetch()){
 			echo '<tr>
 					<td>'.$resultat['partenaire_nom'].'</td>
 					<td>'.$resultat['partenaire_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}*/
+		}
 	?>
 </table>
 
@@ -38,13 +66,13 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<tr>
 		<th>Administrateurs</th>
 	</tr>
-	<?php/*
+	<?php
 		while($resultat = $requete2->fetch()){
 			echo '<tr>
 					<td>'.$resultat['administrateur_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}*/
+		}
 	?>
 </table>
 
@@ -52,13 +80,13 @@ $requete3 = $connexion->query("SELECT jeune_mot_de_passe_hash FROM jeune");
 	<tr>
 		<th>Jeunes</th>
 	</tr>
-	<?php/*
+	<?php
 		while($resultat = $requete2->fetch()){
 			echo '<tr>
 					<td>'.$resultat['jeune_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}*/
+		}
 	?>
 </table>
 -->

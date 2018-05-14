@@ -14,10 +14,9 @@ class Moteur{
 			$contenu = file_get_contents("http://127.0.0.1/ppe2/gabarit/".$gabarit);
 
 			foreach ($this->vars as $parametres => $valeurs){
-				$contenu = str_replace('[[ '.$parametres.' ]]', $valeurs, $contenu);
-				$contenu = str_replace('[parent['.$parametres.']]', $valeurs, $contenu);
-				$contenu = str_replace('[% while '.$parametres.' %]', 'while('.$valeurs.'){', $contenu);
-				$contenu = str_replace('[% finwhile %]', '}', $contenu);
+				$contenu = preg_replace('/\[\[\s'.$parametres.'\s\]\]/', $valeurs, $contenu);
+				$contenu = preg_replace('/\[\%\sboucle:\swhile\s'.$parametres.'\s\%\]/', '<?php while('.$valeurs.'){ ?>', $contenu);
+				$contenu = preg_replace('/\[\%\sboucle:\sfin\s\%\]/', '<?php } ?>', $contenu);
 			}
 			echo $contenu;
 		}else{

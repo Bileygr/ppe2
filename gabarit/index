@@ -53,6 +53,8 @@
       </div>
     </nav>
 
+    <a href="deconnexion.php">Déconnexion</a>
+
     <footer class="footer">
       <div class="container">
         <span class="text-muted">&copy; Cheik-Siramakan Keita 2018</span>

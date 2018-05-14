@@ -5,7 +5,7 @@
 	</head>
 
 	<body>
-		<h1>[parent[titre]]</h1>
+		<h1>[[ titre ]]<h1>
 		<table>
 			<tr>
 				<td>Partenaire</td>
@@ -15,9 +15,16 @@
 				<td>Fin</td>
 				<td>Création</td>
 			</tr>
+			[% boucle: while offre %]
 			<tr>
-				[% block offre %]
-			</tr>
+				<td>[[ partenaire ]]</td>
+				<td>[[ formation ]]</td>
+				<td>[[ nom ]]</td>
+				<td>[[ debut ]]</td>
+				<td>[[ fin ]]</td>
+				<td>[[ creation ]]</td>
+			</td>
+			[% boucle: fin %]
 		</table>
 	</body>
 </html>

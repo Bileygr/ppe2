@@ -12,11 +12,11 @@ class OffreDAO implements OffreInterface{
 										     offre_nom, offre_debut, offre_fin, offre_creation
 										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
 										    		   JOIN formation ON offre.formation_id = formation.formation_id");
-		$resultat = $requete->fetch();
+		//$resultat = $requete->fetch();
 
+		return $requete;
 		$requete = null;
 		$connexion = null;
-		return $resultat;
 	}
 }
 ?>
