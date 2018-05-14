@@ -35,7 +35,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="partenaireconnexion.php">Connexion</a>
               <a class="dropdown-item" href="partenaireinscription.php">Inscription</a>
-              <a class="dropdown-item" href="jeuneinscription.php">Profil</a>
+              <a class="dropdown-item" href="partenaireprofil.php">Profil</a>
             </div>
           </li>
 

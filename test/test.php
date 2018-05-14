@@ -89,7 +89,6 @@ $requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.format
 		}
 	?>
 </table>
--->
 <?php
 if(isset($_POST['form_auth'])){
 	$mdp = $_POST['mdp'];

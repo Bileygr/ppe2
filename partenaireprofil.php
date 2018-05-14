@@ -1,11 +1,25 @@
+<?php
+require('framework/noyau/moteur.php');
+require_once('dao/classes/offreDAO.php');
+session_start();
+
+if(empty($_SESSION["partenaire_siret"])){
+	header("Location: partenaireconnexion.php");
+}
+
+$offreDAO = new OffreDAO();
+$requete = $offreDAO->rechercher();
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>[[ titre ]]</title>
+		<title>Partenaire Profil</title>
 	</head>
 
 	<body>
-		<h1>[[ titre ]]<h1>
+		<h1>Partenaire Profil<h1>
+		<a href="offreajout.php">Ajouter une offre</a>
 		<table>
 			<tr>
 				<td>Partenaire</td>

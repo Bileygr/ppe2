@@ -12,7 +12,7 @@ class Moteur{
 
 		if(file_exists($repertoire."/".$gabarit)){
 			$contenu = file_get_contents("http://127.0.0.1/ppe2/gabarit/".$gabarit);
-
+			
 			foreach ($this->vars as $parametres => $valeurs){
 				$contenu = preg_replace('/\[\[\s'.$parametres.'\s\]\]/', $valeurs, $contenu);
 				$contenu = preg_replace('/\[\%\sboucle:\swhile\s'.$parametres.'\s\%\]/', '<?php while('.$valeurs.'){ ?>', $contenu);

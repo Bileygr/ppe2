@@ -29,7 +29,7 @@ if(isset($_POST['form_auth'])){
 			$_SESSION['partenaire_creation'] = $partenaire->getPartenaire_creation();
 
 			var_dump($partenaire);
-			header("Location: index.php");
+			header("Location: partenaireprofil.php");
 		}
 	}else{
 		exit("<h1>Erreur: La longeur du SIRET est incorrecte.");
