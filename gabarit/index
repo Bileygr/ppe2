@@ -22,7 +22,7 @@
               Administrateur
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="administrateurconnexion.php">Connexion</a>
+              <a class="dropdown-item" href="controller/administrateurconnexion.php">Connexion</a>
               <a class="dropdown-item" href="administrateurinscription.php">Inscription</a>
               <a class="dropdown-item" href="jeuneinscription.php">Profil</a>
             </div>
@@ -33,7 +33,7 @@
               Partenaire
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="partenaireconnexion.php">Connexion</a>
+              <a class="dropdown-item" href="controller/partenaireconnexion.php">Connexion</a>
               <a class="dropdown-item" href="partenaireinscription.php">Inscription</a>
               <a class="dropdown-item" href="partenaireprofil.php">Profil</a>
             </div>

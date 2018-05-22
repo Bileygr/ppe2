@@ -8,7 +8,7 @@ if(empty($_SESSION["partenaire_siret"])){
 }
 
 $offreDAO = new OffreDAO();
-$requete = $offreDAO->rechercher();
+$requete = $offreDAO->rechercher($_SESSION['partenaire_id']);
 ?>
 
 <!DOCTYPE html>

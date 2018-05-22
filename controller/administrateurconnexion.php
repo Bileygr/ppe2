@@ -1,4 +1,5 @@
 <?php
+include_once('index.php');
 require('framework/noyau/moteur.php');
 require_once('dao/classes/administrateurDAO.php');
 
