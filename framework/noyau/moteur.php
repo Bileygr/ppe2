@@ -11,6 +11,15 @@ class Moteur{
 		$repertoire = "gabarit";
 
 		if(file_exists($repertoire."/".$gabarit)){
+			include($repertoire."/".$gabarit);
+		}
+	}
+
+/*
+	public function render($gabarit){
+		$repertoire = "gabarit";
+
+		if(file_exists($repertoire."/".$gabarit)){
 			$contenu = file_get_contents("http://127.0.0.1/ppe2/gabarit/".$gabarit);
 			
 			foreach ($this->vars as $parametres => $valeurs){
@@ -23,5 +32,6 @@ class Moteur{
 			exit('<h1>Erreur de Template</h1>');
 		}
 	}
+*/
 }
 ?>

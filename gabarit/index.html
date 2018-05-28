@@ -1,10 +1,51 @@
-<?php
-require('dao/classes/OffreDAO.php');
-session_start();
+<!--
+<!DOCTYPE html>
 
-$offreDAO = new OffreDAO();
-$requete = $offreDAO->rechercher_liste();
-?>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Accueil</title>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css" >
+    <link rel="stylesheet" href="moncss.css">
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <h1 class="text-muted">PPE 2</h1>
+      </div>
+
+      <div class="jumbotron">
+        <a href="jeuneconnexion.html" class="btn btn-info btn-lg btn-block">Offres</a>
+        <a href="jeuneconnexion.html" class="btn btn-info btn-lg btn-block">Jeune</a>
+        <a href="partenaireconnexion.html" class="btn btn-warning btn-lg btn-block">Partenaire</a>
+        <a href="administrateurconnexion.html" class="btn btn-primary btn-lg btn-block">Administrateur</a>
+        <?php 
+          if(isset($_SESSION)){
+            echo '<a href="" class="btn btn-secondary my-2 my-sm-0">Déconnexion</a>';
+          }
+        ?>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Cheik-Siramakan Keita 2018</p>
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script rel="text/javaScript" src=""></script>
+  </body>
+</html>
+-->
 
 <!DOCTYPE html>
 <html>
@@ -60,39 +101,9 @@ $requete = $offreDAO->rechercher_liste();
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-        	<input class="form-control my-2 my-lg-0" type="text" id="recherche_input" onkeyup="myFunction()" placeholder="Recherche" aria-label="Search">
-        	<button class="btn btn-secondary my-2 my-sm-0" onclick="window.location.href='http://web.sio.lan/Alexandre'">Déconnexion</button>
-        </form>
+        <a href="" class="btn btn-secondary my-2 my-sm-0">Déconnexion</a>
       </div>
     </nav>
-
-    <div id="map" style="width:100%;height:400px;"></div><br/>
-
-    <table class="table table-bordered" id="tableau">
-    	<thead>
-    		<tr>
-				<th scope="col">Partenaire</th>
-				<th scope="col">Formation</th>
-				<th scope="col">Nom</th>
-				<th scope="col">Début</th>
-				<th scope="col">Fin</th>
-				<th scope="col">Création</th>
-			</tr>
-		</thead>
-		<?php
-    		while($resultat = $requete->fetch()){
-    			echo '<tr>';
-					echo '<td>'.$resultat["partenaire_nom"].'</td>';
-					echo '<td>'.$resultat["formation_nom"].'</td>';
-					echo '<td>'.$resultat["offre_nom"].'</td>';
-					echo '<td>'.$resultat["offre_debut"].'</td>';
-					echo '<td>'.$resultat["offre_fin"].'</td>';
-					echo '<td>'.$resultat["offre_creation"].'</td>';
-				echo '</tr>';
-    		}
-    	?>
-    </table>
 
     <footer class="footer">
       <div class="container">
@@ -100,9 +111,6 @@ $requete = $offreDAO->rechercher_liste();
       </div>
     </footer>
 
-    <script src="ressources/js/map.js"></script>
-    <script src="ressources/js/monscript.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=myMap"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
