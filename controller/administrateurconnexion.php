@@ -1,11 +1,7 @@
 <?php
-include_once('index.php');
-require('framework/noyau/moteur.php');
 require_once('dao/classes/administrateurDAO.php');
 
-$moteur = new Moteur();
-$moteur->assigner('titre', 'Connexion Administrateur');
-$moteur->render('administrateurconnexion');
+$url = "http://localhost:8000/ppe2/";
 
 if(isset($_POST['form_auth'])){
 	$administrateur_email = $_POST['administrateur_email'];
@@ -30,8 +26,29 @@ if(isset($_POST['form_auth'])){
 			$_SESSION['administrateur_derniere_connexion'] = $administrateur->getAdministrateur_derniere_connexion();
 			$_SESSION['administrateur_creation'] = $administrateur->getAdministrateur_creation();
 
-			header("Location: index.php");
+			header("Location: ".$url."administrateur/profil");
 		}
 	}
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Administrateur Connexion</title>
+    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/css/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <a href="<?= $url ?>"><h1 class="h3 mb-3 font-weight-normal">Administrateur Connexion</h1></a>
+    	<label for="administrateur_email" class="sr-only">Email</label>
+    	<input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" required autofocused><br/>
+    	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
+    	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
+    	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
+      <a href="<?= $url ?>">Inscription</a> / <a href="">Mot de passe oublié?</a>
+    </form>
+  </body>
+</html>

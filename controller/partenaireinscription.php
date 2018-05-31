@@ -1,11 +1,8 @@
 <?php
-require('framework/noyau/moteur.php');
 require_once('classes/partenaire.php');
 require_once('dao/classes/partenaireDAO.php');
 
-$moteur = new Moteur();
-$moteur->assigner('titre', 'Inscription Partenaire');
-$moteur->render('partenaireinscription');
+$url = "http://localhost:8000/ppe2/";
 
 if(isset($_POST['form_auth'])){
 	$partenaire_siret = $_POST['partenaire_siret'];
@@ -41,7 +38,7 @@ if(isset($_POST['form_auth'])){
 										$partenaireDAO = new PartenaireDAO();
 										$partenaireDAO->inscrire($partenaire);
 
-									header("Location: partenaireconnexion.php");
+									header("Location: ".$url."partenaire/connexion");
 								}else{
 									echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 								}
@@ -66,6 +63,39 @@ if(isset($_POST['form_auth'])){
 	}else{
 		echo 'Erreur certains champs n\'ont pas ete remplis.';
 	}
-
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Partenaire Inscription</title>
+    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/css/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <a href="<?= $url ?>"><h1 class="h3 mb-3 font-weight-normal">Partenaire Inscription</h1></a>
+      <label for="partenaire_siret" class="sr-only">SIRET</label>
+      <input type="text" id="partenaire_siret" name="partenaire_siret" class="form-control" placeholder="SIRET" required autofocused><br/>
+      <label for="partenaire_nom" class="sr-only">Nom</label>
+      <input type="text" id="partenaire_nom" name="partenaire_nom" class="form-control" placeholder="Nom" required><br/>
+      <label form="partenaire_mot_de_passe" class="sr-only">Mot de passe</label>
+      <input type="password" id="partenaire_mot_de_passe" name="partenaire_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
+      <label for="partenaire_mot_de_passe_confirmation" class="sr-only">Mot de passe confirmation</label>
+      <input type="password" id="partenaire_mot_de_passe_confirmation" name="partenaire_mot_de_passe_confirmation" class="form-control" placeholder="Mot de passe confirmation" required><br/>
+      <label for="partenaire_telephone" class="sr-only">Telephone</label>
+      <input type="text" id="partenaire_telephone" name="partenaire_telephone" class="form-control" placeholder="Telephone" required><br/>
+      <label for="partenaire_email" class="sr-only">Email</label>
+      <input type="email" id="partenaire_email" name="partenaire_email" class="form-control" placeholder="Email" required><br/>
+      <label type="partenaire_adresse" class="sr-only">Adresse</label>
+      <input type="text" id="partenaire_adresse" name="partenaire_adresse" class="form-control" placeholder="Adresse" required><br/>
+      <label for="partenaire_ville" class="sr-only">Ville</label>
+      <input type="text" id="partenaire_ville" name="partenaire_ville" class="form-control" placeholder="Ville" required><br/>
+      <label for="partenaire_code_postal" class="sr-only">Code postal</label>
+      <input type="text" id="partenaire_code_postal" name="partenaire_code_postal" class="form-control" placeholder="Code postal" required><br/>
+      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Inscription"><br/>
+    </form>
+  </body>
+</html>

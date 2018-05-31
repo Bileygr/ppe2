@@ -1,19 +1,12 @@
 <?php
-require('dao/classes/OffreDAO.php');
+require_once('dao/classes/administrateurDAO.php');
 session_start();
 
 $url = "http://localhost:8000/ppe2/";
 
-if(isset($_POST['deconnexion'])){
-  if(session_destroy()){
-    header("Location: ".$url);
-  }
+if(!isset($_SESSION['jeune_id'])){
+	header("Location: ".$url);
 }
-
-$offreDAO = new OffreDAO();
-$requete = $offreDAO->rechercher_liste();
-
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -71,42 +64,13 @@ var_dump($_SESSION);
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="POST">
-          <input id="recherche_input" data-type="search" class="form-control mr-sm-2" onkeyup="filterTable();" aria-label="Search" placeholder="Recherche">
-          <input class="btn btn-secondary my-2 my-sm-0" type="submit" name="deconnexion" value="Déconnexion">
+        	<input id="recherche_input" data-type="search" class="form-control mr-sm-2" onkeyup="filterTable();" aria-label="Search" placeholder="Recherche">
+        	<input class="btn btn-secondary my-2 my-sm-0" type="submit" name="deconnexion" value="Déconnexion">
         </form>
       </div>
     </nav>
 
-    <div id="map" style="width:100%;height:400px;"></div><br/>
-
-    <h1>Tableau des offres</h1>
-    <table class="table table-bordered" data-role="table" data-mode="columntoggle" id="tableau" data-filter="true" data-input="#recherche_input">
-    	<thead>
-    		<tr>
-				<th scope="col">Type de Formation</th>
-				<th scope="col">Nom</th>
-        <th scope="col">Partenaire</th> 
-				<th scope="col">Début</th>
-				<th scope="col">Fin</th>
-				<th scope="col">Création</th>
-			</tr>
-		</thead>
-    <tbody>
-		<?php
-    		while($resultat = $requete->fetch()){
-    			echo '<tr>';
-					echo '<td>'.$resultat["formation_nom"].'</td>';
-					echo '<td>'.$resultat["offre_nom"].'</td>';
-          echo '<td>'.$resultat["partenaire_nom"].'</td>';
-					echo '<td>'.$resultat["offre_debut"].'</td>';
-					echo '<td>'.$resultat["offre_fin"].'</td>';
-					echo '<td>'.$resultat["offre_creation"].'</td>';
-				echo '</tr>';
-    		}
-    	?>
-    </tbody>
-    </table>
-
+    
     <footer class="footer">
       <div class="container">
         <span class="text-muted">&copy; Cheik-Siramakan Keita 2018</span>

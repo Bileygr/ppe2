@@ -1,10 +1,15 @@
 <?php
 require('framework/noyau/moteur.php');
 session_start();
-
-$moteur = new Moteur();
-$moteur->assigner('titre', 'ERREUR');
-$moteur->render('404');
-
-var_dump($_SESSION);
 ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Erreur</title>
+	</head>
+
+	<body>
+		<h1>ERREUR: 404<h1>
+	</body>
+</html>

@@ -1,10 +1,7 @@
 <?php
-require('framework/noyau/moteur.php');
 require_once('dao/classes/jeuneDAO.php');
 
-$moteur = new Moteur();
-$moteur->assigner('titre', 'Connexion Jeune');
-$moteur->render('jeuneconnexion');
+$url = "http://localhost:8000/ppe2/";
 
 if(isset($_POST['form_auth'])){
 	$jeune_email = $_POST['jeune_email'];
@@ -28,10 +25,31 @@ if(isset($_POST['form_auth'])){
 			$_SESSION['jeune_derniere_connexion'] = $jeune->getJeune_derniere_connexion();
 			$_SESSION['jeune_creation'] = $jeune->getJeune_creation();
 
-			header("Location: index.php");
+			header("Location: ".$url."jeune/profil");
 		}
 	}else{
 
 	}
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jeune Connexion</title>
+    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/css/signin.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <a href="<?= $url ?>"><h1 class="h3 mb-3 font-weight-normal">Jeune Connexion</h1></a>
+      <label for="jeune_email" class="sr-only">EMAIL</label>
+      <input type="text" id="jeune_email" name="jeune_email" class="form-control" placeholder="EMAIL" required autofocused><br/>
+      <label for="jeune_mot_de_passe" class="sr-only">Mot de passe</label>
+      <input type="password" id="jeune_mot_de_passe" name="jeune_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
+      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
+      <a href="<?= $url."jeune/inscription" ?>">Inscription</a> / <a href="">Mot de passe oublié?</a>
+    </form>
+  </body>
+</html>

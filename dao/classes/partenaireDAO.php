@@ -1,5 +1,5 @@
 <?php
-require('connexion.php');
+require_once('connexion.php');
 require_once('classes/partenaire.php');
 require_once('dao/interfaces/partenaireInterface.php');
 
@@ -11,6 +11,7 @@ class PartenaireDAO implements PartenaireInterface{
 		$requete = $connexion->prepare("SELECT partenaire_id, partenaire_mot_de_passe_hash FROM partenaire WHERE partenaire_siret = ?");
 		$requete->execute(array($partenaire_siret));
 		$resultat = $requete->fetch();
+
 		$partenaire_id = $resultat['partenaire_id'];
 		$partenaire_mot_de_passe_hash = $resultat['partenaire_mot_de_passe_hash'];
 
@@ -18,28 +19,33 @@ class PartenaireDAO implements PartenaireInterface{
 			$requete = $connexion->prepare("UPDATE partenaire SET partenaire_derniere_connexion = NOW() WHERE partenaire_id = ?");
 			$requete->execute(array($partenaire_id));
 
-			if($requete){
+			if($requete->rowcount()){
 				$requete = $connexion->prepare("SELECT partenaire_id, partenaire_siret, partenaire_nom, 														   				   partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 													   partenaire_adresse, partenaire_ville, partenaire_code_postal,
 													   partenaire_derniere_connexion, partenaire_creation 
 											    FROM partenaire WHERE partenaire_id = ?");
 				$requete->execute(array($partenaire_id));
-				$resultat = $requete->fetch();
 
-				$partenaire = new Partenaire($resultat['partenaire_id'],
-											 $resultat['partenaire_siret'],
-											 $resultat['partenaire_nom'],
-											 $resultat['partenaire_mot_de_passe_hash'],
-											 $resultat['partenaire_telephone'],
-											 $resultat['partenaire_email'],
-											 $resultat['partenaire_adresse'],
-											 $resultat['partenaire_ville'],
-											 $resultat['partenaire_code_postal'],
-											 $resultat['partenaire_derniere_connexion'],
-											 $resultat['partenaire_creation']);
-				$requete = null;
-				$connexion = null;
-				return $partenaire;
+				if($requete->rowcount()){
+					$resultat = $requete->fetch();
+
+					$partenaire = new Partenaire($resultat['partenaire_id'],
+											 	$resultat['partenaire_siret'],
+											 	$resultat['partenaire_nom'],
+											 	$resultat['partenaire_mot_de_passe_hash'],
+											 	$resultat['partenaire_telephone'],
+											 	$resultat['partenaire_email'],
+											 	$resultat['partenaire_adresse'],
+											 	$resultat['partenaire_ville'],
+											 	$resultat['partenaire_code_postal'],
+											 	$resultat['partenaire_derniere_connexion'],
+											 	$resultat['partenaire_creation']);
+					$requete = null;
+					$connexion = null;
+					return $partenaire;
+				}else{
+					
+				}
 			}else{
 
 			}
@@ -62,6 +68,21 @@ class PartenaireDAO implements PartenaireInterface{
 								$partenaire->getPartenaire_ville(), 
 								$partenaire->getPartenaire_code_postal())); 
 
+		$requete = null;
+		$connexion = null;
+	}
+
+	public function getOffre($partenaire_id){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("SELECT formation.formation_nom, partenaire.partenaire_nom, offre.offre_nom, offre.offre_debut, 
+											   offre.offre_fin, offre.offre_derniere_connexion, offre.offre_creation FROM offre 
+											   JOIN formation ON offre.formation_id = formation.formation_id JOIN partenaire ON 
+											   offre.partenaire_id = partenaire.partenaire_id WHERE partenaire.partenaire_id = ?");
+		$requete->execute(array($partenaire_id));
+
+		return $requete;
 		$requete = null;
 		$connexion = null;
 	}
