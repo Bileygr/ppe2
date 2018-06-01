@@ -23,14 +23,14 @@ if(isset($_POST['suprimmer_administrateur'])){
 
 if(isset($_POST['suprimmer_partenaire'])){
 	$administrateurDAO = new AdministrateurDAO();
-	$administrateurDAO->suprimmerPartenaire();
+	$administrateurDAO->suprimmerPartenaire($_POST['partenaire_id']);
 
 	header("Location: ".$url."administrateur/profil");
 }
 
 if(isset($_POST['suprimmer_jeune'])){
 	$administrateurDAO = new AdministrateurDAO();
-	$administrateurDAO->suprimmerJeune();
+	$administrateurDAO->suprimmerJeune($_POST['jeune_id']);
 
 	header("Location: ".$url."administrateur/profil");
 }
@@ -170,6 +170,7 @@ $offre 				= $administrateurDAO->getOffre();
 						echo '<td>'.$resultat["partenaire_email"].'</td>';
 						echo '<td>'.$resultat["partenaire_derniere_connexion"].'</td>';
 						echo '<td>'.$resultat["partenaire_creation"].'</td>';
+						echo '<input type="hidden" name="partenaire_id" value="'.$resultat["partenaire_id"].'">';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_partenaire" value="Suprimmer"></td>';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_partenaire" value="Modifier"></td>';
 					echo '</tr>';
@@ -200,6 +201,7 @@ $offre 				= $administrateurDAO->getOffre();
 						echo '<td>'.$resultat["jeune_email"].'</td>';
 						echo '<td>'.$resultat["jeune_derniere_connexion"].'</td>';
 						echo '<td>'.$resultat["jeune_creation"].'</td>';
+						echo '<input type="hidden" name="jeune_id" value="'.$resultat["jeune_id"].'">';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_jeune" value="Suprimmer"></td>';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_jeune" value="Modifier"></td>';
 					echo '</tr>';

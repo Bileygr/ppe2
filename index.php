@@ -46,6 +46,18 @@ switch ($request_uri[0]) {
     	include("controller/deconnexion.php");
     	break;
 
+    case "/ppe2/test/":
+        include("test/index.php");
+        break;
+
+    case "/ppe2/test/hash/generateur":
+        include("test/generateurdehash.php");
+        break;
+
+    case "/ppe2/test/hash/testeur":
+        include("test/testeurdehash.php");
+        break;
+
     default:
         require("controller/404.php");
         break;

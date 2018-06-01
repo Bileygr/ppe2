@@ -1,5 +1,5 @@
 <?php
-require('../dao/classes/connexion.php');
+require('dao/classes/connexion.php');
 
 $connect = new Connect();
 $connexion = $connect->connexion();
@@ -12,7 +12,7 @@ $requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.format
 										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
 										    		   JOIN formation ON offre.formation_id = formation.formation_id");
 ?>
-
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +102,7 @@ tr:nth-child(even) {
 
 </body>
 </html>
-
+-->
 <!--
 <!DOCTYPE html>
 <html>
@@ -214,7 +214,6 @@ function myFunction() {
 </html>
 -->
 
-<!--
 <h1>Test du mot de passe et du hash</h1>
 <form method="POST">
 	<label>Mot de passe</label>
@@ -232,7 +231,7 @@ function myFunction() {
 				<td>Fin</td>
 				<td>Création</td>
 			</tr>
-				<?php /*
+				<?php 
 					while($resultat = $requete->fetch()){
 						echo '<tr>';
 						echo '<td>'.$resultat['partenaire_nom'].'</td>';
@@ -288,10 +287,10 @@ function myFunction() {
 					<td>'.$resultat['jeune_mot_de_passe_hash'].'</td>
 				  </tr>
 				 ';
-		}*/
+		}
 	?>
 </table>
--->
+
 <?php
 if(isset($_POST['form_auth'])){
 	$mdp = $_POST['mdp'];
@@ -300,12 +299,12 @@ if(isset($_POST['form_auth'])){
 	echo '<p>Mot de passe: '.$mdp.'</p>';
 	echo '<p>Hash: '.$hash.'</p>';
 
-	/*
+	
 	if(password_verify($mdp, $hash)){
 		exit('<h1>CA CORRESPOND :D</h1>');
 	}else{
 		exit('<h1>CA NE CORRESPOND PAS :\'(</h1>');
 	}
-	*/
+	
 }
 ?>

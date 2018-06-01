@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS ppe;
+DROP DATABASE IF EXISTS cheik_ppe;
 
-CREATE DATABASE ppe CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE cheik_ppe CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-USE ppe;
+USE cheik_ppe;
 
 DROP TABLE IF EXISTS administrateur, formation, jeune, offre, partenaire;
 
@@ -84,33 +84,33 @@ CREATE TABLE offre(
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
-		VALUES(1, 'Guerfi', 'Souhila', '$2y$10$FP4dnjrnhbedPYOAiHF7AOPlAsiyrXXXYKHV/27.e2pnDnudtLc/q', '0605557801', 
+		VALUES(1, 'Guerfi', 'Souhila', '$2y$10$IVsT3/JW8P26zUzf9iAf4uoDQBAVzRTHB9opbl3vo4DS357r3/SW2', '0605557801', 
 				'sguerfi12@yahoo.fr', '128 Allée des Champs Elysées', 'Evry', '91000', NOW(), NOW());
 
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
-		VALUES(0, 'Keita', 'Cheik', '$2y$10$OsPC/94ePn/KFbmG0tBKM.fEdgPr/8A2IqAyQlY3OCkKY2qnE6hI.' , '0605557802', 
+		VALUES(0, 'Keita', 'Cheik', '$2y$10$T2Ip0oXl6MKVNgwsJp.7DOLTHSruJe/6RcB.Hiavy50yMfae/r28m' , '0605557802', 
 				'cheiksiramakankeita@gmail.com', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW());
 
 INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
-		VALUES('123456781', 'Immo', '$2y$10$RQBygJHMukcRkNFzjyJCiuyikaPoRxAeW8mTsQsxCIfPPeS/45sXG', '0605557803',
+		VALUES('123456781', 'Immo', '$2y$10$4/eztlkOaxPR/c79Huad6OKScm6RzvyLBY0YQwfwsKevWxTr9hK3S', '0605557803',
 				'infamousimmo@gmail.com', '9 Rue du Caire', 'Paris', '75002', NOW(), NOW());
 
 INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
-		VALUES('123456782', 'Prop', '$2y$10$mcUmPoslIrcAwDdMWJl7Gumu0I1ZTonkQ1f0QDzapP02Cm895EWNa', '0605557804',
+		VALUES('123456782', 'Prop', '$2y$10$h88XCYfSvdy15JHTIC2LnuCnvJuJl2XQtHhYCp44CKzO/resijYaK', '0605557804',
 				'prop@gmail.com', '11 Rue Jarry', 'Paris', '75010', NOW(), NOW());
 
 INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
 					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
-		VALUES('Benoit', 'Florian', '$2y$10$AnONBJys2pp5dTLc5TiynOsIXcclSr/H7duBXusHryDmksW8qxooy', '0605557805',
+		VALUES('Benoit', 'Florian', '$2y$10$EDVmYoKt7APzwKd2OXrUX./ehaiHm29n1LAyhfAV0hZ5FEhTeCxWG', '0605557805',
 				'floben@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
 
 INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
 					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
-		VALUES('Badri', 'Brahim', '$2y$10$LqiCM2VXijaKf3pLX3/pEOk1HhqC93L2J0TbEa4wWQu3xxj4tJ38e', '0605557806',
+		VALUES('Badri', 'Brahim', '$2y$10$HHdlYiDs/CRV72WEOUqX0./6cScE/CcTIkwl.06/IbPxiHF6IP1au', '0605557806',
 				'badbra@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
 
 INSERT INTO formation(formation_nom, formation_creation) VALUES('Dépannage informatique', NOW());

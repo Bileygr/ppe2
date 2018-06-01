@@ -83,7 +83,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 	public function suprimmerPartenaire($partenaire_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
-
+		
 		$requete = $connexion->prepare("DELETE FROM partenaire WHERE partenaire_id = ?");
 		$requete->execute(array($partenaire_id));
 
@@ -106,7 +106,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
-		$requete = $connexion->query("SELECT partenaire_siret, partenaire_nom, partenaire_telephone, partenaire_email, partenaire_derniere_connexion, partenaire_creation FROM partenaire");
+		$requete = $connexion->query("SELECT partenaire_id, partenaire_siret, partenaire_nom, partenaire_telephone, partenaire_email, partenaire_derniere_connexion, partenaire_creation FROM partenaire");
 
 		return 		$requete;
 		$requete 	= null;
@@ -117,7 +117,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
-		$requete = $connexion->query("SELECT jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_derniere_connexion, jeune_creation FROM jeune");
+		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_derniere_connexion, jeune_creation FROM jeune");
 
 		return 		$requete;
 		$requete 	= null;
