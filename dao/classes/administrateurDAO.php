@@ -1,6 +1,8 @@
 <?php
 require_once('connexion.php');
 require_once('classes/administrateur.php');
+require_once('classes/jeune.php');
+require_once('classes/partenaire.php');
 require_once('dao/interfaces/administrateurInterface.php');
 
 class AdministrateurDAO implements AdministrateurInterface{
@@ -69,6 +71,119 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connexion 	= null;	
 	}
 
+	public function obtenirAdministrateur(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT * FROM administrateur");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function obtenirJeune(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, 												 jeune_derniere_connexion, jeune_creation FROM jeune");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function obtenirOffre(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.formation_nom, 
+										     offre_nom, offre_debut, offre_fin, offre_creation
+										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
+										    		   JOIN formation ON offre.formation_id = formation.formation_id");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function obtenirPartenaire(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT partenaire_id, partenaire_siret, partenaire_nom, partenaire_telephone, partenaire_email, partenaire_adresse, partenaire_ville, 								 partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation FROM partenaire");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function  modifierAdministrateur($administrateur){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("UPDATE administrateur SET administrateur_nom = ?, administrateur_prenom = ?, administrateur_super = ?, 	
+																  administrateur_telephone = ?, administrateur_email = ?,
+																  administrateur_adresse = ?, administrateur_ville = ?, administrateur_code_postal = ? 
+															  WHERE administrateur_id = ?");
+		$requete->execute(array($administrateur->getAdministrateur_nom(),
+								$administrateur->getAdministrateur_prenom(),
+								$administrateur->getAdministrateur_super(),
+								$administrateur->getAdministrateur_telephone(),
+								$administrateur->getAdministrateur_email(),
+								$administrateur->getAdministrateur_adresse(),
+								$administrateur->getAdministrateur_ville(),
+								$administrateur->getAdministrateur_code_postal(),
+								$administrateur->getAdministrateur_id()));
+
+		$requete 	= null;
+		$connexion 	= null;
+
+	}
+
+	public function modifierJeune($jeune){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("UPDATE jeune SET jeune_nom = ?, jeune_prenom = ?, jeune_telephone = ?,
+														 jeune_email = ?, jeune_adresse = ?, jeune_ville = ?, 
+														 jeune_code_postal = ?
+													 WHERE jeune_id = ?");
+		$requete->execute(array($jeune->getJeune_nom(),
+							   $jeune->getJeune_prenom(),
+							   $jeune->getJeune_telephone(),
+							   $jeune->getJeune_email(),
+							   $jeune->getJeune_adresse(),
+							   $jeune->getJeune_ville(),
+							   $jeune->getJeune_code_postal(),
+							   $jeune->getJeune_id()));
+
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function modifierPartenaire($partenaire){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+		
+		$requete = $connexion->prepare("UPDATE partenaire SET partenaire_siret = ?, partenaire_nom = ?,
+															  partenaire_telephone = ?, partenaire_email = ?,
+															  partenaire_adresse = ?, partenaire_ville = ?,
+															  partenaire_code_postal = ?
+														  WHERE partenaire_id = ?");
+		$requete->execute(array($partenaire->getPartenaire_siret(),
+								$partenaire->getPartenaire_nom(),
+								$partenaire->getPartenaire_telephone(),
+								$partenaire->getPartenaire_email(),
+								$partenaire->getPartenaire_adresse(),
+								$partenaire->getPartenaire_ville(),
+								$partenaire->getPartenaire_code_postal(),
+								$partenaire->getPartenaire_id()));
+
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
 	public function suprimmerAdministrateur($administrateur_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
@@ -83,7 +198,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 	public function suprimmerPartenaire($partenaire_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
-		
+
 		$requete = $connexion->prepare("DELETE FROM partenaire WHERE partenaire_id = ?");
 		$requete->execute(array($partenaire_id));
 
@@ -100,53 +215,6 @@ class AdministrateurDAO implements AdministrateurInterface{
 
 		$requete	= null;
 		$connexion 	= null;	
-	}
-
-	public function getPartenaire(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT partenaire_id, partenaire_siret, partenaire_nom, partenaire_telephone, partenaire_email, partenaire_derniere_connexion, partenaire_creation FROM partenaire");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function getJeune(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_derniere_connexion, jeune_creation FROM jeune");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function getAdministrateur(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT administrateur_id, administrateur_super, administrateur_nom, administrateur_prenom, administrateur_telephone, administrateur_email, administrateur_derniere_connexion, administrateur_creation FROM administrateur");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function getOffre(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.formation_nom, 
-										     offre_nom, offre_debut, offre_fin, offre_creation
-										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
-										    		   JOIN formation ON offre.formation_id = formation.formation_id");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
 	}
 }
 ?>

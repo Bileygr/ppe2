@@ -14,16 +14,49 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
+if(isset($_POST['modifier_administrateur'])){
+	$_SESSION['modif_administrateur_id'] = $_POST['administrateur_id'];
+	$_SESSION['modif_administrateur_nom'] = $_POST['administrateur_nom'];
+	$_SESSION['modif_administrateur_prenom'] = $_POST['administrateur_prenom'];
+	$_SESSION['modif_administrateur_super'] = $_POST['administrateur_super'];
+	$_SESSION['modif_administrateur_telephone'] = $_POST['administrateur_telephone'];
+	$_SESSION['modif_administrateur_email'] = $_POST['administrateur_email'];
+	$_SESSION['modif_administrateur_adresse'] = $_POST['administrateur_adresse'];
+	$_SESSION['modif_administrateur_ville'] = $_POST['administrateur_ville'];
+	$_SESSION['modif_administrateur_code_postal'] = $_POST['administrateur_code_postal'];
+
+	header("Location: ".$url."administrateur/administrateur-modification");
+}
+
+if(isset($_POST['modifier_jeune'])){
+	$_SESSION['modif_jeune_id'] = $_POST['jeune_id'];
+	$_SESSION['modif_jeune_nom'] = $_POST['jeune_nom'];
+	$_SESSION['modif_jeune_prenom'] = $_POST['jeune_prenom'];
+	$_SESSION['modif_jeune_telephone'] = $_POST['jeune_telephone'];
+	$_SESSION['modif_jeune_email'] = $_POST['jeune_email'];
+	$_SESSION['modif_jeune_adresse'] = $_POST['jeune_adresse'];
+	$_SESSION['modif_jeune_ville'] = $_POST['jeune_ville'];
+	$_SESSION['modif_jeune_code_postal'] = $_POST['jeune_code_postal'];
+
+	header("Location: ".$url."administrateur/jeune-modification");
+}
+
+if(isset($_POST['modifier_partenaire'])){
+	$_SESSION['modif_partenaire_id'] = $_POST['partenaire_id'];
+	$_SESSION['modif_partenaire_siret'] = $_POST['partenaire_siret'];
+	$_SESSION['modif_partenaire_nom'] = $_POST['partenaire_nom'];
+	$_SESSION['modif_partenaire_telephone'] = $_POST['partenaire_telephone'];
+	$_SESSION['modif_partenaire_email'] = $_POST['partenaire_email'];
+	$_SESSION['modif_partenaire_adresse'] = $_POST['partenaire_adresse'];
+	$_SESSION['modif_partenaire_ville'] = $_POST['partenaire_ville'];
+	$_SESSION['modif_partenaire_code_postal'] = $_POST['partenaire_code_postal'];
+
+	header("Location: ".$url."administrateur/partenaire-modification");
+}
+
 if(isset($_POST['suprimmer_administrateur'])){
 	$administrateurDAO = new AdministrateurDAO();
 	$administrateurDAO->suprimmerAdministrateur($_POST['administrateur_id']);
-
-	header("Location: ".$url."administrateur/profil");
-}
-
-if(isset($_POST['suprimmer_partenaire'])){
-	$administrateurDAO = new AdministrateurDAO();
-	$administrateurDAO->suprimmerPartenaire($_POST['partenaire_id']);
 
 	header("Location: ".$url."administrateur/profil");
 }
@@ -35,11 +68,18 @@ if(isset($_POST['suprimmer_jeune'])){
 	header("Location: ".$url."administrateur/profil");
 }
 
+if(isset($_POST['suprimmer_partenaire'])){
+	$administrateurDAO = new AdministrateurDAO();
+	$administrateurDAO->suprimmerPartenaire($_POST['partenaire_id']);
+
+	header("Location: ".$url."administrateur/profil");
+}
+
 $administrateurDAO 	= new AdministrateurDAO();
-$administrateur 	= $administrateurDAO->getAdministrateur();
-$jeune 				= $administrateurDAO->getJeune();
-$partenaire 		= $administrateurDAO->getPartenaire();
-$offre 				= $administrateurDAO->getOffre();
+$administrateur 	= $administrateurDAO->obtenirAdministrateur();
+$jeune 				= $administrateurDAO->obtenirJeune();
+$offre 				= $administrateurDAO->obtenirOffre();
+$partenaire 		= $administrateurDAO->obtenirPartenaire();
 ?>
 
 <!DOCTYPE html>
@@ -138,6 +178,14 @@ $offre 				= $administrateurDAO->getOffre();
 						echo '<td>'.$resultat["administrateur_derniere_connexion"].'</td>';
 						echo '<td>'.$resultat["administrateur_creation"].'</td>';
 						echo '<input type="hidden" name="administrateur_id" value="'.$resultat["administrateur_id"].'">';
+						echo '<input type="hidden" name="administrateur_nom" value="'.$resultat["administrateur_nom"].'">';
+						echo '<input type="hidden" name="administrateur_prenom" value="'.$resultat["administrateur_prenom"].'">';
+						echo '<input type="hidden" name="administrateur_super" value="'.$resultat["administrateur_super"].'">';
+						echo '<input type="hidden" name="administrateur_telephone" value="'.$resultat["administrateur_telephone"].'">';
+						echo '<input type="hidden" name="administrateur_email" value="'.$resultat["administrateur_email"].'">';
+						echo '<input type="hidden" name="administrateur_adresse" value="'.$resultat["administrateur_adresse"].'">';
+						echo '<input type="hidden" name="administrateur_ville" value="'.$resultat["administrateur_ville"].'">';
+						echo '<input type="hidden" name="administrateur_code_postal" value="'.$resultat["administrateur_code_postal"].'">';
 						if($_SESSION['administrateur_super'] == 1){
 							echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_administrateur" value="Suprimmer"></td>';
 							echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_administrateur" value="Modifier"></td>';
@@ -171,6 +219,13 @@ $offre 				= $administrateurDAO->getOffre();
 						echo '<td>'.$resultat["partenaire_derniere_connexion"].'</td>';
 						echo '<td>'.$resultat["partenaire_creation"].'</td>';
 						echo '<input type="hidden" name="partenaire_id" value="'.$resultat["partenaire_id"].'">';
+						echo '<input type="hidden" name="partenaire_siret" value="'.$resultat["partenaire_siret"].'">';
+						echo '<input type="hidden" name="partenaire_nom" value="'.$resultat["partenaire_nom"].'">';
+						echo '<input type="hidden" name="partenaire_telephone" value="'.$resultat["partenaire_telephone"].'">';
+						echo '<input type="hidden" name="partenaire_email" value="'.$resultat["partenaire_email"].'">';
+						echo '<input type="hidden" name="partenaire_adresse" value="'.$resultat["partenaire_adresse"].'">';
+						echo '<input type="hidden" name="partenaire_ville" value="'.$resultat["partenaire_ville"].'">';
+						echo '<input type="hidden" name="partenaire_code_postal" value="'.$resultat["partenaire_code_postal"].'">';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_partenaire" value="Suprimmer"></td>';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_partenaire" value="Modifier"></td>';
 					echo '</tr>';
@@ -202,6 +257,13 @@ $offre 				= $administrateurDAO->getOffre();
 						echo '<td>'.$resultat["jeune_derniere_connexion"].'</td>';
 						echo '<td>'.$resultat["jeune_creation"].'</td>';
 						echo '<input type="hidden" name="jeune_id" value="'.$resultat["jeune_id"].'">';
+						echo '<input type="hidden" name="jeune_nom" value="'.$resultat["jeune_nom"].'">';
+						echo '<input type="hidden" name="jeune_prenom" value="'.$resultat["jeune_prenom"].'">';
+						echo '<input type="hidden" name="jeune_telephone" value="'.$resultat["jeune_telephone"].'">';
+						echo '<input type="hidden" name="jeune_email" value="'.$resultat["jeune_email"].'">';
+						echo '<input type="hidden" name="jeune_adresse" value="'.$resultat["jeune_adresse"].'">';
+						echo '<input type="hidden" name="jeune_ville" value="'.$resultat["jeune_ville"].'">';
+						echo '<input type="hidden" name="jeune_code_postal" value="'.$resultat["jeune_code_postal"].'">';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_jeune" value="Suprimmer"></td>';
 						echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_jeune" value="Modifier"></td>';
 					echo '</tr>';

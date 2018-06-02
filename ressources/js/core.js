@@ -1,4 +1,6 @@
 function setSuperAdministrateur(){
+  
+  
 	var x = document.getElementById("administrateur_super").checked; 
   if(x == true){
     document.getElementById('administrateur_super').value='1';

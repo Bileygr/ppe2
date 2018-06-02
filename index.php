@@ -18,6 +18,18 @@ switch ($request_uri[0]) {
     	include("controller/administrateurprofil.php");
         break;
 
+    case "/ppe2/administrateur/administrateur-modification":
+        include("controller/administrateurmodification.php");
+        break;
+
+    case "/ppe2/administrateur/jeune-modification":
+        include("controller/jeunemodification.php");
+        break;
+
+    case "/ppe2/administrateur/partenaire-modification":
+        include("controller/partenairemodification.php");
+        break;
+
     case "/ppe2/partenaire/connexion":
     	include("controller/partenaireconnexion.php");
     	break;

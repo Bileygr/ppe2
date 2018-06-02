@@ -73,7 +73,6 @@ if(isset($_POST['form_auth'])){
 	}else{
 		echo 'Les champs n\'ont pas tous ete remplis.';
 	}
-
 }
 ?>
 
