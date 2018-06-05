@@ -69,9 +69,6 @@ CREATE TABLE offre(
 	formation_id		INT(11) NOT NULL,
 	offre_nom			VARCHAR(50) NOT NULL,
 	offre_description 	TEXT NOT NULL,
-	offre_adresse 		VARCHAR(38) NOT NULL,
-	offre_ville			VARCHAR(32) NOT NULL,
-	offre_code_postal	VARCHAR(5) NOT NULL,
 	offre_debut			DATE NOT NULL,
 	offre_fin			DATE NOT NULL,
 	offre_creation		DATETIME NOT NULL,
@@ -81,6 +78,18 @@ CREATE TABLE offre(
 	UNIQUE(offre_id)
 )ENGINE=InnoDB;
 
+/*
+CREATE TABLE message(
+	message_id			INT(11) NOT NULL AUTO_INCREMENT,
+	message_parent_id	INT(11),
+	creator_id			INT(11) NOT NULL,
+	receipient			INT(11) NOT NULL,
+	message_content		TEXT NOT NULL,
+	message_creation	DATE,
+	PRIMARY KEY(message_id),
+	CONSTRAINT FK_message_sender_id FOREIGN KEY ()
+)ENGINE=InnoDB;
+*/
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)

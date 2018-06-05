@@ -1,14 +1,13 @@
 <?php
-
 class Formation{
 	private $formation_id;
 	private $formation_nom;
-	private $formation_creation
+	private $formation_creation;
 
 	function __construct($formation_id, $formation_nom, $formation_creation){
-		$this->formation_id = $formation_id;
-		$this->formation_nom = $formation_nom;
-		$this->formation_creation = $formation_creation;
+		$this->formation_id 		= $formation_id;
+		$this->formation_nom 		= $formation_nom;
+		$this->formation_creation 	= $formation_creation;
 	}
 
 	public function setFormation_id($formation_id){return $this->formation_id = $formation_id;}

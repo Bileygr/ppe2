@@ -118,6 +118,23 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connexion 	= null;
 	}
 
+	public function obtenirMiseAJourTemps(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$dernier_id = $connexion->lastInsertId();
+
+		$requete = $connexion->prepare("SELECT administrateur_creation FROM administrateur WHERE administrateur_id = ?");
+		$requete->execute(array($dernier_id));
+
+		$resultat = $requete->fetch();
+		$temps 	  = $resultat['administrateur_creation'];
+
+		$requete 	= null;
+		$connexion 	= null;
+		return $temps;
+	}
+
 	public function  modifierAdministrateur($administrateur){
 		$connect = new Connect();
 		$connexion = $connect->connexion();

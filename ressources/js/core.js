@@ -1,3 +1,21 @@
+/*
+var mysql = require('mysql');
+
+var connexion = mysql.createConnection({
+  hote:            "localhost",
+  utilisateur:     "root",
+  mot_de_passe:    "",
+  base_de_donnees: "cheik_ppe"
+});
+
+connexion.connect(function(err){
+  if(err) throw err;
+  connexion.query("SELECT * FROM administrateur", function (err, result, fields){
+    if(err) throw err;
+    console.log(result);
+  });
+});
+*/
 function setSuperAdministrateur(){
   
   

@@ -1,5 +1,6 @@
 <?php
 require_once('connexion.php');
+require_once('classes/offre.php');
 require_once('classes/partenaire.php');
 require_once('dao/interfaces/partenaireInterface.php');
 
@@ -72,17 +73,45 @@ class PartenaireDAO implements PartenaireInterface{
 		$connexion = null;
 	}
 
-	public function getOffre($partenaire_id){
+	public function obtenirOffre($partenaire_id){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
-		$requete = $connexion->prepare("SELECT formation.formation_nom, partenaire.partenaire_nom, offre.offre_nom, offre.offre_debut, 
-											   offre.offre_fin, offre.offre_derniere_connexion, offre.offre_creation FROM offre 
+		$requete = $connexion->prepare("SELECT offre.offre_id, offre.formation_id, formation.formation_nom, partenaire.partenaire_nom, offre.offre_nom, offre.offre_debut, 
+											   offre.offre_description, offre.offre_fin, offre.offre_creation FROM offre 
 											   JOIN formation ON offre.formation_id = formation.formation_id JOIN partenaire ON 
 											   offre.partenaire_id = partenaire.partenaire_id WHERE partenaire.partenaire_id = ?");
 		$requete->execute(array($partenaire_id));
 
 		return $requete;
+		$requete = null;
+		$connexion = null;
+	}
+
+	public function modifierOffre($offre){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("UPDATE offre SET formation_id = ?, offre_nom = ?, offre_description = ?, offre_debut = ?, offre_fin = ?
+													 WHERE offre_id = ?");
+		$requete->execute(array($offre->getFormation_id(),
+								$offre->getOffre_titre(),
+								$offre->getOffre_description(),
+								$offre->getOffre_debut(),
+								$offre->getOffre_fin(),
+								$offre->getOffre_id()));
+
+		$requete = null;
+		$connexion = null;
+	}
+
+	public function suprimmerOffre($offre_id){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("DELETE FROM offre WHERE offre_id = ?");
+		$requete->execute(array($offre_id));
+
 		$requete = null;
 		$connexion = null;
 	}

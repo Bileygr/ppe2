@@ -6,6 +6,7 @@ interface AdministrateurInterface{
 	public function obtenirJeune();
 	public function obtenirPartenaire();
 	public function obtenirOffre();
+	public function obtenirMiseAJourTemps();
 	public function modifierAdministrateur($administrateur);
 	public function modifierJeune($jeune);
 	public function modifierPartenaire($partenaire);

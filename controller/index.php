@@ -11,9 +11,7 @@ if(isset($_POST['deconnexion'])){
 }
 
 $offreDAO = new OffreDAO();
-$requete = $offreDAO->rechercher_liste();
-
-var_dump($_SESSION);
+$requete = $offreDAO->lister();
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +19,9 @@ var_dump($_SESSION);
   <head lang="FR">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Index</title>
+    <title>Accueil</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <link href="/ressources/css/sticky-footer.css" rel="stylesheet">
   </head>
 
@@ -71,14 +70,15 @@ var_dump($_SESSION);
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="POST">
-          <input id="recherche_input" data-type="search" class="form-control mr-sm-2" onkeyup="filterTable();" aria-label="Search" placeholder="Recherche">
           <input class="btn btn-secondary my-2 my-sm-0" type="submit" name="deconnexion" value="Déconnexion">
         </form>
       </div>
     </nav>
 
     <div id="map" style="width:100%;height:400px;"></div><br/>
-
+    <input type="text" name="" placeholder="Quel type de formation?">
+    <input type="text" name="" placeholder="Où?">
+    <input type="submit" name="" value="Rechercher">
     <h1>Tableau des offres</h1>
     <table class="table table-bordered" data-role="table" data-mode="columntoggle" id="tableau" data-filter="true" data-input="#recherche_input">
     	<thead>
@@ -114,9 +114,11 @@ var_dump($_SESSION);
     </footer>
 
     <script src="/ressources/js/core.js"></script>
+    <script src="/ressources/js/tablesorting.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=map"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
