@@ -91,16 +91,16 @@ $requete = $offreDAO->lister();
 				<th scope="col">Création</th>
 			</tr>
 		</thead>
-    <tbody>
+    <tbody id="offreBody">
 		<?php
     		while($resultat = $requete->fetch()){
     			echo '<tr>';
-					echo '<td>'.$resultat["formation_nom"].'</td>';
-					echo '<td>'.$resultat["offre_nom"].'</td>';
-          echo '<td>'.$resultat["partenaire_nom"].'</td>';
-					echo '<td>'.$resultat["offre_debut"].'</td>';
-					echo '<td>'.$resultat["offre_fin"].'</td>';
-					echo '<td>'.$resultat["offre_creation"].'</td>';
+  					echo '<td>'.$resultat["formation_nom"].'</td>';
+  					echo '<td>'.$resultat["offre_nom"].'</td>';
+            echo '<td>'.$resultat["partenaire_nom"].'</td>';
+  					echo '<td>'.$resultat["offre_debut"].'</td>';
+  					echo '<td>'.$resultat["offre_fin"].'</td>';
+  					echo '<td>'.$resultat["offre_creation"].'</td>';
 				echo '</tr>';
     		}
     	?>
@@ -113,6 +113,7 @@ $requete = $offreDAO->lister();
       </div>
     </footer>
 
+    <script src="/ressources/ajax/js/ajax-core.js"></script>
     <script src="/ressources/js/core.js"></script>
     <script src="/ressources/js/tablesorting.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=map"></script>

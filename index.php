@@ -14,8 +14,16 @@ switch ($request_uri[0]) {
     	include("controller/administrateurinscription.php");
     	break;
 
+    case "/ppe2/administrateur/modifier-mes-informations":
+        include("controller/administrateurmodifiermesinfomations.php");
+        break;
+
     case "/ppe2/administrateur/profil":
-    	include("controller/administrateurprofil.php");
+    	include("controller/administrateurstatistique.php");
+        break;
+
+    case "/ppe2/administrateur/statistique":
+        include("controller/administrateurstatistique.php");
         break;
 
     case "/ppe2/administrateur/tableau/administrateur":

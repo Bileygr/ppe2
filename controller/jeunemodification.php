@@ -3,7 +3,8 @@ require_once('classes/jeune.php');
 require_once('dao/classes/administrateurDAO.php');
 session_start();
 
-$url = "http://localhost:8000/ppe2/";
+$url 			= "http://localhost:8000/ppe2/";
+$url_ressources = "http://localhost/ppe2/";
 
 if(!isset($_SESSION['administrateur_id'])){
 	header("Location: ".$url);
@@ -78,8 +79,8 @@ if(isset($_POST['form_auth'])){
 <html>
   <head>
     <title>Jeune Modification</title>
-    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/ressources/css/signin.css" rel="stylesheet">
+    <link href="<?= $url_ressources."ressources/css/bootstrap.min.css" ?>" rel="stylesheet">
+    <link href="<?= $url_ressources."ressources/css/signin.css" ?>" rel="stylesheet">
   </head>
 
   <body class="text-center">

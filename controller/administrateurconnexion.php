@@ -48,7 +48,7 @@ if(isset($_POST['form_auth'])){
     	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
     	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
     	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
-      <a href="<?= $url ?>">Inscription</a> / <a href="">Mot de passe oublié?</a>
+      	<a href="">Mot de passe oublié?</a>
     </form>
   </body>
 </html>

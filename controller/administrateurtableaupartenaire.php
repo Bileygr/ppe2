@@ -2,7 +2,8 @@
 require_once('dao/classes/administrateurDAO.php');
 session_start();
 
-$url = "http://localhost:8000/ppe2/";
+$url            = "http://localhost:8000/ppe2/";
+$url_ressources = "http://localhost/ppe2/";
 
 if(!isset($_SESSION['administrateur_id'])){
   header("Location: ".$url);
@@ -14,29 +15,28 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-if(isset($_POST['modifier_administrateur'])){
-  $_SESSION['modif_administrateur_id']          = $_POST['administrateur_id'];
-  $_SESSION['modif_administrateur_nom']         = $_POST['administrateur_nom'];
-  $_SESSION['modif_administrateur_prenom']      = $_POST['administrateur_prenom'];
-  $_SESSION['modif_administrateur_super']       = $_POST['administrateur_super'];
-  $_SESSION['modif_administrateur_telephone']   = $_POST['administrateur_telephone'];
-  $_SESSION['modif_administrateur_email']       = $_POST['administrateur_email'];
-  $_SESSION['modif_administrateur_adresse']     = $_POST['administrateur_adresse'];
-  $_SESSION['modif_administrateur_ville']       = $_POST['administrateur_ville'];
-  $_SESSION['modif_administrateur_code_postal'] = $_POST['administrateur_code_postal'];
+if(isset($_POST['modifier_partenaire'])){
+  $_SESSION['modif_partenaire_id']          = $_POST['partenaire_id'];
+  $_SESSION['modif_partenaire_siret']       = $_POST['partenaire_siret'];
+  $_SESSION['modif_partenaire_nom']         = $_POST['partenaire_nom'];
+  $_SESSION['modif_partenaire_telephone']   = $_POST['partenaire_telephone'];
+  $_SESSION['modif_partenaire_email']       = $_POST['partenaire_email'];
+  $_SESSION['modif_partenaire_adresse']     = $_POST['partenaire_adresse'];
+  $_SESSION['modif_partenaire_ville']       = $_POST['partenaire_ville'];
+  $_SESSION['modif_partenaire_code_postal'] = $_POST['partenaire_code_postal'];
 
-  header("Location: ".$url."administrateur/administrateur-modification");
+  header("Location: ".$url."administrateur/partenaire-modification");
 }
 
-if(isset($_POST['suprimmer_administrateur'])){
+if(isset($_POST['suprimmer_partenaire'])){
   $administrateurDAO = new AdministrateurDAO();
-  $administrateurDAO->suprimmerAdministrateur($_POST['administrateur_id']);
+  $administrateurDAO->suprimmerPartenaire($_POST['partenaire_id']);
 
   header("Location: ".$url."administrateur/profil");
 }
 
 $administrateurDAO  = new AdministrateurDAO();
-$administrateur     = $administrateurDAO->obtenirAdministrateur();
+$partenaire         = $administrateurDAO->obtenirPartenaire();
 $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
 ?>
 <!DOCTYPE html>
@@ -50,10 +50,10 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
     <title>Administrateur Profil</title>
 
     <!-- CSS -->
-    <link href="/ressources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/vendor/bootstrap/css/bootstrap.min.css"  rel="stylesheet">
     <link href="/ressources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/ressources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="/ressources/css/sb-admin.css" rel="stylesheet">
+    <link href="/ressources/vendor/datatables/dataTables.bootstrap4.css"  rel="stylesheet">
+    <link href="/ressources/css/sb-admin.css"  rel="stylesheet">
   </head>
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -136,86 +136,61 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
         </ol>
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fa fa-table"></i> Administrateurs 
-            <?php  
-            if($_SESSION['administrateur_super'] == 1){
-            ?>
-              <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='<?= $url."administrateur/inscription" ?>'" value="Ajouter">
-            <?php
-              }
-            ?> 
-          </div>
+            <i class="fa fa-table"></i> Partenaires <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='<?= $url."partenaire/inscription" ?>'" value="Ajouter"></div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    <?php if($_SESSION['administrateur_super'] == 1){
-                      echo '<th scope="col">Modifier</th>';
-                      echo '<th scope="col">Suprimmer</th>';
-                      } 
-                    ?>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    <?php 
-                    if($_SESSION['administrateur_super'] == 1){
-                      echo '<th scope="col">Modifier</th>';
-                      echo '<th scope="col">Suprimmer</th>';
+              <form method="POST">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th scope="col">SIRET</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Téléphone</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Dernière connexion</th>
+                      <th scope="col">Création</th>
+                      <th scope="col">Modifier</th>
+                      <th scope="col">Suprimmer</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th scope="col">SIRET</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Téléphone</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Dernière connexion</th>
+                      <th scope="col">Création</th>
+                      <th scope="col">Modifier</th>
+                      <th scope="col">Suprimmer</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                  <?php 
+                    while($resultat = $partenaire->fetch()){
+                      echo '<tr>';
+                        echo '<td>'.$resultat["partenaire_siret"].'</td>';
+                        echo '<td>'.$resultat["partenaire_nom"].'</td>';
+                        echo '<td>'.$resultat["partenaire_telephone"].'</td>';
+                        echo '<td>'.$resultat["partenaire_email"].'</td>';
+                        echo '<td>'.$resultat["partenaire_derniere_connexion"].'</td>';
+                        echo '<td>'.$resultat["partenaire_creation"].'</td>';
+                        echo '<input type="hidden" name="partenaire_id" value="'.$resultat["partenaire_id"].'">';
+                        echo '<input type="hidden" name="partenaire_siret" value="'.$resultat["partenaire_siret"].'">';
+                        echo '<input type="hidden" name="partenaire_nom" value="'.$resultat["partenaire_nom"].'">';
+                        echo '<input type="hidden" name="partenaire_telephone" value="'.$resultat["partenaire_telephone"].'">';
+                        echo '<input type="hidden" name="partenaire_email" value="'.$resultat["partenaire_email"].'">';
+                        echo '<input type="hidden" name="partenaire_adresse" value="'.$resultat["partenaire_adresse"].'">';
+                        echo '<input type="hidden" name="partenaire_ville" value="'.$resultat["partenaire_ville"].'">';
+                        echo '<input type="hidden" name="partenaire_code_postal" value="'.$resultat["partenaire_code_postal"].'">';
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_partenaire" value="Modifier"></td>';
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_partenaire" value="Suprimmer"></td>';
+                      echo '</tr>';
                     } 
-                    ?>
-                  </tr>
-                </tfoot>
-                <tbody>
-                <?php 
-                  while($resultat = $administrateur->fetch()){
-                    echo '<tr>';
-                      echo '<td>'.$resultat["administrateur_nom"].'</td>';
-                      echo '<td>'.$resultat["administrateur_prenom"].'</td>';
-                      if($resultat["administrateur_super"] == 1){
-                        echo '<td>Oui</td>';
-                      }else{
-                        echo '<td>Non</td>';
-                      }
-                      echo '<td>'.$resultat["administrateur_telephone"].'</td>';
-                      echo '<td>'.$resultat["administrateur_email"].'</td>';
-                      echo '<td>'.$resultat["administrateur_derniere_connexion"].'</td>';
-                      echo '<td>'.$resultat["administrateur_creation"].'</td>';
-                      echo '<form method="POST">';
-                        echo '<input type="hidden" name="administrateur_id" value="'.$resultat["administrateur_id"].'">';
-                        echo '<input type="hidden" name="administrateur_nom" value="'.$resultat["administrateur_nom"].'">';
-                        echo '<input type="hidden" name="administrateur_prenom" value="'.$resultat["administrateur_prenom"].'">';
-                        echo '<input type="hidden" name="administrateur_super" value="'.$resultat["administrateur_super"].'">';
-                        echo '<input type="hidden" name="administrateur_telephone" value="'.$resultat["administrateur_telephone"].'">';
-                        echo '<input type="hidden" name="administrateur_email" value="'.$resultat["administrateur_email"].'">';
-                        echo '<input type="hidden" name="administrateur_adresse" value="'.$resultat["administrateur_adresse"].'">';
-                        echo '<input type="hidden" name="administrateur_ville" value="'.$resultat["administrateur_ville"].'">';
-                        echo '<input type="hidden" name="administrateur_code_postal" value="'.$resultat["administrateur_code_postal"].'">';
-                        if($_SESSION['administrateur_super'] == 1){
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_administrateur" value="Modifier"></td>';
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_administrateur" value="Suprimmer"></td>';
-                        }
-                      echo '</form>';
-                    echo '</tr>';
-                  } 
-                ?>
-                </tbody>
-              </table>
+                  ?>
+                  </tbody>
+                </table>
+              </form>
             </div>
           </div>
           <div class="card-footer small text-muted">Dernier ajout <?= $last_update ?> </div>

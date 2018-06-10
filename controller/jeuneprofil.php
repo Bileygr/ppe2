@@ -2,7 +2,8 @@
 require_once('dao/classes/administrateurDAO.php');
 session_start();
 
-$url = "http://localhost:8000/ppe2/";
+$url            = "http://localhost:8000/ppe2/";
+$url_ressources = "http://localhost/ppe2/";
 
 if(!isset($_SESSION['jeune_id'])){
 	header("Location: ".$url);
@@ -16,7 +17,7 @@ if(!isset($_SESSION['jeune_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="/ressources/css/sticky-footer.css" rel="stylesheet">
+    <link href="<?= $url_ressources."ressources/css/sticky-footer.css" ?>" rel="stylesheet">
   </head>
 
   <body>
@@ -77,7 +78,7 @@ if(!isset($_SESSION['jeune_id'])){
       </div>
     </footer>
 
-    <script src="/ressources/js/core.js"></script>
+    <script src="<?= $url_ressources."ressources/js/core.js" ?>"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=map"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

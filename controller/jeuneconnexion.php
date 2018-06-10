@@ -1,7 +1,8 @@
 <?php
 require_once('dao/classes/jeuneDAO.php');
 
-$url = "http://localhost:8000/ppe2/";
+$url 			= "http://localhost:8000/ppe2/";
+$url_ressources = "http://localhost/ppe2/";
 
 if(isset($_POST['form_auth'])){
 	$jeune_email = $_POST['jeune_email'];
@@ -37,8 +38,8 @@ if(isset($_POST['form_auth'])){
 <html>
   <head>
     <title>Jeune Connexion</title>
-    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/ressources/css/signin.css" rel="stylesheet">
+    <link href="<?= $url_ressources."ressources/css/bootstrap.min.css" ?>" rel="stylesheet">
+    <link href="<?= $url_ressources."ressources/css/signin.css" ?>" rel="stylesheet">
   </head>
 
   <body class="text-center">
