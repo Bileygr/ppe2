@@ -60,5 +60,48 @@ class JeuneDAO implements JeuneInterface{
 		$requete = null;
 		$connexion = null;
 	}
+
+	public function modifier($jeune){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->prepare("UPDATE jeune SET jeune_nom = ?, jeune_prenom = ?, jeune_telephone = ?,
+														 jeune_email = ?, jeune_adresse = ?, jeune_ville = ?, 
+														 jeune_code_postal = ?
+													 WHERE jeune_id = ?");
+		$requete->execute(array($jeune->getJeune_nom(),
+							   $jeune->getJeune_prenom(),
+							   $jeune->getJeune_telephone(),
+							   $jeune->getJeune_email(),
+							   $jeune->getJeune_adresse(),
+							   $jeune->getJeune_ville(),
+							   $jeune->getJeune_code_postal(),
+							   $jeune->getJeune_id()));
+
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
+	public function suprimmer($jeune_id){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->prepare("DELETE FROM jeune WHERE jeune_id = ?");
+		$requete->execute(array($jeune_id));
+
+		$requete	= null;
+		$connexion 	= null;	
+	}
+
+	public function lister(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, 												 jeune_derniere_connexion, jeune_creation FROM jeune");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
 }
 ?>

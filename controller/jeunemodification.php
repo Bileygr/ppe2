@@ -1,32 +1,31 @@
 <?php
 require_once('classes/jeune.php');
-require_once('dao/classes/administrateurDAO.php');
+require_once('dao/classes/jeuneDAO.php');
 session_start();
 
-$url 			= "http://localhost:8000/ppe2/";
-$url_ressources = "http://localhost/ppe2/";
+$url = "http://localhost:8000/ppe2/";
 
 if(!isset($_SESSION['administrateur_id'])){
 	header("Location: ".$url);
 }
 
-$jeune_id = $_SESSION['modif_jeune_id'];
-$jeune_nom = $_SESSION['modif_jeune_nom'];
-$jeune_prenom = $_SESSION['modif_jeune_prenom'];
-$jeune_telephone = $_SESSION['modif_jeune_telephone'];
-$jeune_email = $_SESSION['modif_jeune_email'];
-$jeune_adresse = $_SESSION['modif_jeune_adresse'];
-$jeune_ville = $_SESSION['modif_jeune_ville'];
-$jeune_code_postal = $_SESSION['modif_jeune_code_postal'];
+$jeune_id 			= $_SESSION['modifier_jeune_id'];
+$jeune_nom 			= $_SESSION['modifier_jeune_nom'];
+$jeune_prenom 		= $_SESSION['modifier_jeune_prenom'];
+$jeune_telephone 	= $_SESSION['modifier_jeune_telephone'];
+$jeune_email 		= $_SESSION['modifier_jeune_email'];
+$jeune_adresse 		= $_SESSION['modifier_jeune_adresse'];
+$jeune_ville 		= $_SESSION['modifier_jeune_ville'];
+$jeune_code_postal 	= $_SESSION['modifier_jeune_code_postal'];
 
 if(isset($_POST['form_auth'])){
-	$jeune_nom = $_POST['jeune_nom'];
-	$jeune_prenom = $_POST['jeune_prenom'];
-	$jeune_telephone = $_POST['jeune_telephone'];
-	$jeune_email = $_POST['jeune_email'];
-	$jeune_adresse = $_POST['jeune_adresse'];
-	$jeune_ville = $_POST['jeune_ville'];
-	$jeune_code_postal = $_POST['jeune_code_postal'];
+	$jeune_nom 			= $_POST['jeune_nom'];
+	$jeune_prenom 		= $_POST['jeune_prenom'];
+	$jeune_telephone 	= $_POST['jeune_telephone'];
+	$jeune_email 		= $_POST['jeune_email'];
+	$jeune_adresse 		= $_POST['jeune_adresse'];
+	$jeune_ville 		= $_POST['jeune_ville'];
+	$jeune_code_postal 	= $_POST['jeune_code_postal'];
 
 	if(!empty($jeune_nom) && !empty($jeune_prenom) && !empty($jeune_telephone) && !empty($jeune_email) && !empty($jeune_adresse) && !empty($jeune_code_postal)){
 		if(filter_var($jeune_email, FILTER_VALIDATE_EMAIL)){
@@ -44,17 +43,17 @@ if(isset($_POST['form_auth'])){
 										   $jeune_code_postal,
 										   null,
 										   null);
-						$jeuneDAO = new AdministrateurDAO();
-						$jeuneDAO->modifierJeune($jeune);
+						$jeuneDAO = new JeuneDAO();
+						$jeuneDAO->modifier($jeune);
 
-						unset($_SESSION['modif_jeune_id'], 
-	 						  $_SESSION['modif_jeune_nom'], 
-	  						  $_SESSION['modif_jeune_prenom'], 
-	  						  $_SESSION['modif_jeune_telephone'],
-	  						  $_SESSION['modif_jeune_email'],
-	  						  $_SESSION['modif_jeune_adresse'],
-	  						  $_SESSION['modif_jeune_ville'],
-	  						  $_SESSION['modif_jeune_code_postal']);
+						unset($_SESSION['modifier_jeune_id'], 
+	 						  $_SESSION['modifier_jeune_nom'], 
+	  						  $_SESSION['modifier_jeune_prenom'], 
+	  						  $_SESSION['modifier_jeune_telephone'],
+	  						  $_SESSION['modifier_jeune_email'],
+	  						  $_SESSION['modifier_jeune_adresse'],
+	  						  $_SESSION['modifier_jeune_ville'],
+	  						  $_SESSION['modifier_jeune_code_postal']);
 
 						header("Location: ".$url."administrateur/profil");
 					}else{
@@ -79,8 +78,8 @@ if(isset($_POST['form_auth'])){
 <html>
   <head>
     <title>Jeune Modification</title>
-    <link href="<?= $url_ressources."ressources/css/bootstrap.min.css" ?>" rel="stylesheet">
-    <link href="<?= $url_ressources."ressources/css/signin.css" ?>" rel="stylesheet">
+    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/css/signin.css" rel="stylesheet">
   </head>
 
   <body class="text-center">

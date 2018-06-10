@@ -1,9 +1,8 @@
 <?php
-require_once('dao/classes/administrateurDAO.php');
+require_once('dao/classes/jeuneDAO.php');
 session_start();
 
-$url            = "http://localhost:8000/ppe2/";
-$url_ressources = "http://localhost/ppe2/";
+$url = "http://localhost:8000/ppe2/";
 
 if(!isset($_SESSION['administrateur_id'])){
   header("Location: ".$url);
@@ -15,29 +14,28 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-if(isset($_POST['modifier_partenaire'])){
-  $_SESSION['modif_partenaire_id']          = $_POST['partenaire_id'];
-  $_SESSION['modif_partenaire_nom']         = $_POST['partenaire_siret'];
-  $_SESSION['modif_partenaire_prenom']      = $_POST['partenaire_nom'];
-  $_SESSION['modif_partenaire_telephone']   = $_POST['partenaire_telephone'];
-  $_SESSION['modif_partenaire_email']       = $_POST['partenaire_email'];
-  $_SESSION['modif_partenaire_adresse']     = $_POST['partenaire_adresse'];
-  $_SESSION['modif_partenaire_ville']       = $_POST['partenaire_ville'];
-  $_SESSION['modif_partenaire_code_postal'] = $_POST['partenaire_code_postal'];
+if(isset($_POST['modifier'])){
+  $_SESSION['modifier_jeune_id']          = $_POST['jeune_id'];
+  $_SESSION['modifier_jeune_nom']         = $_POST['jeune_nom'];
+  $_SESSION['modifier_jeune_prenom']      = $_POST['jeune_prenom'];
+  $_SESSION['modifier_jeune_telephone']   = $_POST['jeune_telephone'];
+  $_SESSION['modifier_jeune_email']       = $_POST['jeune_email'];
+  $_SESSION['modifier_jeune_adresse']     = $_POST['jeune_adresse'];
+  $_SESSION['modifier_jeune_ville']       = $_POST['jeune_ville'];
+  $_SESSION['modifier_jeune_code_postal'] = $_POST['jeune_code_postal'];
 
   header("Location: ".$url."administrateur/jeune-modification");
 }
 
-if(isset($_POST['suprimmer_jeune'])){
-  $administrateurDAO = new AdministrateurDAO();
-  $administrateurDAO->suprimmerJeune($_POST['jeune_id']);
+if(isset($_POST['suprimmer'])){
+  $jeuneDAO = new JeuneDAO();
+  $jeuneDAO->suprimmer($_POST['jeune_id']);
 
-  header("Location: ".$url."administrateur/profil");
+  header("Location: ".$url."administrateur/tableau/jeune");
 }
 
-$administrateurDAO  = new AdministrateurDAO();
-$jeune         = $administrateurDAO->obtenirJeune();
-$last_update        = $administrateurDAO->obtenirMiseAJourTemps();
+$jeuneDAO      = new JeuneDAO();
+$jeune         = $jeuneDAO->lister();
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -139,42 +137,42 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
             <i class="fa fa-table"></i> Jeunes <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='<?= $url."jeune/inscription" ?>'" value="Ajouter"></div>
           <div class="card-body">
             <div class="table-responsive">
-              <form method="POST">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th scope="col">Nom</th>
-                      <th scope="col">Prénom</th>
-                      <th scope="col">Téléphone</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Dernière connexion</th>
-                      <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
-                      <th scope="col">Suprimmer</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th scope="col">Nom</th>
-                      <th scope="col">Prénom</th>
-                      <th scope="col">Téléphone</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Dernière connexion</th>
-                      <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
-                      <th scope="col">Suprimmer</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                  <?php 
-                    while($resultat = $jeune->fetch()){
-                      echo '<tr>';
-                        echo '<td>'.$resultat["jeune_nom"].'</td>';
-                        echo '<td>'.$resultat["jeune_prenom"].'</td>';
-                        echo '<td>'.$resultat["jeune_telephone"].'</td>';
-                        echo '<td>'.$resultat["jeune_email"].'</td>';
-                        echo '<td>'.$resultat["jeune_derniere_connexion"].'</td>';
-                        echo '<td>'.$resultat["jeune_creation"].'</td>';
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Suprimmer</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Suprimmer</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <?php 
+                  while($resultat = $jeune->fetch()){
+                    echo '<tr>';
+                      echo '<td>'.$resultat["jeune_nom"].'</td>';
+                      echo '<td>'.$resultat["jeune_prenom"].'</td>';
+                      echo '<td>'.$resultat["jeune_telephone"].'</td>';
+                      echo '<td>'.$resultat["jeune_email"].'</td>';
+                      echo '<td>'.$resultat["jeune_derniere_connexion"].'</td>';
+                      echo '<td>'.$resultat["jeune_creation"].'</td>';
+                      echo '<form method="POST">';
                         echo '<input type="hidden" name="jeune_id" value="'.$resultat["jeune_id"].'">';
                         echo '<input type="hidden" name="jeune_nom" value="'.$resultat["jeune_nom"].'">';
                         echo '<input type="hidden" name="jeune_prenom" value="'.$resultat["jeune_prenom"].'">';
@@ -183,17 +181,17 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
                         echo '<input type="hidden" name="jeune_adresse" value="'.$resultat["jeune_adresse"].'">';
                         echo '<input type="hidden" name="jeune_ville" value="'.$resultat["jeune_ville"].'">';
                         echo '<input type="hidden" name="jeune_code_postal" value="'.$resultat["jeune_code_postal"].'">';
-                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_partenaire" value="Modifier"></td>';
-                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_partenaire" value="Suprimmer"></td>';
-                      echo '</tr>';
-                    } 
-                  ?>
-                  </tbody>
-                </table>
-              </form>
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td>';
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
+                      echo '</form>';
+                    echo '</tr>';
+                  } 
+                ?>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Dernier ajout <?= $last_update ?> </div>
+          <div class="card-footer small text-muted">Dernier ajout </div>
         </div>
       </div>
 
@@ -229,14 +227,14 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
       </div>
 
       <!-- JavaScript -->
-      <script src="<?= $url_ressources."ressources/js/core.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/vendor/jquery/jquery.min.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/vendor/bootstrap/js/bootstrap.bundle.min.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/vendor/jquery-easing/jquery.easing.min.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/vendor/datatables/jquery.dataTables.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/vendor/datatables/dataTables.bootstrap4.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/js/sb-admin.min.js" ?>"></script>
-      <script src="<?= $url_ressources."ressources/js/sb-admin-datatables.min.js" ?>"></script>
+      <script src="/ressources/js/core.js"></script>
+      <script src="/ressources/vendor/jquery/jquery.min.js"></script>
+      <script src="/ressources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/ressources/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="/ressources/vendor/datatables/jquery.dataTables.js"></script>
+      <script src="/ressources/vendor/datatables/dataTables.bootstrap4.js"></script>
+      <script src="/ressources/js/sb-admin.min.js"></script>
+      <script src="/ressources/js/sb-admin-datatables.min.js"></script>
     </div>
   </body>
 </html>
