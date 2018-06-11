@@ -9,15 +9,15 @@ if(!isset($_SESSION['administrateur_id'])){
 	header("Location: ".$url);
 }
 
-$administrateur_id = $_SESSION['modif_administrateur_id'];
-$administrateur_nom = $_SESSION['modif_administrateur_nom'];
-$administrateur_prenom = $_SESSION['modif_administrateur_prenom'];
-$administrateur_super = $_SESSION['modif_administrateur_super'];
-$administrateur_telephone = $_SESSION['modif_administrateur_telephone'];
-$administrateur_email = $_SESSION['modif_administrateur_email'];
-$administrateur_adresse = $_SESSION['modif_administrateur_adresse'];
-$administrateur_ville = $_SESSION['modif_administrateur_ville'];
-$administrateur_code_postal = $_SESSION['modif_administrateur_code_postal'];
+$administrateur_id 			= $_SESSION['modifier_administrateur_id'];
+$administrateur_nom 		= $_SESSION['modifier_administrateur_nom'];
+$administrateur_prenom 		= $_SESSION['modifier_administrateur_prenom'];
+$administrateur_super 		= $_SESSION['modifier_administrateur_super'];
+$administrateur_telephone 	= $_SESSION['modifier_administrateur_telephone'];
+$administrateur_email 		= $_SESSION['modifier_administrateur_email'];
+$administrateur_adresse 	= $_SESSION['modifier_administrateur_adresse'];
+$administrateur_ville 		= $_SESSION['modifier_administrateur_ville'];
+$administrateur_code_postal = $_SESSION['modifier_administrateur_code_postal'];
 
 if(isset($_POST['form_auth'])){
 	if(isset($_POST['administrateur_super'])){
@@ -26,12 +26,12 @@ if(isset($_POST['form_auth'])){
 		$administrateur_super= 0;
 	}
 
-	$administrateur_nom = $_POST['administrateur_nom'];
-	$administrateur_prenom = $_POST['administrateur_prenom'];
-	$administrateur_telephone = $_POST['administrateur_telephone'];
-	$administrateur_email = $_POST['administrateur_email'];
-	$administrateur_adresse = $_POST['administrateur_adresse'];
-	$administrateur_ville = $_POST['administrateur_ville'];
+	$administrateur_nom 		= $_POST['administrateur_nom'];
+	$administrateur_prenom 		= $_POST['administrateur_prenom'];
+	$administrateur_telephone 	= $_POST['administrateur_telephone'];
+	$administrateur_email 		= $_POST['administrateur_email'];
+	$administrateur_adresse 	= $_POST['administrateur_adresse'];
+	$administrateur_ville 		= $_POST['administrateur_ville'];
 	$administrateur_code_postal = $_POST['administrateur_code_postal'];
 
 	if(!empty($administrateur_nom) && !empty($administrateur_prenom) && !empty($administrateur_telephone) && !empty($administrateur_email) && !empty($administrateur_adresse) && !empty($administrateur_code_postal)){
@@ -52,19 +52,19 @@ if(isset($_POST['form_auth'])){
 															 null,
 															 null);
 						$administrateurDAO = new AdministrateurDAO();
-						$administrateurDAO->modifierAdministrateur($administrateur);
+						$administrateurDAO->modifier($administrateur);
 
-						unset($_SESSION['modif_administrateur_id'], 
-	 						  $_SESSION['modif_administrateur_nom'], 
-	  						  $_SESSION['modif_administrateur_prenom'], 
-	  						  $_SESSION['modif_administrateur_super'], 
-	  						  $_SESSION['modif_administrateur_telephone'],
-	  						  $_SESSION['modif_administrateur_email'],
-	  						  $_SESSION['modif_administrateur_adresse'],
-	  						  $_SESSION['modif_administrateur_ville'],
-	  						  $_SESSION['modif_administrateur_code_postal']);
+						unset($_SESSION['modifier_administrateur_id'], 
+	 						  $_SESSION['modifier_administrateur_nom'], 
+	  						  $_SESSION['modifier_administrateur_prenom'], 
+	  						  $_SESSION['modifier_administrateur_super'], 
+	  						  $_SESSION['modifier_administrateur_telephone'],
+	  						  $_SESSION['modifier_administrateur_email'],
+	  						  $_SESSION['modifier_administrateur_adresse'],
+	  						  $_SESSION['modifier_administrateur_ville'],
+	  						  $_SESSION['modifier_administrateur_code_postal']);
 
-						header("Location: ".$url."administrateur/profil");
+						header("Location: ".$url."administrateur/tableau/administrateur");
 					}else{
 						echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 					}
@@ -115,5 +115,14 @@ if(isset($_POST['form_auth'])){
       </div>
       <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Modifier">
     </form>
+
+    <script type="text/javascript">
+    	window.onload = function isAdministrateurSuper(){
+    		var super_administrateur = <?= $administrateur_super ?>;
+    		if(super_administrateur == 1){
+    			document.getElementById("administrateur_super").setAttribute("checked", "checked");
+    		}
+    	}
+    </script>
   </body>
 </html>

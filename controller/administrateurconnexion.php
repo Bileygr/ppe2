@@ -1,7 +1,12 @@
 <?php
 require_once('dao/classes/administrateurDAO.php');
+session_start();
 
 $url = "http://localhost:8000/ppe2/";
+
+if(isset($_SESSION['administrateur_id'])){
+	header("Location: ".$url);
+}
 
 if(isset($_POST['form_auth'])){
 	$administrateur_email 			= $_POST['administrateur_email'];
@@ -12,7 +17,7 @@ if(isset($_POST['form_auth'])){
 			$administrateurDAO 	= new AdministrateurDAO();
 			$administrateur 	= $administrateurDAO->connecter($administrateur_email, $administrateur_mot_de_passe);
 
-			session_start();
+			
 			$_SESSION['administrateur_id'] 					= $administrateur->getAdministrateur_id();
 			$_SESSION['administrateur_super'] 				= $administrateur->getAdministrateur_super();
 			$_SESSION['administrateur_nom'] 				= $administrateur->getAdministrateur_nom();

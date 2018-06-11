@@ -1,8 +1,8 @@
 <?php
 require_once('dao/classes/jeuneDAO.php');
+session_start();
 
-$url 			= "http://localhost:8000/ppe2/";
-$url_ressources = "http://localhost/ppe2/";
+$url = "http://localhost:8000/ppe2/";
 
 if(isset($_POST['form_auth'])){
 	$jeune_nom = $_POST['jeune_nom'];
@@ -36,11 +36,15 @@ if(isset($_POST['form_auth'])){
 													   $jeune_code_postal,
 													   null,
 													   null);
-									//exit(var_dump($jeune));
+
 									$jeuneDAO = new JeuneDAO();
 									$jeuneDAO->inscrire($jeune);
 
-									header("Location: ".$url."jeune/connexion");
+									if(isset($_SESSION["administrateur_id"])){
+										header("Location: ".$url."administrateur/tableau/jeune");
+									}else{
+										header("Location: ".$url."jeune/connexion");
+									}
 								}else{
 									exit('La longeur du code postal est incorrecte il devrait faire 5 caracteres.');
 								}
@@ -72,8 +76,8 @@ if(isset($_POST['form_auth'])){
 <html>
   <head>
     <title>Jeune Inscription</title>
-    <link href="<?= $url_ressources."/ressources/css/bootstrap.min.css" ?>" rel="stylesheet">
-    <link href="<?= $url_ressources."/ressources/css/signin.css" ?>" rel="stylesheet">
+    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ressources/css/signin.css" rel="stylesheet">
   </head>
 
   <body class="text-center">

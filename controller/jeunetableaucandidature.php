@@ -1,11 +1,11 @@
 <?php
-require_once('dao/classes/offreDAO.php');
+require_once('dao/classes/candidatureDAO.php');
 session_start();
 
 $url = "http://localhost:8000/ppe2/";
 
-if(!isset($_SESSION['administrateur_id'])){
-  header("Location: ".$url);
+if(!isset($_SESSION['jeune_id'])){
+	header("Location: ".$url);
 }
 
 if(isset($_POST['deconnexion'])){
@@ -14,29 +14,15 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-if(isset($_POST['modifier'])){
-  $_SESSION['modifier_offre_id']          = $_POST['offre_id']; 
-  $_SESSION['modifier_formation_id']      = $_POST['formation_id']; 
-  $_SESSION['modifier_formation_nom']     = $_POST['formation_nom']; 
-  $_SESSION['modifier_offre_nom']         = $_POST['offre_nom']; 
-  $_SESSION['modifier_partenaire_nom']    = $_POST['partenaire_nom']; 
-  $_SESSION['modifier_offre_description'] = $_POST['offre_description']; 
-  $_SESSION['modifier_offre_debut']       = $_POST['offre_debut']; 
-  $_SESSION['modifier_offre_fin']         = $_POST['offre_fin']; 
-  $_SESSION['modifier_offre_creation']    = $_POST['offre_creation']; 
-
-  header("Location: ".$url."offre/offre-modification");
-}
-
 if(isset($_POST['suprimmer'])){
-  $offreDAO = new OffreDAO();
-  $offreDAO->suprimmer($_POST["offre_id"]);
+  $candidatureDAO = new CandidatureDAO();
+  $candidatureDAO->suprimmer($_POST['candidature_id']);
 
-  header("Location: ".$url."administrateur/tableau/offre");
+  header("Location: ".$url."jeune/tableau/candidature");
 }
 
-$offreDAO  = new OffreDAO();
-$offre     = $offreDAO->lister();
+$candidatureDAO = new CandidatureDAO();
+$candidature    = $candidatureDAO->listerParJeune($_SESSION['jeune_id']);
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -46,7 +32,7 @@ $offre     = $offreDAO->lister();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Cheik-Siramakan Keita">
-    <title>Administrateur Profil</title>
+    <title>Jeune Candidatures</title>
 
     <!-- CSS -->
     <link href="/ressources/vendor/bootstrap/css/bootstrap.min.css " rel="stylesheet">
@@ -57,54 +43,26 @@ $offre     = $offreDAO->lister();
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="<?= $url ?>">Bonjour <?= $_SESSION["administrateur_prenom"]." ".$_SESSION["administrateur_nom"] ?></a>
+      <a class="navbar-brand" href="<?= $url ?>">Bonjour <?= $_SESSION["jeune_nom"]." ".$_SESSION["jeune_prenom"] ?></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="<?= $url."administrateur/statistique" ?>">
+            <a class="nav-link" href="<?= $url."jeune/profil" ?>">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Graphes</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseGrapheLink">
-              <li>
-                <a href="<?= $url."administrateur/graphe/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/offre" ?>">Offres</a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTableauxLink" data-parent="#exampleAccordion">
+            <a class="nav-link" href="<?= $url."partenaire/offre" ?>">
               <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Tableaux</span>
+              <span class="nav-link-text">Tableau</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
-              <li>
-                <a href="<?= $url."administrateur/tableau/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/offre" ?>">Offres</a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="<?= $url."administrateur/modifier-mes-informations" ?>">
+            <a class="nav-link" href="<?= $url."jeune/modifier-mes-informations" ?>">
               <i class="fa fa-fw fa-wrench"></i>
                 <span class="nav-link-text">Modifier vos informations</span>
             </a>
@@ -131,7 +89,7 @@ $offre     = $offreDAO->lister();
           <li class="breadcrumb-item">
             <p>Tableau de bord</p>
           </li>
-          <li class="breadcrumb-item active">Tableaux</li>
+          <li class="breadcrumb-item active">Tableau</li>
         </ol>
         <div class="card mb-3">
           <div class="card-header">
@@ -143,30 +101,30 @@ $offre     = $offreDAO->lister();
                   <thead>
                     <tr>
                       <th scope="col">Type de formation</th>
-                      <th scope="col">Nom</th>
+                      <th scope="col">Offre</th>
                       <th scope="col">Partenaire</th>
                       <th scope="col">Début</th>
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
+                      <th scope="col">Acceptation</th>
                       <th scope="col">Suprimmer</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th scope="col">Type de formation</th>
-                      <th scope="col">Nom</th>
+                      <th scope="col">Offre</th>
                       <th scope="col">Partenaire</th>
                       <th scope="col">Début</th>
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
+                      <th scope="col">Acceptation</th>
                       <th scope="col">Suprimmer</th>
                     </tr>
                   </tfoot>
                   <tbody>
                   <?php 
-                    while($resultat = $offre->fetch()){
+                    while($resultat = $candidature->fetch()){
                       echo '<tr>';
                         echo '<td>'.$resultat["formation_nom"].'</td>';
                         echo '<td>'.$resultat["offre_nom"].'</td>';
@@ -174,16 +132,13 @@ $offre     = $offreDAO->lister();
                         echo '<td>'.$resultat["offre_debut"].'</td>';
                         echo '<td>'.$resultat["offre_fin"].'</td>';
                         echo '<td>'.$resultat["offre_creation"].'</td>';
+                        if($resultat["status"] == 1){
+                          echo '<td>Oui</td>';
+                        }else if($resultat["status"] == 0){
+                          echo '<td>Non</td>';
+                        }
                         echo '<form method="POST">'; 
-                          echo '<input type="hidden" name="offre_id" value="'.$resultat["offre_id"].'">';
-                          echo '<input type="hidden" name="formation_id" value="'.$resultat["formation_id"].'">';
-                          echo '<input type="hidden" name="offre_nom" value="'.$resultat["offre_nom"].'">';
-                          echo '<input type="hidden" name="partenaire_nom" value="'.$resultat["partenaire_nom"].'">';
-                          echo '<input type="hidden" name="offre_description" value="'.$resultat["offre_description"].'">';
-                          echo '<input type="hidden" name="offre_debut" value="'.$resultat["offre_debut"].'">';
-                          echo '<input type="hidden" name="offre_fin" value="'.$resultat["offre_fin"].'">';
-                          echo '<input type="hidden" name="offre_creation" value="'.$resultat["offre_creation"].'">';
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td>';
+                          echo '<input type="hidden" name="candidature_id" value="'.$resultat["candidature_id"].'">';
                           echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
                         echo '</form>';
                       echo '</tr>';

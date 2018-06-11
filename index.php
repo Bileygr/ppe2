@@ -62,21 +62,45 @@ switch ($request_uri[0]) {
         include("controller/jeuneinscription.php");
         break;
 
+    case "/ppe2/jeune/modifier-mes-informations":
+        include("controller/jeunemodifiermesinformations.php");
+        break;
+
     case "/ppe2/jeune/profil":
-        include("controller/jeuneprofil.php");
+        include("controller/jeunestatistique.php");
+        break;
+
+    case "/ppe2/jeune/tableau/candidature":
+        include("controller/jeunetableaucandidature.php");
+        break;
+
+    case "/ppe2/offre/ajout":
+        include("controller/offreajout.php");
         break;
 
     case "/ppe2/partenaire/connexion":
     	include("controller/partenaireconnexion.php");
     	break;
 
+   case "/ppe2/offre/offre-modification":
+        include("controller/offremodification.php");
+        break;
+
     case "/ppe2/partenaire/inscription":
     	include("controller/partenaireinscription.php");
     	break;
 
+    case "/ppe2/partenaire/modifier-mes-informations":
+        include("controller/partenairemodifiermesinformations.php");
+        break;
+
     case "/ppe2/partenaire/profil":
-    	include("controller/partenaireprofil.php");
+    	include("controller/partenairestatistique.php");
     	break;
+
+    case "/ppe2/partenaire/offre":
+        include("controller/partenairetableauoffre.php");
+        break;
 
     case "/ppe2/partenaire/offre-ajout":
         include("controller/offreajout.php");

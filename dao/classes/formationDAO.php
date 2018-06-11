@@ -4,7 +4,7 @@ require_once('classes/formation.php');
 require_once('dao/interfaces/formationInterface.php');
 
 class FormationDAO implements FormationInterface{
-	public function obtenirFormation(){
+	public function lister(){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 

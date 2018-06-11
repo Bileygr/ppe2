@@ -1,5 +1,5 @@
 <?php
 interface FormationInterface{
-	public function obtenirFormation();
+	public function lister();
 }
 ?>

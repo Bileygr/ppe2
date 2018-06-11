@@ -14,30 +14,29 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-if(isset($_POST['modifier_administrateur'])){
-  $_SESSION['modif_administrateur_id']          = $_POST['administrateur_id'];
-  $_SESSION['modif_administrateur_nom']         = $_POST['administrateur_nom'];
-  $_SESSION['modif_administrateur_prenom']      = $_POST['administrateur_prenom'];
-  $_SESSION['modif_administrateur_super']       = $_POST['administrateur_super'];
-  $_SESSION['modif_administrateur_telephone']   = $_POST['administrateur_telephone'];
-  $_SESSION['modif_administrateur_email']       = $_POST['administrateur_email'];
-  $_SESSION['modif_administrateur_adresse']     = $_POST['administrateur_adresse'];
-  $_SESSION['modif_administrateur_ville']       = $_POST['administrateur_ville'];
-  $_SESSION['modif_administrateur_code_postal'] = $_POST['administrateur_code_postal'];
+if(isset($_POST['modifier'])){
+  $_SESSION['modifier_administrateur_id']          = $_POST['administrateur_id'];
+  $_SESSION['modifier_administrateur_nom']         = $_POST['administrateur_nom'];
+  $_SESSION['modifier_administrateur_prenom']      = $_POST['administrateur_prenom'];
+  $_SESSION['modifier_administrateur_super']       = $_POST['administrateur_super'];
+  $_SESSION['modifier_administrateur_telephone']   = $_POST['administrateur_telephone'];
+  $_SESSION['modifier_administrateur_email']       = $_POST['administrateur_email'];
+  $_SESSION['modifier_administrateur_adresse']     = $_POST['administrateur_adresse'];
+  $_SESSION['modifier_administrateur_ville']       = $_POST['administrateur_ville'];
+  $_SESSION['modifier_administrateur_code_postal'] = $_POST['administrateur_code_postal'];
 
   header("Location: ".$url."administrateur/administrateur-modification");
 }
 
-if(isset($_POST['suprimmer_administrateur'])){
+if(isset($_POST['suprimmer'])){
   $administrateurDAO = new AdministrateurDAO();
-  $administrateurDAO->suprimmerAdministrateur($_POST['administrateur_id']);
+  $administrateurDAO->suprimmer($_POST['administrateur_id']);
 
-  header("Location: ".$url."administrateur/profil");
+  header("Location: ".$url."administrateur/tableau/administrateur");
 }
 
 $administrateurDAO  = new AdministrateurDAO();
-$administrateur     = $administrateurDAO->obtenirAdministrateur();
-$last_update        = $administrateurDAO->obtenirMiseAJourTemps();
+$administrateur     = $administrateurDAO->lister();
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -130,7 +129,7 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
       <div class="container-fluid">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Tableau de bord</a>
+            <p>Tableau de bord</p>
           </li>
           <li class="breadcrumb-item active">Tableaux</li>
         </ol>
@@ -207,8 +206,8 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
                         echo '<input type="hidden" name="administrateur_ville" value="'.$resultat["administrateur_ville"].'">';
                         echo '<input type="hidden" name="administrateur_code_postal" value="'.$resultat["administrateur_code_postal"].'">';
                         if($_SESSION['administrateur_super'] == 1){
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_administrateur" value="Modifier"></td>';
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_administrateur" value="Suprimmer"></td>';
+                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td>';
+                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
                         }
                       echo '</form>';
                     echo '</tr>';
@@ -218,7 +217,6 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
               </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Dernier ajout <?= $last_update ?> </div>
         </div>
       </div>
 

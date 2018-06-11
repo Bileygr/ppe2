@@ -6,14 +6,14 @@ session_start();
 $url = "http://localhost:8000/ppe2/";
 
 
-$partenaire_id 			= $_SESSION['modifier_partenaire_id'];
-$partenaire_siret 		= $_SESSION['modifier_partenaire_siret'];
-$partenaire_nom 		= $_SESSION['modifier_partenaire_nom'];
-$partenaire_telephone 	= $_SESSION['modifier_partenaire_telephone'];
-$partenaire_email 		= $_SESSION['modifier_partenaire_email'];
-$partenaire_adresse 	= $_SESSION['modifier_partenaire_adresse'];
-$partenaire_ville 		= $_SESSION['modifier_partenaire_ville'];
-$partenaire_code_postal = $_SESSION['modifier_partenaire_code_postal'];
+$partenaire_id 			= $_SESSION['partenaire_id'];
+$partenaire_siret 		= $_SESSION['partenaire_siret'];
+$partenaire_nom 		= $_SESSION['partenaire_nom'];
+$partenaire_telephone 	= $_SESSION['partenaire_telephone'];
+$partenaire_email 		= $_SESSION['partenaire_email'];
+$partenaire_adresse 	= $_SESSION['partenaire_adresse'];
+$partenaire_ville 		= $_SESSION['partenaire_ville'];
+$partenaire_code_postal = $_SESSION['partenaire_code_postal'];
 
 if(isset($_POST['modifier'])){
 	$partenaire_siret 		= $_POST['partenaire_siret'];
@@ -45,20 +45,7 @@ if(isset($_POST['modifier'])){
 							$partenaireDAO = new PartenaireDAO();
 							$partenaireDAO->modifier($partenaire);
 
-							unset($_SESSION['modifier_partenaire_id'], 
-								  $_SESSION['modifier_partenaire_siret'],
-	 						  	  $_SESSION['modifier_partenaire_nom'], 
-	  						  	  $_SESSION['modifier_partenaire_telephone'],
-	  						  	  $_SESSION['modifier_partenaire_email'],
-	  						  	  $_SESSION['modifier_partenaire_adresse'],
-	  						  	  $_SESSION['modifier_partenaire_ville'],
-	  						  	  $_SESSION['modifier_partenaire_code_postal']);
-
-							if(isset($_SESSION["administrateur_id"])){
-								header("Location: ".$url."administrateur/tableau/partenaire");
-							}else{
-								header("Location: ".$url."partenaire/profil");
-							}
+							header("Location: ".$url."partenaire/profil");
 						}else{
 						echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 						}

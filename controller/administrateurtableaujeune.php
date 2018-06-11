@@ -34,8 +34,8 @@ if(isset($_POST['suprimmer'])){
   header("Location: ".$url."administrateur/tableau/jeune");
 }
 
-$jeuneDAO      = new JeuneDAO();
-$jeune         = $jeuneDAO->lister();
+$jeuneDAO  = new JeuneDAO();
+$jeune     = $jeuneDAO->lister();
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -128,7 +128,7 @@ $jeune         = $jeuneDAO->lister();
       <div class="container-fluid">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Tableau de bord</a>
+            <p>Tableau de bord</p>
           </li>
           <li class="breadcrumb-item active">Tableaux</li>
         </ol>
@@ -191,7 +191,6 @@ $jeune         = $jeuneDAO->lister();
               </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Dernier ajout </div>
         </div>
       </div>
 

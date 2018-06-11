@@ -1,10 +1,15 @@
 <?php
 require_once('classes/administrateur.php');
 require_once('dao/classes/administrateurDAO.php');
+session_start();
 
 $url = "http://localhost:8000/ppe2/";
 
-if(isset($_POST['form_auth'])){
+if(!isset($_SESSION["administrateur_id"])){
+	header("Location: ".$url);
+}
+
+if(isset($_POST['ajouter'])){
 	$administrateur_super;
 
 	if(isset($_POST['administrateur_super'])){
@@ -48,7 +53,7 @@ if(isset($_POST['form_auth'])){
 									$administrateurDAO = new AdministrateurDAO();
 									$administrateurDAO->inscrire($administrateur);
 
-									header("Location: ".$url."administrateur/connexion");
+									header("Location: ".$url."administrateur/tableau/administrateur");
 								}else{
 									echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 								}
@@ -110,7 +115,7 @@ if(isset($_POST['form_auth'])){
           <input type="checkbox" id="administrateur_super" name="administrateur_super" value=""> Super Administrateur
         </label>
       </div>
-      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Inscription">
+      <input type="submit" name="ajouter" class="btn btn-lg btn-primary btn-block" value="Inscription">
     </form>
   </body>
 </html>

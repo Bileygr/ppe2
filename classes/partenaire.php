@@ -15,17 +15,17 @@ class Partenaire{
 	function __construct($partenaire_id = null, $partenaire_siret, $partenaire_nom , $partenaire_mot_de_passe_hash, 
 						 $partenaire_telephone, $partenaire_email, $partenaire_adresse, $partenaire_ville,
 						 $partenaire_code_postal, $partenaire_derniere_connexion = null, $partenaire_creation = null){
-		$this->partenaire_id = $partenaire_id;
-		$this->partenaire_siret = $partenaire_siret;
-		$this->partenaire_nom = $partenaire_nom;
-		$this->partenaire_mot_de_passe_hash = $partenaire_mot_de_passe_hash;
-		$this->partenaire_telephone = $partenaire_telephone;
-		$this->partenaire_email = $partenaire_email;
-		$this->partenaire_adresse = $partenaire_adresse;
-		$this->partenaire_ville = $partenaire_ville;
-		$this->partenaire_code_postal = $partenaire_code_postal;
-		$this->partenaire_derniere_connexion = $partenaire_derniere_connexion;
-		$this->partenaire_creation = $partenaire_creation;
+		$this->partenaire_id 					= $partenaire_id;
+		$this->partenaire_siret 				= $partenaire_siret;
+		$this->partenaire_nom 					= $partenaire_nom;
+		$this->partenaire_mot_de_passe_hash 	= $partenaire_mot_de_passe_hash;
+		$this->partenaire_telephone 			= $partenaire_telephone;
+		$this->partenaire_email 				= $partenaire_email;
+		$this->partenaire_adresse 				= $partenaire_adresse;
+		$this->partenaire_ville 				= $partenaire_ville;
+		$this->partenaire_code_postal 			= $partenaire_code_postal;
+		$this->partenaire_derniere_connexion 	= $partenaire_derniere_connexion;
+		$this->partenaire_creation 				= $partenaire_creation;
 	}
 
 	public function setPartenaire_id($partenaire_id){return $this->partenaire_id = $partenaire_id;}

@@ -1,8 +1,6 @@
 <?php
 require_once('connexion.php');
 require_once('classes/administrateur.php');
-require_once('classes/jeune.php');
-require_once('classes/partenaire.php');
 require_once('dao/interfaces/administrateurInterface.php');
 
 class AdministrateurDAO implements AdministrateurInterface{
@@ -71,7 +69,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connexion 	= null;	
 	}
 
-	public function obtenirAdministrateur(){
+	public function lister(){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
@@ -82,49 +80,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connexion 	= null;
 	}
 
-	public function obtenirOffre(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT partenaire.partenaire_nom, formation.formation_nom, 
-										     offre_nom, offre_debut, offre_fin, offre_creation
-										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
-										    		   JOIN formation ON offre.formation_id = formation.formation_id");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function obtenirPartenaire(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT partenaire_id, partenaire_siret, partenaire_nom, partenaire_telephone, partenaire_email, partenaire_adresse, partenaire_ville, 								 partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation FROM partenaire");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function obtenirMiseAJourTemps(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$dernier_id = $connexion->lastInsertId();
-
-		$requete = $connexion->prepare("SELECT administrateur_creation FROM administrateur WHERE administrateur_id = ?");
-		$requete->execute(array($dernier_id));
-
-		$resultat = $requete->fetch();
-		$temps 	  = $resultat['administrateur_creation'];
-
-		$requete 	= null;
-		$connexion 	= null;
-		return $temps;
-	}
-
-	public function  modifierAdministrateur($administrateur){
+	public function  modifier($administrateur){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
@@ -144,48 +100,14 @@ class AdministrateurDAO implements AdministrateurInterface{
 
 		$requete 	= null;
 		$connexion 	= null;
-
 	}
 
-	public function modifierPartenaire($partenaire){
-		$connect = new Connect();
-		$connexion = $connect->connexion();
-		
-		$requete = $connexion->prepare("UPDATE partenaire SET partenaire_siret = ?, partenaire_nom = ?,
-															  partenaire_telephone = ?, partenaire_email = ?,
-															  partenaire_adresse = ?, partenaire_ville = ?,
-															  partenaire_code_postal = ?
-														  WHERE partenaire_id = ?");
-		$requete->execute(array($partenaire->getPartenaire_siret(),
-								$partenaire->getPartenaire_nom(),
-								$partenaire->getPartenaire_telephone(),
-								$partenaire->getPartenaire_email(),
-								$partenaire->getPartenaire_adresse(),
-								$partenaire->getPartenaire_ville(),
-								$partenaire->getPartenaire_code_postal(),
-								$partenaire->getPartenaire_id()));
-
-		$requete 	= null;
-		$connexion 	= null;
-	}
-
-	public function suprimmerAdministrateur($administrateur_id){
+	public function suprimmer($administrateur_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
 		$requete = $connexion->prepare("DELETE FROM administrateur WHERE administrateur_id = ?");
 		$requete->execute(array($administrateur_id));
-
-		$requete	= null;
-		$connexion 	= null;	
-	}
-
-	public function suprimmerPartenaire($partenaire_id){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->prepare("DELETE FROM partenaire WHERE partenaire_id = ?");
-		$requete->execute(array($partenaire_id));
 
 		$requete	= null;
 		$connexion 	= null;	

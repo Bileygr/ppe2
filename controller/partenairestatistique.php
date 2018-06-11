@@ -4,7 +4,7 @@ session_start();
 
 $url = "http://localhost:8000/ppe2/";
 
-if(!isset($_SESSION['administrateur_id'])){
+if(!isset($_SESSION['partenaire_id'])){
   header("Location: ".$url);
 }
 
@@ -14,9 +14,9 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-$offreDAO     = new OffreDAO();
-$offre        = $offreDAO->compterFormation();
-$partenaire   = $offreDAO->compterPartenaire();
+$offreDAO         = new OffreDAO();
+$offre_formation  = $offreDAO->compterFormationParPartenaire($_SESSION["partenaire_id"]);
+$partenaire       = $offreDAO->compterPartenaire();
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -26,7 +26,7 @@ $partenaire   = $offreDAO->compterPartenaire();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Cheik-Siramakan Keita">
-    <title>Administrateur Profil</title>
+    <title>Partenaire Statistiques</title>
     
     <!-- CSS -->
     <link href="/ressources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,52 +37,23 @@ $partenaire   = $offreDAO->compterPartenaire();
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="<?= $url ?>">Bonjour <?= $_SESSION["administrateur_prenom"]." ".$_SESSION["administrateur_nom"] ?></a>
+      <a class="navbar-brand" href="<?= $url ?>">Bonjour <?= $_SESSION["partenaire_nom"] ?></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="<?= $url."administrateur/statistique" ?>">
+            <a class="nav-link" href="<?= $url."partenaire/profil" ?>">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Graphes</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseGrapheLink">
-              <li>
-                <a href="<?= $url."administrateur/graphe/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/offre" ?>">Offres</a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTableauxLink" data-parent="#exampleAccordion">
+            <a class="nav-link" href="<?= $url."partenaire/offre" ?>">
               <i class="fa fa-fw fa-table"></i>
               <span class="nav-link-text">Tableaux</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
-              <li>
-                <a href="<?= $url."administrateur/tableau/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/offre" ?>">Offres</a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
             <a class="nav-link" href="<?= $url."administrateur/modifier-mes-informations" ?>">
@@ -162,7 +133,6 @@ $partenaire   = $offreDAO->compterPartenaire();
       <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-        google.charts.setOnLoadCallback(partenaireChart);
         
         function drawChart() {
           var data = new google.visualization.DataTable();
@@ -170,29 +140,13 @@ $partenaire   = $offreDAO->compterPartenaire();
           data.addColumn('number', 'Slices');
           data.addRows([
            <?php 
-              while($resultat = $offre->fetch()){
+              while($resultat = $offre_formation->fetch()){
                 echo '["'.$resultat["formation_nom"].'", '.$resultat["COUNT(*)"].'], ';
               }
             ?>
           ]);
           var options = {'title':'Offre par formation', 'width':800, 'height':700};
           var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-          chart.draw(data, options);
-        }
-
-        function partenaireChart() {
-          var data = new google.visualization.DataTable();
-          data.addColumn('string', 'Topping');
-          data.addColumn('number', 'Slices');
-          data.addRows([
-           <?php  
-              while($resultat = $partenaire->fetch()){
-                echo '["'.$resultat["partenaire_nom"].'", '.$resultat["COUNT(*)"].'], ';
-              } 
-            ?> 
-          ]);
-          var options = {'title':'Offre par partenaire', 'width':800, 'height':700};
-          var chart = new google.visualization.PieChart(document.getElementById('partenaireStat'));
           chart.draw(data, options);
         }
       </script>

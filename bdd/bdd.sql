@@ -78,49 +78,81 @@ CREATE TABLE offre(
 	UNIQUE(offre_id)
 )ENGINE=InnoDB;
 
+CREATE TABLE candidature(
+	candidature_id			INT(11) NOT NULL AUTO_INCREMENT,
+	offre_id				INT(11) NOT NULL,
+	formation_id			INT(11) NOT NULL,
+	jeune_id				INT(11) NOT NULL,
+	partenaire_id			INT(11) NOT NULL,
+	status					SMALLINT(1) NOT NULL,
+	candidature_creation	DATETIME NOT NULL,
+	PRIMARY KEY(offre_id),
+	CONSTRAINT FK_candidature_offre_id FOREIGN KEY (offre_id) REFERENCES offre(offre_id),
+	CONSTRAINT FK_candidature_formation_id FOREIGN KEY (formation_id) REFERENCES formation(formation_id),
+	CONSTRAINT FK_candidature_jeune_id FOREIGN KEY (jeune_id) REFERENCES jeune(jeune_id),
+	CONSTRAINT FK_candidature_partenaire_id FOREIGN KEY (partenaire_id) REFERENCES partenaire(partenaire_id),
+	UNIQUE(candidature_id)
+)ENGINE=InnoDB;
 /*
+CREATE TABLE utilisateur(
+	utilisateur_id			INT(11) NOT NULL AUTO_INCREMENT,
+	administrateur_id 	 	INT(11),
+	partenaire_id     	 	INT(11),
+	jeune_id 		  	 	INT(11),
+	utilisateur_creation 	DATETIME NOT NULL,
+)ENGINE=InnoDB;
+
 CREATE TABLE message(
 	message_id			INT(11) NOT NULL AUTO_INCREMENT,
-	message_parent_id	INT(11),
-	creator_id			INT(11) NOT NULL,
-	receipient			INT(11) NOT NULL,
-	message_content		TEXT NOT NULL,
-	message_creation	DATE,
-	PRIMARY KEY(message_id),
-	CONSTRAINT FK_message_sender_id FOREIGN KEY ()
+	parent_id			INT(11) NOT NULL,
+	emetteur_id			INT(11) NOT NULL,
+	recepteur_id		INT(11) NOT NULL,
+	contenu				SMALLINT(1) NOT NULL,
+	message_creation	DATETIME NOT NULL,
+	PRIMARY KEY(offre_id),
+	CONSTRAINT FK_message_parent_id FOREIGN KEY (parent_id) REFERENCES message(message_id),
+	CONSTRAINT FK_message_emetteur_id FOREIGN KEY (emetteur_id) REFERENCES utilisateur(utilisateur_id),
+	CONSTRAINT FK_message_recepteur_id FOREIGN KEY (recepteur_id) REFERENCES utilisateur(utilisateur_id),
+	UNIQUE(message_id)
 )ENGINE=InnoDB;
 */
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
-		VALUES(1, 'Guerfi', 'Souhila', '$2y$10$IVsT3/JW8P26zUzf9iAf4uoDQBAVzRTHB9opbl3vo4DS357r3/SW2', '0605557801', 
+		VALUES(1, 'Guerfi', 'Souhila', '$2y$10$SEHMlBD19LCmt8998C7cr.MVcxRirkbhCfBICOC63BrXfrSoGHD5.', '0605557801', 
 				'sguerfi12@yahoo.fr', '128 Allée des Champs Elysées', 'Evry', '91000', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword1
 
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
-		VALUES(0, 'Keita', 'Cheik', '$2y$10$T2Ip0oXl6MKVNgwsJp.7DOLTHSruJe/6RcB.Hiavy50yMfae/r28m' , '0605557802', 
+		VALUES(0, 'Keita', 'Cheik', '$2y$10$lcl0iM1bL7ftRFgretJcmeeYSeqRWTaJBjcm7BLeJgzhPcJQfEI.6' , '0605557802', 
 				'cheiksiramakankeita@gmail.com', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword2
 
 INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
-		VALUES('123456781', 'Immo', '$2y$10$4/eztlkOaxPR/c79Huad6OKScm6RzvyLBY0YQwfwsKevWxTr9hK3S', '0605557803',
+		VALUES('123456781', 'Immo', '$2y$10$xci1tpo4OHTsHOrhPrQgMeRnnueSqsLnQMqwkAVYpeDqsYBq33Lyy', '0605557803',
 				'infamousimmo@gmail.com', '9 Rue du Caire', 'Paris', '75002', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword3
 
 INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
-		VALUES('123456782', 'Prop', '$2y$10$h88XCYfSvdy15JHTIC2LnuCnvJuJl2XQtHhYCp44CKzO/resijYaK', '0605557804',
+		VALUES('123456782', 'Prop', '$2y$10$BWtDkruJMv7sG4LYF0z.A.1YvGhhHwL2oYQfyWNBD9r0qpLJ1bmH.', '0605557804',
 				'prop@gmail.com', '11 Rue Jarry', 'Paris', '75010', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword4
 
 INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
 					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
-		VALUES('Benoit', 'Florian', '$2y$10$EDVmYoKt7APzwKd2OXrUX./ehaiHm29n1LAyhfAV0hZ5FEhTeCxWG', '0605557805',
+		VALUES('Benoit', 'Florian', '$2y$10$NM67pBezv.26iW44brSIyuJVhwSIf3u9kEq61TIX/YQ02iPKYUAyO', '0605557805',
 				'floben@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword5
 
 INSERT INTO jeune(jeune_nom, jeune_prenom, jeune_mot_de_passe_hash, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, 
 					jeune_code_postal, jeune_derniere_connexion, jeune_creation)
-		VALUES('Badri', 'Brahim', '$2y$10$HHdlYiDs/CRV72WEOUqX0./6cScE/CcTIkwl.06/IbPxiHF6IP1au', '0605557806',
+		VALUES('Badri', 'Brahim', '$2y$10$tYDixDdiuXcCvNnnDYbyXe3w7Ba.Mi/XkYzhgb5FlealrI2rL2zH2', '0605557806',
 				'badbra@gmail.com', '51 Rue des Vinaigriers', 'Paris', '75010', NOW(), NOW());
+# Mot de passe: passwordpasswordpassword6
 
 INSERT INTO formation(formation_nom, formation_creation) VALUES('Dépannage informatique', NOW());
 INSERT INTO formation(formation_nom, formation_creation) VALUES('Développement', NOW());
@@ -134,3 +166,6 @@ INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, off
 
 INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
 		VALUES(2, 3, 'Formation d\'Hiver', 'bla bla bla bla bla bla bla bla bla bla', '2019-01-01', '2019-02-01', NOW());
+
+INSERT INTO candidature(offre_id, formation_id, jeune_id, partenaire_id, status, candidature_creation) VALUES(1, 1, 1, 1, 1, NOW());
+INSERT INTO candidature(offre_id, formation_id, jeune_id, partenaire_id, status, candidature_creation) VALUES(2, 2, 1, 2, 0, NOW());

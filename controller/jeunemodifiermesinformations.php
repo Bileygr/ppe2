@@ -5,18 +5,18 @@ session_start();
 
 $url = "http://localhost:8000/ppe2/";
 
-if(!isset($_SESSION['administrateur_id'])){
+if(!isset($_SESSION['jeune_id'])){
 	header("Location: ".$url);
 }
 
-$jeune_id 			= $_SESSION['modifier_jeune_id'];
-$jeune_nom 			= $_SESSION['modifier_jeune_nom'];
-$jeune_prenom 		= $_SESSION['modifier_jeune_prenom'];
-$jeune_telephone 	= $_SESSION['modifier_jeune_telephone'];
-$jeune_email 		= $_SESSION['modifier_jeune_email'];
-$jeune_adresse 		= $_SESSION['modifier_jeune_adresse'];
-$jeune_ville 		= $_SESSION['modifier_jeune_ville'];
-$jeune_code_postal 	= $_SESSION['modifier_jeune_code_postal'];
+$jeune_id 			= $_SESSION['jeune_id'];
+$jeune_nom 			= $_SESSION['jeune_nom'];
+$jeune_prenom 		= $_SESSION['jeune_prenom'];
+$jeune_telephone 	= $_SESSION['jeune_telephone'];
+$jeune_email 		= $_SESSION['jeune_email'];
+$jeune_adresse 		= $_SESSION['jeune_adresse'];
+$jeune_ville 		= $_SESSION['jeune_ville'];
+$jeune_code_postal 	= $_SESSION['jeune_code_postal'];
 
 if(isset($_POST['form_auth'])){
 	$jeune_nom 			= $_POST['jeune_nom'];
@@ -55,7 +55,7 @@ if(isset($_POST['form_auth'])){
 	  						  $_SESSION['modifier_jeune_ville'],
 	  						  $_SESSION['modifier_jeune_code_postal']);
 
-						header("Location: ".$url."administrateur/tableau/jeune");
+						header("Location: ".$url."jeune/profil");
 					}else{
 						echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 					}

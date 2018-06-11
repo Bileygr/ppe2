@@ -19,14 +19,14 @@ $administrateur_adresse 	= $_SESSION['administrateur_adresse'];
 $administrateur_ville 		= $_SESSION['administrateur_ville'];
 $administrateur_code_postal = $_SESSION['administrateur_code_postal'];
 
-if(isset($_POST['form_auth'])){
+if(isset($_POST['modifier'])){
 	if(isset($_POST['administrateur_super'])){
 		$administrateur_super= 1;
 	}else{
 		$administrateur_super= 0;
 	}
 
-	$administrateur_= $_POST['administrateur_nom'];
+	$administrateur_nom 		= $_POST['administrateur_nom'];
 	$administrateur_prenom 		= $_POST['administrateur_prenom'];
 	$administrateur_telephone 	= $_POST['administrateur_telephone'];
 	$administrateur_email 		= $_POST['administrateur_email'];
@@ -52,17 +52,7 @@ if(isset($_POST['form_auth'])){
 															 null,
 															 null);
 						$administrateurDAO = new AdministrateurDAO();
-						$administrateurDAO->modifierAdministrateur($administrateur);
-
-						unset($_SESSION['administrateur_id'], 
-	 						  $_SESSION['administrateur_nom'], 
-	  						  $_SESSION['administrateur_prenom'], 
-	  						  $_SESSION['administrateur_super'], 
-	  						  $_SESSION['administrateur_telephone'],
-	  						  $_SESSION['administrateur_email'],
-	  						  $_SESSION['administrateur_adresse'],
-	  						  $_SESSION['administrateur_ville'],
-	  						  $_SESSION['administrateur_code_postal']);
+						$administrateurDAO->modifier($administrateur);
 
 						header("Location: ".$url."administrateur/profil");
 					}else{
@@ -113,7 +103,7 @@ if(isset($_POST['form_auth'])){
           <input type="checkbox" onclick="setSuperAdministrateur();" id="administrateur_super" name="administrateur_super" value=""> Super Administrateur
         </label>
       </div>
-      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Modifier">
+      <input type="submit" name="modifier" class="btn btn-lg btn-primary btn-block" value="Modifier">
     </form>
 
     <script src="/ressources/js/core.js"></script>

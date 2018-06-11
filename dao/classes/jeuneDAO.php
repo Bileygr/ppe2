@@ -1,7 +1,7 @@
 <?php
 require('connexion.php');
-require_once('dao/interfaces/jeuneInterface.php');
 require_once('classes/jeune.php');
+require_once('dao/interfaces/jeuneInterface.php');
 
 class JeuneDAO implements JeuneInterface{
 	public function connecter($jeune_email, $jeune_mot_de_passe){
@@ -61,6 +61,17 @@ class JeuneDAO implements JeuneInterface{
 		$connexion = null;
 	}
 
+	public function lister(){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, 												 jeune_derniere_connexion, jeune_creation FROM jeune");
+
+		return 		$requete;
+		$requete 	= null;
+		$connexion 	= null;
+	}
+
 	public function modifier($jeune){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
@@ -91,17 +102,6 @@ class JeuneDAO implements JeuneInterface{
 
 		$requete	= null;
 		$connexion 	= null;	
-	}
-
-	public function lister(){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete = $connexion->query("SELECT jeune_id, jeune_nom, jeune_prenom, jeune_telephone, jeune_email, jeune_adresse, jeune_ville, jeune_code_postal, 												 jeune_derniere_connexion, jeune_creation FROM jeune");
-
-		return 		$requete;
-		$requete 	= null;
-		$connexion 	= null;
 	}
 }
 ?>

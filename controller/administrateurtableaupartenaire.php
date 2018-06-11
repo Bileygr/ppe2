@@ -1,9 +1,8 @@
 <?php
-require_once('dao/classes/administrateurDAO.php');
+require_once('dao/classes/partenaireDAO.php');
 session_start();
 
-$url            = "http://localhost:8000/ppe2/";
-$url_ressources = "http://localhost/ppe2/";
+$url = "http://localhost:8000/ppe2/";
 
 if(!isset($_SESSION['administrateur_id'])){
   header("Location: ".$url);
@@ -15,29 +14,28 @@ if(isset($_POST['deconnexion'])){
   }
 }
 
-if(isset($_POST['modifier_partenaire'])){
-  $_SESSION['modif_partenaire_id']          = $_POST['partenaire_id'];
-  $_SESSION['modif_partenaire_siret']       = $_POST['partenaire_siret'];
-  $_SESSION['modif_partenaire_nom']         = $_POST['partenaire_nom'];
-  $_SESSION['modif_partenaire_telephone']   = $_POST['partenaire_telephone'];
-  $_SESSION['modif_partenaire_email']       = $_POST['partenaire_email'];
-  $_SESSION['modif_partenaire_adresse']     = $_POST['partenaire_adresse'];
-  $_SESSION['modif_partenaire_ville']       = $_POST['partenaire_ville'];
-  $_SESSION['modif_partenaire_code_postal'] = $_POST['partenaire_code_postal'];
+if(isset($_POST['modifier'])){
+  $_SESSION['modifier_partenaire_id']          = $_POST['partenaire_id'];
+  $_SESSION['modifier_partenaire_siret']       = $_POST['partenaire_siret'];
+  $_SESSION['modifier_partenaire_nom']         = $_POST['partenaire_nom'];
+  $_SESSION['modifier_partenaire_telephone']   = $_POST['partenaire_telephone'];
+  $_SESSION['modifier_partenaire_email']       = $_POST['partenaire_email'];
+  $_SESSION['modifier_partenaire_adresse']     = $_POST['partenaire_adresse'];
+  $_SESSION['modifier_partenaire_ville']       = $_POST['partenaire_ville'];
+  $_SESSION['modifier_partenaire_code_postal'] = $_POST['partenaire_code_postal'];
 
   header("Location: ".$url."administrateur/partenaire-modification");
 }
 
-if(isset($_POST['suprimmer_partenaire'])){
-  $administrateurDAO = new AdministrateurDAO();
-  $administrateurDAO->suprimmerPartenaire($_POST['partenaire_id']);
+if(isset($_POST['suprimmer'])){
+  $partenaireDAO = new PartenaireDAO();
+  $partenaireDAO->suprimmer($_POST['partenaire_id']);
 
-  header("Location: ".$url."administrateur/profil");
+  header("Location: ".$url."administrateur/tableau/partenaire");
 }
 
-$administrateurDAO  = new AdministrateurDAO();
-$partenaire         = $administrateurDAO->obtenirPartenaire();
-$last_update        = $administrateurDAO->obtenirMiseAJourTemps();
+$partenaireDAO  = new PartenaireDAO();
+$partenaire     = $partenaireDAO->lister();
 ?>
 <!DOCTYPE html>
 <html lang="FR">
@@ -130,7 +128,7 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
       <div class="container-fluid">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Tableau de bord</a>
+            <p>Tableau de bord</p>
           </li>
           <li class="breadcrumb-item active">Tableaux</li>
         </ol>
@@ -139,42 +137,42 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
             <i class="fa fa-table"></i> Partenaires <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='<?= $url."partenaire/inscription" ?>'" value="Ajouter"></div>
           <div class="card-body">
             <div class="table-responsive">
-              <form method="POST">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th scope="col">SIRET</th>
-                      <th scope="col">Nom</th>
-                      <th scope="col">Téléphone</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Dernière connexion</th>
-                      <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
-                      <th scope="col">Suprimmer</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th scope="col">SIRET</th>
-                      <th scope="col">Nom</th>
-                      <th scope="col">Téléphone</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Dernière connexion</th>
-                      <th scope="col">Création</th>
-                      <th scope="col">Modifier</th>
-                      <th scope="col">Suprimmer</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                  <?php 
-                    while($resultat = $partenaire->fetch()){
-                      echo '<tr>';
-                        echo '<td>'.$resultat["partenaire_siret"].'</td>';
-                        echo '<td>'.$resultat["partenaire_nom"].'</td>';
-                        echo '<td>'.$resultat["partenaire_telephone"].'</td>';
-                        echo '<td>'.$resultat["partenaire_email"].'</td>';
-                        echo '<td>'.$resultat["partenaire_derniere_connexion"].'</td>';
-                        echo '<td>'.$resultat["partenaire_creation"].'</td>';
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th scope="col">SIRET</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Suprimmer</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th scope="col">SIRET</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Suprimmer</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                <?php 
+                  while($resultat = $partenaire->fetch()){
+                    echo '<tr>';
+                      echo '<td>'.$resultat["partenaire_siret"].'</td>';
+                      echo '<td>'.$resultat["partenaire_nom"].'</td>';
+                      echo '<td>'.$resultat["partenaire_telephone"].'</td>';
+                      echo '<td>'.$resultat["partenaire_email"].'</td>';
+                      echo '<td>'.$resultat["partenaire_derniere_connexion"].'</td>';
+                      echo '<td>'.$resultat["partenaire_creation"].'</td>';
+                      echo '<form method="POST">';
                         echo '<input type="hidden" name="partenaire_id" value="'.$resultat["partenaire_id"].'">';
                         echo '<input type="hidden" name="partenaire_siret" value="'.$resultat["partenaire_siret"].'">';
                         echo '<input type="hidden" name="partenaire_nom" value="'.$resultat["partenaire_nom"].'">';
@@ -183,17 +181,16 @@ $last_update        = $administrateurDAO->obtenirMiseAJourTemps();
                         echo '<input type="hidden" name="partenaire_adresse" value="'.$resultat["partenaire_adresse"].'">';
                         echo '<input type="hidden" name="partenaire_ville" value="'.$resultat["partenaire_ville"].'">';
                         echo '<input type="hidden" name="partenaire_code_postal" value="'.$resultat["partenaire_code_postal"].'">';
-                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier_partenaire" value="Modifier"></td>';
-                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer_partenaire" value="Suprimmer"></td>';
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td>';
+                        echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
+                      echo '</form>';
                       echo '</tr>';
-                    } 
-                  ?>
-                  </tbody>
-                </table>
-              </form>
+                  } 
+                ?>
+                </tbody>
+              </table>
             </div>
           </div>
-          <div class="card-footer small text-muted">Dernier ajout <?= $last_update ?> </div>
         </div>
       </div>
 
