@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Administrateur Connexion</title>
-    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/ressources/css/signin.css" rel="stylesheet">
+    <!-- CSS-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/signin.css" rel="stylesheet">
+
+    <title>{{ titre }}</title>
   </head>
 
   <body class="text-center">
@@ -14,7 +16,7 @@
     	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
     	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
     	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
-      <a href="<?= $url ?>">Inscription</a> / <a href="">Mot de passe oublié?</a>
+      	<a href="">Mot de passe oublié?</a>
     </form>
   </body>
 </html>

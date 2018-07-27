@@ -1,7 +1,7 @@
 <?php
 require_once('connexion.php');
-require_once('classes/administrateur.php');
-require_once('dao/interfaces/administrateurInterface.php');
+require_once('class/administrateur.php');
+require_once('dao/interface/administrateurInterface.php');
 
 class AdministrateurDAO implements AdministrateurInterface{
 	public function connecter($administrateur_email, $administrateur_mot_de_passe){

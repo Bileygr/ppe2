@@ -1,7 +1,7 @@
 <?php
 require_once('connexion.php');
-require_once('classes/offre.php');
-require_once('dao/interfaces/offreInterface.php');
+require_once('class/offre.php');
+require_once('dao/interface/offreInterface.php');
 
 class OffreDAO implements OffreInterface{
 	public function ajouter($offre){

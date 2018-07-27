@@ -1,8 +1,13 @@
 <?php
-require_once('dao/classes/administrateurDAO.php');
 session_start();
+require_once('framework/engine.php');
+require_once('dao/class/administrateurDAO.php');
 
 $url = "http://localhost:8000/ppe2/";
+
+$engine = new Engine();
+$engine->assign("titre", "Administrateur Connexion");
+$engine->render("administrateurconnexion.html");
 
 if(isset($_SESSION['administrateur_id'])){
 	header("Location: ".$url);
@@ -36,24 +41,3 @@ if(isset($_POST['form_auth'])){
 	}
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Administrateur Connexion</title>
-    <link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/ressources/css/signin.css" rel="stylesheet">
-  </head>
-
-  <body class="text-center">
-    <form method="POST" class="form-signin">
-      <a href="<?= $url ?>"><h1 class="h3 mb-3 font-weight-normal">Administrateur Connexion</h1></a>
-    	<label for="administrateur_email" class="sr-only">Email</label>
-    	<input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" required autofocused><br/>
-    	<label for="administrateur_mot_de_passe" class="sr-only">Mot de passe</label>
-    	<input type="password" id="administrateur_mot_de_passe" name="administrateur_mot_de_passe" class="form-control" placeholder="Mot de passe" required><br/>
-    	<input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Connexion"><br/>
-      	<a href="">Mot de passe oublié?</a>
-    </form>
-  </body>
-</html>

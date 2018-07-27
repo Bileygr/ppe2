@@ -93,6 +93,7 @@ CREATE TABLE candidature(
 	CONSTRAINT FK_candidature_partenaire_id FOREIGN KEY (partenaire_id) REFERENCES partenaire(partenaire_id),
 	UNIQUE(candidature_id)
 )ENGINE=InnoDB;
+
 /*
 CREATE TABLE utilisateur(
 	utilisateur_id			INT(11) NOT NULL AUTO_INCREMENT,
@@ -116,6 +117,7 @@ CREATE TABLE message(
 	UNIQUE(message_id)
 )ENGINE=InnoDB;
 */
+
 INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, administrateur_mot_de_passe_hash, 
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
