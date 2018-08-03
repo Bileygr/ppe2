@@ -5,48 +5,41 @@ require_once('dao/class/administrateurDAO.php');
 
 $engine = new Engine();
 
-$engine->assign("administrateur_id", $_SESSION['modifier_administrateur_id']);
-$engine->assign("administrateur_nom", $_SESSION['modifier_administrateur_nom']);
-$engine->assign("administrateur_prenom", $_SESSION['modifier_administrateur_prenom']);
-$engine->assign("administrateur_super", $_SESSION['modifier_administrateur_super']);
-$engine->assign("administrateur_telephone", $_SESSION['modifier_administrateur_telephone']);
-$engine->assign("administrateur_email", $_SESSION['modifier_administrateur_email']);
-$engine->assign("administrateur_adresse", $_SESSION['modifier_administrateur_adresse']);
-$engine->assign("administrateur_ville", $_SESSION['modifier_administrateur_ville']);
-$engine->assign("administrateur_code_postal", $_SESSION['modifier_administrateur_code_postal']);
+$url = $engine->url();
+$engine->assign("titre", "Administrateur Modification");
+$engine->assign("id", $_SESSION['modifier_administrateur_id']);
+$engine->assign("nom", $_SESSION['modifier_administrateur_nom']);
+$engine->assign("prenom", $_SESSION['modifier_administrateur_prenom']);
+$engine->assign("super", $_SESSION['modifier_administrateur_super']);
+$engine->assign("telephone", $_SESSION['modifier_administrateur_telephone']);
+$engine->assign("email", $_SESSION['modifier_administrateur_email']);
+$engine->assign("adresse", $_SESSION['modifier_administrateur_adresse']);
+$engine->assign("ville", $_SESSION['modifier_administrateur_ville']);
+$engine->assign("code postal", $_SESSION['modifier_administrateur_code_postal']);
 
 if(isset($_POST['form_auth'])){
-	if(isset($_POST['administrateur_super'])){
-		$administrateur_super= 1;
+	if(isset($_POST['super'])){
+		$super= 1;
 	}else{
-		$administrateur_super= 0;
+		$super= 0;
 	}
 
-	$administrateur_nom 		= $_POST['administrateur_nom'];
-	$administrateur_prenom 		= $_POST['administrateur_prenom'];
-	$administrateur_telephone 	= $_POST['administrateur_telephone'];
-	$administrateur_email 		= $_POST['administrateur_email'];
-	$administrateur_adresse 	= $_POST['administrateur_adresse'];
-	$administrateur_ville 		= $_POST['administrateur_ville'];
-	$administrateur_code_postal = $_POST['administrateur_code_postal'];
+	$nom 		= $_POST['nom'];
+	$prenom 		= $_POST['prenom'];
+	$telephone 	= $_POST['telephone'];
+	$email 		= $_POST['email'];
+	$adresse 	= $_POST['adresse'];
+	$ville 		= $_POST['ville'];
+	$code_postal = $_POST['code_postal'];
 
-	if(!empty($administrateur_nom) && !empty($administrateur_prenom) && !empty($administrateur_telephone) && !empty($administrateur_email) && !empty($administrateur_adresse) && !empty($administrateur_code_postal)){
-		if(filter_var($administrateur_email, FILTER_VALIDATE_EMAIL)){
-			if(strlen($administrateur_adresse) <= 38){
-				if(strlen($administrateur_ville) <= 32){
-					if(strlen($administrateur_code_postal) == 5){
-						$administrateur = new Administrateur($administrateur_id,
-															 $administrateur_super, 
-															 $administrateur_nom, 
-															 $administrateur_prenom, 
-															 null,
-															 $administrateur_telephone, 
-															 $administrateur_email, 
-															 $administrateur_adresse, 
-															 $administrateur_ville, 
-															 $administrateur_code_postal,
-															 null,
-															 null);
+	if(!empty($nom) && !empty($prenom) && !empty($telephone) && !empty($email) && !empty($adresse) && !empty($code_postal)){
+		if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+			if(strlen($adresse) <= 38){
+				if(strlen($ville) <= 32){
+					if(strlen($code_postal) == 5){
+						$administrateur = new Administrateur($_SESSION["modifier_administrateur_id"], $super, $nom, $prenom, null, $telephone, $email, $adresse, $ville, $code_postal, null, null);
+
+						//exit(var_dump($administrateur));
 						$administrateurDAO = new AdministrateurDAO();
 						$administrateurDAO->modifier($administrateur);
 
@@ -60,7 +53,7 @@ if(isset($_POST['form_auth'])){
 	  						  $_SESSION['modifier_administrateur_ville'],
 	  						  $_SESSION['modifier_administrateur_code_postal']);
 
-						header("Location: ".$url."administrateur/tableau/administrateur");
+						header("Location: ".$url."/administrateur/tableau/administrateur");
 					}else{
 						echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
 					}

@@ -2,6 +2,7 @@
 class Engine{
 	private $vars = array();
 	private $url = "http://127.0.0.1:8000/ppe2";
+	private $date_copyright = "2018";
 
 	public function assign($parameter, $value){
 		$this->vars[$parameter] = $value;
@@ -16,6 +17,7 @@ class Engine{
 			foreach ($this->vars as $parameter => $value){
 				$content = preg_replace('/\{\{\s'.$parameter.'\s\}\}/', $value, $content);
 				$content = preg_replace('/\{\{\surl\s\}\}/', $this->url, $content);
+				$content = preg_replace('/\{\{\sdate\scopyright\s\}\}/', $this->date_copyright, $content);
 			}
 			echo $content;
 		}else{
@@ -28,11 +30,13 @@ class Engine{
 	}
 
 	public function session_check(){
-		if(isset($_SESSION['administrateur_id'])){
+		if(isset($_SESSION["administrateur_id"])){
 			header("Location: ".$this->url);
 		}
+	}
 
-		if(isset($_SESSION['administrateur_id'])){
+	public function super_admin_session_check($super_status){
+		if($super_status == 0){
 			header("Location: ".$this->url);
 		}
 	}

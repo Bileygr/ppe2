@@ -1,61 +1,18 @@
 <!DOCTYPE html>
 <html lang="FR">
   <head>
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Cheik-Siramakan Keita">
-    
+
     <!-- CSS -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
-
-    <!-- JavaScrîpt -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(offreChart);
-      google.charts.setOnLoadCallback(partenaireChart);
-
-      function offreChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Formation', 'Nombre d\'offre'],
-          {{ bloc offre_stat }}
-        ]);
-
-        var options = {
-          title: 'Nombre d\'offre par formation',
-          width: 800,
-          height: 600
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('offrechart'));
-
-        chart.draw(data, options);
-      }
-
-      function partenaireChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Partenaire', 'Nombre d\'offre'],
-          {{ bloc partenaire_stat }}
-        ]);
-
-        var options = {
-          title: 'Nombre d\'offre par partenaire',
-          width: 800,
-          height: 600
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('partenairechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
 
     <title>{{ titre }}</title>
   </head>
@@ -67,7 +24,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
             <a class="nav-link" href="{{ url }}/administrateur/statistique">
@@ -79,13 +35,13 @@
                 <a href="{{ url }}/administrateur/graphe/administrateur">Administrateurs</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/graphe/partenaire">Partenaires</a>
-              </li>
-              <li>
                 <a href="{{ url }}/administrateur/graphe/jeune">Jeunes</a>
               </li>
               <li>
                 <a href="{{ url }}/administrateur/graphe/offre">Offres</a>
+              </li>
+              <li>
+                <a href="{{ url }}/administrateur/graphe/partenaire">Partenaires</a>
               </li>
             </ul>
           </li>
@@ -137,19 +93,48 @@
           <li class="breadcrumb-item">
             <p>Tableau de bord</p>
           </li>
-          <li class="breadcrumb-item active">Graphiques</li>
+          <li class="breadcrumb-item active">Tableaux</li>
         </ol>
         <div class="card mb-3">
-          <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
-            <table>
-              <tr>
-                <td><div id="offrechart" style="border: 1px solid #ccc"></div></td>
-                <td><div id="partenairechart" style="border: 1px solid #ccc"></div></td>
-              </tr>
-            </table>
+          <div class="card-header">
+            <i class="fa fa-table"></i> Administrateurs 
+              {{ bloc ajout administrateur }}
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Super Administrateur</th>
+                    <th scope="col">Téléphone</th> 
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    {{ bloc modifier et supprimer administrateur }}
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Super Administrateur</th>
+                    <th scope="col">Téléphone</th> 
+                    <th scope="col">Email</th>
+                    <th scope="col">Dernière connexion</th>
+                    <th scope="col">Création</th>
+                    {{ bloc modifier et supprimer administrateur }}
+                  </tr>
+                </tfoot>
+                <tbody>
+                  {{ bloc tableau d'administrateur }}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-
 
       <footer class="sticky-footer">
         <div class="container">
@@ -183,14 +168,14 @@
       </div>
 
       <!-- JavaScript -->
-      <script src="/assets/js/core.js" ></script>
-      <script src="/assets/vendor/jquery/jquery.min.js" ></script>
-      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" ></script>
-      <script src="/assets/vendor/jquery-easing/jquery.easing.min.js" ></script>
-      <script src="/assets/vendor/datatables/jquery.dataTables.js" ></script>
-      <script src="/assets/vendor/datatables/dataTables.bootstrap4.js" ></script>
-      <script src="/assets/js/sb-admin.min.js" ></script>
-      <script src="/assets/js/sb-admin-datatables.min.js" ></script>
+      <script src="/assets/js/core.js"></script>
+      <script src="/assets/vendor/jquery/jquery.min.js"></script>
+      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="/assets/vendor/datatables/jquery.dataTables.js"></script>
+      <script src="/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+      <script src="/assets/js/sb-admin.min.js"></script>
+      <script src="/assets/js/sb-admin-datatables.min.js"></script>
     </div>
   </body>
 </html>

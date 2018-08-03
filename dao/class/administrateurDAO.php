@@ -46,19 +46,6 @@ class AdministrateurDAO implements AdministrateurInterface{
 		}
 	}
 
-	public function nbAdmin(){
-		$connect = new Connect();
-		$connexion = $connect->connexion();
-
-		$requete = $connexion->query("SELECT COUNT(*) FROM administrateur");
-		$resultat = $requete->fetch();
-		$nbAdmin = $resultat["COUNT(*)"];
-
-		$requete = null;
-		$connexion = null;
-		return $nbAdmin;
-	}
-
 	public function inscrire($administrateur){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion(); 
@@ -113,6 +100,19 @@ class AdministrateurDAO implements AdministrateurInterface{
 
 		$requete 	= null;
 		$connexion 	= null;
+	}
+
+	public function nbAdmin(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM administrateur");
+		$resultat = $requete->fetch();
+		$nbAdmin = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbAdmin;
 	}
 
 	public function suprimmer($administrateur_id){

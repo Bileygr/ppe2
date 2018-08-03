@@ -19,41 +19,44 @@
     <form method="POST" class="form-signin">
       <h1 class="h3 mb-3 font-weight-normal">Administrateur</h1>
 
-      <label for="administrateur_nom" class="sr-only">Nom</label>
-      <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Nom" value="<?= $administrateur_nom ?>" autofocused><br/>
+      <label for="nom" class="sr-only">Nom</label>
+      <input type="text" id="nom" name="nom" class="form-control" placeholder="Nom" value="{{ nom }}" autofocused><br/>
 
-      <label for="administrateur_prenom" class="sr-only">Prenom</label>
-      <input type="text" id="administrateur_prenom" name="administrateur_prenom" class="form-control" placeholder="Prénom" value="<?= $administrateur_prenom ?>"><br/>
+      <label for="prenom" class="sr-only">Prenom</label>
+      <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom" value="{{ prenom }}"><br/>
 
-      <label for="administrateur_telephone" class="sr-only">Téléphone</label>
-      <input type="text" id="administrateur_telephone" name="administrateur_telephone" class="form-control" placeholder="Téléphone" value="<?= $administrateur_telephone ?>"><br/>
+      <label for="telephone" class="sr-only">Téléphone</label>
+      <input type="text" id="telephone" name="telephone" class="form-control" placeholder="Téléphone" value="{{ telephone }}"><br/>
 
-      <label for="administrateur_email" class="sr-only">Email</label>
-      <input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" value="<?= $administrateur_email ?>"><br/>
+      <label for="email" class="sr-only">Email</label>
+      <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ email }}"><br/>
 
-      <label type="administrateur_adresse" class="sr-only">Adresse</label>
-      <input type="text" id="administrateur_adresse" name="administrateur_adresse" class="form-control" placeholder="Adresse" value="<?= $administrateur_adresse ?>"><br/>
+      <label type="adresse" class="sr-only">Adresse</label>
+      <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse" value="{{ adresse }}"><br/>
 
-      <label for="administrateur_ville" class="sr-only">Ville</label>
-      <input type="text" id="administrateur_ville" name="administrateur_ville" class="form-control" placeholder="Ville" value="<?= $administrateur_ville ?>"><br/>
+      <label for="ville" class="sr-only">Ville</label>
+      <input type="text" id="ville" name="ville" class="form-control" placeholder="Ville" value="{{ ville }}"><br/>
 
-      <label for="administrateur_code_postal" class="sr-only">Code postal</label>
-      <input type="text" id="administrateur_code_postal" name="administrateur_code_postal" class="form-control" placeholder="Code Postal" value="<?= $administrateur_code_postal ?>"><br/>
+      <label for="code_postal" class="sr-only">Code postal</label>
+      <input type="text" id="code_postal" name="code_postal" class="form-control" placeholder="Code Postal" value="{{ code postal }}"><br/>
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" onclick="setSuperAdministrateur();" id="administrateur_super" name="administrateur_super" value=""> Super Administrateur
+          <input type="checkbox" onclick="setSuperAdministrateur();" id="super" name="super" value=""> Super Administrateur
         </label>
       </div>
       
-      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Modifier">
+      <input type="submit" name="form_auth" class="btn btn-lg btn-secondary btn-block" value="Modifier">
+      <p class="mt-5 mb-3 text-muted">Copyright &copy; Cheik-Siramakan Keita {{ date copyright }}</p>
     </form>
 
+    <!-- JavaScript -->
+    <script type="text/javascript" src="/assets/js/core.js"></script>
     <script type="text/javascript">
     	window.onload = function isAdministrateurSuper(){
-    		var super_administrateur = <?= $administrateur_super ?>;
+    		var super_administrateur = {{ super }};
     		if(super_administrateur == 1){
-    			document.getElementById("administrateur_super").setAttribute("checked", "checked");
+    			document.getElementById("super").setAttribute("checked", "checked");
     		}
     	}
     </script>

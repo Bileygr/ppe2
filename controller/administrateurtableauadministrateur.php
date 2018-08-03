@@ -1,18 +1,82 @@
 <?php
-require_once('dao/classes/administrateurDAO.php');
 session_start();
+require_once('framework/engine.php');
+require_once('dao/class/administrateurDAO.php');
+require_once('dao/class/jeuneDAO.php');
+require_once('dao/class/offreDAO.php');
+require_once('dao/class/partenaireDAO.php');
 
-$url = "http://localhost:8000/ppe2/";
+$engine = new Engine();
+$administrateurDAO = new AdministrateurDAO();
+$jeuneDAO = new JeuneDAO();
+$offreDAO = new OffreDAO();
+$partenaireDAO = new PartenaireDAO();
 
-if(!isset($_SESSION['administrateur_id'])){
-  header("Location: ".$url);
+$administrateurs = $administrateurDAO->lister();
+$nbAdmin = $administrateurDAO->nbAdmin();
+$nbJeune = $jeuneDAO->nbJeune();
+$nbOffre = $offreDAO->nbOffre();
+$nbPartenaire = $partenaireDAO->nbPartenaire();
+
+$administrateur = "";
+$super = "";
+
+$url = $engine->url();
+$engine->deconnexion();
+$engine->assign("titre", "Administrateur Profil");
+$engine->assign("prenom", $_SESSION["administrateur_prenom"]);
+$engine->assign("nom", $_SESSION["administrateur_nom"]);
+$engine->assign("nombre d'administrateur", $nbAdmin);
+$engine->assign("nombre de jeune", $nbJeune);
+$engine->assign("nombre d'offre", $nbOffre);
+$engine->assign("nombre de partenaire", $nbPartenaire);
+
+if($_SESSION["administrateur_super"] == 1){
+  $engine->assign("bloc ajout administrateur", '<input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="location.href=\'{{ url }}/administrateur/inscription\';" value="Ajouter">');
+  $engine->assign("bloc modifier et supprimer administrateur", '<th scope="col">Modifier</th> <th scope="col">Suprimmer</th>');
+}elseif($_SESSION["administrateur_super"] == 0){
+  $engine->assign("bloc ajout administrateur", "");
+  $engine->assign("bloc modifier et supprimer administrateur", "");
 }
 
-if(isset($_POST['deconnexion'])){
-  if(session_destroy()){
-    header("Location: ".$url);
+while($resultat = $administrateurs->fetch()){
+  if($resultat["administrateur_super"] == 1){
+    $super = "<td>Oui</td>";
+  }elseif($resultat["administrateur_super"] == 0){
+    $super = "<td>Non</td>";
   }
+
+  if($_SESSION["administrateur_super"] == 1){
+    $session_admin = '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td> 
+                      <td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
+  }elseif($_SESSION["administrateur_super"] == 0){
+    $session_admin = "";
+  }
+
+  $administrateur .= "<tr>
+                        <td>".$resultat["administrateur_nom"]."</td>
+                        <td>".$resultat["administrateur_prenom"]."</td>"
+                        .$super.
+                        "<td>".$resultat["administrateur_telephone"]."</td>
+                        <td>".$resultat["administrateur_email"]."</td>
+                        <td>".$resultat["administrateur_derniere_connexion"]."</td>
+                        <td>".$resultat["administrateur_creation"]."</td>
+                        <form method='POST'>
+                          <input type='hidden' name='administrateur_id' value=".$resultat["administrateur_id"].">
+                          <input type='hidden' name='administrateur_nom' value=".$resultat["administrateur_nom"].">
+                          <input type='hidden' name='administrateur_prenom' value=".$resultat["administrateur_prenom"].">
+                          <input type='hidden' name='administrateur_super' value=".$resultat["administrateur_super"].">
+                          <input type='hidden' name='administrateur_telephone' value=".$resultat["administrateur_telephone"].">
+                          <input type='hidden' name='administrateur_email' value=".$resultat["administrateur_email"].">
+                          <input type='hidden' name='administrateur_adresse' value=".$resultat["administrateur_adresse"].">
+                          <input type='hidden' name='administrateur_ville' value=".$resultat["administrateur_ville"].">
+                          <input type='hidden' name='administrateur_code_postal' value=".$resultat["administrateur_code_postal"].">"
+                          .$session_admin."
+                        </form>
+                      </tr>";
 }
+
+$engine->assign("bloc tableau d'administrateur", $administrateur);
 
 if(isset($_POST['modifier'])){
   $_SESSION['modifier_administrateur_id']          = $_POST['administrateur_id'];
@@ -25,241 +89,15 @@ if(isset($_POST['modifier'])){
   $_SESSION['modifier_administrateur_ville']       = $_POST['administrateur_ville'];
   $_SESSION['modifier_administrateur_code_postal'] = $_POST['administrateur_code_postal'];
 
-  header("Location: ".$url."administrateur/administrateur-modification");
+  header("Location: ".$url."/administrateur/administrateur-modification");
 }
 
 if(isset($_POST['suprimmer'])){
   $administrateurDAO = new AdministrateurDAO();
   $administrateurDAO->suprimmer($_POST['administrateur_id']);
 
-  header("Location: ".$url."administrateur/tableau/administrateur");
+  header("Location: ".$url."/administrateur/tableau/administrateur");
 }
 
-$administrateurDAO  = new AdministrateurDAO();
-$administrateur     = $administrateurDAO->lister();
+$engine->render("administrateurtableauadministrateur.html");
 ?>
-<!DOCTYPE html>
-<html lang="FR">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Cheik-Siramakan Keita">
-    <title>Administrateur Profil</title>
-
-    <!-- CSS -->
-    <link href="/ressources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/ressources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/ressources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="/ressources/css/sb-admin.css" rel="stylesheet">
-  </head>
-
-  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="<?= $url ?>">Bonjour <?= $_SESSION["administrateur_prenom"]." ".$_SESSION["administrateur_nom"] ?></a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="<?= $url."administrateur/statistique" ?>">
-              <i class="fa fa-fw fa-area-chart"></i>
-              <span class="nav-link-text">Graphes</span>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseGrapheLink">
-              <li>
-                <a href="<?= $url."administrateur/graphe/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/graphe/offre" ?>">Offres</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTableauxLink" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Tableaux</span>
-            </a>
-            <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
-              <li>
-                <a href="<?= $url."administrateur/tableau/administrateur" ?>">Administrateurs</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/partenaire" ?>">Partenaires</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/jeune" ?>">Jeunes</a>
-              </li>
-              <li>
-                <a href="<?= $url."administrateur/tableau/offre" ?>">Offres</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="<?= $url."administrateur/modifier-mes-informations" ?>">
-              <i class="fa fa-fw fa-wrench"></i>
-                <span class="nav-link-text">Modifier vos informations</span>
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-          <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-              <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <i class="fa fa-fw fa-sign-out"></i>Déconnexion</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <p>Tableau de bord</p>
-          </li>
-          <li class="breadcrumb-item active">Tableaux</li>
-        </ol>
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fa fa-table"></i> Administrateurs 
-            <?php  
-            if($_SESSION['administrateur_super'] == 1){
-            ?>
-              <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='<?= $url."administrateur/inscription" ?>'" value="Ajouter">
-            <?php
-              }
-            ?> 
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    <?php if($_SESSION['administrateur_super'] == 1){
-                      echo '<th scope="col">Modifier</th>';
-                      echo '<th scope="col">Suprimmer</th>';
-                      } 
-                    ?>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    <?php 
-                    if($_SESSION['administrateur_super'] == 1){
-                      echo '<th scope="col">Modifier</th>';
-                      echo '<th scope="col">Suprimmer</th>';
-                    } 
-                    ?>
-                  </tr>
-                </tfoot>
-                <tbody>
-                <?php 
-                  while($resultat = $administrateur->fetch()){
-                    echo '<tr>';
-                      echo '<td>'.$resultat["administrateur_nom"].'</td>';
-                      echo '<td>'.$resultat["administrateur_prenom"].'</td>';
-                      if($resultat["administrateur_super"] == 1){
-                        echo '<td>Oui</td>';
-                      }else{
-                        echo '<td>Non</td>';
-                      }
-                      echo '<td>'.$resultat["administrateur_telephone"].'</td>';
-                      echo '<td>'.$resultat["administrateur_email"].'</td>';
-                      echo '<td>'.$resultat["administrateur_derniere_connexion"].'</td>';
-                      echo '<td>'.$resultat["administrateur_creation"].'</td>';
-                      echo '<form method="POST">';
-                        echo '<input type="hidden" name="administrateur_id" value="'.$resultat["administrateur_id"].'">';
-                        echo '<input type="hidden" name="administrateur_nom" value="'.$resultat["administrateur_nom"].'">';
-                        echo '<input type="hidden" name="administrateur_prenom" value="'.$resultat["administrateur_prenom"].'">';
-                        echo '<input type="hidden" name="administrateur_super" value="'.$resultat["administrateur_super"].'">';
-                        echo '<input type="hidden" name="administrateur_telephone" value="'.$resultat["administrateur_telephone"].'">';
-                        echo '<input type="hidden" name="administrateur_email" value="'.$resultat["administrateur_email"].'">';
-                        echo '<input type="hidden" name="administrateur_adresse" value="'.$resultat["administrateur_adresse"].'">';
-                        echo '<input type="hidden" name="administrateur_ville" value="'.$resultat["administrateur_ville"].'">';
-                        echo '<input type="hidden" name="administrateur_code_postal" value="'.$resultat["administrateur_code_postal"].'">';
-                        if($_SESSION['administrateur_super'] == 1){
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="modifier" value="Modifier"></td>';
-                          echo '<td><input class="btn btn-secondary my-2 my-sm-0" type="submit" name="suprimmer" value="Suprimmer"></td>';
-                        }
-                      echo '</form>';
-                    echo '</tr>';
-                  } 
-                ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="sticky-footer">
-        <div class="container">
-          <div class="text-center">
-            <small>Copyright © Cheik-Siramakan Keita 2018</small>
-          </div>
-        </div>
-      </footer>
-
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-      </a>
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Prêt à quitter?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Cliquez sur "Déconnexion" si vous êtes prêt a terminer vôtre session.</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-              <form method="POST">
-                <input type="submit" class="btn btn-primary" name="deconnexion" value="Déconnexion">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- JavaScript -->
-      <script src="/ressources/js/core.js"></script>
-      <script src="/ressources/vendor/jquery/jquery.min.js"></script>
-      <script src="/ressources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="/ressources/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <script src="/ressources/vendor/datatables/jquery.dataTables.js"></script>
-      <script src="/ressources/vendor/datatables/dataTables.bootstrap4.js"></script>
-      <script src="/ressources/js/sb-admin.min.js"></script>
-      <script src="/ressources/js/sb-admin-datatables.min.js"></script>
-    </div>
-  </body>
-</html>
