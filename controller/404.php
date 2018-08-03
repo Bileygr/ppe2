@@ -1,6 +1,5 @@
 <?php
-require('framework/noyau/moteur.php');
-session_start();
+require_once('framework/engine.php');
 ?>
 
 <!DOCTYPE html>

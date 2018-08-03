@@ -102,6 +102,19 @@ class OffreDAO implements OffreInterface{
 		$connexion 	= null;
 	}
 
+	public function nbOffre(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM offre");
+		$resultat = $requete->fetch();
+		$nbOffre = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbOffre;
+	}
+
 	public function suprimmer($offre_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();

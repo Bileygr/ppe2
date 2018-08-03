@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="FR">
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/signin.css" rel="stylesheet">
+    <style type="text/css">
+      body { background: white !important; }
+    </style>
+
+    <title>{{ titre }}</title>
+  </head>
+
+  <body class="text-center">
+    <form class="form-signin" method="POST">
+      <h1 class="h3 mb-3 font-weight-normal">Jeune</h1>
+
+      <label for="partenaire_nom" class="sr-only">Nom</label>
+      <input type="text" id="partenaire_nom" name="partenaire_nom" class="form-control" placeholder="Nom" required><br/>
+
+      <label for="partenaire_nom" class="sr-only">Prénom</label>
+      <input type="text" id="partenaire_nom" name="partenaire_nom" class="form-control" placeholder="Prénom" required><br/>
+
+      <label for="mot_de_passe" class="sr-only">Mot de passe</label>
+      <input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe" required><br/>
+
+      <label for="partenaire_mot_de_passe_confirmation" class="sr-only">Mot de passe confirmation</label>
+      <input type="password" id="partenaire_mot_de_passe_confirmation" name="partenaire_mot_de_passe_confirmation" class="form-control" placeholder="Mot de passe confirmation" required><br/>
+
+      <label for="partenaire_telephone" class="sr-only">Telephone</label>
+      <input type="text" id="partenaire_telephone" name="partenaire_telephone" class="form-control" placeholder="Telephone" required><br/>
+
+      <label for="partenaire_email" class="sr-only">Email</label>
+      <input type="email" id="partenaire_email" name="partenaire_email" class="form-control" placeholder="Email" required><br/>
+
+      <label type="partenaire_adresse" class="sr-only">Adresse</label>
+      <input type="text" id="partenaire_adresse" name="partenaire_adresse" class="form-control" placeholder="Adresse" required><br/>
+
+      <label for="partenaire_ville" class="sr-only">Ville</label>
+      <input type="text" id="partenaire_ville" name="partenaire_ville" class="form-control" placeholder="Ville" required><br/>
+      
+      <label for="partenaire_code_postal" class="sr-only">Code postal</label>
+      <input type="text" id="partenaire_code_postal" name="partenaire_code_postal" class="form-control" placeholder="Code postal" required><br/>
+
+      <input type="submit" class="btn btn-lg btn-secondary btn-block" name="form_auth" value="Connexion">
+      <p class="mt-5 mb-3 text-muted">Copyright &copy; Cheik-Siramakan Keita 2018</p>
+    </form>
+    </body>
+</html>

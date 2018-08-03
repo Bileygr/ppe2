@@ -1,7 +1,7 @@
 <?php
-require('connexion.php');
-require_once('classes/jeune.php');
-require_once('dao/interfaces/jeuneInterface.php');
+require_once('connexion.php');
+require_once('class/jeune.php');
+require_once('dao/interface/jeuneInterface.php');
 
 class JeuneDAO implements JeuneInterface{
 	public function connecter($jeune_email, $jeune_mot_de_passe){
@@ -37,6 +37,19 @@ class JeuneDAO implements JeuneInterface{
 		}else{
 
 		}
+	}
+
+	public function nbJeune(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM jeune");
+		$resultat = $requete->fetch();
+		$nbJeune = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbJeune;
 	}
 
 	public function inscrire($jeune){

@@ -1,7 +1,7 @@
 <?php
 require_once('connexion.php');
-require_once('classes/partenaire.php');
-require_once('dao/interfaces/partenaireInterface.php');
+require_once('class/partenaire.php');
+require_once('dao/interface/partenaireInterface.php');
 
 class PartenaireDAO implements PartenaireInterface{
 	public function connecter($partenaire_siret, $partenaire_mot_de_passe){
@@ -98,6 +98,19 @@ class PartenaireDAO implements PartenaireInterface{
 
 		$requete 	= null;
 		$connexion 	= null;
+	}
+
+	public function nbPartenaire(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM partenaire");
+		$resultat = $requete->fetch();
+		$nbPartenaire = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbPartenaire;
 	}
 
 	public function suprimmer($partenaire_id){
