@@ -15,7 +15,6 @@ class Engine{
 			
 			foreach ($this->vars as $parameter => $value){
 				$content = preg_replace('/\{\{\s'.$parameter.'\s\}\}/', $value, $content);
-				$content = preg_replace('/\[\[\s'.$parameter.'\s\]\]/', $value, $content);
 				$content = preg_replace('/\{\{\surl\s\}\}/', $this->url, $content);
 			}
 			echo $content;
@@ -36,6 +35,12 @@ class Engine{
 		if(isset($_SESSION['administrateur_id'])){
 			header("Location: ".$this->url);
 		}
+	}
+
+	public function deconnecter(){
+		if(session_destroy()){
+   				 header("Location: ".$this->url);
+  		}
 	}
 
 	public function deconnexion(){

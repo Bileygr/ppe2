@@ -17,13 +17,11 @@ connexion.connect(function(err){
 });
 */
 function setSuperAdministrateur(){
-  
-  
-	var x = document.getElementById("administrateur_super").checked; 
+	var x = document.getElementById("super").checked; 
   if(x == true){
-    document.getElementById('administrateur_super').value='1';
+    document.getElementById('super').value='1';
   }else if(x == false){
-    	document.getElementById('administrateur_super').value='0';
+    	document.getElementById('super').value='0';
   }
 }
 

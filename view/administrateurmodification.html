@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- CSS -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/signin.css" rel="stylesheet">
+    <style type="text/css">
+      body { background: white !important; }
+    </style>
+
+    <title>{{ titre }}</title>
+  </head>
+
+  <body class="text-center">
+    <form method="POST" class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Administrateur</h1>
+
+      <label for="administrateur_nom" class="sr-only">Nom</label>
+      <input type="text" id="administrateur_nom" name="administrateur_nom" class="form-control" placeholder="Nom" value="<?= $administrateur_nom ?>" autofocused><br/>
+
+      <label for="administrateur_prenom" class="sr-only">Prenom</label>
+      <input type="text" id="administrateur_prenom" name="administrateur_prenom" class="form-control" placeholder="Prénom" value="<?= $administrateur_prenom ?>"><br/>
+
+      <label for="administrateur_telephone" class="sr-only">Téléphone</label>
+      <input type="text" id="administrateur_telephone" name="administrateur_telephone" class="form-control" placeholder="Téléphone" value="<?= $administrateur_telephone ?>"><br/>
+
+      <label for="administrateur_email" class="sr-only">Email</label>
+      <input type="email" id="administrateur_email" name="administrateur_email" class="form-control" placeholder="Email" value="<?= $administrateur_email ?>"><br/>
+
+      <label type="administrateur_adresse" class="sr-only">Adresse</label>
+      <input type="text" id="administrateur_adresse" name="administrateur_adresse" class="form-control" placeholder="Adresse" value="<?= $administrateur_adresse ?>"><br/>
+
+      <label for="administrateur_ville" class="sr-only">Ville</label>
+      <input type="text" id="administrateur_ville" name="administrateur_ville" class="form-control" placeholder="Ville" value="<?= $administrateur_ville ?>"><br/>
+
+      <label for="administrateur_code_postal" class="sr-only">Code postal</label>
+      <input type="text" id="administrateur_code_postal" name="administrateur_code_postal" class="form-control" placeholder="Code Postal" value="<?= $administrateur_code_postal ?>"><br/>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" onclick="setSuperAdministrateur();" id="administrateur_super" name="administrateur_super" value=""> Super Administrateur
+        </label>
+      </div>
+      
+      <input type="submit" name="form_auth" class="btn btn-lg btn-primary btn-block" value="Modifier">
+    </form>
+
+    <script type="text/javascript">
+    	window.onload = function isAdministrateurSuper(){
+    		var super_administrateur = <?= $administrateur_super ?>;
+    		if(super_administrateur == 1){
+    			document.getElementById("administrateur_super").setAttribute("checked", "checked");
+    		}
+    	}
+    </script>
+  </body>
+</html>

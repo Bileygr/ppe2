@@ -28,5 +28,15 @@
       <input type="submit" class="btn btn-lg btn-secondary btn-block" name="form_auth" value="Connexion">
       <p class="mt-5 mb-3 text-muted">Copyright &copy; Cheik-Siramakan Keita 2018</p>
     </form>
-    </body>
+    
+  <!-- JavaScript -->
+  <script type="text/javascript">
+      window.onload = function isAdministrateurSuper(){
+        var super_administrateur = <?= $administrateur_super ?>;
+        if(super_administrateur == 1){
+          document.getElementById("administrateur_super").setAttribute("checked", "checked");
+        }
+      }
+    </script>
+  </body>
 </html>
