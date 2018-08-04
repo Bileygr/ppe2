@@ -39,19 +39,6 @@ class JeuneDAO implements JeuneInterface{
 		}
 	}
 
-	public function nbJeune(){
-		$connect = new Connect();
-		$connexion = $connect->connexion();
-
-		$requete = $connexion->query("SELECT COUNT(*) FROM jeune");
-		$resultat = $requete->fetch();
-		$nbJeune = $resultat["COUNT(*)"];
-
-		$requete = null;
-		$connexion = null;
-		return $nbJeune;
-	}
-
 	public function inscrire($jeune){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
@@ -72,6 +59,19 @@ class JeuneDAO implements JeuneInterface{
 		
 		$requete = null;
 		$connexion = null;
+	}
+
+	public function nbJeune(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM jeune");
+		$resultat = $requete->fetch();
+		$nbJeune = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbJeune;
 	}
 
 	public function lister(){

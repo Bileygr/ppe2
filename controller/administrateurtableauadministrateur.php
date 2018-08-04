@@ -22,6 +22,7 @@ $administrateur = "";
 $super = "";
 
 $url = $engine->url();
+$engine->session_check();
 $engine->deconnexion();
 $engine->assign("titre", "Administrateur Profil");
 $engine->assign("prenom", $_SESSION["administrateur_prenom"]);

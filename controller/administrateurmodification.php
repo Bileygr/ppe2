@@ -6,6 +6,7 @@ require_once('dao/class/administrateurDAO.php');
 $engine = new Engine();
 
 $url = $engine->url();
+$engine->super_admin_session_check($_SESSION["administrateur_super"]);
 $engine->assign("titre", "Administrateur Modification");
 $engine->assign("id", $_SESSION['modifier_administrateur_id']);
 $engine->assign("nom", $_SESSION['modifier_administrateur_nom']);

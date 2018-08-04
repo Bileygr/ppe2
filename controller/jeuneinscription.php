@@ -4,8 +4,9 @@ require_once('framework/engine.php');
 require_once('dao/class/jeuneDAO.php');
 
 $engine = new Engine();
+
 $url = $engine->url();
-$engine->assign("titre", "Jeune Inscription");
+$engine->assign("titre", "Inscription Jeune");
 
 if(isset($_POST['form_auth'])){
 	$nom = $_POST['nom'];
@@ -35,7 +36,7 @@ if(isset($_POST['form_auth'])){
 										$jeuneDAO->inscrire($jeune);
 
 										if(isset($_SESSION["administrateur_id"])){
-											header("Location: ".$url."administrateur/tableau/jeune");
+											header("Location: ".$url."/administrateur/tableau/jeune");
 										}else{
 											header("Location: ".$url."jeune/connexion");
 										}

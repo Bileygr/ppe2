@@ -1,7 +1,7 @@
 <?php
 require_once('connexion.php');
-require_once('classes/formation.php');
-require_once('dao/interfaces/formationInterface.php');
+require_once('class/formation.php');
+require_once('dao/interface/formationInterface.php');
 
 class FormationDAO implements FormationInterface{
 	public function lister(){

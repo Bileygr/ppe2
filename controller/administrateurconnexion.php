@@ -5,7 +5,6 @@ require_once('dao/class/administrateurDAO.php');
 
 $engine = new Engine();
 $url = $engine->url();
-$engine->session_check();
 $engine->assign("titre", "Administrateur Connexion");
 
 if(isset($_POST['form_auth'])){
