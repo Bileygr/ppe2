@@ -50,6 +50,10 @@ switch ($request_uri[0]) {
         include("controller/jeunemodification.php");
         break;
 
+    case "/ppe2/administrateur/offre-modification":
+        include("controller/administrateuroffremodification.php");
+        break;
+
     case "/ppe2/administrateur/partenaire-modification":
         include("controller/partenairemodification.php");
         break;
@@ -82,8 +86,8 @@ switch ($request_uri[0]) {
     	include("controller/partenaireconnexion.php");
     	break;
 
-   case "/ppe2/offre/offre-modification":
-        include("controller/offremodification.php");
+   case "/ppe2/partenaire/offre-modification":
+        include("controller/partenaireoffremodification.php");
         break;
 
     case "/ppe2/partenaire/inscription":
@@ -98,7 +102,7 @@ switch ($request_uri[0]) {
     	include("controller/partenairestatistique.php");
     	break;
 
-    case "/ppe2/partenaire/offre":
+    case "/ppe2/partenaire/tableau/offre":
         include("controller/partenairetableauoffre.php");
         break;
 
@@ -107,7 +111,7 @@ switch ($request_uri[0]) {
         break;
 
     case "/ppe2/partenaire/offre-modification":
-        include("controller/offremodification.php");
+        include("controller/partenaireoffremodification.php");
         break;
 
     case "/ppe2/deconnexion":

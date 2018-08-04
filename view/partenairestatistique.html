@@ -18,71 +18,71 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(statFormations);
-      google.charts.setOnLoadCallback(statPartenaire);
+      google.charts.setOnLoadCallback(candidaturePieChart);
+      google.charts.setOnLoadCallback(formationPieChart);
 
-      function statFormations() {
+      function candidaturePieChart() {
 
         var data = google.visualization.arrayToDataTable([
           ['Formation', 'Nombre d\'offre'],
-          {{ statistique formation }}
+          {{ information candidature }}
         ]);
 
         var options = {
-          title: 'Statistique des formations offerte',
+          title: 'Camambert des candidatures reçu',
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('statformations'));
+        var chart = new google.visualization.PieChart(document.getElementById('candidaturePieChart'));
 
         chart.draw(data, options);
       }
 
-      function statPartenaire() {
+      function formationPieChart() {
 
         var data = google.visualization.arrayToDataTable([
           ['Partenaire', 'Nombre d\'offre'],
-          {{ statistique partenaire }}
+          {{ information formation }}
         ]);
 
         var options = {
-          title: 'Statistique des candidatures envoyé aux partenaires',
+          title: 'Camembert des formations offert',
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('statpartenaire'));
+        var chart = new google.visualization.PieChart(document.getElementById('formationPieChart'));
 
         chart.draw(data, options);
       }
     </script>
 
-    <title>{{ titre }}</title>
+    <title>Profil Partenaire</title>
   </head>
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="{{ url }}">Bonjour {{ prenom }} {{ nom }}</a>
+      <a class="navbar-brand" href="{{ url }}">Bonjour {{ nom }}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="{{ url }}/jeune/profil">
+            <a class="nav-link" href="{{ url }}/partenaire/profil">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Camemberts</span>
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="{{ url }}/jeune/tableau/candidature">
+            <a class="nav-link" href="{{ url }}/partenaire/tableau/offre">
               <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Candidatures - {{ nombre de candidature }}</span>
+              <span class="nav-link-text">Offres - {{ nombre d'offre }}</span>
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="{{ url }}/jeune/modifier-mes-informations">
+            <a class="nav-link" href="{{ url }}/partenaire/modifier-mes-informations">
               <i class="fa fa-fw fa-wrench"></i>
                 <span class="nav-link-text">Modifier vos informations</span>
             </a>
@@ -115,8 +115,8 @@
           <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
             <table>
               <tr>
-                <td><div id="statformations" style="border: 1px solid #ccc"></div></td>
-                <td><div id="statpartenaire" style="border: 1px solid #ccc"></div></td>
+                <td><div id="candidaturePieChart" style="border: 1px solid #ccc"></div></td>
+                <td><div id="formationPieChart" style="border: 1px solid #ccc"></div></td>
               </tr>
             </table>
         </div>

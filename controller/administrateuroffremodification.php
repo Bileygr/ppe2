@@ -14,7 +14,7 @@ $formation = "";
 $select = "";
 
 $url = $engine->url();
-$engine->session_check();
+$engine->administrateur_session_check();
 $engine->assign("titre", "Modification Offre");
 $engine->assign("nom de l'offre",$_SESSION['modifier_offre_nom']);
 $engine->assign("nom de la formation",$_SESSION['modifier_formation_nom']);

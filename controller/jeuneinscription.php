@@ -4,6 +4,7 @@ require_once('framework/engine.php');
 require_once('dao/class/jeuneDAO.php');
 
 $engine = new Engine();
+$jeuneDAO = new JeuneDAO();
 
 $url = $engine->url();
 $engine->assign("titre", "Inscription Jeune");
@@ -31,15 +32,9 @@ if(isset($_POST['form_auth'])){
 								if(strlen($ville) <= 32){
 									if(strlen($code_postal) == 5){
 										$jeune = new Jeune(null, $nom, $prenom, $mot_de_passe_hash, $telephone, $email, $adresse, $ville, $code_postal, null, null);
-
-										$jeuneDAO = new JeuneDAO();
 										$jeuneDAO->inscrire($jeune);
 
-										if(isset($_SESSION["administrateur_id"])){
-											header("Location: ".$url."/administrateur/tableau/jeune");
-										}else{
-											header("Location: ".$url."jeune/connexion");
-										}
+										header("Location: ".$url."/jeune/connexion");
 									}else{
 										exit('La longeur du code postal est incorrecte il devrait faire 5 caracteres.');
 									}

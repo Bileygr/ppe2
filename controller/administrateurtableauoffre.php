@@ -67,7 +67,7 @@ if(isset($_POST['modifier'])){
   $_SESSION['modifier_offre_fin'] = $_POST['offre_fin']; 
   $_SESSION['modifier_offre_creation'] = $_POST['offre_creation']; 
 
-  header("Location: ".$url."/offre/offre-modification");
+  header("Location: ".$url."/administrateur/offre-modification");
 }
 
 if(isset($_POST['suprimmer'])){

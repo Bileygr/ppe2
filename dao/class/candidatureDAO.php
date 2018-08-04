@@ -27,6 +27,17 @@ Class CandidatureDAO implements CandidatureInterface{
 		$connexion 	= null;
 	}
 
+	public function compterCandidaturePartenaire(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete=$connexion->query("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id GROUP BY partenaire.partenaire_nom");
+
+		return $requete; 
+		$requete = null;
+		$connexion = null;
+	}
+
 	public function compterCandidatureParPartenaire($jeune_id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();

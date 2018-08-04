@@ -1,73 +1,44 @@
 <?php
-require_once('classes/offre.php');
-require_once('dao/classes/formationDAO.php');
-require_once('dao/classes/offreDAO.php');
 session_start();
+require_once("framework/engine.php");
+require_once('dao/class/formationDAO.php');
+require_once('dao/class/offreDAO.php');
 
-$url = "http://localhost:8000/ppe2/";
+$engine = new Engine();
+$formationDAO = new FormationDAO();
+$offreDAO = new OffreDAO();
 
-if(!isset($_SESSION['partenaire_id'])){
-	header("Location: ".$url);
+$formations = $formationDAO->lister(); 
+
+$formation = "";
+
+$url = $engine->url();
+$engine->partenaire_session_check();
+
+while($resultat = $formations->fetch()){
+	$formation .= "<option value=".$resultat['formation_id'].">".$resultat['formation_nom']."</option>";
 }
 
+$engine->assign("liste des formations", $formation);
+
 if(isset($_POST['ajouter'])){
-	$partenaire_id		= $_SESSION['partenaire_id'];
-	$formation_id 		= $_POST['formation_id'];
-	$offre_nom 			= $_POST['offre_nom'];
-	$offre_description 	= $_POST['offre_description'];
-	$offre_debut 		= $_POST['offre_debut'];
-	$offre_fin 			= $_POST['offre_fin'];
+	$partenaire_id = $_SESSION['partenaire_id'];
+	$formation_id = $_POST['formation_id'];
+	$offre_nom 	= $_POST['offre_nom'];
+	$offre_description = $_POST['offre_description'];
+	$offre_debut = $_POST['offre_debut'];
+	$offre_fin = $_POST['offre_fin'];
 
 	if(!empty($partenaire_id) && !empty($formation_id) && 
 	   !empty($offre_nom) && !empty($offre_description) &&
 	   !empty($offre_debut) && !empty($offre_fin)){
 
-		$offre = new Offre(null,
-						   $partenaire_id,
-						   $formation_id,
-						   $offre_nom,
-						   $offre_description,
-						   $offre_debut,
-						   $offre_fin,
-						   null);
-
-		$offreDAO = new OffreDAO();
+		$offre = new Offre(null, $partenaire_id, $formation_id, $offre_nom, $offre_description, $offre_debut, $offre_fin, null);
 		$offreDAO->ajouter($offre);
 
-		header("Location: ".$url."partenaire/profil");
+		header("Location: ".$url."/partenaire/tableau/offre");
 	}
 }
 
-$formationDAO 	= new FormationDAO();
-$formation 		= $formationDAO->lister(); 
+$engine->render("offreajout.html");
 ?>
-<!DOCTYPE html>
-<html lang="FR">
-	<head>
-		<title>Offre Modification</title>
-		<link href="/ressources/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="/ressources/css/signin.css" rel="stylesheet">
-	</head>
-
-	<body class="text-center">
-		<form method="POST" class="form-signin">
-			<a href="<?= $url."partenaire/profil" ?>"><h1>Offre Ajout</h1></a>
-			<label for="offre_nom" class="sr-only">Nom</label>
-			<input type="text" id="offre_nom" name="offre_nom" class="form-control" placeholder="Nom"><br/>
-			<select name="formation_id" class="form-control form-control-lg">
-				<?php
-					while($resultat = $formation->fetch()){
-						echo '<option value="'.$resultat['formation_id'].'">'.$resultat['formation_nom'].'</option>';
-					}
-				?>
-			</select><br/>
-			<label for="offre_debut" class="sr-only">Début</label>
-			<input type="date" id="offre_debut" name="offre_debut" class="form-control"><br/>
-			<label for="offre_fin" class="sr-only">Fin</label>
-			<input type="date" id="offre_fin" name="offre_fin" class="form-control"><br/>
-			<label for="offre_description" class="sr-only">Description</label>
-			<textarea name="offre_description" class="form-control" rows="3"></textarea><br/>
-			<input type="submit" name="ajouter" class="btn btn-lg btn-primary btn-block" value="Ajouter">
-		</form>
-	</body>
-</html>

@@ -19,8 +19,7 @@ if(!isset($_SESSION["partenaire_id"])){
 	$engine->assign("bloc partenaire", '<a class="dropdown-item" href="{{ url }}/partenaire/connexion">Connexion</a>
               <a class="dropdown-item" href="{{ url }}/partenaire/inscription">Inscription</a>');
 }elseif(isset($_SESSION["partenaire_id"])){
-	$engine->assign("bloc partenaire", '<a class="dropdown-item" href="{{ url }}/partenaire/connexion">Connexion</a>
-              <a class="dropdown-item" href="{{ url }}/partenaire/inscription">Inscription</a>');
+	$engine->assign("bloc partenaire", '<a class="dropdown-item" href="{{ url }}/partenaire/profil">Profil</a>');
 }
 
 if(!isset($_SESSION["jeune_id"])){

@@ -13,6 +13,8 @@ if(isset($_POST['form_auth'])){
 
 	if(filter_var(strlen($siret) == 9)){
 		if(strlen($mot_de_passe) >= 12){
+			session_destroy();
+			session_start();
 			$partenaireDAO = new PartenaireDAO();
 			$partenaire = $partenaireDAO->connecter($siret, $mot_de_passe);
 
@@ -28,7 +30,7 @@ if(isset($_POST['form_auth'])){
 			$_SESSION['partenaire_derniere_connexion'] = $partenaire->getPartenaire_derniere_connexion();
 			$_SESSION['partenaire_creation'] = $partenaire->getPartenaire_creation();
 
-			header("Location: ".$url."partenaire/profil");
+			header("Location: ".$url."/partenaire/profil");
 		}
 	}else{
 		exit("<h1>Erreur: La longeur du SIRET est incorrecte.</h1>");

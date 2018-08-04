@@ -15,6 +15,8 @@ if(isset($_POST['form_auth'])){
 	
 	if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 		if(strlen($mot_de_passe) >= 12){
+			session_destroy();
+			session_start();
 			$jeune = $jeuneDAO->connecter($email, $mot_de_passe);
 
 			$_SESSION['jeune_id'] = $jeune->getJeune_id();
