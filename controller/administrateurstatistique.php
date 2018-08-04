@@ -24,6 +24,7 @@ $partenaire_resultat = "";
 
 $url = $engine->url();
 $engine->deconnexion();
+$engine->administrateur_session_check();
 $engine->assign("titre", "Administrateur Profil");
 $engine->assign("prenom", $_SESSION["administrateur_prenom"]);
 $engine->assign("nom", $_SESSION["administrateur_nom"]);

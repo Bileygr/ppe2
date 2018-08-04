@@ -7,6 +7,7 @@ $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
 
 $url = $engine->url();
+$engine->jeune_session_check();
 $engine->assign("titre", "Modifier Jeune");
 $engine->assign("nom", $_SESSION['jeune_nom']);
 $engine->assign("prenom", $_SESSION['jeune_prenom']);

@@ -7,7 +7,6 @@ $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
 
 $url = $engine->url();
-$engine->session_check();
 $engine->assign("titre", "Connexion jeune");
 
 if(isset($_POST['form_auth'])){

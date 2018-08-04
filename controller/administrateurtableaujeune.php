@@ -21,8 +21,8 @@ $nbPartenaire = $partenaireDAO->nbPartenaire();
 $jeune = "";
 
 $url = $engine->url();
-$engine->session_check();
 $engine->deconnexion();
+$engine->administrateur_session_check();
 $engine->assign("titre", "Menu Administrateur");
 $engine->assign("prenom", $_SESSION["administrateur_prenom"]);
 $engine->assign("nom", $_SESSION["administrateur_nom"]);

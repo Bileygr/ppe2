@@ -29,14 +29,20 @@ class Engine{
 		return $this->url;
 	}
 
-	public function session_check(){
-		if(isset($_SESSION["id"])){
+	public function administrateur_session_check(){
+		if(!isset($_SESSION["administrateur_id"])){
 			header("Location: ".$this->url);
 		}
 	}
 
 	public function jeune_session_check(){
 		if(!isset($_SESSION["jeune_id"])){
+			header("Location: ".$this->url);
+		}
+	}
+
+	public function partenaire_session_check(){
+		if(!isset($_SESSION["partenaire_id"])){
 			header("Location: ".$this->url);
 		}
 	}
