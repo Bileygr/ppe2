@@ -1,7 +1,7 @@
 <?php
 include_once("connexion.php");
-include_once("classes/candidature.php");
-include_once("dao/interfaces/candidatureInterface.php");
+include_once("class/candidature.php");
+include_once("dao/interface/candidatureInterface.php");
 
 Class CandidatureDAO implements CandidatureInterface{
 	public function ajouter($candidature){
@@ -16,14 +16,14 @@ Class CandidatureDAO implements CandidatureInterface{
 	}
 
 	public function compterCandidatureParFormation($jeune_id){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
+		$connect = new Connect();
+		$connexion = $connect->connexion();
 
-		$requete=$connexion->prepare("SELECT formation.formation_nom, COUNT(*) FROM candidature JOIN formation ON candidature.formation_id = formation.formation_id WHERE jeune_id = ? GROUP BY formation.formation_nom");
+		$requete = $connexion->prepare("SELECT formation.formation_nom, COUNT(*) FROM candidature JOIN formation ON candidature.formation_id = formation.formation_id WHERE jeune_id = ? GROUP BY formation.formation_nom");
 		$requete->execute(array($jeune_id));
 
 		return $requete; 
-		$requete 	= null;
+		$requete = null;
 		$connexion 	= null;
 	}
 
@@ -60,6 +60,20 @@ Class CandidatureDAO implements CandidatureInterface{
 		return $requete;
 		$requete 	= null;
 		$connexion 	= null;	
+	}
+
+	public function nbCandidatures($jeune_id){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete=$connexion->prepare("SELECT COUNT(*) FROM candidature WHERE jeune_id = ?");
+		$requete->execute(array($jeune_id));
+		$resultat = $requete->fetch();
+		$nbCandidature = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nbCandidature; 
 	}
 
 	public function suprimmer($candidature_id){

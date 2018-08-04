@@ -4,17 +4,18 @@ require_once('framework/engine.php');
 require_once('dao/class/jeuneDAO.php');
 
 $engine = new Engine(); 
+$jeuneDAO = new JeuneDAO();
+
 $url = $engine->url();
 $engine->session_check();
-$engine->assign("titre", "Jeune Connexion");
+$engine->assign("titre", "Connexion jeune");
 
 if(isset($_POST['form_auth'])){
 	$email = $_POST['email'];
 	$mot_de_passe = $_POST['mot_de_passe'];
-
+	
 	if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 		if(strlen($mot_de_passe) >= 12){
-			$jeuneDAO = new JeuneDAO();
 			$jeune = $jeuneDAO->connecter($email, $mot_de_passe);
 
 			$_SESSION['jeune_id'] = $jeune->getJeune_id();
@@ -31,8 +32,6 @@ if(isset($_POST['form_auth'])){
 
 			header("Location: ".$url."/jeune/profil");
 		}
-	}else{
-
 	}
 }
 

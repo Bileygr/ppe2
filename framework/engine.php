@@ -30,7 +30,13 @@ class Engine{
 	}
 
 	public function session_check(){
-		if(!isset($_SESSION["administrateur_id"])){
+		if(isset($_SESSION["id"])){
+			header("Location: ".$this->url);
+		}
+	}
+
+	public function jeune_session_check(){
+		if(!isset($_SESSION["jeune_id"])){
 			header("Location: ".$this->url);
 		}
 	}
