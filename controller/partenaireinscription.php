@@ -33,9 +33,9 @@ if(isset($_POST['form_auth'])){
 											$partenaireDAO->inscrire($partenaire);
 
 										if(isset($_SESSION["administrateur_id"])){
-											header("Location: ".$url."administrateur/tableau/partenaire");
+											header("Location: ".$url."/administrateur/tableau/partenaire");
 										}else{
-											header("Location: ".$url."partenaire/connexion");
+											header("Location: ".$url."/partenaire/connexion");
 										}
 									}else{
 										echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
