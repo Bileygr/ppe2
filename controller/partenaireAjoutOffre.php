@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once("framework/engine.php");
-require_once('dao/class/formationDAO.php');
-require_once('dao/class/offreDAO.php');
+require_once("dao/class/formationDAO.php");
+require_once("dao/class/offreDAO.php");
 
 $engine = new Engine();
 $formationDAO = new FormationDAO();
@@ -16,29 +16,30 @@ $url = $engine->url();
 $engine->partenaire_session_check();
 
 while($resultat = $formations->fetch()){
-	$formation .= "<option value=".$resultat['formation_id'].">".$resultat['formation_nom']."</option>";
+	$formation .= "<option value=".$resultat["formation_id"].">".$resultat["formation_nom"]."</option>";
 }
 
 $engine->assign("liste des formations", $formation);
 
-if(isset($_POST['ajouter'])){
-	$partenaire_id = $_SESSION['partenaire_id'];
-	$formation_id = $_POST['formation_id'];
-	$offre_nom 	= $_POST['offre_nom'];
-	$offre_description = $_POST['offre_description'];
-	$offre_debut = $_POST['offre_debut'];
-	$offre_fin = $_POST['offre_fin'];
+if(isset($_POST["ajouter"])){
+	$partenaire_id = $_SESSION["partenaire_id"];
+	$formation_id = $_POST["formation_id"];
+	$offre_nom 	= $_POST["offre_nom"];
+	$offre_description = $_POST["offre_description"];
+	$offre_debut = $_POST["offre_debut"];
+	$offre_fin = $_POST["offre_fin"];
 
 	if(!empty($partenaire_id) && !empty($formation_id) && 
 	   !empty($offre_nom) && !empty($offre_description) &&
 	   !empty($offre_debut) && !empty($offre_fin)){
-
 		$offre = new Offre(null, $partenaire_id, $formation_id, $offre_nom, $offre_description, $offre_debut, $offre_fin, null);
 		$offreDAO->ajouter($offre);
 
 		header("Location: ".$url."/partenaire/tableau/offre");
+	}else{
+		header("Location: ".$url."/partenaire/ajout-offre");
 	}
 }
 
-$engine->render("offreajout.html");
+$engine->render("partenaireAjoutOffre.html");
 ?>

@@ -1,23 +1,27 @@
 <?php
-require_once('connexion.php');
-require_once('class/administrateur.php');
-require_once('dao/interface/administrateurInterface.php');
+require_once("connexion.php");
+require_once("framework/engine.php");
+require_once("class/administrateur.php");
+require_once("dao/interface/administrateurInterface.php");
 
 class AdministrateurDAO implements AdministrateurInterface{
-	public function connecter($administrateur_email, $administrateur_mot_de_passe){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
+	public function connecter($email, $mot_de_passe){
+		$engine = new Engine();
+		$connect = new Connect();
 
-		$requete 	= $connexion->prepare("SELECT administrateur_id, administrateur_mot_de_passe_hash FROM administrateur WHERE administrateur_email = ?");
-		$requete->execute(array($administrateur_email));
-		$resultat 	= $requete->fetch();
+		$url = $engine->url();
+		$connexion = $connect->connexion();
 
-		$administrateur_id 					= $resultat['administrateur_id'];
-		$administrateur_mot_de_passe_hash 	= $resultat['administrateur_mot_de_passe_hash'];
+		$requete = $connexion->prepare("SELECT administrateur_id, administrateur_mot_de_passe_hash FROM administrateur WHERE administrateur_email = ?");
+		$requete->execute(array($email));
+		$resultat = $requete->fetch();
 
-		if(password_verify($administrateur_mot_de_passe, $administrateur_mot_de_passe_hash)){
+		$id = $resultat['administrateur_id'];
+		$mot_de_passe_hash = $resultat['administrateur_mot_de_passe_hash'];
+
+		if(password_verify($mot_de_passe, $mot_de_passe_hash)){
 			$requete = $connexion->prepare("UPDATE administrateur SET administrateur_derniere_connexion = NOW() WHERE administrateur_id = ?");
-			$requete->execute(array($administrateur_id));
+			$requete->execute(array($id));
 
 			if($requete->rowcount()){
 				$requete = $connexion->prepare("SELECT administrateur_id, administrateur_super, administrateur_nom, 															   							   administrateur_prenom,administrateur_mot_de_passe_hash, administrateur_telephone,
@@ -25,7 +29,7 @@ class AdministrateurDAO implements AdministrateurInterface{
 												  	   administrateur_code_postal, administrateur_derniere_connexion,
 												  	   administrateur_creation
 												FROM administrateur WHERE administrateur_id = ?");
-				$requete->execute(array($administrateur_id));
+				$requete->execute(array($id));
 
 				if($requete->rowcount()){
 					$resultat = $requete->fetch();
@@ -36,13 +40,13 @@ class AdministrateurDAO implements AdministrateurInterface{
 					$connexion 	= null;
 					return $administrateur;
 				}else{
-
+					header("Location: ".$url."/administrateur/connexion");
 				}
 			}else{
-
+				header("Location: ".$url."/administrateur/connexion");
 			}
 		}else{
-
+			header("Location: ".$url."/administrateur/connexion");
 		}
 	}
 
@@ -102,25 +106,25 @@ class AdministrateurDAO implements AdministrateurInterface{
 		$connexion 	= null;
 	}
 
-	public function nbAdmin(){
+	public function nombre_d_administrateurs(){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT COUNT(*) FROM administrateur");
 		$resultat = $requete->fetch();
-		$nbAdmin = $resultat["COUNT(*)"];
+		$nombre_d_administrateurs = $resultat["COUNT(*)"];
 
 		$requete = null;
 		$connexion = null;
-		return $nbAdmin;
+		return $nombre_d_administrateurs;
 	}
 
-	public function suprimmer($administrateur_id){
+	public function suprimmer($id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
 		$requete = $connexion->prepare("DELETE FROM administrateur WHERE administrateur_id = ?");
-		$requete->execute(array($administrateur_id));
+		$requete->execute(array($id));
 
 		$requete	= null;
 		$connexion 	= null;	

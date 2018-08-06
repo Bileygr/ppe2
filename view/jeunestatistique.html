@@ -18,41 +18,39 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(statFormations);
-      google.charts.setOnLoadCallback(statPartenaire);
+      google.charts.setOnLoadCallback(camembert_des_formations);
+      google.charts.setOnLoadCallback(camembert_des_offres);
 
-      function statFormations() {
-
+      function camembert_des_formations() {
         var data = google.visualization.arrayToDataTable([
-          ['Formation', 'Nombre d\'offre'],
+          ["Formation", "Offre"],
           {{ statistique formation }}
         ]);
 
         var options = {
-          title: 'Statistique des formations offerte',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('statformations'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_formations'));
 
         chart.draw(data, options);
       }
 
-      function statPartenaire() {
-
+      function camembert_des_offres() {
         var data = google.visualization.arrayToDataTable([
-          ['Partenaire', 'Nombre d\'offre'],
+          ["Partenaire", "Offre"],
           {{ statistique partenaire }}
         ]);
 
         var options = {
-          title: 'Statistique des candidatures envoyé aux partenaires',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('statpartenaire'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_offres'));
 
         chart.draw(data, options);
       }
@@ -115,8 +113,8 @@
           <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
             <table>
               <tr>
-                <td><div id="statformations" style="border: 1px solid #ccc"></div></td>
-                <td><div id="statpartenaire" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_formations" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_offres" style="border: 1px solid #ccc"></div></td>
               </tr>
             </table>
         </div>

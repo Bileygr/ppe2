@@ -13,6 +13,7 @@
     <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="/assets/css/sticky-footer.css" rel="stylesheet">
     <style type="text/css">
       body{
         background-color: white;
@@ -91,7 +92,7 @@
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
                       <th scope="col">Description</th>
-                      {{ bloc colonne accepter }}
+                      {{ bloc colonne candidature }}
                     </tr>
                   </thead>
                   <tfoot>
@@ -103,10 +104,11 @@
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
                       <th scope="col">Description</th>
-                      {{ bloc colonne accepter }}
+                      {{ bloc colonne candidature }}
                     </tr>
                   </tfoot>
-                  <tbody id="offres">
+                  <tbody>
+                    {{ tableau des offres }}
                   </tbody>
                 </table>
               </form>
@@ -114,6 +116,12 @@
           </div>
         </div>
       </div>
+
+      <footer class="footer">
+        <div class="container">
+          <span class="text-muted">Copyright &copy; Cheik-Siramakan Keita {{ date copyright }}</span>
+        </div>
+      </footer>
 
       <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>

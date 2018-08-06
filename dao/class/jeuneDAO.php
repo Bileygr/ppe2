@@ -1,12 +1,16 @@
 <?php
-require_once('connexion.php');
-require_once('class/jeune.php');
-require_once('dao/interface/jeuneInterface.php');
+require_once("connexion.php");
+require_once("framework/engine.php");
+require_once("class/jeune.php");
+require_once("dao/interface/jeuneInterface.php");
 
 class JeuneDAO implements JeuneInterface{
 	public function connecter($email, $mot_de_passe){
+		$engine = new Engine();
 		$connect = new Connect();
 		$connexion = $connect->connexion();
+
+		$url = $engine->url();
 
 		$requete = $connexion->prepare("SELECT jeune_id, jeune_mot_de_passe_hash FROM jeune WHERE jeune_email = ?");
 		$requete->execute(array($email));
@@ -28,16 +32,16 @@ class JeuneDAO implements JeuneInterface{
 				$resultat = $requete->fetch();
 
 				$jeune = new Jeune($resultat['jeune_id'], $resultat['jeune_nom'], $resultat['jeune_prenom'], $resultat['jeune_mot_de_passe_hash'], $resultat['jeune_telephone'], $resultat['jeune_email'], $resultat['jeune_adresse'], $resultat['jeune_ville'], $resultat['jeune_code_postal'], $resultat['jeune_derniere_connexion'], $resultat['jeune_creation']);
-
-				$requete = null;
-				$connexion = null;
-				return $jeune;
 			}else{
-
+				header("Location: ".$url."/jeune/inscription");
 			}
 		}else{
-
+			header("Location: ".$url."/jeune/inscription");
 		}
+
+		$requete = null;
+		$connexion = null;
+		return $jeune;
 	}
 
 	public function inscrire($jeune){
@@ -60,19 +64,6 @@ class JeuneDAO implements JeuneInterface{
 		
 		$requete = null;
 		$connexion = null;
-	}
-
-	public function nbJeune(){
-		$connect = new Connect();
-		$connexion = $connect->connexion();
-
-		$requete = $connexion->query("SELECT COUNT(*) FROM jeune");
-		$resultat = $requete->fetch();
-		$nbJeune = $resultat["COUNT(*)"];
-
-		$requete = null;
-		$connexion = null;
-		return $nbJeune;
 	}
 
 	public function lister(){
@@ -105,6 +96,19 @@ class JeuneDAO implements JeuneInterface{
 
 		$requete 	= null;
 		$connexion 	= null;
+	}
+
+	public function nombre_de_jeunes(){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
+
+		$requete = $connexion->query("SELECT COUNT(*) FROM jeune");
+		$resultat = $requete->fetch();
+		$nombre_de_jeunes = $resultat["COUNT(*)"];
+
+		$requete = null;
+		$connexion = null;
+		return $nombre_de_jeunes;
 	}
 
 	public function suprimmer($jeune_id){

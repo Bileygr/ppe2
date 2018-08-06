@@ -1,7 +1,7 @@
 <?php
-require_once('connexion.php');
-require_once('class/offre.php');
-require_once('dao/interface/offreInterface.php');
+require_once("connexion.php");
+require_once("class/offre.php");
+require_once("dao/interface/offreInterface.php");
 
 class OffreDAO implements OffreInterface{
 	public function ajouter($offre){
@@ -19,10 +19,9 @@ class OffreDAO implements OffreInterface{
 
 		$requete 	= null;
 		$connexion 	= null;
-		return $requete;
 	}
 
-	public function compterFormation(){
+	public function compter_les_formations(){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
@@ -33,19 +32,19 @@ class OffreDAO implements OffreInterface{
 		$connexion 	= null;
 	}
 
-	public function compterFormationParPartenaire($partenaire_id){
+	public function compter_formations_par_partenaires($id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
 		$requete = $connexion->prepare("SELECT formation.formation_nom, COUNT(*) FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id JOIN formation ON offre.formation_id = formation.formation_id WHERE partenaire.partenaire_id = ? GROUP BY formation.formation_nom");
-		$requete->execute(array($partenaire_id));
+		$requete->execute(array($id));
 
 		return $requete;
 		$requete 	= null;
 		$connexion 	= null;
 	}
 
-	public function compterPartenaire(){
+	public function compter_les_partenaires(){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
@@ -70,7 +69,7 @@ class OffreDAO implements OffreInterface{
 		$connexion 	= null;
 	}
 
-	public function listerParPartenaire($partenaire_id){
+	public function lister_par_partenaire($id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
@@ -78,7 +77,7 @@ class OffreDAO implements OffreInterface{
 										     offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation
 										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
 										    		   JOIN formation ON offre.formation_id = formation.formation_id WHERE partenaire.partenaire_id = ? ");
-		$requete->execute(array($partenaire_id));
+		$requete->execute(array($id));
 
 		return 		$requete;
 		$requete 	= null;
@@ -91,31 +90,27 @@ class OffreDAO implements OffreInterface{
 
 		$requete = $connexion->prepare("UPDATE offre SET formation_id = ?, offre_nom = ?, offre_description = ?, offre_debut = ?,
 														 offre_fin = ? WHERE offre_id = ?");
-		$requete->execute(array($offre->getFormation_id(),
-								$offre->getOffre_nom(),
-								$offre->getOffre_description(),
-								$offre->getOffre_debut(),
-								$offre->getOffre_fin(),
-								$offre->getOffre_id()));
+
+		$requete->execute(array($offre->getFormation_id(), $offre->getOffre_nom(), $offre->getOffre_description(), $offre->getOffre_debut(), $offre->getOffre_fin(), $offre->getOffre_id()));
 
 		$requete 	= null;
 		$connexion 	= null;
 	}
 
-	public function nbOffre(){
+	public function nombre_d_offres(){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT COUNT(*) FROM offre");
 		$resultat = $requete->fetch();
-		$nbOffre = $resultat["COUNT(*)"];
+		$nombre_d_offres = $resultat["COUNT(*)"];
 
 		$requete = null;
 		$connexion = null;
-		return $nbOffre;
+		return $nombre_d_offres;
 	}
 
-	public function nbPartenaireOffre($id){
+	public function nombre_d_offres_par_partenaires($id){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 

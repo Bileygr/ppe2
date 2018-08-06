@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once('framework/engine.php');
-require_once('dao/class/jeuneDAO.php');
+require_once("framework/engine.php");
+require_once("dao/class/jeuneDAO.php");
 
 $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
@@ -9,22 +9,22 @@ $jeuneDAO = new JeuneDAO();
 $url = $engine->url();
 $engine->jeune_session_check();
 $engine->assign("titre", "Modifier Jeune");
-$engine->assign("nom", $_SESSION['jeune_nom']);
-$engine->assign("prenom", $_SESSION['jeune_prenom']);
-$engine->assign("telephone", $_SESSION['jeune_telephone']);
-$engine->assign("email", $_SESSION['jeune_email']);
-$engine->assign("adresse", $_SESSION['jeune_adresse']);
-$engine->assign("ville", $_SESSION['jeune_ville']);
-$engine->assign("code postal", $_SESSION['jeune_code_postal']);
+$engine->assign("nom", $_SESSION["jeune_nom"]);
+$engine->assign("prenom", $_SESSION["jeune_prenom"]);
+$engine->assign("telephone", $_SESSION["jeune_telephone"]);
+$engine->assign("email", $_SESSION["jeune_email"]);
+$engine->assign("adresse", $_SESSION["jeune_adresse"]);
+$engine->assign("ville", $_SESSION["jeune_ville"]);
+$engine->assign("code postal", $_SESSION["jeune_code_postal"]);
 
-if(isset($_POST['form_auth'])){
-	$nom = $_POST['nom'];
-	$prenom = $_POST['prenom'];
-	$telephone = $_POST['telephone'];
-	$email = $_POST['email'];
-	$adresse = $_POST['adresse'];
-	$ville = $_POST['ville'];
-	$code_postal = $_POST['code_postal'];
+if(isset($_POST["modifier"])){
+	$nom = $_POST["nom"];
+	$prenom = $_POST["prenom"];
+	$telephone = $_POST["telephone"];
+	$email = $_POST["email"];
+	$adresse = $_POST["adresse"];
+	$ville = $_POST["ville"];
+	$code_postal = $_POST["code_postal"];
 
 	if(!empty($nom) && !empty($prenom) && !empty($telephone) && !empty($email) && !empty($adresse) && !empty($code_postal)){
 		if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -35,21 +35,21 @@ if(isset($_POST['form_auth'])){
 						$jeuneDAO->modifier($jeune);
 						$engine->deconnecter();
 					}else{
-						echo 'La longeur du code postal est incorrecte il devrait faire 5 caracteres.';
+						header("Location: ".$url."/jeune/modifier-mes-informations");
 					}
 				}else{
-					echo 'La longeur de la ville est incorrecte il devrait faire 32 caracteres ou moins.';
+					header("Location: ".$url."/jeune/modifier-mes-informations");
 				}
 			}else{
-				echo 'La longeur de l\'adresse est incorrecte il devrait faire 38 caracteres ou moins.';
+				header("Location: ".$url."/jeune/modifier-mes-informations");
 			}
 		}else{
-			echo 'Le format de l\'email est incorrecte.';
+			header("Location: ".$url."/jeune/modifier-mes-informations");
 		}
 	}else{
-		echo 'Les champs n\'ont pas tous ete remplis.';
+		header("Location: ".$url."/jeune/modifier-mes-informations");
 	}
 }
 
-$engine->render("jeunemodifiermesinformations.html");
+$engine->render("jeuneModifierMesInformations.html");
 ?>

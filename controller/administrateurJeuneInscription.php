@@ -7,6 +7,8 @@ $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
 
 $url = $engine->url();
+$engine->administrateur_session_check();
+
 $engine->assign("titre", "Inscription Jeune");
 
 if(isset($_POST["inscrire"])){
@@ -34,35 +36,35 @@ if(isset($_POST["inscrire"])){
 										$jeune = new Jeune(null, $nom, $prenom, $mot_de_passe_hash, $telephone, $email, $adresse, $ville, $code_postal, null, null);
 										$jeuneDAO->inscrire($jeune);
 
-										header("Location: ".$url."/jeune/connexion");
+										header("Location: ".$url."/administrateur/tableau/jeune");
 									}else{
-										header("Location: ".$url."/jeune/inscription");
+										header("Location: ".$url."/administrateur/jeune-inscription");
 									}
 								}else{
-									header("Location: ".$url."/jeune/inscription");
+									header("Location: ".$url."/administrateur/jeune-inscription");
 								}
 							}else{
-								header("Location: ".$url."/jeune/inscription");
+								header("Location: ".$url."/administrateur/jeune-inscription");
 							}
 						}else{
-							header("Location: ".$url."/jeune/inscription");
+							header("Location: ".$url."/administrateur/jeune-inscription");
 						}
 					}else{
-						header("Location: ".$url."/jeune/inscription");
+						header("Location: ".$url."/administrateur/jeune-inscription");
 					}
 				}else{
-					header("Location: ".$url."/jeune/inscription");
+					header("Location: ".$url."/administrateur/jeune-inscription");
 				}
 			}else{
-				header("Location: ".$url."/jeune/inscription");
+				header("Location: ".$url."/administrateur/jeune-inscription");
 			}
 		}else{
-			header("Location: ".$url."/jeune/inscription");
+			header("Location: ".$url."/administrateur/jeune-inscription");
 		}
 	}else{
-		header("Location: ".$url."/jeune/inscription");
+		header("Location: ".$url."/administrateur/jeune-inscription");
 	}
 }
 
-$engine->render("jeuneInscription.html");
+$engine->render("jeuneinscription.html");
 ?>

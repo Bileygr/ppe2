@@ -1,13 +1,15 @@
 <?php
 session_start();
-require_once('framework/engine.php');
-require_once('dao/class/candidatureDAO.php');
+require_once("framework/engine.php");
+require_once("dao/class/candidatureDAO.php");
+
+$jeune_id = $_SESSION["jeune_id"];
 
 $engine = new Engine();
 $candidatureDAO = new CandidatureDAO();
 
-$candidatures = $candidatureDAO->listerParJeune($_SESSION['jeune_id']);
-$nbCandidature = $candidatureDAO->nbCandidatures($_SESSION['jeune_id']);
+$candidatures = $candidatureDAO->liste_par_jeune($jeune_id);
+$nombre_de_candidatures = $candidatureDAO->nombre_de_candidatures($jeune_id);
 
 $candidature = "";
 $status = "";
@@ -15,9 +17,10 @@ $status = "";
 $url = $engine->url();
 $engine->deconnexion();
 $engine->jeune_session_check();
+
 $engine->assign("nom", $_SESSION["jeune_nom"]);
 $engine->assign("prenom", $_SESSION["jeune_prenom"]);
-$engine->assign("nombre de candidature", $nbCandidature);
+$engine->assign("nombre de candidature", $nombre_de_candidatures);
 
 while($resultat = $candidatures->fetch()){
   if($resultat["status"] == 1){
@@ -43,10 +46,10 @@ while($resultat = $candidatures->fetch()){
 
 $engine->assign("tableau des candidatures", $candidature);
 
-if(isset($_POST['suprimmer'])){
-  $candidatureDAO->suprimmer($_POST['candidature_id']);
+if(isset($_POST["suprimmer"])){
+  $candidatureDAO->suprimmer($_POST["candidature_id"]);
   header("Location: ".$url."/jeune/tableau/candidature");
 }
 
-$engine->render("jeunetableaucandidature.html");
+$engine->render("jeuneTableauCandidature.html");
 ?>

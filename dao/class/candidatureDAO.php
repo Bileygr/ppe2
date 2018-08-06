@@ -15,19 +15,19 @@ Class CandidatureDAO implements CandidatureInterface{
 		$connexion 	= null;
 	}
 
-	public function compterCandidatureParFormation($jeune_id){
+	public function compter_les_candidatures_par_formations($id){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("SELECT formation.formation_nom, COUNT(*) FROM candidature JOIN formation ON candidature.formation_id = formation.formation_id WHERE jeune_id = ? GROUP BY formation.formation_nom");
-		$requete->execute(array($jeune_id));
+		$requete->execute(array($id));
 
 		return $requete; 
 		$requete = null;
 		$connexion 	= null;
 	}
 
-	public function compterCandidaturePartenaire(){
+	public function compter_les_candidatures_partenaire(){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
@@ -38,12 +38,12 @@ Class CandidatureDAO implements CandidatureInterface{
 		$connexion = null;
 	}
 
-	public function compterCandidatureParPartenaire($jeune_id){
+	public function compterCandidatureParPartenaire($id){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
 		$requete=$connexion->prepare("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id WHERE jeune_id = ? GROUP BY partenaire.partenaire_nom");
-		$requete->execute(array($jeune_id));
+		$requete->execute(array($id));
 
 		return $requete; 
 		$requete 	= null;
@@ -61,24 +61,24 @@ Class CandidatureDAO implements CandidatureInterface{
 		$connexion 	= null;	
 	}
 
-	public function listerParJeune($jeune_id){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
+	public function liste_par_jeune($id){
+		$connect = new Connect();
+		$connexion = $connect->connexion();
 
 		$requete=$connexion->prepare("SELECT candidature.candidature_id, formation.formation_nom, offre.offre_nom, offre.offre_debut, offre.offre_fin, offre.offre_creation, partenaire.partenaire_nom, candidature.status FROM candidature JOIN formation ON candidature.formation_id = formation.formation_id JOIN offre ON candidature.offre_id = offre.offre_id JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id  WHERE jeune_id = ?");
-		$requete->execute(array($jeune_id));
+		$requete->execute(array($id));
 
 		return $requete;
 		$requete 	= null;
 		$connexion 	= null;	
 	}
 
-	public function nbCandidatures($jeune_id){
+	public function nombre_de_candidatures($id){
 		$connect = new Connect();
 		$connexion = $connect->connexion();
 
 		$requete=$connexion->prepare("SELECT COUNT(*) FROM candidature WHERE jeune_id = ?");
-		$requete->execute(array($jeune_id));
+		$requete->execute(array($id));
 		$resultat = $requete->fetch();
 		$nbCandidature = $resultat["COUNT(*)"];
 

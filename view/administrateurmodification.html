@@ -42,21 +42,21 @@
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" onclick="setSuperAdministrateur();" id="super" name="super" value=""> Super Administrateur
+          <input type="checkbox" onclick="set_super_administrateur();" id="super_administrateur_status" name="super_administrateur_status" value=""> Super Administrateur
         </label>
       </div>
       
-      <input type="submit" name="form_auth" class="btn btn-lg btn-secondary btn-block" value="Modifier">
+      <input type="submit" name="modifier" class="btn btn-lg btn-secondary btn-block" value="Modifier">
       <p class="mt-5 mb-3 text-muted">Copyright &copy; Cheik-Siramakan Keita {{ date copyright }}</p>
     </form>
 
     <!-- JavaScript -->
     <script type="text/javascript" src="/assets/js/core.js"></script>
     <script type="text/javascript">
-    	window.onload = function isAdministrateurSuper(){
-    		var super_administrateur = {{ super }};
-    		if(super_administrateur == 1){
-    			document.getElementById("super").setAttribute("checked", "checked");
+    	window.onload = function super_administrateur_status() {
+    		var super_administrateur = {{ status de super administrateur }};
+    		if(super_administrateur == 1) {
+    			document.getElementById("super_administrateur_status").setAttribute("checked", "checked");
     		}
     	}
     </script>

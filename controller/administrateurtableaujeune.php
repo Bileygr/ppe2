@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once('framework/engine.php');
-require_once('dao/class/administrateurDAO.php');
-require_once('dao/class/jeuneDAO.php');
-require_once('dao/class/offreDAO.php');
-require_once('dao/class/partenaireDAO.php');
+require_once("framework/engine.php");
+require_once("dao/class/administrateurDAO.php");
+require_once("dao/class/jeuneDAO.php");
+require_once("dao/class/offreDAO.php");
+require_once("dao/class/partenaireDAO.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -13,23 +13,24 @@ $offreDAO = new OffreDAO();
 $partenaireDAO = new PartenaireDAO();
 
 $jeunes = $jeuneDAO->lister();
-$nbAdmin = $administrateurDAO->nbAdmin();
-$nbJeune = $jeuneDAO->nbJeune();
-$nbOffre = $offreDAO->nbOffre();
-$nbPartenaire = $partenaireDAO->nbPartenaire();
+$nombre_d_administrateurs = $administrateurDAO->nombre_d_administrateurs();
+$nombre_de_jeune = $jeuneDAO->nombre_de_jeunes();
+$nombre_d_offres = $offreDAO->nombre_d_offres();
+$nombre_de_partenaires = $partenaireDAO->nombre_de_partenaires();
 
 $jeune = "";
 
 $url = $engine->url();
 $engine->deconnexion();
 $engine->administrateur_session_check();
+
 $engine->assign("titre", "Menu Administrateur");
 $engine->assign("prenom", $_SESSION["administrateur_prenom"]);
 $engine->assign("nom", $_SESSION["administrateur_nom"]);
-$engine->assign("nombre d'administrateur", $nbAdmin);
-$engine->assign("nombre de jeune", $nbJeune);
-$engine->assign("nombre d'offre", $nbOffre);
-$engine->assign("nombre de partenaire", $nbPartenaire);
+$engine->assign("nombre d'administrateurs", $nombre_d_administrateurs);
+$engine->assign("nombre de jeunes", $nombre_de_jeune);
+$engine->assign("nombre d'offres", $nombre_d_offres);
+$engine->assign("nombre de partenaires", $nombre_de_partenaires);
 
 while($resultat = $jeunes->fetch()){
   $jeune .= "<tr>
@@ -39,41 +40,41 @@ while($resultat = $jeunes->fetch()){
               <td>".$resultat["jeune_email"]."</td>
               <td>".$resultat["jeune_derniere_connexion"]."</td>
               <td>".$resultat["jeune_creation"]."</td>
-              <form method='POST'>
-                <input type='hidden' name='jeune_id' value=".$resultat["jeune_id"].">
-                <input type='hidden' name='jeune_nom' value=".$resultat["jeune_nom"].">
-                <input type='hidden' name='jeune_prenom' value=".$resultat["jeune_prenom"].">
-                <input type='hidden' name='jeune_telephone' value=".$resultat["jeune_telephone"].">
-                <input type='hidden' name='jeune_email' value=".$resultat["jeune_email"].">
-                <input type='hidden' name='jeune_adresse' value=".$resultat["jeune_adresse"].">
-                <input type='hidden' name='jeune_ville' value=".$resultat["jeune_ville"].">
-                <input type='hidden' name='jeune_code_postal' value=".$resultat["jeune_code_postal"].">
-                <td><input class='btn btn-secondary my-2 my-sm-0' type='submit' name='modifier' value='Modifier'></td>
-                <td><input class='btn btn-secondary my-2 my-sm-0' type='submit' name='suprimmer' value='Suprimmer'></td>
+              <form method=\"POST\">
+                <input type=\"hidden\" name=\"id\" value=".$resultat["jeune_id"].">
+                <input type=\"hidden\" name=\"nom\" value=".$resultat["jeune_nom"].">
+                <input type=\"hidden\" name=\"prenom\" value=".$resultat["jeune_prenom"].">
+                <input type=\"hidden\" name=\"telephone\" value=".$resultat["jeune_telephone"].">
+                <input type=\"hidden\" name=\"email\" value=".$resultat["jeune_email"].">
+                <input type=\"hidden\" name=\"adresse\" value=".$resultat["jeune_adresse"].">
+                <input type=\"hidden\" name=\"ville\" value=".$resultat["jeune_ville"].">
+                <input type=\"hidden\" name=\"code_postal\" value=".$resultat["jeune_code_postal"].">
+                <td><input class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+                <td><input class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\" name=\"suprimmer\" value=\"Suprimmer\"></td>
               </form>
             </tr>";
 }
 
 $engine->assign("tableau des jeunes", $jeune);
 
-if(isset($_POST['modifier'])){
-  $_SESSION['modifier_jeune_id']          = $_POST['jeune_id'];
-  $_SESSION['modifier_jeune_nom']         = $_POST['jeune_nom'];
-  $_SESSION['modifier_jeune_prenom']      = $_POST['jeune_prenom'];
-  $_SESSION['modifier_jeune_telephone']   = $_POST['jeune_telephone'];
-  $_SESSION['modifier_jeune_email']       = $_POST['jeune_email'];
-  $_SESSION['modifier_jeune_adresse']     = $_POST['jeune_adresse'];
-  $_SESSION['modifier_jeune_ville']       = $_POST['jeune_ville'];
-  $_SESSION['modifier_jeune_code_postal'] = $_POST['jeune_code_postal'];
+if(isset($_POST["modifier"])){
+  $_SESSION["modifier_jeune_id"] = $_POST["id"];
+  $_SESSION["modifier_jeune_nom"] = $_POST["nom"];
+  $_SESSION["modifier_jeune_prenom"] = $_POST["prenom"];
+  $_SESSION["modifier_jeune_telephone"] = $_POST["telephone"];
+  $_SESSION["modifier_jeune_email"] = $_POST["email"];
+  $_SESSION["modifier_jeune_adresse"] = $_POST["adresse"];
+  $_SESSION["modifier_jeune_ville"] = $_POST["ville"];
+  $_SESSION["modifier_jeune_code_postal"] = $_POST["code_postal"];
 
   header("Location: ".$url."/administrateur/jeune-modification");
 }
 
 if(isset($_POST['suprimmer'])){
-  $jeuneDAO->suprimmer($_POST['jeune_id']);
+  $jeuneDAO->suprimmer($_POST["id"]);
 
   header("Location: ".$url."/administrateur/tableau/jeune");
 }
 
-$engine->render("administrateurtableaujeune.html");
+$engine->render("administrateurTableauJeune.html");
 ?>

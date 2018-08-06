@@ -17,41 +17,39 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(offreChart);
-      google.charts.setOnLoadCallback(partenaireChart);
+      google.charts.setOnLoadCallback(camembert_des_offres);
+      google.charts.setOnLoadCallback(camembert_des_partenaires);
 
-      function offreChart() {
-
+      function camembert_des_offres() {
         var data = google.visualization.arrayToDataTable([
-          ['Formation', 'Nombre d\'offre'],
-          {{ bloc offre_stat }}
+          ['Formation', 'Offres'],
+          {{ statistique des offres }}
         ]);
 
         var options = {
-          title: 'Nombre d\'offre par formation',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('offrechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_offres'));
 
         chart.draw(data, options);
       }
 
-      function partenaireChart() {
-
+      function camembert_des_partenaires() {
         var data = google.visualization.arrayToDataTable([
-          ['Partenaire', 'Nombre d\'offre'],
-          {{ bloc partenaire_stat }}
+          ['Partenaire', 'Offres'],
+          {{ statistique des partenaires }}
         ]);
 
         var options = {
-          title: 'Nombre d\'offre par partenaire',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('partenairechart'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_partenaires'));
 
         chart.draw(data, options);
       }
@@ -72,7 +70,7 @@
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
             <a class="nav-link" href="{{ url }}/administrateur/statistique">
               <i class="fa fa-fw fa-area-chart"></i>
-              <span class="nav-link-text">Graphes</span>
+              <span class="nav-link-text">Camemberts</span>
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
@@ -82,16 +80,16 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
               <li>
-                <a href="{{ url }}/administrateur/tableau/administrateur">Administrateurs - {{ nombre d'administrateur }}</a>
+                <a href="{{ url }}/administrateur/tableau/administrateur">Administrateurs - {{ nombre d'administrateurs }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/jeune">Jeunes - {{ nombre de jeune }}</a>
+                <a href="{{ url }}/administrateur/tableau/jeune">Jeunes - {{ nombre de jeunes }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/offre">Offres - {{ nombre d'offre }}</a>
+                <a href="{{ url }}/administrateur/tableau/offre">Offres - {{ nombre d'offres }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/partenaire">Partenaires - {{ nombre de partenaire }}</a>
+                <a href="{{ url }}/administrateur/tableau/partenaire">Partenaires - {{ nombre de partenaires }}</a>
               </li>
             </ul>
           </li>
@@ -129,8 +127,8 @@
           <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
             <table>
               <tr>
-                <td><div id="offrechart" style="border: 1px solid #ccc"></div></td>
-                <td><div id="partenairechart" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_offres" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_partenaires" style="border: 1px solid #ccc"></div></td>
               </tr>
             </table>
         </div>

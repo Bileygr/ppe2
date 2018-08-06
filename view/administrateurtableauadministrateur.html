@@ -28,22 +28,8 @@
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
             <a class="nav-link" href="{{ url }}/administrateur/statistique">
               <i class="fa fa-fw fa-area-chart"></i>
-              <span class="nav-link-text">Graphes</span>
+              <span class="nav-link-text">Camemberts</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseGrapheLink">
-              <li>
-                <a href="{{ url }}/administrateur/graphe/administrateur">Administrateurs</a>
-              </li>
-              <li>
-                <a href="{{ url }}/administrateur/graphe/jeune">Jeunes</a>
-              </li>
-              <li>
-                <a href="{{ url }}/administrateur/graphe/offre">Offres</a>
-              </li>
-              <li>
-                <a href="{{ url }}/administrateur/graphe/partenaire">Partenaires</a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTableauxLink" data-parent="#exampleAccordion">
@@ -52,16 +38,16 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
               <li>
-                <a href="{{ url }}/administrateur/tableau/administrateur">Administrateurs - {{ nombre d'administrateur }}</a>
+                <a href="{{ url }}/administrateur/tableau/administrateur">Administrateurs - {{ nombre d'administrateurs }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/jeune">Jeunes - {{ nombre de jeune }}</a>
+                <a href="{{ url }}/administrateur/tableau/jeune">Jeunes - {{ nombre de jeunes }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/offre">Offres - {{ nombre d'offre }}</a>
+                <a href="{{ url }}/administrateur/tableau/offre">Offres - {{ nombre d'offres }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/partenaire">Partenaires - {{ nombre de partenaire }}</a>
+                <a href="{{ url }}/administrateur/tableau/partenaire">Partenaires - {{ nombre de partenaires }}</a>
               </li>
             </ul>
           </li>
@@ -128,7 +114,7 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  {{ bloc tableau d'administrateur }}
+                  {{ tableau d'administrateurs }}
                 </tbody>
               </table>
             </div>

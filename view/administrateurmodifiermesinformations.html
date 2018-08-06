@@ -42,7 +42,7 @@
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" onclick="setSuperAdministrateur();" id="super" name="super" value=""> Super Administrateur
+          <input type="checkbox" onclick="set_super_administrateur();" id="super_administrateur_status" name="super_administrateur_status" value=""> Super Administrateur
         </label>
       </div>
       
@@ -52,10 +52,10 @@
 
     <script type="text/javascript" src="/assets/js/core.js"></script>
     <script type="text/javascript">
-      window.onload = function isAdministrateurSuper(){
-        var super_administrateur = {{ super }};
-        if(super_administrateur == 1){
-          document.getElementById("super").setAttribute("checked", "checked");
+      window.onload = function super_administrateur_status(){
+        var super_administrateur_status = {{ status de super administrateur }};
+        if(super_administrateur_status == 1){
+          document.getElementById("super_administrateur_status").setAttribute("checked", "checked");
         }
       }
     </script>

@@ -18,47 +18,45 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(candidaturePieChart);
-      google.charts.setOnLoadCallback(formationPieChart);
+      google.charts.setOnLoadCallback(camembert_des_candidatures);
+      google.charts.setOnLoadCallback(camembert_des_formations);
 
-      function candidaturePieChart() {
-
+      function camembert_des_candidatures() {
         var data = google.visualization.arrayToDataTable([
-          ['Formation', 'Nombre d\'offre'],
-          {{ information candidature }}
+          ['Formation', 'Offre'],
+          {{ statistique des candidatures }}
         ]);
 
         var options = {
-          title: 'Camambert des candidatures reçu',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('candidaturePieChart'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_candidatures'));
 
         chart.draw(data, options);
       }
 
-      function formationPieChart() {
-
+      function camembert_des_formations() {
         var data = google.visualization.arrayToDataTable([
-          ['Partenaire', 'Nombre d\'offre'],
-          {{ information formation }}
+          ['Partenaire', "Offre"],
+          {{ statistique des formations }}
         ]);
 
         var options = {
-          title: 'Camembert des formations offert',
+          title: "",
           width: 800,
           height: 600
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('formationPieChart'));
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_formations'));
 
         chart.draw(data, options);
       }
     </script>
 
-    <title>Profil Partenaire</title>
+    <title>{{ titre }}</title>
   </head>
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -78,7 +76,7 @@
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
             <a class="nav-link" href="{{ url }}/partenaire/tableau/offre">
               <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Offres - {{ nombre d'offre }}</span>
+              <span class="nav-link-text">Offres - {{ nombre d'offres }}</span>
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
@@ -115,8 +113,8 @@
           <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
             <table>
               <tr>
-                <td><div id="candidaturePieChart" style="border: 1px solid #ccc"></div></td>
-                <td><div id="formationPieChart" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_candidatures" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_formations" style="border: 1px solid #ccc"></div></td>
               </tr>
             </table>
         </div>

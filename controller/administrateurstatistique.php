@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once('framework/engine.php');
-require_once('dao/class/administrateurDAO.php');
-require_once('dao/class/jeuneDAO.php');
-require_once('dao/class/offreDAO.php');
-require_once('dao/class/partenaireDAO.php');
+require_once("framework/engine.php");
+require_once("dao/class/administrateurDAO.php");
+require_once("dao/class/jeuneDAO.php");
+require_once("dao/class/offreDAO.php");
+require_once("dao/class/partenaireDAO.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -12,37 +12,38 @@ $jeuneDAO = new JeuneDAO();
 $offreDAO = new OffreDAO();
 $partenaireDAO = new PartenaireDAO();
 
-$nbAdmin = $administrateurDAO->nbAdmin();
-$nbJeune = $jeuneDAO->nbJeune();
-$nbOffre = $offreDAO->nbOffre();
-$nbPartenaire = $partenaireDAO->nbPartenaire();
-$offres = $offreDAO->compterFormation();
-$partenaires = $offreDAO->compterPartenaire();
+$nombre_d_administrateurs = $administrateurDAO->nombre_d_administrateurs();
+$nombre_de_jeune = $jeuneDAO->nombre_de_jeunes();
+$nombre_d_offres = $offreDAO->nombre_d_offres();
+$nombre_de_partenaires = $partenaireDAO->nombre_de_partenaires();
+$offres = $offreDAO->compter_les_formations();
+$partenaires = $offreDAO->compter_les_partenaires();
 
-$offre_resultat = "";
-$partenaire_resultat = "";
+$offre = "";
+$partenaire = "";
 
 $url = $engine->url();
 $engine->deconnexion();
 $engine->administrateur_session_check();
-$engine->assign("titre", "Administrateur Profil");
+
+$engine->assign("titre", "Menu Administrateur");
 $engine->assign("prenom", $_SESSION["administrateur_prenom"]);
 $engine->assign("nom", $_SESSION["administrateur_nom"]);
-$engine->assign("nombre d'administrateur", $nbAdmin);
-$engine->assign("nombre de jeune", $nbJeune);
-$engine->assign("nombre d'offre", $nbOffre);
-$engine->assign("nombre de partenaire", $nbPartenaire);
+$engine->assign("nombre d'administrateurs", $nombre_d_administrateurs);
+$engine->assign("nombre de jeunes", $nombre_de_jeune);
+$engine->assign("nombre d'offres", $nombre_d_offres);
+$engine->assign("nombre de partenaires", $nombre_de_partenaires);
 
-while($offre = $offres->fetch()){
-    $offre_resultat .= '["'.$offre["formation_nom"].'", '.$offre["COUNT(*)"].'], ';
+while($resultat = $offres->fetch()){
+    $offre .= "[\"".$resultat["formation_nom"]."\", ".$resultat["COUNT(*)"]."], ";
 }
 
-while($partenaire = $partenaires->fetch()){
-	$partenaire_resultat .= '["'.$partenaire["partenaire_nom"].'", '.$partenaire["COUNT(*)"].'], ';
+while($resultat = $partenaires->fetch()){
+	$partenaire .= "[\"".$resultat["partenaire_nom"]."\", ".$resultat["COUNT(*)"]."], ";
 }
 
-$engine->assign("bloc offre_stat", $offre_resultat);
-$engine->assign("bloc partenaire_stat", $partenaire_resultat);
+$engine->assign("statistique des offres", $offre);
+$engine->assign("statistique des partenaires", $partenaire);
 
-$engine->render("administrateurstatistique.html");
+$engine->render("administrateurStatistique.html");
 ?>

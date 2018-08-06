@@ -1,4 +1,4 @@
-<?php
+"<?php
 session_start();
 require_once('framework/engine.php');
 require_once('dao/class/formationDAO.php');
@@ -30,17 +30,17 @@ while($resultat = $formations->fetch()){
 		$select = "";
 	}
 
-	$formation .= "<option value=".$resultat['formation_id']." ".$select.">".$resultat['formation_nom']."</option>";
+	$formation .= "<option value=".$resultat["formation_id"]." ".$select.">".$resultat['formation_nom']."</option>";
 }
 
 $engine->assign("liste des formations", $formation);
 
-if(isset($_POST['modifier'])){
-	$formation_id = $_POST['formation_id'];
-	$offre_nom = $_POST['offre_nom'];
-	$offre_description = $_POST['offre_description'];
-	$offre_debut = $_POST['offre_debut'];
-	$offre_fin = $_POST['offre_fin'];
+if(isset($_POST["modifier"])){
+	$formation_id = $_POST["formation_id"];
+	$offre_nom = $_POST["offre_nom"];
+	$offre_description = $_POST["offre_description"];
+	$offre_debut = $_POST["offre_debut"];
+	$offre_fin = $_POST["offre_fin"];
 
 	if(!empty($offre_nom) && !empty($formation_id) && 
 	   !empty($offre_debut) && !empty($offre_fin) &&
@@ -48,16 +48,16 @@ if(isset($_POST['modifier'])){
 		$offre = new Offre($_SESSION["modifier_offre_id"], null, $formation_id, $offre_nom, $offre_description, $offre_debut, $offre_fin, null);
 		$offreDAO->modifier($offre);
 
-		unset($_SESSION['modifier_offre_id'],
-			  $_SESSION['modifier_formation_id'],
-			  $_SESSION['modifier_formation_nom'],
-			  $_SESSION['modifier_offre_nom'],
-			  $_SESSION['modifier_offre_description'],
-			  $_SESSION['modifier_offre_debut'],
-			  $_SESSION['modifier_offre_fin'],
-			  $_SESSION['modifier_offre_creation']);
+		unset($_SESSION["modifier_offre_id"],
+			  $_SESSION["modifier_formation_id"],
+			  $_SESSION["modifier_formation_nom"],
+			  $_SESSION["modifier_offre_nom"],
+			  $_SESSION["modifier_offre_description"],
+			  $_SESSION["modifier_offre_debut"],
+			  $_SESSION["modifier_offre_fin"],
+			  $_SESSION["modifier_offre_creation"]);
 
-		header("Location: ".$url."/administrateur/tableau/offre");
+		header("Location: ".$url."/partenaire/tableau/offre");
 	}
 }
 

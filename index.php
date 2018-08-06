@@ -6,16 +6,36 @@ switch ($request_uri[0]) {
         include("controller/index.php");
         break;
 
+    case "/ppe2/administrateur/administrateur-modification":
+        include("controller/administrateurModification.php");
+        break;
+
     case "/ppe2/administrateur/connexion":
-    	include("controller/administrateurconnexion.php");
+    	include("controller/administrateurConnexion.php");
     	break;
 
     case "/ppe2/administrateur/inscription":
-    	include("controller/administrateurinscription.php");
-    	break;
+        include("controller/administrateurInscription.php");
+        break;
+
+    case "/ppe2/administrateur/jeune-modification":
+        include("controller/administrateurJeuneModification.php");
+        break;
+
+    case "/ppe2/administrateur/jeune-inscription":
+        include("controller/administrateurJeuneInscription.php");
+        break;
 
     case "/ppe2/administrateur/modifier-mes-informations":
-        include("controller/administrateurmodifiermesinfomations.php");
+        include("controller/administrateurModifierMesInfomations.php");
+        break;
+
+    case "/ppe2/administrateur/offre-modification":
+        include("controller/administrateurOffreModification.php");
+        break;
+
+    case "/ppe2/administrateur/partenaire-modification":
+        include("controller/administrateurPartenaireModification.php");
         break;
 
     case "/ppe2/administrateur/profil":
@@ -42,20 +62,8 @@ switch ($request_uri[0]) {
         include("controller/administrateurtableaupartenaire.php");
         break;
 
-    case "/ppe2/administrateur/administrateur-modification":
-        include("controller/administrateurmodification.php");
-        break;
-
-    case "/ppe2/administrateur/jeune-modification":
-        include("controller/jeunemodification.php");
-        break;
-
-    case "/ppe2/administrateur/offre-modification":
-        include("controller/administrateuroffremodification.php");
-        break;
-
-    case "/ppe2/administrateur/partenaire-modification":
-        include("controller/partenairemodification.php");
+    case "/ppe2/deconnexion":
+        include("controller/deconnexion.php");
         break;
 
     case "/ppe2/jeune/connexion":
@@ -78,8 +86,8 @@ switch ($request_uri[0]) {
         include("controller/jeunetableaucandidature.php");
         break;
 
-    case "/ppe2/offre/ajout":
-        include("controller/offreajout.php");
+    case "/ppe2/partenaire/ajout-offre":
+        include("controller/partenaireAjoutOffre.php");
         break;
 
     case "/ppe2/partenaire/connexion":
@@ -98,14 +106,6 @@ switch ($request_uri[0]) {
         include("controller/partenairemodifiermesinformations.php");
         break;
 
-    case "/ppe2/partenaire/profil":
-    	include("controller/partenairestatistique.php");
-    	break;
-
-    case "/ppe2/partenaire/tableau/offre":
-        include("controller/partenairetableauoffre.php");
-        break;
-
     case "/ppe2/partenaire/offre-ajout":
         include("controller/offreajout.php");
         break;
@@ -114,9 +114,13 @@ switch ($request_uri[0]) {
         include("controller/partenaireoffremodification.php");
         break;
 
-    case "/ppe2/deconnexion":
-    	include("controller/deconnexion.php");
+    case "/ppe2/partenaire/profil":
+    	include("controller/partenairestatistique.php");
     	break;
+
+    case "/ppe2/partenaire/tableau/offre":
+        include("controller/partenairetableauoffre.php");
+        break;
 
     case "/ppe2/test/":
         include("test/index.php");
@@ -128,6 +132,10 @@ switch ($request_uri[0]) {
 
     case "/ppe2/test/hash/testeur":
         include("test/testeurdehash.php");
+        break;
+
+    case "/ppe2/test/maps":
+        include("test/maps.php");
         break;
 
     default:
