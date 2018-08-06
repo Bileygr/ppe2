@@ -118,6 +118,10 @@ switch ($request_uri[0]) {
     	include("controller/partenairestatistique.php");
     	break;
 
+    case "/ppe2/partenaire/tableau/candidature":
+        include("controller/partenaireTableauCandidature.php");
+        break;
+
     case "/ppe2/partenaire/tableau/offre":
         include("controller/partenairetableauoffre.php");
         break;

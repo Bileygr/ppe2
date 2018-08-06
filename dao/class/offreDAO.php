@@ -59,10 +59,7 @@ class OffreDAO implements OffreInterface{
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
 
-		$requete = $connexion->query("SELECT offre.offre_id, formation.formation_id, partenaire.partenaire_nom, formation.formation_nom,
-										     offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation
-										    FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id 
-										    		   JOIN formation ON offre.formation_id = formation.formation_id");
+		$requete = $connexion->query("SELECT offre.offre_id, formation.formation_id, partenaire.partenaire_id, partenaire.partenaire_nom, formation.formation_nom, offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id JOIN formation ON offre.formation_id = formation.formation_id");
 
 		return 		$requete;
 		$requete 	= null;

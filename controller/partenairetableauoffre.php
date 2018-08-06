@@ -1,13 +1,18 @@
 <?php
 session_start();
 require_once("framework/engine.php");
+require_once("dao/class/candidatureDAO.php");
 require_once("dao/class/offreDAO.php");
 
+$partenaire_id = $_SESSION["partenaire_id"];
+
 $engine = new Engine();
+$candidatureDAO = new CandidatureDAO();
 $offreDAO = new OffreDAO();
 
-$nombre_d_offres = $offreDAO->nombre_d_offres_par_partenaires($_SESSION["partenaire_id"]);
-$offres = $offreDAO->lister_par_partenaire($_SESSION["partenaire_id"]);
+$offres = $offreDAO->lister_par_partenaire($partenaire_id);
+$nombre_de_candidatures_par_partenaires = $candidatureDAO->nombre_de_candidatures_par_partenaires($partenaire_id);
+$nombre_d_offres = $offreDAO->nombre_d_offres_par_partenaires($partenaire_id);
 
 $offre = "";
 
@@ -17,7 +22,8 @@ $engine->partenaire_session_check();
 
 $engine->assign("titre", "Menu Partenaire");
 $engine->assign("nom", $_SESSION["partenaire_nom"]);
-$engine->assign("nombre d'offre", $nombre_d_offres);
+$engine->assign("nombre de candidatures", $nombre_de_candidatures_par_partenaires);
+$engine->assign("nombre d'offres", $nombre_d_offres);
 
 while($resultat = $offres->fetch()){
   $offre .= "<tr>

@@ -53,10 +53,11 @@ while($resultat = $offres->fetch()){
                 <td>".$resultat["offre_debut"]."</td>
                 <td>".$resultat["offre_fin"]."</td>
                 <td>".$resultat["offre_creation"]."</td>
-                    <form method='POST'>
+                    <form method=\"POST\">
                         <input type=\"hidden\" name=\"offre_id\" value=".$resultat["offre_id"].">
                         <input type=\"hidden\" name=\"formation_id\" value=".$resultat["formation_id"].">
                         <input type=\"hidden\" name=\"offre_nom\" value=".$resultat["offre_nom"].">
+                        <input type=\"hidden\" name=\"partenaire_id\" value=".$resultat["partenaire_id"].">
                         <input type=\"hidden\" name=\"partenaire_nom\" value=".$resultat["partenaire_nom"].">
                         <input type=\"hidden\" name=\"offre_description\" value=".$resultat["offre_description"].">
                         <input type=\"hidden\" name=\"offre_debut\" value=".$resultat["offre_debut"].">
@@ -71,7 +72,10 @@ while($resultat = $offres->fetch()){
 $engine->assign("tableau des offres", $offre);
 
 if(isset($_POST["deposer"])){
+    $candidature = new Candidature(null, $_POST["offre_id"], $_POST["formation_id"], $_SESSION["jeune_id"], $_POST["partenaire_id"], null, null);
+    $candidatureDAO->ajouter($candidature);
 
+    header("Location: ".$url);
 }
 
 $engine->render("index.html");

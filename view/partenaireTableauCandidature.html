@@ -14,31 +14,39 @@
     <link href="/assets/vendor/datatables/dataTables.bootstrap4.css"  rel="stylesheet">
     <link href="/assets/css/sb-admin.css"  rel="stylesheet">
 
-    <title>Profil Jeune</title>
+    <title>{{ titre }}</title>
   </head>
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="{{ url }}">Bonjour {{ prenom }} {{ nom }}</a>
+      <a class="navbar-brand" href="{{ url }}">Bonjour {{ nom }}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="{{ url }}/jeune/profil">
+            <a class="nav-link" href="{{ url }}/partenaire/profil">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Camemberts</span>
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="{{ url }}/jeune/tableau/candidature">
+            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTableauxLink" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Candidatures - {{ nombre de candidature }}</span>
+              <span class="nav-link-text">Tableaux</span>
             </a>
+            <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
+              <li>
+                <a href="{{ url }}/partenaire/tableau/candidature">Candidatures - {{ nombre de candidatures }}</a>
+              </li>
+              <li>
+                <a href="{{ url }}/partenaire/tableau/offre">Offres - {{ nombre d'offres }}</a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tableaux">
-            <a class="nav-link" href="{{ url }}/jeune/modifier-mes-informations">
+            <a class="nav-link" href="{{ url }}/partenaire/modifier-mes-informations">
               <i class="fa fa-fw fa-wrench"></i>
                 <span class="nav-link-text">Modifier vos informations</span>
             </a>
@@ -69,7 +77,7 @@
         </ol>
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fa fa-table"></i> Candidatures</div>
+            <i class="fa fa-table"></i> Offres</div>
           <div class="card-body">
             <div class="table-responsive">
               <form method="POST">
@@ -83,7 +91,8 @@
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Suprimmer</th>
+                      <th scope="col">Accepter</th>
+                      <th scope="col">Refuser</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -95,11 +104,12 @@
                       <th scope="col">Fin</th>
                       <th scope="col">Création</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Suprimmer</th>
+                      <th scope="col">Accepter</th>
+                      <th scope="col">Refuser</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    {{ tableau des candidatures }}
+                   {{ tableau des candidatures }}
                   </tbody>
                 </table>
               </form>

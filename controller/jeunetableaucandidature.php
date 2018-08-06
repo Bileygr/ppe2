@@ -24,9 +24,9 @@ $engine->assign("nombre de candidature", $nombre_de_candidatures);
 
 while($resultat = $candidatures->fetch()){
   if($resultat["status"] == 1){
-    $status = "<td>Oui</td>";
+    $status = "<td>Accepté</td>";
   }elseif($resultat["status"] == 0){
-    $status = "<td>Nom</td>";
+    $status = "<td>Refusé</td>";
   }
 
   $candidature .= "<tr>
@@ -48,6 +48,7 @@ $engine->assign("tableau des candidatures", $candidature);
 
 if(isset($_POST["suprimmer"])){
   $candidatureDAO->suprimmer($_POST["candidature_id"]);
+  
   header("Location: ".$url."/jeune/tableau/candidature");
 }
 
