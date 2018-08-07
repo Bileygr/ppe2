@@ -49,21 +49,6 @@ Class CandidatureDAO implements CandidatureInterface{
 		$connexion = null;
 	}
 
-	public function nombre_de_candidatures_par_partenaires($id){
-		$connect 	= new Connect();
-		$connexion 	= $connect->connexion();
-
-		$requete=$connexion->prepare("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id WHERE jeune_id = ? GROUP BY partenaire.partenaire_nom");
-		$requete->execute(array($id));
-		$resultat = $requete->fetch();
-
-		$nombre_de_candidatures_par_partenaires = $resultat["COUNT(*)"];
-
-		$requete 	= null;
-		$connexion 	= null;
-		return $nombre_de_candidatures_par_partenaires;
-	}
-
 	public function lister(){
 		$connect 	= new Connect();
 		$connexion 	= $connect->connexion();
@@ -111,6 +96,21 @@ Class CandidatureDAO implements CandidatureInterface{
 		$requete = null;
 		$connexion = null;
 		return $nbCandidature; 
+	}
+
+	public function nombre_de_candidatures_par_partenaires($id){
+		$connect 	= new Connect();
+		$connexion 	= $connect->connexion();
+
+		$requete=$connexion->prepare("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id WHERE jeune_id = ? GROUP BY partenaire.partenaire_nom");
+		$requete->execute(array($id));
+		$resultat = $requete->fetch();
+
+		$nombre_de_candidatures_par_partenaires = $resultat["COUNT(*)"];
+
+		$requete 	= null;
+		$connexion 	= null;
+		return $nombre_de_candidatures_par_partenaires;
 	}
 
 	public function refuser($id){

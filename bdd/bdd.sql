@@ -67,6 +67,9 @@ CREATE TABLE offre(
 	formation_id INT(11) NOT NULL,
 	offre_nom VARCHAR(50) NOT NULL,
 	offre_description TEXT NOT NULL,
+	offre_adresse VARCHAR(38) NOT NULL,
+	offre_ville VARCHAR(32) NOT NULL,
+	offre_code_postal VARCHAR(5) NOT NULL,
 	offre_debut	DATE NOT NULL,
 	offre_fin DATE NOT NULL,
 	offre_creation DATETIME NOT NULL,
@@ -128,14 +131,14 @@ INSERT INTO formation(formation_nom, formation_creation) VALUES('Dépannage info
 INSERT INTO formation(formation_nom, formation_creation) VALUES('Développement', NOW());
 INSERT INTO formation(formation_nom, formation_creation) VALUES('Réseau', NOW());
 
-INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
-		VALUES(1, 1, 'Formation d\'Été', 'bla bla bla bla bla bla bla bla bla bla', '2018-07-01', '2018-08-01', NOW());
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_adresse, offre_ville, offre_code_postal, offre_debut, offre_fin, offre_creation)
+		VALUES(1, 1, 'Formation d\'Été', 'bla bla bla bla bla bla bla bla bla bla', '20 Rue Croix des Petits Champs', 'Paris', '75001', '2018-07-01', '2018-08-01', NOW());
 
-INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
-		VALUES(1, 2, 'Formation d\'Automne', 'bla bla bla bla bla bla bla bla bla bla', '2018-10-01', '2018-11-01', NOW());
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_adresse, offre_ville, offre_code_postal, offre_debut, offre_fin, offre_creation)
+		VALUES(1, 2, 'Formation d\'Automne', 'bla bla bla bla bla bla bla bla bla bla', '36 Avenue d\'Eylau', 'Paris', '75116', '2018-10-01', '2018-11-01', NOW());
 
-INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
-		VALUES(2, 3, 'Formation d\'Hiver', 'bla bla bla bla bla bla bla bla bla bla', '2019-01-01', '2019-02-01', NOW());
+INSERT INTO offre(partenaire_id, formation_id, offre_nom, offre_description, offre_adresse, offre_ville, offre_code_postal, offre_debut, offre_fin, offre_creation)
+		VALUES(2, 3, 'Formation d\'Hiver', 'bla bla bla bla bla bla bla bla bla bla', '257 Rue du Faubourg Saint-Martin', 'Paris', '75010', '2019-01-01', '2019-02-01', NOW());
 
 INSERT INTO candidature(offre_id, formation_id, jeune_id, partenaire_id, status, candidature_creation) VALUES(1, 1, 1, 1, 1, NOW());
 INSERT INTO candidature(offre_id, formation_id, jeune_id, partenaire_id, status, candidature_creation) VALUES(2, 2, 1, 2, 0, NOW());
