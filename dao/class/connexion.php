@@ -1,11 +1,11 @@
 <?php
 class Connect{
 	public function connexion(){
-		$hote = "82.123.7.148";
-		$port = "1017";
+		$hote = "127.0.0.1";
+		$port = "";
 		$base_de_donnee = "ppe";
-		$utilisateur = "ppe";
-		$mot_de_passe = "@Crownclown_91";
+		$utilisateur = "root";
+		$mot_de_passe = "";
 
 		try{
 			$bdd = new PDO('mysql:host='.$hote.';port='.$port.';dbname='.$base_de_donnee.';charset=utf8', $utilisateur, $mot_de_passe);
