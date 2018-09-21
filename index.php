@@ -6,8 +6,8 @@ switch ($request_uri[0]) {
         include("app/controllers/IndexController.php");
         break;
     
-    case "/web/css/index.css":
-	include("web/css/index.css");
+    case "/administrateur/connexion":
+	include("app/controllers/AdministrateurConnexionontroller.php");
 	break;
 
     default:
