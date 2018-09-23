@@ -14,6 +14,7 @@
 .navbar{
 	grid-area: navbar;
 	background-colour: black;
+	text-align: center;
 }
 
 #map{
@@ -34,4 +35,5 @@
 .footer{
 	grid-area: footer;
 	background-colour: black;
+	text-align: center;
 } 
