@@ -1,0 +1,4 @@
+A faire:
+=============================
+- Ajouter de nouvelles colonne dans la base de donnees (Reponses aux questions de recuperation de compte).
+- Recuperation du mot de passe.

@@ -1,5 +1,6 @@
 <?php
 class Engine{
+	//private $settings = parse_ini_file("config/settings.ini", true);
 	private $vars = array();
 	private $url = "http://127.0.0.1:8000/";
 
