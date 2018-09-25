@@ -4,92 +4,98 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 switch ($request_uri[0]) {
     case "/ppe2":
         include("app/controllers/IndexController.php");
-	break;
+		break;
    
     case "/ppe2/administrateur/connexion":
-	include("app/controllers/AdministrateurConnexionController.php");
-	break;
+		include("app/controllers/AdministrateurConnexionController.php");
+		break;
   
     case "/ppe2/administrateur/inscription":
-	include("app/controllers/AdministrateurInscriptionController.php");
-	break;
+		include("app/controllers/AdministrateurInscriptionController.php");
+		break;
 
     case "/ppe2/administrateur/modifier-mes-informations":
-	include("app/controllers/AdministrateurModifierMesInformationsController.php");
-	break;
+		include("app/controllers/AdministrateurModifierMesInformationsController.php");
+		break;
  
     case "/ppe2/administrateur/menu/accueil":
-	include("app/controllers/AdministrateurMenuAccueilController.php");
-	break;
+		include("app/controllers/AdministrateurMenuAccueilController.php");
+		break;
 
     case "/ppe2/administrateur/menu/gestion-administrateur":
-	include("app/controllers/AdministrateurMenuAdministrateurController.php");
-    
+		include("app/controllers/AdministrateurMenuAdministrateurController.php");
+    	break;
+
     case "/ppe2/administrateur/menu/gestion-administrateur/ajout":
-	include("app/controllers/AdministrateurInscriptionController.php");
+		include("app/controllers/AdministrateurInscriptionController.php");
+		break;
 
     case "/ppe2/administrateur/menu/gestion-administrateur/modifier":
-	include("app/controllers/AdministrateurMenuModifierAdministrateurController.php");
-	break;
+		include("app/controllers/AdministrateurMenuModifierAdministrateurController.php");
+		break;
 
     case "/ppe/administrateur/menu/gestion-administrateur/supprimmer":
-	include("app/controllers/AdministrateurMenuSuppressionAdministrateurController.php");
-	break;
+		include("app/controllers/AdministrateurMenuSuppressionAdministrateurController.php");
+		break;
+
+	case "/ppe2/administrateur/menu/gestion-partenaire":
+		include("app/controllers/AdministrateurMenuGestionPartenaireController.php");
+		break;
 	
     case "/ppe2/administrateur/menu/gestion-partenaire":
-	include("app/controllers/AdministrateurMenuPartenaireController.php");
-	break;
+		include("app/controllers/AdministrateurMenuPartenaireController.php");
+		break;
 
     case "/ppe2/administrateur/menu/gestion-partenaire/modifier":
-	include("app/controllers/AdministrateurMenuModifierPartenaireController.php");
-	break;
+		include("app/controllers/AdministrateurMenuModifierPartenaireController.php");
+		break;
 
     case "/ppe2/administrateur/menu/gestion-jeune/modifier":
-	include("app/controllers/AdministrateurMenuModifierJeuneController.php");
-	break;
+		include("app/controllers/AdministrateurMenuModifierJeuneController.php");
+		break;
 
     case "/ppe2/partenaire/connexion":
-	include("app/controllers/PartenaireConnexionController.php");
+		include("app/controllers/PartenaireConnexionController.php");
         break;
 
     case "/ppe2/partenaire/inscription":
-	include("app/controllers/PartenaireInscriptionController.php");
-	break; 
+		include("app/controllers/PartenaireInscriptionController.php");
+		break; 
  
     case "/ppe2/partenaire/supprimmer":
-	include("app/controllers/PartenaireSupressionController.php");
-	break;    
+		include("app/controllers/PartenaireSupressionController.php");
+		break;    
 	
     case "/ppe2/jeune/connexion":
-	include("app/controllers/JeuneConnexionController.php");
-	break;
+		include("app/controllers/JeuneConnexionController.php");
+		break;
 
     case "/ppe2/jeune/supprimmer":
-	include("app/controllers/JeuneSuppressionController.php");
+		include("app/controllers/JeuneSuppressionController.php");
 
     case "/ppe2/test/class":
-	include("test/Class.php");
-	break;
+		include("test/Class.php");
+		break;
 
     case "/ppe2/test/db/connexion":
-	include("test/DBConnection.php");
-	break;
+		include("test/DBConnection.php");
+		break;
 
     case "/ppe2/partenaire/menu/accueil":
-	include("app/controllers/PartenaireMenuAccueilController.php");
+		include("app/controllers/PartenaireMenuAccueilController.php");
     	break;
 
     case "/ppe2/jeune/connexion":
-	include("app/controllers/JeuneConnexionController.php");
-	break;
+		include("app/controllers/JeuneConnexionController.php");
+		break;
 
     case "/ppe2/jeune/menu/accueil": 
-	include("app/controllers/JeuneMenuAccueilController.php");
-	break;
+		include("app/controllers/JeuneMenuAccueilController.php");
+		break;
   
     case "/ppe2/test/connexion":
-	include("test/ConnexionTest.php");
-	break;
+		include("test/ConnexionTest.php");
+		break;
 	
     default:
         require("app/controllers/MissingController.php");
