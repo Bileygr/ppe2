@@ -1,10 +1,13 @@
 <?php
 session_start();
-require_once("app/models/engine.php");
+require_once("app/models/Engine.php");
 require_once("app/models/dao/AdministrateurDAO.class.php");
 
 $engine = new Engine();
+$administrateurDAO 	= new AdministrateurDAO();
+
 $url = $engine->url();
+$engine->assign("titre", "Administrateur Connexion");
 
 if(isset($_POST["connecter"])){
 	$email = $_POST["email"];
@@ -15,7 +18,7 @@ if(isset($_POST["connecter"])){
 			session_destroy();
 			session_start();
 		
-			$administrateur = $AdministrateurDAO->connecter($email, $mot_de_passe);
+			$administrateur = $administrateurDAO->connecter($email, $mot_de_passe);
 			
 			$_SESSION["administrateur_id"] = $administrateur->getAdministrateur_id();
 			$_SESSION["administrateur_super"] = $administrateur->getAdministrateur_super();
@@ -39,5 +42,5 @@ if(isset($_POST["connecter"])){
 	}
 }
 
-$engine->render("administrateurlogin.html");
+$engine->render("administrateurconnexion.html");
 ?>
