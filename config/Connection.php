@@ -1,6 +1,6 @@
 <?php
 class Connect{
-	public function DBConnection(){
+	public function connexion(){
 		$settings = parse_ini_file("settings.ini", true);
 
 		$host = $settings["database"]["host"];

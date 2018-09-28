@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
-require_once("dao/class/jeuneDAO.php");
-require_once("dao/class/offreDAO.php");
-require_once("dao/class/partenaireDAO.php");
+require_once("app/models/Engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
+require_once("app/models/dao/JeuneDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -45,5 +45,5 @@ while($resultat = $partenaires->fetch()){
 $engine->assign("statistique des offres", $offre);
 $engine->assign("statistique des partenaires", $partenaire);
 
-$engine->render("administrateurStatistique.html");
+$engine->render("administrateurstatistique.html");
 ?>

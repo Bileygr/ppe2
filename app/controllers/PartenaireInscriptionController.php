@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once('framework/engine.php');
-require_once('dao/class/partenaireDAO.php');
+require_once("app/models/Engine.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $engine = new Engine();
 $url = $engine->url();

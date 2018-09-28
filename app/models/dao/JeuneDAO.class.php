@@ -1,10 +1,9 @@
 <?php
-require_once("connexion.php");
-require_once("framework/engine.php");
-require_once("class/jeune.php");
-require_once("dao/interface/jeuneInterface.php");
+require_once("config/connection.php");
+require_once("app/models/Engine.php");
+require_once("app/models/base/Jeune.class.php");
 
-class JeuneDAO implements JeuneInterface{
+class JeuneDAO{
 	public function connecter($email, $mot_de_passe){
 		$engine = new Engine();
 		$connect = new Connect();

@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/jeuneDAO.php");
+require_once("app/models/Engine.php");
+require_once("app/models/dao/JeuneDAO.class.php");
 
 $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
@@ -64,5 +64,5 @@ if(isset($_POST["inscrire"])){
 	}
 }
 
-$engine->render("jeuneInscription.html");
+$engine->render("jeuneinscription.html");
 ?>

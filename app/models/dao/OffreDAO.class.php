@@ -5,7 +5,7 @@ require_once("app/models/base/Offre.class.php");
 class OffreDAO{
 	public function ajouter($offre){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("INSERT INTO offre(formation_id, partenaire_id, offre_nom, offre_description, offre_debut, offre_fin, offre_creation)
 											 VALUES(?, ?, ?, ?, ?, ?, NOW())");
@@ -22,7 +22,7 @@ class OffreDAO{
 
 	public function compter_les_formations(){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT formation.formation_nom, COUNT(*) FROM offre JOIN formation ON offre.formation_id = formation.formation_id GROUP BY formation.formation_nom");
 
@@ -33,7 +33,7 @@ class OffreDAO{
 
 	public function compter_formations_par_partenaires($id){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("SELECT formation.formation_nom, COUNT(*) FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id JOIN formation ON offre.formation_id = formation.formation_id WHERE partenaire.partenaire_id = ? GROUP BY formation.formation_nom");
 		$requete->execute(array($id));
@@ -45,7 +45,7 @@ class OffreDAO{
 
 	public function compter_les_partenaires(){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT partenaire.partenaire_nom, COUNT(*) FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id GROUP BY partenaire.partenaire_nom");
 
@@ -56,7 +56,7 @@ class OffreDAO{
 
 	public function lister(){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT offre.offre_id, formation.formation_id, partenaire.partenaire_id, partenaire.partenaire_nom, formation.formation_nom, offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation FROM offre JOIN partenaire ON offre.partenaire_id = partenaire.partenaire_id JOIN formation ON offre.formation_id = formation.formation_id");
 
@@ -67,7 +67,7 @@ class OffreDAO{
 
 	public function lister_par_partenaire($id){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("SELECT offre.offre_id, formation.formation_id, partenaire.partenaire_nom, formation.formation_nom,
 										     offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation
@@ -82,7 +82,7 @@ class OffreDAO{
 
 	public function modifier($offre){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("UPDATE offre SET formation_id = ?, offre_nom = ?, offre_description = ?, offre_debut = ?,
 														 offre_fin = ? WHERE offre_id = ?");
@@ -95,7 +95,7 @@ class OffreDAO{
 
 	public function nombre_d_offres(){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->query("SELECT COUNT(*) FROM offre");
 		$resultat = $requete->fetch();
@@ -108,7 +108,7 @@ class OffreDAO{
 
 	public function nombre_d_offres_par_partenaires($id){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("SELECT COUNT(*) FROM offre WHERE partenaire_id = ?");
 		$requete->execute(array($id));
@@ -122,7 +122,7 @@ class OffreDAO{
 
 	public function suprimmer($offre_id){
 		$connect = new Connect();
-		$connexion = $connect->DBConnection();
+		$connexion = $connect->connexion();
 
 		$requete = $connexion->prepare("DELETE FROM offre WHERE offre_id = ?");
 		$requete->execute(array($offre_id));

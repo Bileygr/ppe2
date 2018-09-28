@@ -9,7 +9,7 @@ class AdministrateurDAO{
 		$connect = new Connect();
 
 		$url = $engine->url();
-		$connection = $connect->DBConnection();
+		$connection = $connect->connexion();
 
 		$requete = $connection->prepare("SELECT administrateur_id, administrateur_mot_de_passe_hash FROM administrateur WHERE administrateur_email = ?");
 		$requete->execute(array($email));
@@ -51,7 +51,7 @@ class AdministrateurDAO{
 
 	public function inscrire($administrateur){
 		$connect = new Connect();
-		$connection = $connect->DBConnection(); 
+		$connection = $connect->connexion(); 
 
 		$requete = $connection->prepare("INSERT INTO administrateur(administrateur_super, administrateur_nom, administrateur_prenom, 
 													administrateur_mot_de_passe_hash, administrateur_telephone, administrateur_email,
@@ -66,7 +66,7 @@ class AdministrateurDAO{
 
 	public function lister(){
 		$connect = new Connect();
-		$connection = $connect->DBConnection();
+		$connection = $connect->connexion();
 
 		$requete = $connection->query("SELECT * FROM administrateur");
 
@@ -77,7 +77,7 @@ class AdministrateurDAO{
 
 	public function  modifier($administrateur){
 		$connect = new Connect();
-		$connection = $connect->DBConnection();
+		$connection = $connect->connexion();
 
 		$requete = $connection->prepare("UPDATE administrateur SET administrateur_nom = ?, administrateur_prenom = ?, administrateur_super = ?, 	
 																  administrateur_telephone = ?, administrateur_email = ?, administrateur_adresse = ?, administrateur_ville = ?, administrateur_code_postal = ? 
@@ -98,7 +98,7 @@ class AdministrateurDAO{
 
 	public function nombre_d_administrateurs(){
 		$connect = new Connect();
-		$connection = $connect->DBConnection();
+		$connection = $connect->connexion();
 
 		$requete = $connection->query("SELECT COUNT(*) FROM administrateur");
 		$resultat = $requete->fetch();
@@ -111,7 +111,7 @@ class AdministrateurDAO{
 
 	public function suprimmer($id){
 		$connect = new Connect();
-		$connection = $connect->DBConnection();
+		$connection = $connect->connexion();
 
 		$requete = $connection->prepare("DELETE FROM administrateur WHERE administrateur_id = ?");
 		$requete->execute(array($id));
