@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
-require_once("dao/class/jeuneDAO.php");
-require_once("dao/class/offreDAO.php");
-require_once("dao/class/partenaireDAO.php");
+require_once("app/models/Engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
+require_once("app/models/dao/JeuneDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $super_administrateur_status = $_SESSION["administrateur_super"];
 
@@ -92,15 +92,13 @@ if(isset($_POST['modifier'])){
   $_SESSION["modifier_administrateur_adresse"] = $_POST["adresse"];
   $_SESSION["modifier_administrateur_ville"] = $_POST["ville"];
   $_SESSION["modifier_administrateur_code_postal"] = $_POST["code_postal"];
-
-  header("Location: ".$url."/administrateur/administrateur-modification");
+  header("Location: ".$url."/administrateur/administrateur/modification");
 }
 
 if(isset($_POST['suprimmer'])){
   $administrateurDAO->suprimmer($_POST['id']);
-
-  header("Location: ".$url."/administrateur/tableau/administrateur");
+  header("Location: ".$url."/administrateur/gestion/administrateur");
 }
 
-$engine->render("administrateurTableauAdministrateur.html");
+$engine->render("administrateurgestionadministrateur.html");
 ?>

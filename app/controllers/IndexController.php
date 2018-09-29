@@ -19,14 +19,14 @@ $engine->assign("titre", "Accueil");
 if(!isset($_SESSION["administrateur_id"])){
 	$engine->assign("bloc administrateur", "<a class=\"dropdown-item\" href=\"{{ url }}/administrateur/connexion\">Connexion</a>");
 }elseif(isset($_SESSION["administrateur_id"])){
-	$engine->assign("bloc administrateur", "<a class=\"dropdown-item\" href=\"{{ url }}/administrateur/profil\">Profil</a>");
+	$engine->assign("bloc administrateur", "<a class=\"dropdown-item\" href=\"{{ url }}/administrateur/camemberts\">Profil</a>");
 }
 
 if(!isset($_SESSION["partenaire_id"])){
 	$engine->assign("bloc partenaire", "<a class=\"dropdown-item\" href=\"{{ url }}/partenaire/connexion\">Connexion</a>
               <a class=\"dropdown-item\" href=\"{{ url }}/partenaire/inscription\">Inscription</a>");
 }elseif(isset($_SESSION["partenaire_id"])){
-	$engine->assign("bloc partenaire", "<a class=\"dropdown-item\" href=\"{{ url }}/partenaire/profil\">Profil</a>");
+	$engine->assign("bloc partenaire", "<a class=\"dropdown-item\" href=\"{{ url }}/partenaire/camemberts\">Profil</a>");
 }
 
 if(!isset($_SESSION["jeune_id"])){
@@ -35,7 +35,7 @@ if(!isset($_SESSION["jeune_id"])){
 	$engine->assign("bloc colonne candidature", "");
 }elseif(isset($_SESSION["jeune_id"])){
 	$engine->assign("bloc colonne candidature", "<th scope=\"col\">Candidature</th>");
-	$engine->assign("bloc jeune", "<a class=\"dropdown-item\" href=\"{{ url }}/jeune/profil\">Profil</a>");
+	$engine->assign("bloc jeune", "<a class=\"dropdown-item\" href=\"{{ url }}/jeune/camemberts\">Profil</a>");
 	$engine->assign("jeune id", $_SESSION["jeune_id"]);
 }
 

@@ -45,5 +45,5 @@ while($resultat = $partenaires->fetch()){
 $engine->assign("statistique des offres", $offre);
 $engine->assign("statistique des partenaires", $partenaire);
 
-$engine->render("administrateurstatistique.html");
+$engine->render("administrateurcamemberts.html");
 ?>

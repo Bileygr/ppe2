@@ -1,18 +1,59 @@
 <!DOCTYPE html>
 <html lang="FR">
   <head>
-    <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Cheik-Siramakan Keita">
-
+    
     <!-- CSS -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-    <link href="/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="/web/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/web/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/web/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/web/css/sb-admin.css" rel="stylesheet">
+
+    <!-- JavaScrîpt -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(camembert_des_offres);
+      google.charts.setOnLoadCallback(camembert_des_partenaires);
+
+      function camembert_des_offres() {
+        var data = google.visualization.arrayToDataTable([
+          ['Formation', 'Offres'],
+          {{ statistique des offres }}
+        ]);
+
+        var options = {
+          title: "",
+          width: 800,
+          height: 600
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_offres'));
+
+        chart.draw(data, options);
+      }
+
+      function camembert_des_partenaires() {
+        var data = google.visualization.arrayToDataTable([
+          ['Partenaire', 'Offres'],
+          {{ statistique des partenaires }}
+        ]);
+
+        var options = {
+          title: "",
+          width: 800,
+          height: 600
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('camembert_des_partenaires'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
     <title>{{ titre }}</title>
   </head>
@@ -24,9 +65,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+        
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="{{ url }}/administrateur/statistique">
+            <a class="nav-link" href="{{ url }}/administrateur/camemberts">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Camemberts</span>
             </a>
@@ -38,16 +80,16 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
               <li>
-                <a href="{{ url }}/administrateur/tableau/administrateur">Administrateurs - {{ nombre d'administrateurs }}</a>
+                <a href="{{ url }}/administrateur/gestion/administrateur">Administrateurs - {{ nombre d'administrateurs }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/jeune">Jeunes - {{ nombre de jeunes }}</a>
+                <a href="{{ url }}/administrateur/gestion/jeune">Jeunes - {{ nombre de jeunes }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/offre">Offres - {{ nombre d'offres }}</a>
+                <a href="{{ url }}/administrateur/gestion/offre">Offres - {{ nombre d'offres }}</a>
               </li>
               <li>
-                <a href="{{ url }}/administrateur/tableau/partenaire">Partenaires - {{ nombre de partenaires }}</a>
+                <a href="{{ url }}/administrateur/gestion/partenaire">Partenaires - {{ nombre de partenaires }}</a>
               </li>
             </ul>
           </li>
@@ -79,53 +121,24 @@
           <li class="breadcrumb-item">
             <p>Tableau de bord</p>
           </li>
-          <li class="breadcrumb-item active">Tableaux</li>
+          <li class="breadcrumb-item active">Graphiques</li>
         </ol>
         <div class="card mb-3">
-          <div class="card-header">
-            <i class="fa fa-table"></i> Administrateurs 
-              {{ bloc ajout administrateur }}
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    {{ bloc modifier et supprimer administrateur }}
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prénom</th>
-                    <th scope="col">Super Administrateur</th>
-                    <th scope="col">Téléphone</th> 
-                    <th scope="col">Email</th>
-                    <th scope="col">Dernière connexion</th>
-                    <th scope="col">Création</th>
-                    {{ bloc modifier et supprimer administrateur }}
-                  </tr>
-                </tfoot>
-                <tbody>
-                  {{ tableau d'administrateurs }}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <div class="card-header"><i class="fa fa-pie-chart"></i> Statistiques en camembert</div>
+            <table>
+              <tr>
+                <td><div id="camembert_des_offres" style="border: 1px solid #ccc"></div></td>
+                <td><div id="camembert_des_partenaires" style="border: 1px solid #ccc"></div></td>
+              </tr>
+            </table>
         </div>
       </div>
+
 
       <footer class="sticky-footer">
         <div class="container">
           <div class="text-center">
-            <small>Copyright © Cheik-Siramakan Keita {{ date copyright }}</small>
+            <small>Copyright © <a href="{{ site web de cheik }}">Cheik-Siramakan Keita</a> {{ year }}</small>
           </div>
         </div>
       </footer>
@@ -154,14 +167,14 @@
       </div>
 
       <!-- JavaScript -->
-      <script src="/assets/js/core.js"></script>
-      <script src="/assets/vendor/jquery/jquery.min.js"></script>
-      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <script src="/assets/vendor/datatables/jquery.dataTables.js"></script>
-      <script src="/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-      <script src="/assets/js/sb-admin.min.js"></script>
-      <script src="/assets/js/sb-admin-datatables.min.js"></script>
+      <script src="/web/js/core.js" ></script>
+      <script src="/web/vendor/jquery/jquery.min.js" ></script>
+      <script src="/web/vendor/bootstrap/js/bootstrap.bundle.min.js" ></script>
+      <script src="/web/vendor/jquery-easing/jquery.easing.min.js" ></script>
+      <script src="/web/vendor/datatables/jquery.dataTables.js" ></script>
+      <script src="/web/vendor/datatables/dataTables.bootstrap4.js" ></script>
+      <script src="/web/js/sb-admin.min.js" ></script>
+      <script src="/web/js/sb-admin-datatables.min.js" ></script>
     </div>
   </body>
 </html>

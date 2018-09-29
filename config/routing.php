@@ -9,48 +9,48 @@ switch ($request_uri[0]) {
     case "/ppe2/administrateur/connexion":
 		include("app/controllers/AdministrateurConnexionController.php");
 		break;
-  
-    case "/ppe2/administrateur/inscription":
-		include("app/controllers/AdministrateurInscriptionController.php");
-		break;
 
     case "/ppe2/administrateur/modifier-mes-informations":
 		include("app/controllers/AdministrateurModifierMesInformationsController.php");
 		break;
  
-    case "/ppe2/administrateur/profil":
-		include("app/controllers/AdministrateurAccueilController.php");
+    case "/ppe2/administrateur/camemberts":
+		include("app/controllers/AdministrateurCamembertsController.php");
 		break;
 
-    case "/ppe2/administrateur/menu/gestion-administrateur":
-		include("app/controllers/AdministrateurMenuAdministrateurController.php");
+    case "/ppe2/administrateur/gestion/administrateur":
+		include("app/controllers/AdministrateurGestionAdministrateurController.php");
     	break;
 
-    case "/ppe2/administrateur/menu/gestion-administrateur/ajout":
-		include("app/controllers/AdministrateurInscriptionController.php");
+    case "/ppe2/administrateur/gestion/administrateur/inscription":
+		include("app/controllers/AdministrateurGestionAdministrateurInscriptionController.php");
 		break;
 
-    case "/ppe2/administrateur/menu/gestion-administrateur/modifier":
+    case "/ppe2/administrateur/gestion/administrateur/modification":
 		include("app/controllers/AdministrateurMenuModifierAdministrateurController.php");
 		break;
 
-    case "/ppe/administrateur/menu/gestion-administrateur/supprimmer":
+    case "/ppe/administrateur/gestion/administrateur/supression":
 		include("app/controllers/AdministrateurMenuSuppressionAdministrateurController.php");
 		break;
 
-	case "/ppe2/administrateur/menu/gestion-partenaire":
+	case "/ppe2/administrateur/gestion/partenaire":
 		include("app/controllers/AdministrateurMenuGestionPartenaireController.php");
 		break;
 	
-    case "/ppe2/administrateur/menu/gestion-partenaire":
+    case "/ppe2/administrateur/gestion/partenaire":
 		include("app/controllers/AdministrateurMenuPartenaireController.php");
 		break;
 
-    case "/ppe2/administrateur/menu/gestion-partenaire/modifier":
+    case "/ppe2/administrateur/gestion/partenaire/modification":
 		include("app/controllers/AdministrateurMenuModifierPartenaireController.php");
 		break;
 
-    case "/ppe2/administrateur/menu/gestion-jeune/modifier":
+	case "/ppe2/administrateur/gestion/jeune":
+		include("app/controllers/AdministrateurGestionJeuneController.php");
+		break;
+
+    case "/ppe2/administrateur/gestion/jeune/modification":
 		include("app/controllers/AdministrateurMenuModifierJeuneController.php");
 		break;
 
