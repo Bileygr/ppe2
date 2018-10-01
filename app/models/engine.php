@@ -35,10 +35,11 @@ class Engine{
 			$content = preg_replace($this->regex_current_year, date("Y"), $content);
 			echo $content;
 		}else{
-			exit('<h1>Erreur de template.</h1>');
+			exit('<h1 style="color: red;">Erreur de template.</h1>');
 		}
 	}
-
+	
+	// Faire fonctionner cette method.
 	public function router(){
 
 	}

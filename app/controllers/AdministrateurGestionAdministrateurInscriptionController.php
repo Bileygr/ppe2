@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -68,5 +68,5 @@ if(isset($_POST["ajouter"])){
 	}
 }
 
-$engine->render("administrateurInscription.html");
+$engine->render("administrateurinscription.html");
 ?>

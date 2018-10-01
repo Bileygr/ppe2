@@ -1,9 +1,8 @@
 <?php
-require_once('connexion.php');
-require_once('class/formation.php');
-require_once('dao/interface/formationInterface.php');
+require_once('config/Connection.php');
+require_once('app/models/base/Formation.class.php');
 
-class FormationDAO implements FormationInterface{
+class FormationDAO{
 	public function lister(){
 		$connect = new Connect();
 		$connexion = $connect->connexion();

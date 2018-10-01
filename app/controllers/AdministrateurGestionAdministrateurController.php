@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("app/models/Engine.php");
+require_once("app/models/engine.php");
 require_once("app/models/dao/AdministrateurDAO.class.php");
 require_once("app/models/dao/JeuneDAO.class.php");
 require_once("app/models/dao/OffreDAO.class.php");
@@ -36,7 +36,7 @@ $engine->assign("nombre d'offres", $nombre_d_offres);
 $engine->assign("nombre de partenaires", $nombre_de_partenaires);
 
 if($super_administrateur_status == 1){
-  $engine->assign("bloc ajout administrateur", "<input class=\"btn btn-secondary my-2 my-sm-0 float-right\" type=\"submit\" onclick=\"location.href='{{ url }}/administrateur/inscription';\" value=\"Ajouter\">");
+  $engine->assign("bloc ajout administrateur", "<input class=\"btn btn-secondary my-2 my-sm-0 float-right\" type=\"submit\" onclick=\"location.href='{{ url }}/administrateur/gestion/administrateur/inscription';\" value=\"Ajouter\">");
   $engine->assign("bloc modifier et supprimer administrateur", "<th scope=\"col\">Modifier</th> <th scope=\"col\">Suprimmer</th>");
 }elseif($super_administrateur_status == 0){
   $engine->assign("bloc ajout administrateur", "");

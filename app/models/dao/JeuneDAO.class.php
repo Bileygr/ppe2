@@ -1,6 +1,6 @@
 <?php
-require_once("config/connection.php");
-require_once("app/models/Engine.php");
+require_once("config/Connection.php");
+require_once("app/models/engine.php");
 require_once("app/models/base/Jeune.class.php");
 
 class JeuneDAO{
