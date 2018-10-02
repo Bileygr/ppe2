@@ -41,30 +41,30 @@ if(isset($_POST["ajouter"])){
 									$administrateur = new Administrateur(null, $super_administrateur_status, $nom, $prenom, $mot_de_passe_hash, $telephone,$email, $adresse, $ville, $code_postal, null, null);
 									$administrateurDAO->inscrire($administrateur);
 
-									header("Location: ".$url."/administrateur/tableau/administrateur");
+									header("Location: ".$url."/administrateur/gestion/administrateur");
 								}else{
-									header("Location: ".$url."/administrateur/inscription");
+									header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 								}
 							}else{
-								header("Location: ".$url."/administrateur/inscription");
+								header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 							}
 						}else{
-							header("Location: ".$url."/administrateur/inscription");
+							header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 						}
 					}else{
-						header("Location: ".$url."/administrateur/inscription");
+						header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 					}
 				}else{
-					header("Location: ".$url."/administrateur/inscription");
+					header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 				}
 			}else{
-				header("Location: ".$url."/administrateur/inscription");
+				header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 			}
 		}else{
-			header("Location: ".$url."/administrateur/inscription");
+			header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 		}
 	}else{
-		header("Location: ".$url."/administrateur/inscription");
+		header("Location: ".$url."/administrateur/gestion/administrateur/inscription");
 	}
 }
 
