@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
 
 $engine = new Engine();
 
@@ -54,23 +54,23 @@ if(isset($_POST["modifier"])){
 	  						  $_SESSION["modifier_administrateur_ville"],
 	  						  $_SESSION["modifier_administrateur_code_postal"]);
 
-						header("Location: ".$url."/administrateur/tableau/administrateur");
+						header("Location: ".$url."/administrateur/gestion/administrateur");
 					}else{
-						header("Location: ".$url."/administrateur/administrateur-modification");
+						header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 					}
 				}else{
-					header("Location: ".$url."/administrateur/administrateur-modification");
+					header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 				}
 			}else{
-				header("Location: ".$url."/administrateur/administrateur-modification");
+				header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 			}
 		}else{
-			header("Location: ".$url."/administrateur/administrateur-modification");
+			header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 		}
 	}else{
-		header("Location: ".$url."/administrateur/administrateur-modification");
+		header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 	}
 }
 
-$engine->render("administrateurModification.html");
+$engine->render("administrateurmodification.html");
 ?>

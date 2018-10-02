@@ -92,7 +92,7 @@ if(isset($_POST['modifier'])){
   $_SESSION["modifier_administrateur_adresse"] = $_POST["adresse"];
   $_SESSION["modifier_administrateur_ville"] = $_POST["ville"];
   $_SESSION["modifier_administrateur_code_postal"] = $_POST["code_postal"];
-  header("Location: ".$url."/administrateur/administrateur/modification");
+  header("Location: ".$url."/administrateur/gestion/administrateur/modification");
 }
 
 if(isset($_POST['suprimmer'])){
