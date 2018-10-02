@@ -2,7 +2,7 @@
 class Engine{
 	private $vars = array();
 
-	private $url = "http://127.0.0.1:8000/ppe2";
+	private $url = "http://82.123.7.148:6001/ppe2";
 	private $url_de_cheik = "http://82.123.7.148:5917/cheik/accueil";
 
 	private $path_web_css_signin = "/web/css/signin.css";
