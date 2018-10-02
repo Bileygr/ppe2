@@ -1,6 +1,6 @@
 <?php
-include_once("config/Connection.php");
-include_once("app/models/base/Candidature.class.php");
+require_once("config/Connection.php");
+require_once("app/models/base/Candidature.class.php");
 
 Class CandidatureDAO{
 	public function accepter($id){
@@ -41,7 +41,7 @@ Class CandidatureDAO{
 		$connect = new Connect();
 		$connection = $connect->connexion();
 
-		$requete=$connexion->query("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id GROUP BY partenaire.partenaire_nom");
+		$requete=$connection->query("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id GROUP BY partenaire.partenaire_nom");
 
 		return $requete; 
 		$requete = null;
@@ -52,7 +52,7 @@ Class CandidatureDAO{
 		$connect = new Connect();
 		$connection = $connect->connexion();
 
-		$requete=$connexion->query("SELECT * FROM candidature");
+		$requete=$connection->query("SELECT * FROM candidature");
 
 		return $requete;
 		$requete = null;
@@ -87,7 +87,7 @@ Class CandidatureDAO{
 		$connect = new Connect();
 		$connection = $connect->connexion();
 
-		$requete=$connexion->prepare("SELECT COUNT(*) FROM candidature WHERE jeune_id = ?");
+		$requete=$connection->prepare("SELECT COUNT(*) FROM candidature WHERE jeune_id = ?");
 		$requete->execute(array($id));
 		$resultat = $requete->fetch();
 		$nbCandidature = $resultat["COUNT(*)"];
@@ -101,7 +101,7 @@ Class CandidatureDAO{
 		$connect 	= new Connect();
 		$connection 	= $connect->connexion();
 
-		$requete=$connexion->prepare("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id WHERE jeune_id = ? GROUP BY partenaire.partenaire_nom");
+		$requete=$connection->prepare("SELECT partenaire.partenaire_nom, COUNT(*) FROM candidature JOIN partenaire ON candidature.partenaire_id = partenaire.partenaire_id WHERE jeune_id = ? GROUP BY partenaire.partenaire_nom");
 		$requete->execute(array($id));
 		$resultat = $requete->fetch();
 

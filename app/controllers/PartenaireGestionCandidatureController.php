@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/candidatureDAO.php");
-require_once("dao/class/offreDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/CandidatureDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
 
 $partenaire_id = $_SESSION["partenaire_id"];
 
@@ -53,15 +53,13 @@ $engine->assign("tableau des candidatures", $candidature);
 
 if(isset($_POST["accepter"])){
   $candidatureDAO->accepter($_POST["candidature_id"]);
-
-  header("Location: ".$url."/partenaire/tableau/candidature");
+  header("Location: ".$url."/partenaire/gestion/candidature");
 }
 
 if(isset($_POST["refuser"])){
   $candidatureDAO->refuser($_POST["candidature_id"]);
-  
-  header("Location: ".$url."/partenaire/tableau/candidature");
+  header("Location: ".$url."/partenaire/gestion/candidature");
 }
 
-$engine->render("partenaireTableauCandidature.html");
+$engine->render("partenairegestioncandidature.html");
 ?>

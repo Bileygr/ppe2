@@ -72,6 +72,14 @@ switch ($request_uri[0]) {
     case "/ppe2/partenaire/camemberts":
 		include("app/controllers/PartenaireCamembertsController.php");
 		break;	
+    
+    case "/ppe2/partenaire/modifier-mes-informations":
+		include("app/controllers/PartenaireModifierMesInformationsController.php");
+		break;
+
+    case "/ppe2/partenaire/gestion/candidature":
+		include("app/controllers/PartenaireGestionCandidatureController.php");
+		break;
 
     case "/ppe2/jeune/connexion":
 		include("app/controllers/JeuneConnexionController.php");
