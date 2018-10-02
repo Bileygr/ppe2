@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/candidatureDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/CandidatureDAO.class.php");
 
 $jeune_id = $_SESSION["jeune_id"];
 
@@ -35,5 +35,5 @@ while($resultat = $partenaires->fetch()){
 $engine->assign("statistique formation", $formation);
 $engine->assign("statistique partenaire", $partenaire);
 
-$engine->render("jeuneStatistique.html");
+$engine->render("jeunecamemberts.html");
 ?>

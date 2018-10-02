@@ -100,6 +100,16 @@ switch ($request_uri[0]) {
     case "/ppe2/jeune/inscription":
 		include("app/controllers/JeuneInscriptionController.php");
 		break;
+    
+    case "/ppe2/jeune/camemberts":
+		include("app/controllers/JeuneCamembertsController.php");
+    		break;
+    
+    case "/ppe2/jeune/gestion/candidature":
+		include("app/controllers/JeuneGestionCandidatureController.php");
+		break;
+
+    case "/ppe2/jeune/"
 
     case "/ppe2/jeune/supprimmer":
 		include("app/controllers/JeuneSuppressionController.php");
