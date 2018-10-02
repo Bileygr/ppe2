@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("app/models/Engine.php");
+require_once("app/models/engine.php");
 require_once("app/models/dao/JeuneDAO.class.php");
 
 $engine = new Engine(); 
@@ -40,5 +40,5 @@ if(isset($_POST["connecter"])){
 	}
 }
 
-$engine->render("jeuneConnexion.html");
+$engine->render("jeuneconnexion.html");
 ?>

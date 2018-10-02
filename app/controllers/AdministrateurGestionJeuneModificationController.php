@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/jeuneDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/JeuneDAO.class.php");
 
 $engine = new Engine();
 $jeuneDAO = new JeuneDAO();
@@ -43,23 +43,23 @@ if(isset($_POST["modifier"])){
 	  						  $_SESSION['modifier_jeune_ville'],
 	  						  $_SESSION['modifier_jeune_code_postal']);
 
-						header("Location: ".$url."/administrateur/tableau/jeune");
+						header("Location: ".$url."/administrateur/gestion/jeune");
 					}else{
-						header("Location: ".$url."/administrateur/jeune-modification");
+						header("Location: ".$url."/administrateur/gestion/jeune/modification");
 					}
 				}else{
-					header("Location: ".$url."/administrateur/jeune-modification");
+					header("Location: ".$url."/administrateur/gestion/jeune/modification");
 				}
 			}else{
-				header("Location: ".$url."/administrateur/jeune-modification");
+				header("Location: ".$url."/administrateur/gestion/jeune/modification");
 			}
 		}else{
-			header("Location: ".$url."/administrateur/jeune-modification");
+			header("Location: ".$url."/administrateur/gestion/jeune/modification");
 		}
 	}else{
-		header("Location: ".$url."/administrateur/jeune-modification");
+		header("Location: ".$url."/administrateur/gestion/jeune/modification");
 	}
 }
 
-$engine->render("administrateurJeunemodification.html");
+$engine->render("administrateurgestionjeunemodification.html");
 ?>

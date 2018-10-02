@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
-require_once("dao/class/jeuneDAO.php");
-require_once("dao/class/offreDAO.php");
-require_once("dao/class/partenaireDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
+require_once("app/models/dao/JeuneDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -68,14 +68,14 @@ if(isset($_POST['modifier'])){
   $_SESSION['modifier_offre_fin'] = $_POST['offre_fin']; 
   $_SESSION['modifier_offre_creation'] = $_POST['offre_creation']; 
 
-  header("Location: ".$url."/administrateur/offre-modification");
+  header("Location: ".$url."/administrateur/gestion/offre/modification");
 }
 
 if(isset($_POST['suprimmer'])){
   $offreDAO->suprimmer($_POST["offre_id"]);
 
-  header("Location: ".$url."/administrateur/tableau/offre");
+  header("Location: ".$url."/administrateur/gestion/offre");
 }
 
-$engine->render("administrateurTableauOffre.html");
+$engine->render("administrateurgestionoffre.html");
 ?>

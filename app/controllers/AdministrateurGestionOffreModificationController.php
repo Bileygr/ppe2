@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/formationDAO.php");
-require_once("dao/class/offreDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/FormationDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
 
 $engine = new Engine();
 $formationDAO = new FormationDAO();
@@ -57,11 +57,11 @@ if(isset($_POST["modifier"])){
 			  $_SESSION['modifier_offre_fin'],
 			  $_SESSION['modifier_offre_creation']);
 
-		header("Location: ".$url."/administrateur/tableau/offre");
+		header("Location: ".$url."/administrateur/gestion/offre");
 	}else{
-		header("Location: ".$url."/administrateur/offre-modification");
+		header("Location: ".$url."/administrateur/gestion/offre/modification");
 	}
 }
 
-$engine->render("offreModification.html");
+$engine->render("offremodification.html");
 ?>
