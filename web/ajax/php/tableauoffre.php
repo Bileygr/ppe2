@@ -2,7 +2,7 @@
 require_once("config/Connection.php");
 
 $connect = new Connect();
-$connexion = $connect->DBConnection();
+$connexion = $connect->connexion();
 
 $requete = $connexion->query("SELECT offre.offre_id, formation.formation_id, partenaire.partenaire_nom, formation.formation_nom,
 										     offre_nom, offre.offre_description, offre_debut, offre_fin, offre_creation

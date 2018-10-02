@@ -1,7 +1,7 @@
 function TableauOffre(){
 	$.ajax({
 		type:"GET",
-		url:"/assets/ajax/php/tableauoffre.php",
+		url:"/web/ajax/php/tableauoffre.php",
 		success:function(data){
 			var lesOffres = $.parseJSON(data);
 	
