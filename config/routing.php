@@ -35,15 +35,11 @@ switch ($request_uri[0]) {
 		break;
 
     case "/ppe2/administrateur/gestion/partenaire":
-		include("app/controllers/AdministrateurMenuGestionPartenaireController.php");
-		break;
-	
-    case "/ppe2/administrateur/gestion/partenaire":
-		include("app/controllers/AdministrateurMenuPartenaireController.php");
+		include("app/controllers/AdministrateurGestionPartenaireController.php");
 		break;
 
     case "/ppe2/administrateur/gestion/partenaire/modification":
-		include("app/controllers/AdministrateurMenuModifierPartenaireController.php");
+		include("app/controllers/AdministrateurGestionPartenaireModificationController.php");
 		break;
 
     case "/ppe2/administrateur/gestion/jeune":
@@ -72,7 +68,11 @@ switch ($request_uri[0]) {
     case "/ppe2/partenaire/supprimmer":
 		include("app/controllers/PartenaireSupressionController.php");
 		break;    
-	
+
+    case "/ppe2/partenaire/camemberts":
+		include("app/controllers/PartenaireCamembertsController.php");
+		break;	
+
     case "/ppe2/jeune/connexion":
 		include("app/controllers/JeuneConnexionController.php");
 		break;

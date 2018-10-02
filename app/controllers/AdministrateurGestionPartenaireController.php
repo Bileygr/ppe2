@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/administrateurDAO.php");
-require_once("dao/class/jeuneDAO.php");
-require_once("dao/class/offreDAO.php");
-require_once("dao/class/partenaireDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/AdministrateurDAO.class.php");
+require_once("app/models/dao/JeuneDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $engine = new Engine();
 $administrateurDAO = new AdministrateurDAO();
@@ -67,14 +67,14 @@ if(isset($_POST["modifier"])){
   $_SESSION["modifier_partenaire_ville"] = $_POST["ville"];
   $_SESSION["modifier_partenaire_code_postal"] = $_POST["code_postal"];
 
-  header("Location: ".$url."/administrateur/partenaire-modification");
+  header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 }
 
 if(isset($_POST["suprimmer"])){
   $partenaireDAO->suprimmer($_POST["id"]);
 
-  header("Location: ".$url."/administrateur/tableau/partenaire");
+  header("Location: ".$url."/administrateur/gestion/partenaire");
 }
 
-$engine->render("administrateurTableauPartenaire.html");
+$engine->render("administrateurgestionpartenaire.html");
 ?>

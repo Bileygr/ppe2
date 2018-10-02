@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/partenaireDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/PartenaireDAO.class.php");
 
 $engine = new Engine();
 $partenaireDAO = new PartenaireDAO();
@@ -9,6 +9,7 @@ $partenaireDAO = new PartenaireDAO();
 $url = $engine->url();
 $engine->administrateur_session_check();
 
+$engine->assign("titre", "Modification Partenaire");
 $engine->assign("siret", $_SESSION["modifier_partenaire_siret"]);
 $engine->assign("nom", $_SESSION["modifier_partenaire_nom"]);
 $engine->assign("telephone", $_SESSION["modifier_partenaire_telephone"]);
@@ -46,26 +47,26 @@ if(isset($_POST["modifier"])){
 	  						  	  $_SESSION["modifier_partenaire_ville"],
 	  						  	  $_SESSION["modifier_partenaire_code_postal"]);
 
-							header("Location: ".$url."/administrateur/tableau/partenaire");
+							header("Location: ".$url."/administrateur/gestion/partenaire");
 						}else{
-							header("Location: ".$url."/administrateur/partenaire-modification");
+							header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 						}
 					}else{
-						header("Location: ".$url."/administrateur/partenaire-modification");
+						header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 					}
 				}else{
-					header("Location: ".$url."/administrateur/partenaire-modification");
+					header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 				}
 			}else{
-				header("Location: ".$url."/administrateur/partenaire-modification");
+				header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 			}
 		}else{
-			header("Location: ".$url."/administrateur/partenaire-modification");
+			header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 		}
 	}else{
-		header("Location: ".$url."/administrateur/partenaire-modification");
+		header("Location: ".$url."/administrateur/gestion/partenaire/modification");
 	}
 }
 
-$engine->render("partenaireModification.html");
+$engine->render("administrateurgestionpartenairemodification.html");
 ?>
