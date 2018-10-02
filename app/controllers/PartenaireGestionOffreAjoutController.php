@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/formationDAO.php");
-require_once("dao/class/offreDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/FormationDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
 
 $engine = new Engine();
 $formationDAO = new FormationDAO();
@@ -35,11 +35,11 @@ if(isset($_POST["ajouter"])){
 		$offre = new Offre(null, $partenaire_id, $formation_id, $offre_nom, $offre_description, $offre_debut, $offre_fin, null);
 		$offreDAO->ajouter($offre);
 
-		header("Location: ".$url."/partenaire/tableau/offre");
+		header("Location: ".$url."/partenaire/gestion/offre");
 	}else{
-		header("Location: ".$url."/partenaire/ajout-offre");
+		header("Location: ".$url."/partenaire/gestion/offre/ajout");
 	}
 }
 
-$engine->render("partenaireAjoutOffre.html");
+$engine->render("partenairegestionoffreajout.html");
 ?>

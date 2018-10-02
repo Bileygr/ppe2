@@ -9,10 +9,10 @@
     <meta name="author" content="Cheik-Siramakan Keita">
 
     <!-- CSS -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css " rel="stylesheet">
-    <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="/assets/vendor/datatables/dataTables.bootstrap4.css"  rel="stylesheet">
-    <link href="/assets/css/sb-admin.css"  rel="stylesheet">
+    <link href="/web/vendor/bootstrap/css/bootstrap.min.css " rel="stylesheet">
+    <link href="/web/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/web/vendor/datatables/dataTables.bootstrap4.css"  rel="stylesheet">
+    <link href="/web/css/sb-admin.css"  rel="stylesheet">
 
     <title>{{ titre }}</title>
   </head>
@@ -26,7 +26,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-            <a class="nav-link" href="{{ url }}/partenaire/profil">
+            <a class="nav-link" href="{{ url }}/partenaire/camemberts">
               <i class="fa fa-fw fa-area-chart"></i>
               <span class="nav-link-text">Camemberts</span>
             </a>
@@ -38,10 +38,10 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseTableauxLink">
               <li>
-                <a href="{{ url }}/partenaire/tableau/candidature">Candidatures - {{ nombre de candidatures }}</a>
+                <a href="{{ url }}/partenaire/gestion/candidature">Candidatures - {{ nombre de candidatures }}</a>
               </li>
               <li>
-                <a href="{{ url }}/partenaire/tableau/offre">Offres - {{ nombre d'offres }}</a>
+                <a href="{{ url }}/partenaire/gestion/offre">Offres - {{ nombre d'offres }}</a>
               </li>
             </ul>
           </li>
@@ -77,7 +77,7 @@
         </ol>
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fa fa-table"></i> Offres <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='{{ url }}/partenaire/ajout-offre'" value="Ajouter"></div>
+            <i class="fa fa-table"></i> Offres <input class="btn btn-secondary my-2 my-sm-0 float-right" type="submit" name="modifier_administrateur" onclick="window.location.href='{{ url }}/partenaire/gestion/offre/ajout'" value="Ajouter"></div>
           <div class="card-body">
             <div class="table-responsive">
               <form method="POST">
@@ -119,7 +119,7 @@
       <footer class="sticky-footer">
         <div class="container">
           <div class="text-center">
-            <small>Copyright © Cheik-Siramakan Keita {{ date copyright }}</small>
+            <small>Copyright © <a href="{{ site de cheik }}">Cheik-Siramakan Keita</a> {{ year }}</small>
           </div>
         </div>
       </footer>
@@ -148,14 +148,14 @@
       </div>
 
       <!-- JavaScript -->
-      <script src="/assets/js/core.js"></script>
-      <script src="/assets/vendor/jquery/jquery.min.js"></script>
-      <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-      <script src="/assets/vendor/datatables/jquery.dataTables.js"></script>
-      <script src="/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-      <script src="/assets/js/sb-admin.min.js"></script>
-      <script src="/assets/js/sb-admin-datatables.min.js"></script>
+      <script src="/web/js/core.js"></script>
+      <script src="/web/vendor/jquery/jquery.min.js"></script>
+      <script src="/web/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="/web/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="/web/vendor/datatables/jquery.dataTables.js"></script>
+      <script src="/web/vendor/datatables/dataTables.bootstrap4.js"></script>
+      <script src="/web/js/sb-admin.min.js"></script>
+      <script src="/web/js/sb-admin-datatables.min.js"></script>
     </div>
   </body>
 </html>

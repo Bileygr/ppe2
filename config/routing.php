@@ -80,6 +80,18 @@ switch ($request_uri[0]) {
     case "/ppe2/partenaire/gestion/candidature":
 		include("app/controllers/PartenaireGestionCandidatureController.php");
 		break;
+    
+    case "/ppe2/partenaire/gestion/offre":
+		include("app/controllers/PartenaireGestionOffreController.php");
+		break;
+
+    case "/ppe2/partenaire/gestion/offre/ajout":
+		include("app/controllers/PartenaireGestionOffreAjoutController.php");
+		break;
+
+    case "/ppe2/partenaire/gestion/offre/modification":
+		include("app/controllers/PartenaireGestionOffreModificationController.php");
+		break;
 
     case "/ppe2/jeune/connexion":
 		include("app/controllers/JeuneConnexionController.php");

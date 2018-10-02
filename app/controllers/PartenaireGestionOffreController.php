@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/candidatureDAO.php");
-require_once("dao/class/offreDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/CandidatureDAO.class.php");
+require_once("app/models/dao/OffreDAO.class.php");
 
 $partenaire_id = $_SESSION["partenaire_id"];
 
@@ -60,13 +60,13 @@ if(isset($_POST["modifier"])){
   $_SESSION["modifier_offre_fin"] = $_POST["offre_fin"];
   $_SESSION["modifier_offre_creation"] = $_POST["offre_creation"];
 
-  header("Location: ".$url."/partenaire/offre-modification");
+  header("Location: ".$url."/partenaire/gestion/offre/modification");
 }
 
 if(isset($_POST["suprimmer"])){
   $offreDAO->suprimmer($_POST["offre_id"]);
-  header("Location: ".$url."/partenaire/tableau/offre");
+  header("Location: ".$url."/partenaire/gestion/offre");
 }
 
-$engine->render("partenairetableauoffre.html");
+$engine->render("partenairegestionoffre.html");
 ?>
