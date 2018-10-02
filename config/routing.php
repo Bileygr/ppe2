@@ -27,14 +27,14 @@ switch ($request_uri[0]) {
 		break;
 
     case "/ppe2/administrateur/gestion/administrateur/modification":
-		include("app/controllers/AdministrateurMenuModifierAdministrateurController.php");
+		include("app/controllers/AdministrateurGestionAdministrateurModificationController.php");
 		break;
 
     case "/ppe/administrateur/gestion/administrateur/supression":
 		include("app/controllers/AdministrateurMenuSuppressionAdministrateurController.php");
 		break;
 
-	case "/ppe2/administrateur/gestion/partenaire":
+    case "/ppe2/administrateur/gestion/partenaire":
 		include("app/controllers/AdministrateurMenuGestionPartenaireController.php");
 		break;
 	
@@ -46,14 +46,21 @@ switch ($request_uri[0]) {
 		include("app/controllers/AdministrateurMenuModifierPartenaireController.php");
 		break;
 
-	case "/ppe2/administrateur/gestion/jeune":
+    case "/ppe2/administrateur/gestion/jeune":
 		include("app/controllers/AdministrateurGestionJeuneController.php");
 		break;
 
     case "/ppe2/administrateur/gestion/jeune/modification":
-		include("app/controllers/AdministrateurMenuModifierJeuneController.php");
+		include("app/controllers/AdministrateurGestionJeuneModificationController.php");
+		break;
+    case "/ppe2/administrateur/gestion/offre":
+		include("app/controllers/AdministrateurGestionOffreController.php");
 		break;
 
+    case "/ppe2/administrateur/gestion/offre/modification":
+    		include("app/controllers/AdministrateurGestionOffreModificationController.php");
+		break;
+	
     case "/ppe2/partenaire/connexion":
 		include("app/controllers/PartenaireConnexionController.php");
         break;
@@ -70,12 +77,17 @@ switch ($request_uri[0]) {
 		include("app/controllers/JeuneConnexionController.php");
 		break;
 
-	case "/ppe2/jeune/inscription":
+    case "/ppe2/jeune/inscription":
 		include("app/controllers/JeuneInscriptionController.php");
 		break;
 
     case "/ppe2/jeune/supprimmer":
 		include("app/controllers/JeuneSuppressionController.php");
+		break;
+
+    case "/ppe/offre/modification":
+		include("app/controllers/OffreModificationController.php");
+		break;
 
     case "/ppe2/test/class":
 		include("test/Class.php");
