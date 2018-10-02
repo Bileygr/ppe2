@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("framework/engine.php");
-require_once("dao/class/candidatureDAO.php");
+require_once("app/models/engine.php");
+require_once("app/models/dao/CandidatureDAO.class.php");
 
 $jeune_id = $_SESSION["jeune_id"];
 
@@ -49,8 +49,8 @@ $engine->assign("tableau des candidatures", $candidature);
 if(isset($_POST["suprimmer"])){
   $candidatureDAO->suprimmer($_POST["candidature_id"]);
   
-  header("Location: ".$url."/jeune/tableau/candidature");
+  header("Location: ".$url."/jeune/gestion/candidature");
 }
 
-$engine->render("jeuneTableauCandidature.html");
+$engine->render("jeunegestioncandidature.html");
 ?>

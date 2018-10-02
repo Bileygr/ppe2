@@ -109,7 +109,9 @@ switch ($request_uri[0]) {
 		include("app/controllers/JeuneGestionCandidatureController.php");
 		break;
 
-    case "/ppe2/jeune/"
+    case "/ppe2/jeune/modifier-mes-informations":
+    	include("app/controllers/JeuneModifierMesInformationsController.php");
+    	break;
 
     case "/ppe2/jeune/supprimmer":
 		include("app/controllers/JeuneSuppressionController.php");
