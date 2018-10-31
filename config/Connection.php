@@ -3,8 +3,8 @@ class Connect{
 	public function connexion(){
 		$settings = parse_ini_file("settings.ini", true);
 
-		$host = "192.168.1.40"; //$settings["database"]["host"];
-		$port = "3306"; //$settings["database"]["port"];
+		$host = "127.0.0.1"; //$settings["database"]["host"];
+		$port = ""; //$settings["database"]["port"];
 		$db = "ppe"; //$settings["database"]["db"];
 		$user = "ppe"; //$settings["database"]["user"];
 		$password = "S7xvZEuCDq&2tWCa"; //$settings["database"]["password"];

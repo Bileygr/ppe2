@@ -27,6 +27,16 @@ $engine->assign("email", $administrateur_email);
 $engine->assign("adresse", $administrateur_adresse);
 $engine->assign("ville", $administrateur_ville);
 $engine->assign("code postal", $administrateur_code_postal);
+if($_SESSION["administrateur_super"] == 1){
+	$engine->assign("super admin checkbox", "
+		<div class=\"checkbox mb-3\">
+			<label>
+				<input type=\"checkbox\" onclick=\"set_super_administrateur();\" id=\"super_administrateur_status\" name=\"super_administrateur_status\" value=\"\"> Super Administrateur
+			</label>
+		</div>");
+}else{
+	$engine->assign("super admin checkbox", "");
+}
 
 if(isset($_POST['modifier'])){
 	if(isset($_POST['super_administrateur_status'])){
