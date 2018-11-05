@@ -7,7 +7,7 @@ class Connect{
 		$port = ""; //$settings["database"]["port"];
 		$db = "ppe"; //$settings["database"]["db"];
 		$user = "ppe"; //$settings["database"]["user"];
-		$password = "S7xvZEuCDq&2tWCa"; //$settings["database"]["password"];
+		$password = "dDPc*MV&4D!Enm%4"; //$settings["database"]["password"];
 
 		try{
 			$db = new PDO("mysql:host=".$host.";port=".$port.";dbname=".$db.";charset=utf8", $user, $password);
