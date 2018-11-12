@@ -1,13 +1,14 @@
 <?php
 class Connect{
+	private $bd_local_mdp = "dDPc*MV&4D!Enm%4";
+	private $bd_remote_mdp = "dDPc*MV&4D!Enm%4";
 	public function connexion(){
 		$settings = parse_ini_file("settings.ini", true);
-
 		$host = "127.0.0.1"; //$settings["database"]["host"];
 		$port = ""; //$settings["database"]["port"];
 		$db = "ppe"; //$settings["database"]["db"];
 		$user = "ppe"; //$settings["database"]["user"];
-		$password = "dDPc*MV&4D!Enm%4"; //$settings["database"]["password"];
+		$password = $this->bd_local_mdp; //$settings["database"]["password"];
 
 		try{
 			$db = new PDO("mysql:host=".$host.";port=".$port.";dbname=".$db.";charset=utf8", $user, $password);
