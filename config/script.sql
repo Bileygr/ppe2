@@ -105,7 +105,7 @@ INSERT INTO administrateur(administrateur_super, administrateur_nom, administrat
 							administrateur_telephone, administrateur_email, administrateur_adresse, administrateur_ville,
 							administrateur_code_postal, administrateur_derniere_connexion, administrateur_creation)
 		VALUES(0, 'Keita', 'Cheik', '$2y$10$lcl0iM1bL7ftRFgretJcmeeYSeqRWTaJBjcm7BLeJgzhPcJQfEI.6' , '0605557802', 
-				'cheiksiramakankeita@gmail.com', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW());
+				'chesirkei@hotmail.fr', '57 Boulevard de l\'Yerres', 'Evry', '91000', NOW(), NOW());
 
 INSERT INTO partenaire(partenaire_siret, partenaire_nom, partenaire_mot_de_passe_hash, partenaire_telephone, partenaire_email, 
 						partenaire_adresse, partenaire_ville, partenaire_code_postal, partenaire_derniere_connexion, partenaire_creation)
