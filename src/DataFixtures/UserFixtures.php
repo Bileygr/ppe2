@@ -21,13 +21,12 @@ class UserFixtures extends Fixture
         $useradmin = new User();
         $userjeune = new User();
         $userpartenaire = new User();
-        $roles = array(array('ROLE_ADMINISTRATEUR'), array('ROLE_JEUNE'), array('ROLE_PARTENAIRE'));
 
         $useradmin->setNom("Keita");
         $useradmin->setPrenom("Cheik-Siramakan");
         $useradmin->setUsername();
         $useradmin->setSIRET(0);
-        $useradmin->setRoles(0);
+        $useradmin->setRoles(array('ROLE_ADMINISTRATEUR'));
         $useradmin->setPassword($this->passwordEncoder->encodePassword(
         	$useradmin,
             'motdepasse'
@@ -37,12 +36,13 @@ class UserFixtures extends Fixture
         $useradmin->setAdresse("57 Boulevard de l'Yerres");
         $useradmin->setVille("Evry");
         $useradmin->setCodepostal("91000");
+        
 
         $userjeune->setNom("Ghislain");
         $userjeune->setPrenom("Ghislain");
         $userjeune->setUsername();
         $userjeune->setSIRET(0);
-        $useradmin->setRoles(1);
+        $userjeune->setRoles(array('ROLE_JEUNE'));
         $userjeune->setPassword($this->passwordEncoder->encodePassword(
         	$userjeune,
             'motdepasse'
@@ -52,12 +52,12 @@ class UserFixtures extends Fixture
         $userjeune->setAdresse("128 Allée des Champs Elysées");
         $userjeune->setVille("Evry");
         $userjeune->setCodepostal("91000");
-
+        
         $userpartenaire->setNom("ImmoCorp");
         $userpartenaire->setPrenom("");
         $userpartenaire->setUsername();
         $userpartenaire->setSIRET("123456789");
-        $useradmin->setRoles(2);
+        $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
         $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
         	$userpartenaire,
             'motdepasse'
