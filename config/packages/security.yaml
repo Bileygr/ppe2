@@ -12,7 +12,7 @@ security:
                 property: username
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_JEUNE, ROLE_PARTENAIRE]
+        ROLE_ADMINISTRATEUR: [ROLE_JEUNE, ROLE_PARTENAIRE]
 
     firewalls:
         dev:
@@ -35,6 +35,15 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+         # Acces de l'administrateur
          - { path: ^/administrateur/inscription, roles: ROLE_ADMINISTRATEUR }
          - { path: ^/jeune/inscription, roles: ROLE_ADMINISTRATEUR }
          - { path: ^/partenaire/inscription, roles: ROLE_ADMINISTRATEUR }
+
+         # Acces du partenaire
+         - { path: ^/partenaire/profil, roles: ROLE_PARTENAIRE }
+         - { path: ^/offres, roles: ROLE_PARTENAIRE }
+
+         # Acces du jeune
+         - { path: ^/jeune/profil, roles: ROLE_JEUNE }
+         - { path: ^/offres, roles: ROLE_JEUNE }

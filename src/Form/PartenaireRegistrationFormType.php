@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
-class RegistrationFormType extends AbstractType
+class PartenaireRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -44,10 +44,7 @@ class RegistrationFormType extends AbstractType
                     ],
             ])
             */
-
-            // Trouver une facon de cacher le champ en dessous si il ne s'agit pas d'un partenaire
-            // ->add('siret', NumberType::class, array('attr' => array('placeholder' => 'SIRET')))
-            
+            ->add('siret', NumberType::class, array('attr' => array('placeholder' => 'SIRET')))
             ->add('motdepasse', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [
