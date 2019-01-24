@@ -56,15 +56,15 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
   \t\t<div class=\"jumbotron\">
   \t\t\t<a href=\"";
         // line 23
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("connexion");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
   \t\t\t<a href=\"";
         // line 24
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("connexion");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
   \t\t\t<a href=\"";
         // line 25
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("connexion");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
     \t</div>
 
@@ -132,9 +132,9 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
   \t\t</div>
 
   \t\t<div class=\"jumbotron\">
-  \t\t\t<a href=\"{{ path('connexion') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
-  \t\t\t<a href=\"{{ path('connexion') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
-  \t\t\t<a href=\"{{ path('connexion') }}\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
+  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
+  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
+  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
     \t</div>
 
     \t<hr>

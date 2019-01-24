@@ -11,7 +11,7 @@
                     '/connexion',
                 ],
                 'name' => [
-                    'connexion',
+                    'app_login',
                 ],
             ],
         ],
