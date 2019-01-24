@@ -771,6 +771,6 @@ class __TwigTemplate_838f0de3ec6c362bff12bed36342170075c9d447b39e465e93c075213ff
     </table>
     {% endfor %}
 {% endmacro %}
-", "@WebProfiler/Collector/messenger.html.twig", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\messenger.html.twig");
+", "@WebProfiler/Collector/messenger.html.twig", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Collector\\messenger.html.twig");
     }
 }

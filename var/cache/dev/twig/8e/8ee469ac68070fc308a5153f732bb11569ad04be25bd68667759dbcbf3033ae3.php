@@ -57,6 +57,6 @@ class __TwigTemplate_233c8751a4862b0abdefb1d9f8c62ca7439860ae4e4dd5c4152cee13cb5
     c-0.4,0.4-0.9,0.6-1.4,0.6s-1-0.2-1.4-0.6c-0.8-0.8-0.8-2,0-2.8L9.2,12L2.9,5.7c-0.8-0.8-0.8-2,0-2.8c0.8-0.8,2-0.8,2.8,0L12,9.2
     l6.3-6.3c0.8-0.8,2-0.8,2.8,0c0.8,0.8,0.8,2,0,2.8L14.8,12L21.1,18.3z\"/>
 </svg>
-", "@WebProfiler/Icon/close.svg", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\close.svg");
+", "@WebProfiler/Icon/close.svg", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Icon\\close.svg");
     }
 }

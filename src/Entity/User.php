@@ -155,7 +155,8 @@ class User implements UserInterface
             
             $this->username = $premiereLettreDuPrenomEnMinuscule.$nomDeFamilleEnMinuscule;
         }else{
-            $this->username = $this->nom;
+            $nomEnMinuscule = strtolower($this->nom);
+            $this->username = $nomEnMinuscule;
         }
 
         return $this;

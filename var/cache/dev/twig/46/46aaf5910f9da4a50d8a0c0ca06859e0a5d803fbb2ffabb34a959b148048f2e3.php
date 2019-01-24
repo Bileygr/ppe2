@@ -155,6 +155,6 @@ class __TwigTemplate_e402f05836a778bf1b53bf6b7f87ae88a54a54898335fb6b8546e6aab54
         {% block javascripts %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\wamp64\\www\\my_project\\templates\\base.html.twig");
+", "base.html.twig", "C:\\wamp64\\www\\ppe2\\templates\\base.html.twig");
     }
 }

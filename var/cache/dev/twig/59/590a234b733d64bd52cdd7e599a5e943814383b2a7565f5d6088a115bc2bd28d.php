@@ -111,6 +111,6 @@ class __TwigTemplate_79c89aa1c4a6d6f1ad69b8bef4f04eec161c716821fccbc9a72acf8db79
         </div>
     </body>
 </html>
-", "@Twig/Exception/error.html.twig", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\error.html.twig");
+", "@Twig/Exception/error.html.twig", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\twig-bundle\\Resources\\views\\Exception\\error.html.twig");
     }
 }

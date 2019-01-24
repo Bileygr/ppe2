@@ -213,6 +213,6 @@ class __TwigTemplate_511dc42504b6f2fbc6e3a710b001cda69888dd6b2cadbf98e2d29c76619
         </div>
     </form>
 </div>
-", "@WebProfiler/Profiler/search.html.twig", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\search.html.twig");
+", "@WebProfiler/Profiler/search.html.twig", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\search.html.twig");
     }
 }

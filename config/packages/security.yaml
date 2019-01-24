@@ -35,15 +35,15 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         # Acces de l'administrateur
+         # Droits d'accès de l'administrateur
          - { path: ^/administrateur/inscription, roles: ROLE_ADMINISTRATEUR }
          - { path: ^/jeune/inscription, roles: ROLE_ADMINISTRATEUR }
          - { path: ^/partenaire/inscription, roles: ROLE_ADMINISTRATEUR }
 
-         # Acces du partenaire
+         # Droits d'accès du partenaire
          - { path: ^/partenaire/profil, roles: ROLE_PARTENAIRE }
          - { path: ^/offres, roles: ROLE_PARTENAIRE }
 
-         # Acces du jeune
+         # Droits d'accès du jeune
          - { path: ^/jeune/profil, roles: ROLE_JEUNE }
          - { path: ^/offres, roles: ROLE_JEUNE }

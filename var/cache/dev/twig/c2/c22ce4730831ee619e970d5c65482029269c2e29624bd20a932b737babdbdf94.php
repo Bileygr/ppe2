@@ -403,6 +403,6 @@ class __TwigTemplate_65dc86b7bfc10da711beffd17b2b18d187fbd88ea04ab96624d4135bd50
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\web-profiler-bundle\\Resources\\views\\Profiler\\settings.html.twig");
     }
 }

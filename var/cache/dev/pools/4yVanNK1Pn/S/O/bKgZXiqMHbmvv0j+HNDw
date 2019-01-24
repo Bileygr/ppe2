@@ -8,10 +8,10 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/login',
+                    '/connexion',
                 ],
                 'name' => [
-                    'app_login',
+                    'connexion',
                 ],
             ],
         ],

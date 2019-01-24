@@ -46,7 +46,7 @@ class RegistrationFormType extends AbstractType
             */
 
             // Trouver une facon de cacher le champ en dessous si il ne s'agit pas d'un partenaire
-            // ->add('siret', NumberType::class, array('attr' => array('placeholder' => 'SIRET')))
+            //->add('siret', NumberType::class, array('attr' => array('placeholder' => 'SIRET')))
             
             ->add('motdepasse', PasswordType::class, [
                 'mapped' => false,

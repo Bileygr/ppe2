@@ -210,6 +210,6 @@ class __TwigTemplate_0cd33b5837535b8496081a7eea21135d9ff1956679c1731fbb5d19ab0eb
         {{ include('@Twig/base_js.html.twig') }}
     </body>
 </html>
-", "@Twig/layout.html.twig", "C:\\wamp64\\www\\my_project\\vendor\\symfony\\twig-bundle\\Resources\\views\\layout.html.twig");
+", "@Twig/layout.html.twig", "C:\\wamp64\\www\\ppe2\\vendor\\symfony\\twig-bundle\\Resources\\views\\layout.html.twig");
     }
 }
