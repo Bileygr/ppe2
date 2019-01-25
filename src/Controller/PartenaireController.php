@@ -148,10 +148,10 @@ class PartenaireController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('partenaire_profil');
+            return $this->redirectToRoute('connexion');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('partenaire/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
