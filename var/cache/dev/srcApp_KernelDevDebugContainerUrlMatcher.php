@@ -22,6 +22,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/jeune/profil' => array(array(array('_route' => 'jeune_profil', '_controller' => 'App\\Controller\\JeuneController::profil'), null, null, null, false, false, null)),
             '/jeune/connexion' => array(array(array('_route' => 'jeune_connexion', '_controller' => 'App\\Controller\\JeuneController::connexion'), null, null, null, false, false, null)),
             '/jeune/inscription' => array(array(array('_route' => 'jeune_inscription', '_controller' => 'App\\Controller\\JeuneController::inscription'), null, null, null, false, false, null)),
+            '/offre' => array(array(array('_route' => 'offre', '_controller' => 'App\\Controller\\OffreController::index'), null, null, null, false, false, null)),
             '/partenaire/profil' => array(array(array('_route' => 'partenaire/profil', '_controller' => 'App\\Controller\\PartenaireController::profil'), null, null, null, false, false, null)),
             '/partenaire/connexion' => array(array(array('_route' => 'partenaire_connexion', '_controller' => 'App\\Controller\\PartenaireController::connexion'), null, null, null, false, false, null)),
             '/partenaire/inscription' => array(array(array('_route' => 'partenaire_inscription', '_controller' => 'App\\Controller\\PartenaireController::inscription'), null, null, null, false, false, null)),

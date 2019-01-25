@@ -29,50 +29,49 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         echo "<!DOCTYPE html>
 
 <html lang=\"fr\">
-  <head>
-  \t<meta charset=\"utf-8\">
-    <title>Accueil</title>
+\t<head>
+  \t\t<meta charset=\"utf-8\">
+    \t<title>Accueil</title>
 
-    <!-- CSS -->
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    <link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    <link rel=\"stylesheet\" href=\"";
+    \t<!-- CSS -->
+    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
+    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
+    \t<link rel=\"stylesheet\" href=\"";
         // line 11
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/moncss.css"), "html", null, true);
         echo "\"> <!-- mon CSS -->
-    <link rel=\"shortcut icon\" href=\"";
+    \t<link rel=\"shortcut icon\" href=\"";
         // line 12
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/favicon.ico"), "html", null, true);
         echo "\" /> <!-- Icone du site -->
+  \t</head>
 
-  </head>
+  \t<body>
+  \t\t<div class=\"container\">
+  \t\t\t<div class=\"header clearfix\">
+  \t\t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
+  \t\t\t</div>
 
-  <body>
-  \t<div class=\"container\">
-  \t\t<div class=\"header clearfix\">
-  \t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-  \t\t</div>
-
-  \t\t<div class=\"jumbotron\">
-  \t\t\t<a href=\"";
-        // line 23
+  \t\t\t<div class=\"jumbotron\">
+  \t\t\t\t<a href=\"";
+        // line 22
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
-  \t\t\t<a href=\"";
-        // line 24
+  \t\t\t\t<a href=\"";
+        // line 23
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
-  \t\t\t<a href=\"";
-        // line 25
+  \t\t\t\t<a href=\"";
+        // line 24
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
-    \t</div>
+    \t\t</div>
 
     \t<hr>
 
     \t<footer>
         <p>&copy; Cheik-Siramakan Keita 2018-";
-        // line 31
+        // line 30
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "</p>
       </footer>
@@ -105,7 +104,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     public function getDebugInfo()
     {
-        return array (  76 => 31,  67 => 25,  63 => 24,  59 => 23,  45 => 12,  41 => 11,  29 => 1,);
+        return array (  75 => 30,  66 => 24,  62 => 23,  58 => 22,  45 => 12,  41 => 11,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -113,29 +112,28 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         return new Twig_Source("<!DOCTYPE html>
 
 <html lang=\"fr\">
-  <head>
-  \t<meta charset=\"utf-8\">
-    <title>Accueil</title>
+\t<head>
+  \t\t<meta charset=\"utf-8\">
+    \t<title>Accueil</title>
 
-    <!-- CSS -->
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    <link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    <link rel=\"stylesheet\" href=\"{{ asset('css/moncss.css') }}\"> <!-- mon CSS -->
-    <link rel=\"shortcut icon\" href=\"{{ asset('images/favicon.ico') }}\" /> <!-- Icone du site -->
+    \t<!-- CSS -->
+    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
+    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
+    \t<link rel=\"stylesheet\" href=\"{{ asset('css/moncss.css') }}\"> <!-- mon CSS -->
+    \t<link rel=\"shortcut icon\" href=\"{{ asset('images/favicon.ico') }}\" /> <!-- Icone du site -->
+  \t</head>
 
-  </head>
+  \t<body>
+  \t\t<div class=\"container\">
+  \t\t\t<div class=\"header clearfix\">
+  \t\t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
+  \t\t\t</div>
 
-  <body>
-  \t<div class=\"container\">
-  \t\t<div class=\"header clearfix\">
-  \t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-  \t\t</div>
-
-  \t\t<div class=\"jumbotron\">
-  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
-  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
-  \t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
-    \t</div>
+  \t\t\t<div class=\"jumbotron\">
+  \t\t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
+  \t\t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
+  \t\t\t\t<a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
+    \t\t</div>
 
     \t<hr>
 

@@ -27,6 +27,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'jeune_profil' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::profil'), array(), array(array('text', '/jeune/profil')), array(), array()),
         'jeune_connexion' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::connexion'), array(), array(array('text', '/jeune/connexion')), array(), array()),
         'jeune_inscription' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::inscription'), array(), array(array('text', '/jeune/inscription')), array(), array()),
+        'offre' => array(array(), array('_controller' => 'App\\Controller\\OffreController::index'), array(), array(array('text', '/offre')), array(), array()),
         'partenaire/profil' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::profil'), array(), array(array('text', '/partenaire/profil')), array(), array()),
         'partenaire_connexion' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::connexion'), array(), array(array('text', '/partenaire/connexion')), array(), array()),
         'partenaire_inscription' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::inscription'), array(), array(array('text', '/partenaire/inscription')), array(), array()),
