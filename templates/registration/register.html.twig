@@ -4,11 +4,13 @@
 	<head>
     	<meta charset="utf-8">
     	<title>
+    		{% block title %}
     		{% if app.request.get('_route') == 'administrateur_inscription' %}
     			Inscription Administrateur
 			{% elseif app.request.get('_route') == 'jeune_inscription' %}
     			Inscription Jeune
 			{% endif %}
+			{% endblock %}
     	</title>
 
     	<!-- CSS -->
@@ -30,6 +32,7 @@
       		</div>
 
       		<div class="jumbotron">
+      			{% block body %}
         		<h1>
         			{% if app.request.get('_route') == 'administrateur_inscription' %}
     					Inscription Administrateur
@@ -37,7 +40,6 @@
     					Inscription Jeune
 					{% endif %}
         		</h1><br/>
-        		{% block body %}
 	        		{{ form_start(registrationForm) }}
 	          			<div class="form-group">
 	          				<label>Nom</label>
@@ -80,7 +82,7 @@
 			          	</div>
 			          	{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary'}} ) }}
 	        		{{ form_end(registrationForm) }}
-        		{% endblock %}
+	        	{% endblock %}
       		</div>
 
       		<hr>
