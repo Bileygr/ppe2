@@ -250,6 +250,9 @@
         <parameter>ROLE_JEUNE</parameter>
         <parameter>ROLE_PARTENAIRE</parameter>
       </parameter>
+      <parameter key="ROLE_SUPER_ADMINISTRATEUR" type="collection">
+        <parameter>ROLE_ADMINISTRATEUR</parameter>
+      </parameter>
     </parameter>
     <parameter key="security.access.denied_url">null</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
@@ -2876,6 +2879,14 @@
       <argument type="service" id="request_stack" on-invalid="null"/>
       <argument type="service" id="router.default" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
+      <call method="registerListener">
+        <argument>main</argument>
+        <argument>app_logout</argument>
+        <argument>logout</argument>
+        <argument>_csrf_token</argument>
+        <argument>null</argument>
+        <argument>null</argument>
+      </call>
     </service>
     <service id="security.user.provider.missing" class="Symfony\Component\Security\Core\User\MissingUserProvider" public="false" abstract="true">
       <argument></argument>
@@ -2929,28 +2940,14 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id=".security.request_matcher.mRn1OK3"/>
+        <argument type="service" id=".security.request_matcher.pOqQ6Qx"/>
         <argument type="collection">
           <argument>ROLE_ADMINISTRATEUR</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher._zQd_N8"/>
-        <argument type="collection">
-          <argument>ROLE_ADMINISTRATEUR</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.d4PUH6R"/>
-        <argument type="collection">
-          <argument>ROLE_ADMINISTRATEUR</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.10QllRO"/>
+        <argument type="service" id=".security.request_matcher.f4domFx"/>
         <argument type="collection">
           <argument>ROLE_PARTENAIRE</argument>
         </argument>
@@ -2964,7 +2961,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.ckNKT.6"/>
+        <argument type="service" id=".security.request_matcher.UoNbjkO"/>
         <argument type="collection">
           <argument>ROLE_JEUNE</argument>
         </argument>
@@ -3255,23 +3252,17 @@
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
     </service>
-    <service id=".security.request_matcher.mRn1OK3" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/administrateur/inscription</argument>
+    <service id=".security.request_matcher.pOqQ6Qx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/administrateur</argument>
     </service>
-    <service id=".security.request_matcher._zQd_N8" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/jeune/inscription</argument>
-    </service>
-    <service id=".security.request_matcher.d4PUH6R" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/partenaire/inscription</argument>
-    </service>
-    <service id=".security.request_matcher.10QllRO" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/partenaire/profil</argument>
+    <service id=".security.request_matcher.f4domFx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/partenaire</argument>
     </service>
     <service id=".security.request_matcher.JcFqqVU" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/offres</argument>
     </service>
-    <service id=".security.request_matcher.ckNKT.6" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/jeune/profil</argument>
+    <service id=".security.request_matcher.UoNbjkO" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/jeune</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -4058,17 +4049,21 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.roBLT8K" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.IoBMFW0" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\AdministrateurController::inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\JeuneController::inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\PartenaireController::inscription" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::inscriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::insriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\PartenaireController::ajoutOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
-        <argument key="App\Controller\AdministrateurController:inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\JeuneController:inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\PartenaireController:inscription" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:inscriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:insriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\PartenaireController:ajoutOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
       </argument>
@@ -4401,6 +4396,26 @@
       <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
       <argument type="service" id="security.authentication.trust_resolver"/>
     </service>
+    <service id="security.logout_listener.main" class="Symfony\Component\Security\Http\Firewall\LogoutListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument type="service" id="security.logout.success_handler.main"/>
+      <argument type="collection">
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="csrf_token_id">logout</argument>
+        <argument key="logout_path">app_logout</argument>
+      </argument>
+      <call method="addHandler">
+        <argument type="service" id="security.logout.handler.csrf_token_clearing"/>
+      </call>
+      <call method="addHandler">
+        <argument type="service" id="security.logout.handler.session"/>
+      </call>
+    </service>
+    <service id="security.logout.success_handler.main" class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
+      <argument type="service" id="security.http_utils"/>
+      <argument>accueil</argument>
+    </service>
     <service id="security.authentication.provider.guard.main" class="Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider" public="false">
       <argument type="iterator">
         <argument type="service" id="App\Security\LoginFormAuthenticator"/>
@@ -4448,7 +4463,7 @@
         <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service" id="security.exception_listener.main"/>
-      <argument>null</argument>
+      <argument type="service" id="security.logout_listener.main"/>
       <argument type="service" id="security.firewall.map.config.main"/>
     </service>
     <service id="swiftmailer.mailer.default.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
@@ -5014,7 +5029,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.roBLT8K"/>
+      <argument type="service" id=".service_locator.IoBMFW0"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5354,7 +5369,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.roBLT8K"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.IoBMFW0"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

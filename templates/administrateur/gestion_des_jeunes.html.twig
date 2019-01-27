@@ -1,0 +1,34 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Gestion Jeunes{% endblock %}
+
+{% block body %}
+	<a href="{{ path('inscription_des_jeunes') }}" class="btn btn-primary">Ajouter un jeune</a>
+    <a href="{{ path('app_login') }}" class="btn btn-primary">Gérer les jeunes</a>
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Identifiant</th>
+		      	<th scope="col">Nom</th>
+		      	<th scope="col">Prénom</th>
+		      	<th scope="col">Tél</th>
+		      	<th scope="col">Email</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for jeune in jeunes %}
+		    		<tr>
+	      				<th scope="row">{{ jeune.id }}</th>
+	      				<td>{{ jeune.username }}</td>
+	      				<td>{{ jeune.nom }}</td>
+	      				<td>{{ jeune.prenom }}</td>
+	      				<td>{{ jeune.telephone }}</td>
+	      				<td>{{ jeune.email }}</td>
+	    			</tr>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

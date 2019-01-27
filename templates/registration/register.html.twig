@@ -80,7 +80,15 @@
 			            	<label>Code Postal</label>
 			            	{{ form_widget(registrationForm.codepostal, {'attr': {'class': 'form-control'}}  ) }}
 			          	</div>
-			          	{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary'}} ) }}
+			          	{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary btn-lg btn-block'}} ) }}
+
+			          	{% if app.request.get('_route') == 'inscription_des_jeunes' %}
+			          		<a href="{{ path('gestion_des_jeunes') }}" class="btn btn-warning btn-block">Retour</a>
+			          	{% endif %}
+
+			          	{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
+			          		<a href="{{ path('gestion_des_administrateurs') }}" class="btn btn-warning btn-block">Retour</a>
+			          	{% endif %}
 	        		{{ form_end(registrationForm) }}
 	        	{% endblock %}
       		</div>

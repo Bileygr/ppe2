@@ -1,0 +1,54 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Ajout d'offre{% endblock %}
+
+{% block body %}
+	{{ form_start(registrationForm) }}
+		<div class="form-row">
+			<div class="form-group col-md-6">
+		    	<label>Nom</label>
+		    	{{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}} ) }}
+		    </div>
+
+			<div class="form-group col-md-6">
+		    	<label>Adresse</label>
+		    	{{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control'}} ) }}
+		    </div>
+
+		    <div class="form-group col-md-6">
+		        <label>Ville</label>
+		        {{ form_widget(registrationForm.ville, {'attr': {'class': 'form-control'}} ) }}
+		    </div>
+
+		    <div class="form-group col-md-6">
+		        <label>Code Postal</label>
+		        {{ form_widget(registrationForm.codepostal, {'attr': {'class': 'form-control'}} ) }}
+		    </div>
+		</div>
+
+		<label for="form_debut_month" class="sr-only">Début</label>
+			{{ form_widget(registrationForm.debut, {'attr': {'class': 'form-control'}} ) }}
+
+			<label for="offre_fin" class="sr-only">Fin</label>
+			{{ form_widget(registrationForm.fin, {'attr': {'class': 'form-control'}} ) }}
+
+		<div class='form-group'>
+		    <label for='inputState'>Sélectionner une formation</label>
+		    <select class="form-control" id="exampleSelect1" name='formation' value=''>
+		        <option selected="select" disabled>Sélectionnez la formation</option>
+		        <hr />
+		        {% for formation in formations %}
+		    		<option id="formation" name="formation" value="{{ formation.id }}">{{ formation.nom }}</option>
+		    	{% endfor %}
+		    </select>
+		</div>
+
+		<div class="form-group basic-textarea rounded-corners">
+		    <label>Descriptif du poste :</label>
+		    {{ form_widget(registrationForm.description, {'attr': {'class': 'form-control'}}, {'attr': {'rows': '7'}} ) }}
+		</div>
+
+		{{ form_widget(registrationForm.ajout, {'attr': {'class': 'btn btn-primary btn-lg btn-block'}} ) }}
+		<br><a href="{{ path('partenaire_gestion_offres') }}" class="btn btn-warning btn-block">Retour</a>
+	{{ form_end(registrationForm) }}
+{% endblock %}

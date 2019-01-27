@@ -20,17 +20,17 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         $this->defaultLocale = $defaultLocale;
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = array(
-        'administrateur_profil' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::profil'), array(), array(array('text', '/administrateur/profil')), array(), array()),
-        'administrateur_connexion' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::connexion'), array(), array(array('text', '/administrateur/connexion')), array(), array()),
-        'administrateur_inscription' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscription'), array(), array(array('text', '/administrateur/inscription')), array(), array()),
+        'gestion_des_administrateurs' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::insriptionDesAdministrateurs'), array(), array(array('text', '/administrateur/gestion/administrateurs')), array(), array()),
+        'inscription_des_administrateurs' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesAdministrateurs'), array(), array(array('text', '/administrateur/inscription')), array(), array()),
+        'gestion_des_partenaires' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), array(), array(array('text', '/administrateur/gestion/partenaires')), array(), array()),
+        'inscription_des_partenaires' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesPartenaires'), array(), array(array('text', '/administrateur/gestion/partenaires/inscription')), array(), array()),
+        'gestion_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesJeunes'), array(), array(array('text', '/administrateur/gestion/jeunes')), array(), array()),
+        'inscription_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesJeunes'), array(), array(array('text', '/administrateur/jeune/inscription')), array(), array()),
         'accueil' => array(array(), array('_controller' => 'App\\Controller\\DefaultController::index'), array(), array(array('text', '/accueil')), array(), array()),
         'jeune_profil' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::profil'), array(), array(array('text', '/jeune/profil')), array(), array()),
-        'jeune_connexion' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::connexion'), array(), array(array('text', '/jeune/connexion')), array(), array()),
-        'jeune_inscription' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::inscription'), array(), array(array('text', '/jeune/inscription')), array(), array()),
         'offre' => array(array(), array('_controller' => 'App\\Controller\\OffreController::index'), array(), array(array('text', '/offre')), array(), array()),
-        'partenaire/profil' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::profil'), array(), array(array('text', '/partenaire/profil')), array(), array()),
-        'partenaire_connexion' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::connexion'), array(), array(array('text', '/partenaire/connexion')), array(), array()),
-        'partenaire_inscription' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::inscription'), array(), array(array('text', '/partenaire/inscription')), array(), array()),
+        'partenaire_gestion_offres' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::gestionOffres'), array(), array(array('text', '/partenaire/gestion/offres')), array(), array()),
+        'ajout_des_offres' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::ajoutOffres'), array(), array(array('text', '/partenaire/gestion/offres/ajout')), array(), array()),
         'app_register' => array(array(), array('_controller' => 'App\\Controller\\RegistrationController::register'), array(), array(array('text', '/register')), array(), array()),
         'app_login' => array(array(), array('_controller' => 'App\\Controller\\SecurityController::login'), array(), array(array('text', '/connexion')), array(), array()),
         '_twig_error_test' => array(array('code', '_format'), array('_controller' => 'twig.controller.preview_error::previewErrorPageAction', '_format' => 'html'), array('code' => '\\d+'), array(array('variable', '.', '[^/]++', '_format', true), array('variable', '/', '\\d+', 'code', true), array('text', '/_error')), array(), array()),
@@ -45,6 +45,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         '_profiler_router' => array(array('token'), array('_controller' => 'web_profiler.controller.router::panelAction'), array(), array(array('text', '/router'), array('variable', '/', '[^/]++', 'token', true), array('text', '/_profiler')), array(), array()),
         '_profiler_exception' => array(array('token'), array('_controller' => 'web_profiler.controller.exception::showAction'), array(), array(array('text', '/exception'), array('variable', '/', '[^/]++', 'token', true), array('text', '/_profiler')), array(), array()),
         '_profiler_exception_css' => array(array('token'), array('_controller' => 'web_profiler.controller.exception::cssAction'), array(), array(array('text', '/exception.css'), array('variable', '/', '[^/]++', 'token', true), array('text', '/_profiler')), array(), array()),
+        'app_logout' => array(array(), array(), array(), array(array('text', '/logout')), array(), array()),
     );
         }
     }

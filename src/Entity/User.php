@@ -82,16 +82,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $derniereconnexion;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
     private $dateajout;
 
     public function __construct()
     {
-        $this->derniereconnexion = new \DateTime();
         $this->dateajout = new \DateTime();
     }
 
@@ -269,18 +263,6 @@ class User implements UserInterface
     public function setCodepostal(int $codepostal): self
     {
         $this->codepostal = $codepostal;
-
-        return $this;
-    }
-
-    public function getDerniereconnexion(): ?\DateTimeInterface
-    {
-        return $this->derniereconnexion;
-    }
-
-    public function setDerniereconnexion(\DateTimeInterface $derniereconnexion): self
-    {
-        $this->derniereconnexion = $derniereconnexion;
 
         return $this;
     }

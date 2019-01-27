@@ -18,9 +18,25 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $usersuperadmin = new User();
         $useradmin = new User();
         $userjeune = new User();
         $userpartenaire = new User();
+
+        $usersuperadmin->setNom("Guerfi");
+        $usersuperadmin->setPrenom("Souhila");
+        $usersuperadmin->setUsername();
+        $usersuperadmin->setSIRET(0);
+        $usersuperadmin->setRoles(array('ROLE_SUPER_ADMINISTRATEUR'));
+        $usersuperadmin->setPassword($this->passwordEncoder->encodePassword(
+            $usersuperadmin,
+            'motdepasse'
+         ));
+        $usersuperadmin->setTelephone("0603007639");
+        $usersuperadmin->setEmail("sguerfi12@yahoo.fr");
+        $usersuperadmin->setAdresse("6 Villa Simon Demeure");
+        $usersuperadmin->setVille("Evry");
+        $usersuperadmin->setCodepostal("91000");
 
         $useradmin->setNom("Keita");
         $useradmin->setPrenom("Cheik-Siramakan");
@@ -28,7 +44,7 @@ class UserFixtures extends Fixture
         $useradmin->setSIRET(0);
         $useradmin->setRoles(array('ROLE_ADMINISTRATEUR'));
         $useradmin->setPassword($this->passwordEncoder->encodePassword(
-        	$useradmin,
+            $useradmin,
             'motdepasse'
          ));
         $useradmin->setTelephone("0605557802");
@@ -68,6 +84,7 @@ class UserFixtures extends Fixture
         $userpartenaire->setVille("Evry");
         $userpartenaire->setCodepostal("91000");
 
+        $manager->persist($usersuperadmin);
         $manager->persist($useradmin);
         $manager->persist($userjeune);
         $manager->persist($userpartenaire);
