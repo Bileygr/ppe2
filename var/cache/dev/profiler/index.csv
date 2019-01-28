@@ -1344,3 +1344,11 @@ bb86e4,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/administrateur
 750090,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/partenaires,1548674106,,200
 5547a5,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/partenaires/inscription,1548674119,,200
 b8eae7,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1548674126,,200
+937419,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1548678511,,200
+e563eb,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1548678525,a37072,200
+a37072,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1548678526,,404
+b13103,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/partenaires,1548678564,,200
+8402fd,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/partenaires/inscription,1548678578,,200
+f03820,127.0.0.1,GET,http://127.0.0.1:8000/administrateur/gestion/partenaires,1548678587,,200
+315c36,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1548678626,,200
+9853ae,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1548678734,,200

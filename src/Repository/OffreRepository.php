@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Offre;
+use App\Entity\Formation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -11,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+ */ 
 class OffreRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
@@ -36,6 +38,7 @@ class OffreRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('o')
             ->join('o.idpartenaire', 'u')
+            ->join('o.idformation', 'f')
             ->andWhere(' = :role')
             ->setParameter('role', '%'.$role.'%')
             ->orderBy('u.id', 'ASC')

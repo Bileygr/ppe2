@@ -9,11 +9,11 @@
   	</head>
 
   	<body>
-  		<h1 class="text-muted">Accueil</h1>
+  		<h1 class="text-muted">{% block title %}Accueil{% endblock %}</h1>
 
   		{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}
-          <a href="{{ path('app_login') }}">Voir les offres</a>
+          <a href="{{ path('offres') }}">Voir les offres</a>
           <a href="{{ path('gestion_des_jeunes') }}">Gérer les jeunes</a>
           <a href="">Gérer les offres</a>
           <a href="{{ path('gestion_des_partenaires') }}">Gérer les partenaires</a>

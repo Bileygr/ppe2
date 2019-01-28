@@ -1,0 +1,40 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Gestion Jeunes{% endblock %}
+
+{% block body %}	
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Identifiant</th>
+		      	<th scope="col">Nom</th>
+		      	<th scope="col">Prénom</th>
+		      	<th scope="col">Tél</th>
+		      	<th scope="col">Email</th>
+		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Ville</th>
+		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Date d'ajout</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for jeune in jeunes %}
+		    		<tr>
+	      				<th scope="row">{{ jeune.id }}</th>
+	      				<td>{{ jeune.username }}</td>
+	      				<td>{{ jeune.nom }}</td>
+	      				<td>{{ jeune.prenom }}</td>
+	      				<td>0{{ jeune.telephone }}</td>
+	      				<td>{{ jeune.email }}</td>
+	      				<td>{{ jeune.adresse }}</td>
+	      				<td>{{ jeune.ville }}</td>
+	      				<td>{{ jeune.codepostal }}</td>
+	      				<td>{{ jeune.dateajout|date('Y-m-d') }}</td>
+	    			</tr>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}
