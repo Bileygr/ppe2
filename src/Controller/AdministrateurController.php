@@ -6,56 +6,41 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AdministrateurController extends AbstractController
 {
     /**
      * @Route("/administrateur/gestion/administrateurs", name="gestion_des_administrateurs")
      */
-    public function insriptionDesAdministrateurs(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function gestionDesAdministrateurs()
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $administrateurs = $repository->findByRole('ROLE_ADMINISTRATEUR');
 
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-
-            $user->setNom($form->get('nom')->getData());
-            $user->setPrenom($form->get('prenom')->getData());
-            $user->setUsername();
-            $user->setSIRET(0);
-            $user->setRoles(array('ROLE_ADMINISTRATEUR'));
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('motdepasse')->getData()
-                )
-            );
-            $user->setTelephone($form->get('telephone')->getData());
-            $user->setEmail($form->get('email')->getData());
-            $user->setAdresse($form->get('adresse')->getData());
-            $user->setVille($form->get('ville')->getData());
-            $user->setCodepostal($form->get('codepostal')->getData());
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
+        return $this->render('administrateur/gestion_des_administrateurs.html.twig', [
+            'administrateurs' => $administrateurs,
+            'controller_name' => 'AdministrateurController',
         ]);
     }
 
     /**
-     * @Route("/administrateur/inscription", name="inscription_des_administrateurs")
+     * @Route("/administrateur/gestion/administrateurs/inscription", name="inscription_des_administrateurs")
      */
     public function inscriptionDesAdministrateurs(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -107,8 +92,8 @@ class AdministrateurController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(User::class);
         $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
 
-        return $this->render('administrateur/gestionDesPartenaires.html.twig', [
-            'jeunes' => $jeunes,
+        return $this->render('administrateur/gestion_des_partenaires.html.twig', [
+            'partenaires' => $partenaires,
             'controller_name' => 'AdministrateurController',
         ]);
     }
@@ -221,7 +206,7 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('partenaire/register.html.twig', [
+        return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -235,6 +220,10 @@ class AdministrateurController extends AbstractController
      */
     public function gestionDesJeunes()
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $nomDelUtilisateur = $user->getNom();
+        $prenomDelUtilisateur = $user->getPrenom();
+
         $repository = $this->getDoctrine()->getRepository(User::class);
         $jeunes = $repository->findByRole('ROLE_JEUNE');
 
@@ -245,7 +234,7 @@ class AdministrateurController extends AbstractController
     }
 
     /**
-     * @Route("administrateur/jeune/inscription", name="inscription_des_jeunes")
+     * @Route("administrateur/gestion/jeunes/inscription", name="inscription_des_jeunes")
      */
     public function inscriptionDesJeunes(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {

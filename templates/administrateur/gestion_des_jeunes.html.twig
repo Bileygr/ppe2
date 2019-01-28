@@ -3,8 +3,7 @@
 {% block title %}Gestion Jeunes{% endblock %}
 
 {% block body %}
-	<a href="{{ path('inscription_des_jeunes') }}" class="btn btn-primary">Ajouter un jeune</a>
-    <a href="{{ path('app_login') }}" class="btn btn-primary">Gérer les jeunes</a>
+	<a href="{{ path('inscription_des_jeunes') }}" class="btn btn-primary">Ajout</a>	
     <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
 
     <table class="table">
@@ -16,6 +15,10 @@
 		      	<th scope="col">Prénom</th>
 		      	<th scope="col">Tél</th>
 		      	<th scope="col">Email</th>
+		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Ville</th>
+		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Date d'ajout</th>
 	    	</tr>
   		</thead>
 	  	<tbody>
@@ -25,8 +28,12 @@
 	      				<td>{{ jeune.username }}</td>
 	      				<td>{{ jeune.nom }}</td>
 	      				<td>{{ jeune.prenom }}</td>
-	      				<td>{{ jeune.telephone }}</td>
+	      				<td>0{{ jeune.telephone }}</td>
 	      				<td>{{ jeune.email }}</td>
+	      				<td>{{ jeune.adresse }}</td>
+	      				<td>{{ jeune.ville }}</td>
+	      				<td>{{ jeune.codepostal }}</td>
+	      				<td>{{ jeune.dateajout|date('Y-m-d') }}</td>
 	    			</tr>
 		    {% endfor %}
 	  	</tbody>

@@ -29,22 +29,17 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
 
         // line 1
         echo "<!DOCTYPE html>
-
 <html lang=\"fr\">
 \t<head>
     \t<meta charset=\"utf-8\">
     \t<title>
     \t\t";
-        // line 7
+        // line 6
         $this->displayBlock('title', $context, $blocks);
-        // line 14
+        // line 15
         echo "    \t</title>
 
     \t<!-- CSS -->
-    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    \t<link rel=\"stylesheet\" href=\"moncss.css\"> <!-- mon CSS -->
-    \t<link rel=\"shortcut icon\" href=\"images/favicon.ico\" /> <!-- Icone du site -->
     \t<style type=\"text/css\">
     \t\tinput { 
     \t\t\ttext-align: center; 
@@ -53,33 +48,19 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
   \t</head>
 
   \t<body>
-    \t<div class=\"container\">
-      \t\t<div class=\"header clearfix\">
-        \t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-      \t\t</div>
-
-      \t\t<div class=\"jumbotron\">
-      \t\t\t";
-        // line 35
+    \t";
+        // line 26
         $this->displayBlock('body', $context, $blocks);
-        // line 94
-        echo "      \t\t</div>
-
-      \t\t<hr>
-
-      \t\t<footer>
-        \t\t<p>&copy; Cheik-Siramakan Keita 2018-";
-        // line 99
+        // line 71
+        echo "
+      \t<footer>
+        \t<p>&copy; Cheik-Siramakan Keita 2018-";
+        // line 73
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
         echo "</p>
-      \t\t</footer>
-    \t</div>
+      \t</footer>
 
     \t<!-- Scripts -->
-    \t<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>
-    \t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>
-    \t<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js\" integrity=\"sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4\" crossorigin=\"anonymous\"></script>
-    \t<script rel=\"text/javaScript\" src=\"\"></script> <!-- mon script -->
   \t</body>
 </html>";
         
@@ -90,7 +71,7 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
 
     }
 
-    // line 7
+    // line 6
     public function block_title($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -99,19 +80,24 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
-        // line 8
-        echo "    \t\t";
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 8, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "administrateur_inscription")) {
-            // line 9
-            echo "    \t\t\tInscription Administrateur
-\t\t\t";
-        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 10
-(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 10, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "jeune_inscription")) {
-            // line 11
-            echo "    \t\t\tInscription Jeune
-\t\t\t";
+        // line 7
+        echo "    \t\t\t";
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 7, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_administrateurs")) {
+            // line 8
+            echo "    \t\t\t\tInscription des administrateurs
+\t\t\t\t";
+        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 9
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 9, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_jeunes")) {
+            // line 10
+            echo "    \t\t\t\tInscription des jeunes
+    \t\t\t";
+        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 11
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 11, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_partenaires")) {
+            // line 12
+            echo "    \t\t\t\tInscription des partenaires
+\t\t\t\t";
         }
-        // line 13
+        // line 14
         echo "\t\t\t";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -121,7 +107,7 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
 
     }
 
-    // line 35
+    // line 26
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -130,119 +116,150 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
+        // line 27
+        echo "        \t<h1>
+        \t\t";
+        // line 28
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 28, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_administrateurs")) {
+            // line 29
+            echo "    \t\t\t\tInscription des administrateurs
+\t\t\t\t";
+        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 30
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 30, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_jeunes")) {
+            // line 31
+            echo "    \t\t\t\tInscription des jeunes
+    \t\t\t";
+        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 32
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 32, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_partenaires")) {
+            // line 33
+            echo "    \t\t\t\tInscription des partenaires
+\t\t\t\t";
+        }
+        // line 35
+        echo "        \t</h1>
+        \t";
         // line 36
-        echo "        \t\t<h1>
-        \t\t\t";
-        // line 37
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 37, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "administrateur_inscription")) {
+        if (((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 36, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_administrateurs") || (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 36, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_jeunes"))) {
+            // line 37
+            echo "\t\t        ";
+            echo             $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 37, $this->source); })()), 'form_start');
+            echo "
+\t\t          \t";
             // line 38
-            echo "    \t\t\t\t\tInscription Administrateur
-\t\t\t\t\t";
-        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 39
-(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 39, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "jeune_inscription")) {
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 38, $this->source); })()), "nom", array()), 'widget');
+            echo "
+\t\t            ";
+            // line 39
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 39, $this->source); })()), "prenom", array()), 'widget');
+            echo "
+\t\t            ";
             // line 40
-            echo "    \t\t\t\t\tInscription Jeune
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 40, $this->source); })()), "motdepasse", array()), 'widget', array("attr" => array("placeholder" => "Mot de passe")));
+            echo "
+\t\t            ";
+            // line 41
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 41, $this->source); })()), "telephone", array()), 'widget');
+            echo "
+\t\t\t\t    ";
+            // line 42
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 42, $this->source); })()), "email", array()), 'widget');
+            echo "
+\t\t\t\t    ";
+            // line 43
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 43, $this->source); })()), "adresse", array()), 'widget');
+            echo "
+\t\t\t\t    ";
+            // line 44
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 44, $this->source); })()), "ville", array()), 'widget');
+            echo "
+\t\t\t\t    ";
+            // line 45
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 45, $this->source); })()), "codepostal", array()), 'widget');
+            echo "
+\t\t\t\t    ";
+            // line 46
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 46, $this->source); })()), "inscription", array()), 'widget');
+            echo "
+
+\t\t\t\t    ";
+            // line 48
+            if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 48, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_jeunes")) {
+                // line 49
+                echo "\t\t\t\t         <a href=\"";
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_jeunes");
+                echo "\">Retour</a>
+\t\t\t\t    ";
+            }
+            // line 51
+            echo "
 \t\t\t\t\t";
+            // line 52
+            if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 52, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_administrateurs")) {
+                // line 53
+                echo "\t\t\t\t        <a href=\"";
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_administrateurs");
+                echo "\">Retour</a>
+\t\t\t\t    ";
+            }
+            // line 55
+            echo "\t\t       \t";
+            echo             $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 55, $this->source); })()), 'form_end');
+            echo "
+\t\t    ";
+        } elseif ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 56
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 56, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_partenaires")) {
+            // line 57
+            echo "\t\t    \t";
+            echo             $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 57, $this->source); })()), 'form_start');
+            echo "
+\t\t    \t\t";
+            // line 58
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 58, $this->source); })()), "siret", array()), 'widget');
+            echo "
+\t\t        \t";
+            // line 59
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 59, $this->source); })()), "nom", array()), 'widget');
+            echo "
+\t\t        \t";
+            // line 60
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 60, $this->source); })()), "motdepasse", array()), 'widget', array("attr" => array("placeholder" => "Mot de passe")));
+            echo "
+\t\t        \t";
+            // line 61
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 61, $this->source); })()), "telephone", array()), 'widget');
+            echo "
+\t\t\t\t\t";
+            // line 62
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 62, $this->source); })()), "email", array()), 'widget');
+            echo "
+\t\t\t\t\t";
+            // line 63
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 63, $this->source); })()), "adresse", array()), 'widget');
+            echo "
+\t\t\t\t\t";
+            // line 64
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 64, $this->source); })()), "ville", array()), 'widget');
+            echo "
+\t\t\t\t\t";
+            // line 65
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 65, $this->source); })()), "codepostal", array()), 'widget');
+            echo "
+\t\t\t\t\t";
+            // line 66
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 66, $this->source); })()), "inscription", array()), 'widget');
+            echo "
+\t\t\t\t\t<a href=\"";
+            // line 67
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_partenaires");
+            echo "\">Retour</a>
+\t\t\t\t";
+            // line 68
+            echo             $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 68, $this->source); })()), 'form_end');
+            echo "
+\t\t    ";
         }
-        // line 42
-        echo "        \t\t</h1><br/>
-\t        \t\t";
-        // line 43
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 43, $this->source); })()), 'form_start');
-        echo "
-\t          \t\t\t<div class=\"form-group\">
-\t          \t\t\t\t<label>Nom</label>
-\t          \t\t\t\t";
-        // line 46
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 46, $this->source); })()), "nom", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t            \t\t</div>
-
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Prénom</label>
-\t            \t\t\t";
-        // line 51
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 51, $this->source); })()), "prenom", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t          \t\t\t</div>
-
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Mot de passe</label>
-\t            \t\t\t";
-        // line 56
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 56, $this->source); })()), "motdepasse", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t          \t\t\t</div>
-
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Téléphone</label>
-\t            \t\t\t";
-        // line 61
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 61, $this->source); })()), "telephone", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t          \t\t\t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Email</label>
-\t\t\t            \t";
-        // line 66
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 66, $this->source); })()), "email", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Adresse</label>
-\t\t\t            \t";
-        // line 71
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 71, $this->source); })()), "adresse", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Ville</label>
-\t\t\t            \t";
-        // line 76
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 76, $this->source); })()), "ville", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Code Postal</label>
-\t\t\t            \t";
-        // line 81
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 81, $this->source); })()), "codepostal", array()), 'widget', array("attr" => array("class" => "form-control")));
-        echo "
-\t\t\t          \t</div>
-\t\t\t          \t";
-        // line 83
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 83, $this->source); })()), "inscription", array()), 'widget', array("attr" => array("class" => "btn btn-primary btn-lg btn-block")));
-        echo "
-
-\t\t\t          \t";
-        // line 85
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 85, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_jeunes")) {
-            // line 86
-            echo "\t\t\t          \t\t<a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_jeunes");
-            echo "\" class=\"btn btn-warning btn-block\">Retour</a>
-\t\t\t          \t";
-        }
-        // line 88
-        echo "
-\t\t\t          \t";
-        // line 89
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 89, $this->source); })()), "request", array()), "get", array(0 => "_route"), "method") == "inscription_des_administrateurs")) {
-            // line 90
-            echo "\t\t\t          \t\t<a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_administrateurs");
-            echo "\" class=\"btn btn-warning btn-block\">Retour</a>
-\t\t\t          \t";
-        }
-        // line 92
-        echo "\t        \t\t";
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["registrationForm"]) || array_key_exists("registrationForm", $context) ? $context["registrationForm"] : (function () { throw new Twig_Error_Runtime('Variable "registrationForm" does not exist.', 92, $this->source); })()), 'form_end');
-        echo "
-\t        \t";
+        // line 70
+        echo "\t    ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -263,31 +280,28 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
 
     public function getDebugInfo()
     {
-        return array (  242 => 92,  236 => 90,  234 => 89,  231 => 88,  225 => 86,  223 => 85,  218 => 83,  213 => 81,  205 => 76,  197 => 71,  189 => 66,  181 => 61,  173 => 56,  165 => 51,  157 => 46,  151 => 43,  148 => 42,  144 => 40,  142 => 39,  139 => 38,  137 => 37,  134 => 36,  125 => 35,  115 => 13,  111 => 11,  109 => 10,  106 => 9,  103 => 8,  94 => 7,  73 => 99,  66 => 94,  64 => 35,  41 => 14,  39 => 7,  31 => 1,);
+        return array (  262 => 70,  257 => 68,  253 => 67,  249 => 66,  245 => 65,  241 => 64,  237 => 63,  233 => 62,  229 => 61,  225 => 60,  221 => 59,  217 => 58,  212 => 57,  210 => 56,  205 => 55,  199 => 53,  197 => 52,  194 => 51,  188 => 49,  186 => 48,  181 => 46,  177 => 45,  173 => 44,  169 => 43,  165 => 42,  161 => 41,  157 => 40,  153 => 39,  149 => 38,  144 => 37,  142 => 36,  139 => 35,  135 => 33,  133 => 32,  130 => 31,  128 => 30,  125 => 29,  123 => 28,  120 => 27,  111 => 26,  101 => 14,  97 => 12,  95 => 11,  92 => 10,  90 => 9,  87 => 8,  84 => 7,  75 => 6,  59 => 73,  55 => 71,  53 => 26,  40 => 15,  38 => 6,  31 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("<!DOCTYPE html>
-
 <html lang=\"fr\">
 \t<head>
     \t<meta charset=\"utf-8\">
     \t<title>
     \t\t{% block title %}
-    \t\t{% if app.request.get('_route') == 'administrateur_inscription' %}
-    \t\t\tInscription Administrateur
-\t\t\t{% elseif app.request.get('_route') == 'jeune_inscription' %}
-    \t\t\tInscription Jeune
-\t\t\t{% endif %}
+    \t\t\t{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
+    \t\t\t\tInscription des administrateurs
+\t\t\t\t{% elseif app.request.get('_route') == 'inscription_des_jeunes' %}
+    \t\t\t\tInscription des jeunes
+    \t\t\t{% elseif app.request.get('_route') == 'inscription_des_partenaires' %}
+    \t\t\t\tInscription des partenaires
+\t\t\t\t{% endif %}
 \t\t\t{% endblock %}
     \t</title>
 
     \t<!-- CSS -->
-    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    \t<link rel=\"stylesheet\" href=\"moncss.css\"> <!-- mon CSS -->
-    \t<link rel=\"shortcut icon\" href=\"images/favicon.ico\" /> <!-- Icone du site -->
     \t<style type=\"text/css\">
     \t\tinput { 
     \t\t\ttext-align: center; 
@@ -296,85 +310,57 @@ class __TwigTemplate_8545e6953f5a1de33268cb734d9c35fa07227f09155302eb158eed73294
   \t</head>
 
   \t<body>
-    \t<div class=\"container\">
-      \t\t<div class=\"header clearfix\">
-        \t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-      \t\t</div>
+    \t{% block body %}
+        \t<h1>
+        \t\t{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
+    \t\t\t\tInscription des administrateurs
+\t\t\t\t{% elseif app.request.get('_route') == 'inscription_des_jeunes' %}
+    \t\t\t\tInscription des jeunes
+    \t\t\t{% elseif app.request.get('_route') == 'inscription_des_partenaires'%}
+    \t\t\t\tInscription des partenaires
+\t\t\t\t{% endif %}
+        \t</h1>
+        \t{% if (app.request.get('_route') == 'inscription_des_administrateurs') or (app.request.get('_route') == 'inscription_des_jeunes') %}
+\t\t        {{ form_start(registrationForm) }}
+\t\t          \t{{ form_widget(registrationForm.nom) }}
+\t\t            {{ form_widget(registrationForm.prenom ) }}
+\t\t            {{ form_widget(registrationForm.motdepasse, {'attr': {'placeholder': 'Mot de passe'}} ) }}
+\t\t            {{ form_widget(registrationForm.telephone ) }}
+\t\t\t\t    {{ form_widget(registrationForm.email ) }}
+\t\t\t\t    {{ form_widget(registrationForm.adresse ) }}
+\t\t\t\t    {{ form_widget(registrationForm.ville ) }}
+\t\t\t\t    {{ form_widget(registrationForm.codepostal ) }}
+\t\t\t\t    {{ form_widget(registrationForm.inscription) }}
 
-      \t\t<div class=\"jumbotron\">
-      \t\t\t{% block body %}
-        \t\t<h1>
-        \t\t\t{% if app.request.get('_route') == 'administrateur_inscription' %}
-    \t\t\t\t\tInscription Administrateur
-\t\t\t\t\t{% elseif app.request.get('_route') == 'jeune_inscription' %}
-    \t\t\t\t\tInscription Jeune
-\t\t\t\t\t{% endif %}
-        \t\t</h1><br/>
-\t        \t\t{{ form_start(registrationForm) }}
-\t          \t\t\t<div class=\"form-group\">
-\t          \t\t\t\t<label>Nom</label>
-\t          \t\t\t\t{{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}} ) }}
-\t            \t\t</div>
+\t\t\t\t    {% if app.request.get('_route') == 'inscription_des_jeunes' %}
+\t\t\t\t         <a href=\"{{ path('gestion_des_jeunes') }}\">Retour</a>
+\t\t\t\t    {% endif %}
 
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Prénom</label>
-\t            \t\t\t{{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}  ) }}
-\t          \t\t\t</div>
+\t\t\t\t\t{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
+\t\t\t\t        <a href=\"{{ path('gestion_des_administrateurs') }}\">Retour</a>
+\t\t\t\t    {% endif %}
+\t\t       \t{{ form_end(registrationForm) }}
+\t\t    {% elseif app.request.get('_route') == 'inscription_des_partenaires'%}
+\t\t    \t{{ form_start(registrationForm) }}
+\t\t    \t\t{{ form_widget(registrationForm.siret) }}
+\t\t        \t{{ form_widget(registrationForm.nom) }}
+\t\t        \t{{ form_widget(registrationForm.motdepasse, {'attr': {'placeholder': 'Mot de passe'}} ) }}
+\t\t        \t{{ form_widget(registrationForm.telephone) }}
+\t\t\t\t\t{{ form_widget(registrationForm.email) }}
+\t\t\t\t\t{{ form_widget(registrationForm.adresse) }}
+\t\t\t\t\t{{ form_widget(registrationForm.ville) }}
+\t\t\t\t\t{{ form_widget(registrationForm.codepostal) }}
+\t\t\t\t\t{{ form_widget(registrationForm.inscription) }}
+\t\t\t\t\t<a href=\"{{ path('gestion_des_partenaires') }}\">Retour</a>
+\t\t\t\t{{ form_end(registrationForm) }}
+\t\t    {% endif %}
+\t    {% endblock %}
 
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Mot de passe</label>
-\t            \t\t\t{{ form_widget(registrationForm.motdepasse, {'attr': {'class': 'form-control'}}, {'attr': {'placeholder': 'Mot de passe'}} ) }}
-\t          \t\t\t</div>
-
-\t          \t\t\t<div class=\"form-group\">
-\t            \t\t\t<label>Téléphone</label>
-\t            \t\t\t{{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}  ) }}
-\t          \t\t\t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Email</label>
-\t\t\t            \t{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}  ) }}
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Adresse</label>
-\t\t\t            \t{{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control'}}  ) }}
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Ville</label>
-\t\t\t            \t{{ form_widget(registrationForm.ville, {'attr': {'class': 'form-control'}}  ) }}
-\t\t\t          \t</div>
-
-\t\t\t          \t<div class=\"form-group\">
-\t\t\t            \t<label>Code Postal</label>
-\t\t\t            \t{{ form_widget(registrationForm.codepostal, {'attr': {'class': 'form-control'}}  ) }}
-\t\t\t          \t</div>
-\t\t\t          \t{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary btn-lg btn-block'}} ) }}
-
-\t\t\t          \t{% if app.request.get('_route') == 'inscription_des_jeunes' %}
-\t\t\t          \t\t<a href=\"{{ path('gestion_des_jeunes') }}\" class=\"btn btn-warning btn-block\">Retour</a>
-\t\t\t          \t{% endif %}
-
-\t\t\t          \t{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
-\t\t\t          \t\t<a href=\"{{ path('gestion_des_administrateurs') }}\" class=\"btn btn-warning btn-block\">Retour</a>
-\t\t\t          \t{% endif %}
-\t        \t\t{{ form_end(registrationForm) }}
-\t        \t{% endblock %}
-      \t\t</div>
-
-      \t\t<hr>
-
-      \t\t<footer>
-        \t\t<p>&copy; Cheik-Siramakan Keita 2018-{{ \"now\"|date('Y') }}</p>
-      \t\t</footer>
-    \t</div>
+      \t<footer>
+        \t<p>&copy; Cheik-Siramakan Keita 2018-{{ \"now\"|date('Y') }}</p>
+      \t</footer>
 
     \t<!-- Scripts -->
-    \t<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>
-    \t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>
-    \t<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js\" integrity=\"sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4\" crossorigin=\"anonymous\"></script>
-    \t<script rel=\"text/javaScript\" src=\"\"></script> <!-- mon script -->
   \t</body>
 </html>", "registration/register.html.twig", "C:\\wamp64\\www\\ppe2\\templates\\registration\\register.html.twig");
     }

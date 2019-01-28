@@ -1,67 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 	<head>
   		<meta charset="utf-8">
     	<title>{% block title %}Accueil{% endblock %}</title>
 
     	<!-- CSS -->
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    	<link rel="stylesheet" href="https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css" >
-    	<link rel="stylesheet" href="{{ asset('css/moncss.css') }}"> <!-- mon CSS -->
-    	<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" /> <!-- Icone du site -->
       {% block css %}{% endblock %}
   	</head>
 
   	<body>
-  		<div class="container">
-  			<div class="header clearfix">
-  				<h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
-  			</div>
+  		<h1 class="text-muted">Accueil</h1>
 
-  			<div class="jumbotron">
-          {% block body %}
-          {% if is_granted('ROLE_ADMINISTRATEUR') %}
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
-            <a href="{{ path('gestion_des_jeunes') }}" class="btn btn-primary btn-lg btn-block">Gérer les jeunes</a>
-            <a href="{{ path('gestion_des_offres') }}" class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Gérer les partenaires</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Gérer les administrateurs</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
-            <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>
-          {% elseif  is_granted('ROLE_PARTENAIRE') %}
-            <a href="administrateurpartenaire.php" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
-            <a href="{{ path('partenaire_gestion_offres') }}" class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
-            <a href="administrateuradmin.php" class="btn btn-primary btn-lg btn-block">Gérer les candidatures</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
-            <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>
-          {% elseif  is_granted('ROLE_JEUNE') %}
-            <a href="administrateurpartenaire.php" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
-            <a href="administrateuradmin.php" class="btn btn-primary btn-lg btn-block">Gérer ses candidatures</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
-            <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>
-          {% else %}
-            <a href="{{ path('app_login') }}" class="btn btn-info btn-lg btn-block">Jeune</a>
-            <a href="{{ path('app_login') }}" class="btn btn-warning btn-lg btn-block">Partenaire</a>
-            <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Administrateur</a>
-          {% endif %}
-          {% endblock %}
-    		</div>
+  		{% block body %}
+        {% if is_granted('ROLE_ADMINISTRATEUR') %}
+          <a href="{{ path('app_login') }}">Voir les offres</a>
+          <a href="{{ path('gestion_des_jeunes') }}">Gérer les jeunes</a>
+          <a href="">Gérer les offres</a>
+          <a href="{{ path('gestion_des_partenaires') }}">Gérer les partenaires</a>
+          <a href="{{ path('gestion_des_administrateurs') }}">Gérer les administrateurs</a>
+          <a href="{{ path('app_login') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% elseif  is_granted('ROLE_PARTENAIRE') %}
+          <a href="administrateurpartenaire.php">Voir les offres</a>
+          <a href="{{ path('partenaire_gestion_offres') }}">Gérer les offres</a>
+          <a href="administrateuradmin.php">Gérer les candidatures</a>
+          <a href="{{ path('app_login') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% elseif  is_granted('ROLE_JEUNE') %}
+          <a href="administrateurpartenaire.php">Voir les offres</a>
+          <a href="administrateuradmin.php">Gérer ses candidatures</a>
+          <a href="{{ path('app_login') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% else %}
+          <a href="{{ path('app_login') }}">Jeune</a>
+          <a href="{{ path('app_login') }}">Partenaire</a>
+          <a href="{{ path('app_login') }}">Administrateur</a>
+        {% endif %}
+      {% endblock %}
 
-    		<hr>
-
-    		<footer>
-        		<p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
-      		</footer>
-    	</div>
+      <footer><p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p></footer>
 
     	<!-- Scripts -->
-    	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    {% block javascript %}{% endblock %}
-    	<script rel="text/javaScript" src=""></script> <!-- mon script -->
-    }
-    }
+    	{% block javascript %}{% endblock %}
   	</body>
 </html>

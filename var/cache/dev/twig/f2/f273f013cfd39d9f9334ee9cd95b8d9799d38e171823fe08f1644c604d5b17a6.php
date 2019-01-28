@@ -31,67 +31,40 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
         // line 1
         echo "<!DOCTYPE html>
-
 <html lang=\"fr\">
 \t<head>
   \t\t<meta charset=\"utf-8\">
     \t<title>";
-        // line 6
+        // line 5
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
 
     \t<!-- CSS -->
-    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    \t<link rel=\"stylesheet\" href=\"";
-        // line 11
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/moncss.css"), "html", null, true);
-        echo "\"> <!-- mon CSS -->
-    \t<link rel=\"shortcut icon\" href=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/favicon.ico"), "html", null, true);
-        echo "\" /> <!-- Icone du site -->
       ";
-        // line 13
+        // line 8
         $this->displayBlock('css', $context, $blocks);
-        // line 14
+        // line 9
         echo "  \t</head>
 
   \t<body>
-  \t\t<div class=\"container\">
-  \t\t\t<div class=\"header clearfix\">
-  \t\t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-  \t\t\t</div>
+  \t\t<h1 class=\"text-muted\">Accueil</h1>
 
-  \t\t\t<div class=\"jumbotron\">
-          ";
-        // line 23
+  \t\t";
+        // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 49
-        echo "    \t\t</div>
-
-    \t\t<hr>
-
-    \t\t<footer>
-        \t\t<p>&copy; Cheik-Siramakan Keita 2018-";
-        // line 54
+        // line 40
+        echo "
+      <footer><p>&copy; Cheik-Siramakan Keita 2018-";
+        // line 41
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
-        echo "</p>
-      \t\t</footer>
-    \t</div>
+        echo "</p></footer>
 
     \t<!-- Scripts -->
-    \t<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>
-\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>
-\t\t<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js\" integrity=\"sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4\" crossorigin=\"anonymous\"></script>
-    ";
-        // line 62
+    \t";
+        // line 44
         $this->displayBlock('javascript', $context, $blocks);
-        // line 63
-        echo "    \t<script rel=\"text/javaScript\" src=\"\"></script> <!-- mon script -->
-    }
-    }
-  \t</body>
+        // line 45
+        echo "  \t</body>
 </html>";
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -101,7 +74,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     }
 
-    // line 6
+    // line 5
     public function block_title($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -119,7 +92,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     }
 
-    // line 13
+    // line 8
     public function block_css($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -136,7 +109,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     }
 
-    // line 23
+    // line 14
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -145,85 +118,82 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 24
-        echo "          ";
+        // line 15
+        echo "        ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMINISTRATEUR")) {
-            // line 25
-            echo "            <a href=\"";
+            // line 16
+            echo "          <a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"";
-            // line 26
+            echo "\">Voir les offres</a>
+          <a href=\"";
+            // line 17
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_jeunes");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
-            <a href=\"";
+            echo "\">Gérer les jeunes</a>
+          <a href=\"\">Gérer les offres</a>
+          <a href=\"";
+            // line 19
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_partenaires");
+            echo "\">Gérer les partenaires</a>
+          <a href=\"";
+            // line 20
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_administrateurs");
+            echo "\">Gérer les administrateurs</a>
+          <a href=\"";
+            // line 21
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo "\">Vos informations</a>
+          <a href=\"";
+            // line 22
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo "\">Déconnexion</a>
+        ";
+        } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PARTENAIRE")) {
+            // line 24
+            echo "          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+          <a href=\"";
+            // line 25
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion_offres");
+            echo "\">Gérer les offres</a>
+          <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
+          <a href=\"";
             // line 27
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-            <a href=\"";
+            echo "\">Vos informations</a>
+          <a href=\"";
             // line 28
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
-            <a href=\"";
-            // line 29
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
-            <a href=\"";
-            // line 30
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"";
-            // line 31
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          ";
-        } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PARTENAIRE")) {
+            echo "\">Déconnexion</a>
+        ";
+        } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JEUNE")) {
+            // line 30
+            echo "          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+          <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
+          <a href=\"";
+            // line 32
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo "\">Vos informations</a>
+          <a href=\"";
             // line 33
-            echo "            <a href=\"administrateurpartenaire.php\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"";
-            // line 34
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion_offres");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-            <a href=\"administrateuradmin.php\" class=\"btn btn-primary btn-lg btn-block\">Gérer les candidatures</a>
-            <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo "\">Déconnexion</a>
+        ";
+        } else {
+            // line 35
+            echo "          <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo "\">Jeune</a>
+          <a href=\"";
             // line 36
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"";
+            echo "\">Partenaire</a>
+          <a href=\"";
             // line 37
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          ";
-        } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JEUNE")) {
-            // line 39
-            echo "            <a href=\"administrateurpartenaire.php\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"administrateuradmin.php\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
-            <a href=\"";
-            // line 41
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"";
-            // line 42
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          ";
-        } else {
-            // line 44
-            echo "            <a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
-            <a href=\"";
-            // line 45
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
-            <a href=\"";
-            // line 46
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
-          ";
+            echo "\">Administrateur</a>
+        ";
         }
-        // line 48
-        echo "          ";
+        // line 39
+        echo "      ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -232,7 +202,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     }
 
-    // line 62
+    // line 44
     public function block_javascript($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -261,76 +231,55 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     public function getDebugInfo()
     {
-        return array (  236 => 62,  226 => 48,  221 => 46,  217 => 45,  212 => 44,  207 => 42,  203 => 41,  199 => 39,  194 => 37,  190 => 36,  185 => 34,  182 => 33,  177 => 31,  173 => 30,  169 => 29,  165 => 28,  161 => 27,  157 => 26,  152 => 25,  149 => 24,  140 => 23,  123 => 13,  105 => 6,  91 => 63,  89 => 62,  78 => 54,  71 => 49,  69 => 23,  58 => 14,  56 => 13,  52 => 12,  48 => 11,  40 => 6,  33 => 1,);
+        return array (  206 => 44,  196 => 39,  191 => 37,  187 => 36,  182 => 35,  177 => 33,  173 => 32,  169 => 30,  164 => 28,  160 => 27,  155 => 25,  152 => 24,  147 => 22,  143 => 21,  139 => 20,  135 => 19,  130 => 17,  125 => 16,  122 => 15,  113 => 14,  96 => 8,  78 => 5,  67 => 45,  65 => 44,  59 => 41,  56 => 40,  54 => 14,  47 => 9,  45 => 8,  39 => 5,  33 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("<!DOCTYPE html>
-
 <html lang=\"fr\">
 \t<head>
   \t\t<meta charset=\"utf-8\">
     \t<title>{% block title %}Accueil{% endblock %}</title>
 
     \t<!-- CSS -->
-    \t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">
-    \t<link rel=\"stylesheet\" href=\"https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css\" >
-    \t<link rel=\"stylesheet\" href=\"{{ asset('css/moncss.css') }}\"> <!-- mon CSS -->
-    \t<link rel=\"shortcut icon\" href=\"{{ asset('images/favicon.ico') }}\" /> <!-- Icone du site -->
       {% block css %}{% endblock %}
   \t</head>
 
   \t<body>
-  \t\t<div class=\"container\">
-  \t\t\t<div class=\"header clearfix\">
-  \t\t\t\t<h1 class=\"text-muted\">Lycée du Parc de Vilegénis</h1>
-  \t\t\t</div>
+  \t\t<h1 class=\"text-muted\">Accueil</h1>
 
-  \t\t\t<div class=\"jumbotron\">
-          {% block body %}
-          {% if is_granted('ROLE_ADMINISTRATEUR') %}
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"{{ path('gestion_des_jeunes') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          {% elseif  is_granted('ROLE_PARTENAIRE') %}
-            <a href=\"administrateurpartenaire.php\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"{{ path('partenaire_gestion_offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-            <a href=\"administrateuradmin.php\" class=\"btn btn-primary btn-lg btn-block\">Gérer les candidatures</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          {% elseif  is_granted('ROLE_JEUNE') %}
-            <a href=\"administrateurpartenaire.php\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-            <a href=\"administrateuradmin.php\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
-            <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
-          {% else %}
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>
-            <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Administrateur</a>
-          {% endif %}
-          {% endblock %}
-    \t\t</div>
+  \t\t{% block body %}
+        {% if is_granted('ROLE_ADMINISTRATEUR') %}
+          <a href=\"{{ path('app_login') }}\">Voir les offres</a>
+          <a href=\"{{ path('gestion_des_jeunes') }}\">Gérer les jeunes</a>
+          <a href=\"\">Gérer les offres</a>
+          <a href=\"{{ path('gestion_des_partenaires') }}\">Gérer les partenaires</a>
+          <a href=\"{{ path('gestion_des_administrateurs') }}\">Gérer les administrateurs</a>
+          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
+        {% elseif  is_granted('ROLE_PARTENAIRE') %}
+          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+          <a href=\"{{ path('partenaire_gestion_offres') }}\">Gérer les offres</a>
+          <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
+          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
+        {% elseif  is_granted('ROLE_JEUNE') %}
+          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+          <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
+          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
+        {% else %}
+          <a href=\"{{ path('app_login') }}\">Jeune</a>
+          <a href=\"{{ path('app_login') }}\">Partenaire</a>
+          <a href=\"{{ path('app_login') }}\">Administrateur</a>
+        {% endif %}
+      {% endblock %}
 
-    \t\t<hr>
-
-    \t\t<footer>
-        \t\t<p>&copy; Cheik-Siramakan Keita 2018-{{ \"now\"|date('Y') }}</p>
-      \t\t</footer>
-    \t</div>
+      <footer><p>&copy; Cheik-Siramakan Keita 2018-{{ \"now\"|date('Y') }}</p></footer>
 
     \t<!-- Scripts -->
-    \t<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\" integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\" crossorigin=\"anonymous\"></script>
-\t\t<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\" integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\" crossorigin=\"anonymous\"></script>
-\t\t<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js\" integrity=\"sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4\" crossorigin=\"anonymous\"></script>
-    {% block javascript %}{% endblock %}
-    \t<script rel=\"text/javaScript\" src=\"\"></script> <!-- mon script -->
-    }
-    }
+    \t{% block javascript %}{% endblock %}
   \t</body>
 </html>", "default/index.html.twig", "C:\\wamp64\\www\\ppe2\\templates\\default\\index.html.twig");
     }

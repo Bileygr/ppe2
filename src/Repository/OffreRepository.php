@@ -1,5 +1,4 @@
 <?php
-<?php
 
 namespace App\Repository;
 
@@ -18,6 +17,19 @@ class OffreRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Offre::class);
+    }
+
+    public function findAll()
+    {
+        return $this->createQueryBuilder('o')
+            ->join('o.idpartenaire', 'u')
+            ->join('o.idformation', 'f')
+            ->andWhere(' = :role')
+            ->setParameter('role', '%'.$role.'%')
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     public function findByRole($role)

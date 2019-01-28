@@ -1,0 +1,41 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Gestion des administrateurs{% endblock %}
+
+{% block body %}
+	<a href="{{ path('inscription_des_administrateurs') }}" class="btn btn-primary">Ajout</a>	
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Identifiant</th>
+		      	<th scope="col">Nom</th>
+		      	<th scope="col">Prénom</th>
+		      	<th scope="col">Tél</th>
+		      	<th scope="col">Email</th>
+		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Ville</th>
+		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Date d'ajout</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for administrateur in administrateurs %}
+		    		<tr>
+	      				<th scope="row">{{ administrateur.id }}</th>
+	      				<td>{{ administrateur.username }}</td>
+	      				<td>{{ administrateur.nom }}</td>
+	      				<td>{{ administrateur.prenom }}</td>
+	      				<td>0{{ administrateur.telephone }}</td>
+	      				<td>{{ administrateur.email }}</td>
+	      				<td>{{ administrateur.adresse }}</td>
+	      				<td>{{ administrateur.ville }}</td>
+	      				<td>{{ administrateur.codepostal }}</td>
+	      				<td>{{ administrateur.dateajout|date('Y-m-d') }}</td>
+	    			</tr>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

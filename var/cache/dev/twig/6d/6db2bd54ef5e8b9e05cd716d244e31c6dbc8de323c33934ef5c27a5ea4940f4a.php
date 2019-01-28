@@ -70,7 +70,7 @@ class __TwigTemplate_02f3f934adc98456f2b1a5eef0a1004d8b655a2e2f0fd60f2a4be8fb508
 
         // line 6
         echo "\t<a href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("parteniare_ajout_offres");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ajout_des_offres");
         echo "\" class=\"btn btn-primary btn-lg btn-block\">Ajouter une nouvelle offre</a>
     <a href=\"";
         // line 7
@@ -115,7 +115,7 @@ class __TwigTemplate_02f3f934adc98456f2b1a5eef0a1004d8b655a2e2f0fd60f2a4be8fb508
 {% block title %}Gestion Offres{% endblock %}
 
 {% block body %}
-\t<a href=\"{{ path('parteniare_ajout_offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Ajouter une nouvelle offre</a>
+\t<a href=\"{{ path('ajout_des_offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Ajouter une nouvelle offre</a>
     <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
     <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning btn-lg btn-block\">Retour</a>
     <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Deconnexion</a>

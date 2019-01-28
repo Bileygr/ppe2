@@ -1,60 +1,31 @@
 <!DOCTYPE html>
-
 <html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>Connexion</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://v4-alpha.getbootstrap.com/examples/narrow-jumbotron/narrow-jumbotron.css" >
-        <link rel="shortcut icon" href="images/favicon.ico" /> <!-- Icone du site -->
     </head>
 
     <body>
-        <div class="container">
-            <div class="header clearfix">
-                <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
-            </div>
-
-            <div class="jumbotron">
-                {% block body %}
-                <form method="POST">
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Identifiant</label>
-                            <input type="text" value="{{ last_username }}" class="form-control" name="username" id="inputUsername" placeholder="Identifiant" required autofocus>
-                        </div>
+        <h1 class="text-muted">Connexion</h1>
+         {% block body %}
+            <form method="POST">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" placeholder="Identifiant" required autofocus>
           
-                        <div class="form-group col-md-6">
-                            <label for="exampleInputPassword1">Mot de passe</label>
-                            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Mot de passe" required>
-                        </div>
+                <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" required>
 
-                        <input type="hidden" name="_csrf_token"
-                            value="{{ csrf_token('authenticate') }}"
-                        >
-                    </div>
-                    <button class="btn btn-primary" type="submit">
-                        Connexion
-                    </button>
-                </form>
-                {% endblock %}
-            </div>
-
-            <hr>
-                <footer>
-                    <p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
-                </footer>
-        </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        
+                <button type="submit">Connexion</button>
+            </form>
+        {% endblock %}
+        
+        <footer><p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p></footer>
 
         <!-- Scripts -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-        <script rel="text/javaScript" src=""></script> <!-- mon script -->
     </body>
 </html>

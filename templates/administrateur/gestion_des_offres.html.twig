@@ -1,0 +1,31 @@
+{% extends 'default/index.html.twig' %}
+
+{% block title %}Gestion des offres{% endblock %}
+
+{% block body %}
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Entreprise</th>
+		      	<th scope="col">Formation</th>
+		      	<th scope="col">Nom</th>
+		      	<th scope="col">Adresse</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for offre in offres %}
+		    		<tr>
+	      				<th scope="row">{{ offre.id }}</th>
+	      				<td>{{ offre.username }}</td>
+	      				<td>{{ offre.nom }}</td>
+	      				<td>{{ offre.prenom }}</td>
+	      				<td>{{ offre.telephone }}</td>
+	      				<td>{{ offre.email }}</td>
+	    			</tr>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

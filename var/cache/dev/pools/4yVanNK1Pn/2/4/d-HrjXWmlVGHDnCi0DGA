@@ -8,7 +8,7 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/administrateur/inscription',
+                    '/administrateur/gestion/administrateurs/inscription',
                 ],
                 'name' => [
                     'inscription_des_administrateurs',
