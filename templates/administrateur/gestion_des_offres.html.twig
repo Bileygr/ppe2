@@ -2,6 +2,8 @@
 
 {% block title %}Gestion des offres{% endblock %}
 
+{% block h1 %}Gestion des offres{% endblock %}
+
 {% block body %}
     <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
 
@@ -12,18 +14,21 @@
 		      	<th scope="col">Entreprise</th>
 		      	<th scope="col">Formation</th>
 		      	<th scope="col">Nom</th>
-		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Debut</th>
+		      	<th scope="col">Fin</th>
+		      	<th scope="col">Date d'ajout</th>
 	    	</tr>
   		</thead>
 	  	<tbody>
 	  		{% for offre in offres %}
 		    		<tr>
 	      				<th scope="row">{{ offre.id }}</th>
-	      				<td>{{ offre.username }}</td>
-	      				<td>{{ offre.nom }}</td>
-	      				<td>{{ offre.prenom }}</td>
-	      				<td>{{ offre.telephone }}</td>
-	      				<td>{{ offre.email }}</td>
+	      				<td>{{ offre.nomO }}</td>
+	      				<td>{{ offre.nomU }}</td>
+	      				<td>{{ offre.nomF }}</td>
+	      				<td>{{ offre.debut|date('Y-m-d') }}</td>
+	      				<td>{{ offre.fin|date('Y-m-d') }}</td>
+	      				<td>{{ offre.dateajout|date('Y-m-d') }}</td>
 	    			</tr>
 		    {% endfor %}
 	  	</tbody>

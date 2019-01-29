@@ -16,6 +16,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->context = $context;
         $this->staticRoutes = array(
             '/administrateur/gestion/administrateurs' => array(array(array('_route' => 'gestion_des_administrateurs', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), null, null, null, false, false, null)),
+            '/administrateur/modifier-mes-informations' => array(array(array('_route' => 'modification_des_informations_administrateur', '_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsAdministrateur'), null, null, null, false, false, null)),
             '/administrateur/gestion/administrateurs/inscription' => array(array(array('_route' => 'inscription_des_administrateurs', '_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesAdministrateurs'), null, null, null, false, false, null)),
             '/administrateur/gestion/partenaires' => array(array(array('_route' => 'gestion_des_partenaires', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), null, null, null, false, false, null)),
             '/administrateur/gestion/partenaires/inscription' => array(array(array('_route' => 'inscription_des_partenaires', '_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesPartenaires'), null, null, null, false, false, null)),

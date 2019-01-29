@@ -11,8 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[]    findAll()
- * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method User[] findAll()
+ * @method User[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */ 
 class OffreRepository extends ServiceEntityRepository
 {
@@ -23,28 +23,15 @@ class OffreRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->createQueryBuilder('o')
-            ->join('o.idpartenaire', 'u')
-            ->join('o.idformation', 'f')
-            ->andWhere(' = :role')
-            ->setParameter('role', '%'.$role.'%')
-            ->orderBy('u.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+        $entityManager = $this->getEntityManager();
 
-    public function findByRole($role)
-    {
-        return $this->createQueryBuilder('o')
-            ->join('o.idpartenaire', 'u')
-            ->join('o.idformation', 'f')
-            ->andWhere(' = :role')
-            ->setParameter('role', '%'.$role.'%')
-            ->orderBy('u.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $entityManager->createQuery(
+            'SELECT o.id, o.nom, u.nom, f.nom, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+             FROM offre o ,user u, formation f where o.idpartenaire = u.id  and o.idformation = f.id'
+        );
+
+        // returns an array of Product objects
+        return $query->execute();
     }
 
     // /**

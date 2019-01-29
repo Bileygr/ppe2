@@ -16,6 +16,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'css' => array($this, 'block_css'),
+            'h1' => array($this, 'block_h1'),
             'body' => array($this, 'block_body'),
             'javascript' => array($this, 'block_javascript'),
         );
@@ -47,7 +48,10 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         echo "  \t</head>
 
   \t<body>
-  \t\t<h1 class=\"text-muted\">Accueil</h1>
+  \t\t<h1 class=\"text-muted\">";
+        // line 12
+        $this->displayBlock('h1', $context, $blocks);
+        echo "</h1>
 
   \t\t";
         // line 14
@@ -109,6 +113,24 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     }
 
+    // line 12
+    public function block_h1($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "h1"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "h1"));
+
+        echo "Accueil";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
     // line 14
     public function block_body($context, array $blocks = array())
     {
@@ -122,14 +144,15 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         echo "        ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMINISTRATEUR")) {
             // line 16
-            echo "          <a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-            echo "\">Voir les offres</a>
+            echo "          <a href=\"\">Voir les offres</a>
           <a href=\"";
             // line 17
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_jeunes");
             echo "\">Gérer les jeunes</a>
-          <a href=\"\">Gérer les offres</a>
+          <a href=\"";
+            // line 18
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_offres");
+            echo "\">Gérer les offres</a>
           <a href=\"";
             // line 19
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_partenaires");
@@ -231,7 +254,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     public function getDebugInfo()
     {
-        return array (  206 => 44,  196 => 39,  191 => 37,  187 => 36,  182 => 35,  177 => 33,  173 => 32,  169 => 30,  164 => 28,  160 => 27,  155 => 25,  152 => 24,  147 => 22,  143 => 21,  139 => 20,  135 => 19,  130 => 17,  125 => 16,  122 => 15,  113 => 14,  96 => 8,  78 => 5,  67 => 45,  65 => 44,  59 => 41,  56 => 40,  54 => 14,  47 => 9,  45 => 8,  39 => 5,  33 => 1,);
+        return array (  229 => 44,  219 => 39,  214 => 37,  210 => 36,  205 => 35,  200 => 33,  196 => 32,  192 => 30,  187 => 28,  183 => 27,  178 => 25,  175 => 24,  170 => 22,  166 => 21,  162 => 20,  158 => 19,  154 => 18,  150 => 17,  147 => 16,  144 => 15,  135 => 14,  117 => 12,  100 => 8,  82 => 5,  71 => 45,  69 => 44,  63 => 41,  60 => 40,  58 => 14,  53 => 12,  48 => 9,  46 => 8,  40 => 5,  34 => 1,);
     }
 
     public function getSourceContext()
@@ -247,13 +270,13 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
   \t</head>
 
   \t<body>
-  \t\t<h1 class=\"text-muted\">Accueil</h1>
+  \t\t<h1 class=\"text-muted\">{% block h1 %}Accueil{% endblock %}</h1>
 
   \t\t{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}
-          <a href=\"{{ path('app_login') }}\">Voir les offres</a>
+          <a href=\"\">Voir les offres</a>
           <a href=\"{{ path('gestion_des_jeunes') }}\">Gérer les jeunes</a>
-          <a href=\"\">Gérer les offres</a>
+          <a href=\"{{ path('gestion_des_offres') }}\">Gérer les offres</a>
           <a href=\"{{ path('gestion_des_partenaires') }}\">Gérer les partenaires</a>
           <a href=\"{{ path('gestion_des_administrateurs') }}\">Gérer les administrateurs</a>
           <a href=\"{{ path('app_login') }}\">Vos informations</a>

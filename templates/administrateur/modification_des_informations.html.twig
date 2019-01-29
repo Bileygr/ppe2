@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+    	<meta charset="utf-8">
+    	<title>Modifier vos informations</title>
+
+    	<!-- CSS -->
+    	<style type="text/css">
+    		input { 
+    			text-align: center; 
+			}
+    	</style>
+  	</head>
+
+  	<body>
+        <h1>Vos informations</h1>
+        {{ form_start(registrationForm) }}
+		  	{{ form_widget(registrationForm.nom) }}
+		    {{ form_widget(registrationForm.prenom) }}
+		    {{ form_widget(registrationForm.motdepasse, {'attr': {'placeholder': 'Mot de passe'}} ) }}
+		    {{ form_widget(registrationForm.telephone) }}
+			{{ form_widget(registrationForm.email) }}
+			{{ form_widget(registrationForm.adresse) }}
+			{{ form_widget(registrationForm.ville) }}
+			{{ form_widget(registrationForm.codepostal) }}
+			{{ form_widget(registrationForm.modification) }}
+			<a href="{{ path('accueil') }}">Retour</a>
+		{{ form_end(registrationForm) }}
+
+      	<footer>
+        	<p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+      	</footer>
+
+    	<!-- Scripts -->
+  	</body>
+</html>

@@ -21,6 +21,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = array(
         'gestion_des_administrateurs' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), array(), array(array('text', '/administrateur/gestion/administrateurs')), array(), array()),
+        'modification_des_informations_administrateur' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsAdministrateur'), array(), array(array('text', '/administrateur/modifier-mes-informations')), array(), array()),
         'inscription_des_administrateurs' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesAdministrateurs'), array(), array(array('text', '/administrateur/gestion/administrateurs/inscription')), array(), array()),
         'gestion_des_partenaires' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), array(), array(array('text', '/administrateur/gestion/partenaires')), array(), array()),
         'inscription_des_partenaires' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesPartenaires'), array(), array(array('text', '/administrateur/gestion/partenaires/inscription')), array(), array()),

@@ -9,13 +9,13 @@
   	</head>
 
   	<body>
-  		<h1 class="text-muted">{% block title %}Accueil{% endblock %}</h1>
+  		<h1 class="text-muted">{% block h1 %}Accueil{% endblock %}</h1>
 
   		{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}
-          <a href="{{ path('offres') }}">Voir les offres</a>
+          <a href="">Voir les offres</a>
           <a href="{{ path('gestion_des_jeunes') }}">Gérer les jeunes</a>
-          <a href="">Gérer les offres</a>
+          <a href="{{ path('gestion_des_offres') }}">Gérer les offres</a>
           <a href="{{ path('gestion_des_partenaires') }}">Gérer les partenaires</a>
           <a href="{{ path('gestion_des_administrateurs') }}">Gérer les administrateurs</a>
           <a href="{{ path('app_login') }}">Vos informations</a>

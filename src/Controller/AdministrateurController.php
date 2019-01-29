@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Offre;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -36,6 +38,109 @@ class AdministrateurController extends AbstractController
         return $this->render('administrateur/gestion_des_administrateurs.html.twig', [
             'administrateurs' => $administrateurs,
             'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
+    /**
+     * @Route("/administrateur/modifier-mes-informations", name="modification_des_informations_administrateur")
+     */
+    public function modificationDesInformationsAdministrateur(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userid = $user->getId();
+        
+        $user_modifie = new User();
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $informations = $repository->find($userid);
+
+        $form = $this->createFormBuilder($user)
+            ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
+            ->add('prenom', TextType::class, array('attr' => array('placeholder' => $user->getPrenom())))
+            ->add('motdepasse', PasswordType::class)
+            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
+            ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
+            ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
+            ->add('ville', TextType::class, array('attr' => array('placeholder' => $user->getVille())))
+            ->add('codepostal', TextType::class, array('attr' => array('placeholder' => $user->getCodepostal())))
+            ->add('modification', SubmitType::class, array('label' => 'Modifier'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $user_modifie->setId($userid);
+            $user_modifie->setSIRET(0);
+            $user_modifie->setUsername();
+            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
+
+            if($form->get('nom')->getData() == $user->getNom()){
+                $user_modifie->setNom($user->getNom());
+            }else{
+                $user_modifie->setNom($form->get('nom')->getData());
+            }
+
+            if($form->get('prenom')->getData() == $user->getPrenom()){
+                $user_modifie->setPrenom($user->getPrenom());
+            }else{
+                $user_modifie->setPrenom($form->get('prenom')->getData());
+            }
+
+            /*(
+                if($form->get('motdepasse')->getData() == $user->getPassword()){
+                    $user_modifie->setPassword($user->getPassword());
+                }else{
+                    $user_modifie->setPassword($form->get('motdepasse')->getData());
+                }
+            */
+
+            if($form->get('telephone')->getData() == $user->getTelephone()){
+                $user_modifie->setTelephone($user->getTelephone());
+            }else{
+                $user_modifie->setTelephone($form->get('telephone')->getData());
+            }
+
+            if($form->get('email')->getData() == $user->getEmail()){
+                $user_modifie->setEmail($user->getEmail());
+            }else{
+                $user_modifie->setEmail($form->get('email')->getData());
+            }
+
+            if($form->get('adresse')->getData() == $user->getAdresse()){
+                $user_modifie->setAdresse($user->getAdresse());
+            }else{
+                $user_modifie->setAdresse($form->get('adresse')->getData());
+            }
+
+            if($form->get('ville')->getData() == $user->getVille()){
+                $user_modifie->setVille($user->getVille());
+            }else{
+                $user_modifie->setVille($form->get('ville')->getData());
+            }
+
+            if($form->get('codepostal')->getData() == $user->getCodepostal()){
+                $user_modifie->setCodepostal($user->getCodepostal());
+            }else{
+                $user_modifie->setCodepostal($form->get('codepostal')->getData());
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user_modifie);
+            $entityManager->flush();
+
+            /*
+                if($form->get('motdepasse')->getData() != $user->getPassword()){
+                    return $this->redirectToRoute('logout');
+                }
+            */
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('administrateur/modification_des_informations.html.twig', [
+            'informations' => $informations,
+            'registrationForm' => $form->createView(),
         ]);
     }
 
@@ -283,8 +388,16 @@ class AdministrateurController extends AbstractController
      */
     public function gestionDesOffres()
     {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $offres = $repository->findByRole('');
+      $entityManager = $this->getDoctrine()->getManager();;
+
+        $query = $entityManager->createQuery(
+            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
+        );
+
+        // returns an array of Product objects
+       $offres = $query->execute();
+       dump($offres) ;
 
         return $this->render('administrateur/gestion_des_offres.html.twig', [
             'offres' => $offres,
