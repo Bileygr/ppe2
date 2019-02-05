@@ -32,7 +32,7 @@ class PartenaireController extends AbstractController
      */
     public function gestionOffres()
     {
-        return $this->render('partenaire/gestionoffres.html.twig', [
+        return $this->render('partenaire/gestion_des_offres.html.twig', [
             'controller_name' => 'PartenaireController',
         ]);
     }
@@ -85,8 +85,33 @@ class PartenaireController extends AbstractController
             return $this->redirectToRoute('partenaire_gestion_offres');
         }
 
-        return $this->render('offre/ajout.html.twig', [
+        return $this->render('offre/ajout_des_offres.html.twig', [
             'formations' => $formations, 'registrationForm' => $form->createView()
+        ]);
+    }
+
+     /**
+     * @Route("/partenaire/gestion/offres/liste", name="liste_des_offres_partenaire")
+     */
+    public function listeOffres(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userid = $user->getId();
+        
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f WHERE o.idpartenaire = u.id  AND o.idformation = f.id AND o.idpartenaire = '.$userid.''
+        );
+
+        // returns an array of Product objects
+       $offres = $query->execute();
+       dump($offres) ;
+
+        return $this->render('partenaire/liste_des_offres.html.twig', [
+            'offres' => $offres,
+            'controller_name' => 'PartenaireController',
         ]);
     }
 }

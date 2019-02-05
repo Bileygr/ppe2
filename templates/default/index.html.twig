@@ -18,13 +18,13 @@
           <a href="{{ path('gestion_des_offres') }}">Gérer les offres</a>
           <a href="{{ path('gestion_des_partenaires') }}">Gérer les partenaires</a>
           <a href="{{ path('gestion_des_administrateurs') }}">Gérer les administrateurs</a>
-          <a href="{{ path('app_login') }}">Vos informations</a>
+          <a href="{{ path('modification_des_informations_administrateur') }}">Vos informations</a>
           <a href="{{ path('app_logout') }}">Déconnexion</a>
         {% elseif  is_granted('ROLE_PARTENAIRE') %}
           <a href="administrateurpartenaire.php">Voir les offres</a>
           <a href="{{ path('partenaire_gestion_offres') }}">Gérer les offres</a>
           <a href="administrateuradmin.php">Gérer les candidatures</a>
-          <a href="{{ path('app_login') }}">Vos informations</a>
+          <a href="{{ path('modification_des_informations_administrateur') }}">Vos informations</a>
           <a href="{{ path('app_logout') }}">Déconnexion</a>
         {% elseif  is_granted('ROLE_JEUNE') %}
           <a href="administrateurpartenaire.php">Voir les offres</a>

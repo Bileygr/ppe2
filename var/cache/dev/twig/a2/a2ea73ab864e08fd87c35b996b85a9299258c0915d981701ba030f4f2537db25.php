@@ -71,19 +71,19 @@ class __TwigTemplate_e003974b25006e3d6368366df59d059a6b87b2dd1e1b16290e251ca3e4b
         // line 6
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("ajout_des_offres");
-        echo "\" class=\"btn btn-primary btn-lg btn-block\">Ajouter une nouvelle offre</a>
+        echo "\">Ajouter une nouvelle offre</a>
     <a href=\"";
         // line 7
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
-        echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("liste_des_offres_partenaire");
+        echo "\">Gérer les offres</a>
     <a href=\"";
         // line 8
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
-        echo "\" class=\"btn btn-warning btn-lg btn-block\">Retour</a>
+        echo "\">Retour</a>
     <a href=\"";
         // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-        echo "\" class=\"btn btn-danger btn-lg btn-block\">Deconnexion</a>
+        echo "\">Deconnexion</a>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -115,10 +115,10 @@ class __TwigTemplate_e003974b25006e3d6368366df59d059a6b87b2dd1e1b16290e251ca3e4b
 {% block title %}Gestion Offres{% endblock %}
 
 {% block body %}
-\t<a href=\"{{ path('ajout_des_offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Ajouter une nouvelle offre</a>
-    <a href=\"{{ path('app_login') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-    <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning btn-lg btn-block\">Retour</a>
-    <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Deconnexion</a>
+\t<a href=\"{{ path('ajout_des_offres') }}\">Ajouter une nouvelle offre</a>
+    <a href=\"{{ path('liste_des_offres_partenaire') }}\">Gérer les offres</a>
+    <a href=\"{{ path('accueil') }}\">Retour</a>
+    <a href=\"{{ path('app_logout') }}\">Deconnexion</a>
 {% endblock %}
 ", "partenaire/gestion_des_offres.html.twig", "C:\\wamp64\\www\\ppe2\\templates\\partenaire\\gestion_des_offres.html.twig");
     }

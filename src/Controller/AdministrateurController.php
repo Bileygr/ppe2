@@ -48,6 +48,7 @@ class AdministrateurController extends AbstractController
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userid = $user->getId();
+        $userpassword = $user->getPassword();
         
         $user_modifie = new User();
 
@@ -57,7 +58,7 @@ class AdministrateurController extends AbstractController
         $form = $this->createFormBuilder($user)
             ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
             ->add('prenom', TextType::class, array('attr' => array('placeholder' => $user->getPrenom())))
-            ->add('motdepasse', PasswordType::class)
+            //->add('motdepasse', PasswordType::class)
             ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
             ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
@@ -74,6 +75,7 @@ class AdministrateurController extends AbstractController
             $user_modifie->setSIRET(0);
             $user_modifie->setUsername();
             $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
+            $user_modifie->setPassword($userpassword);
 
             if($form->get('nom')->getData() == $user->getNom()){
                 $user_modifie->setNom($user->getNom());
@@ -126,7 +128,7 @@ class AdministrateurController extends AbstractController
             }
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user_modifie);
+            $entityManager->merge($user_modifie);
             $entityManager->flush();
 
             /*
@@ -194,8 +196,21 @@ class AdministrateurController extends AbstractController
      */
     public function gestionDesPartenaires()
     {
+        $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
+
+        $form = $this->createFormBuilder()
+            ->add('modifier', SubmitType::class, ['label' => 'Modifier'])
+            ->add('supprimer', SubmitType::class, ['label' => 'Supprimer'])
+            ->getForm();
+
+        if ($form->getClickedButton() && 'modifier' === $form->getClickedButton()->getName()) 
+        {
+            
+        }elseif ($form->getClickedButton() && 'supprimer' === $form->getClickedButton()->getName()) {
+            
+        }
 
         return $this->render('administrateur/gestion_des_partenaires.html.twig', [
             'partenaires' => $partenaires,
@@ -316,6 +331,20 @@ class AdministrateurController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/administrateur/gestion/partenaires/modification", name="modification_des_partenaires")
+     */
+    public function modificationDesPartenaires()
+    {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
+
+        return $this->render('administrateur/gestion_des_partenaires.html.twig', [
+            'partenaires' => $partenaires,
+            'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
     /*
         SECTION: JEUNES
     */
@@ -388,7 +417,7 @@ class AdministrateurController extends AbstractController
      */
     public function gestionDesOffres()
     {
-      $entityManager = $this->getDoctrine()->getManager();;
+      $entityManager = $this->getDoctrine()->getManager();
 
         $query = $entityManager->createQuery(
             'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout

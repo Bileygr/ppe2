@@ -163,7 +163,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
             echo "\">Gérer les administrateurs</a>
           <a href=\"";
             // line 21
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("modification_des_informations_administrateur");
             echo "\">Vos informations</a>
           <a href=\"";
             // line 22
@@ -180,7 +180,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
           <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
           <a href=\"";
             // line 27
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("modification_des_informations_administrateur");
             echo "\">Vos informations</a>
           <a href=\"";
             // line 28
@@ -279,13 +279,13 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
           <a href=\"{{ path('gestion_des_offres') }}\">Gérer les offres</a>
           <a href=\"{{ path('gestion_des_partenaires') }}\">Gérer les partenaires</a>
           <a href=\"{{ path('gestion_des_administrateurs') }}\">Gérer les administrateurs</a>
-          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('modification_des_informations_administrateur') }}\">Vos informations</a>
           <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
         {% elseif  is_granted('ROLE_PARTENAIRE') %}
           <a href=\"administrateurpartenaire.php\">Voir les offres</a>
           <a href=\"{{ path('partenaire_gestion_offres') }}\">Gérer les offres</a>
           <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
-          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('modification_des_informations_administrateur') }}\">Vos informations</a>
           <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
         {% elseif  is_granted('ROLE_JEUNE') %}
           <a href=\"administrateurpartenaire.php\">Voir les offres</a>

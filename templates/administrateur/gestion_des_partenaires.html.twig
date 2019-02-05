@@ -32,6 +32,16 @@
 	      				<td>{{ partenaire.ville }}</td>
 	      				<td>{{ partenaire.codepostal }}</td>
 	      				<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
+	      				<td>
+	      					<form method="POST">
+	      						<button name="modifier" value="{{ partenaire.id }}">Modifier</button>
+	      					</form>
+	      				</td>
+	      				<td>
+	      					<form method="POST">
+	      						<button name="supprimer" value="{{ partenaire.id }}">Supprimer</button>
+	      					</form>
+	      				</td>
 	    			</tr>
 		    {% endfor %}
 	  	</tbody>

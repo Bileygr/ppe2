@@ -135,13 +135,29 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
             // line 34
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
+\t      \t\t\t\t<td>
+\t      \t\t\t\t\t<form method=\"POST\">
+\t      \t\t\t\t\t\t<button name=\"modifier\" value=\"";
+            // line 37
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
+            echo "\">Modifier</button>
+\t      \t\t\t\t\t</form>
+\t      \t\t\t\t</td>
+\t      \t\t\t\t<td>
+\t      \t\t\t\t\t<form method=\"POST\">
+\t      \t\t\t\t\t\t<button name=\"supprimer\" value=\"";
+            // line 42
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
+            echo "\">Supprimer</button>
+\t      \t\t\t\t\t</form>
+\t      \t\t\t\t</td>
 \t    \t\t\t</tr>
 \t\t    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['partenaire'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 37
+        // line 47
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -165,7 +181,7 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
 
     public function getDebugInfo()
     {
-        return array (  145 => 37,  136 => 34,  132 => 33,  128 => 32,  124 => 31,  120 => 30,  116 => 29,  112 => 28,  108 => 27,  104 => 26,  101 => 25,  97 => 24,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
+        return array (  161 => 47,  150 => 42,  142 => 37,  136 => 34,  132 => 33,  128 => 32,  124 => 31,  120 => 30,  116 => 29,  112 => 28,  108 => 27,  104 => 26,  101 => 25,  97 => 24,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -204,6 +220,16 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
 \t      \t\t\t\t<td>{{ partenaire.ville }}</td>
 \t      \t\t\t\t<td>{{ partenaire.codepostal }}</td>
 \t      \t\t\t\t<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
+\t      \t\t\t\t<td>
+\t      \t\t\t\t\t<form method=\"POST\">
+\t      \t\t\t\t\t\t<button name=\"modifier\" value=\"{{ partenaire.id }}\">Modifier</button>
+\t      \t\t\t\t\t</form>
+\t      \t\t\t\t</td>
+\t      \t\t\t\t<td>
+\t      \t\t\t\t\t<form method=\"POST\">
+\t      \t\t\t\t\t\t<button name=\"supprimer\" value=\"{{ partenaire.id }}\">Supprimer</button>
+\t      \t\t\t\t\t</form>
+\t      \t\t\t\t</td>
 \t    \t\t\t</tr>
 \t\t    {% endfor %}
 \t  \t</tbody>

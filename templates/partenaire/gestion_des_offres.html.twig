@@ -3,8 +3,8 @@
 {% block title %}Gestion Offres{% endblock %}
 
 {% block body %}
-	<a href="{{ path('ajout_des_offres') }}" class="btn btn-primary btn-lg btn-block">Ajouter une nouvelle offre</a>
-    <a href="{{ path('app_login') }}" class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
-    <a href="{{ path('accueil') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
-    <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Deconnexion</a>
+	<a href="{{ path('ajout_des_offres') }}">Ajouter une nouvelle offre</a>
+    <a href="{{ path('liste_des_offres_partenaire') }}">Gérer les offres</a>
+    <a href="{{ path('accueil') }}">Retour</a>
+    <a href="{{ path('app_logout') }}">Deconnexion</a>
 {% endblock %}

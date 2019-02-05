@@ -118,15 +118,15 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
             echo "</th>
 \t      \t\t\t\t<td>";
             // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
-            echo "</td>
-\t      \t\t\t\t<td>";
-            // line 27
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomU", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 28
+            // line 27
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomF", array()), "html", null, true);
+            echo "</td>
+\t      \t\t\t\t<td>";
+            // line 28
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 29
@@ -200,9 +200,9 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
 \t  \t\t{% for offre in offres %}
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">{{ offre.id }}</th>
-\t      \t\t\t\t<td>{{ offre.nomO }}</td>
 \t      \t\t\t\t<td>{{ offre.nomU }}</td>
 \t      \t\t\t\t<td>{{ offre.nomF }}</td>
+\t      \t\t\t\t<td>{{ offre.nomO }}</td>
 \t      \t\t\t\t<td>{{ offre.debut|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.fin|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.dateajout|date('Y-m-d') }}</td>
