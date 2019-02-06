@@ -194,22 +194,31 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administrateur/gestion/partenaires", name="gestion_des_partenaires")
      */
-    public function gestionDesPartenaires()
+    public function gestionDesPartenaires(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
 
-        $form = $this->createFormBuilder()
-            ->add('modifier', SubmitType::class, ['label' => 'Modifier'])
-            ->add('supprimer', SubmitType::class, ['label' => 'Supprimer'])
-            ->getForm();
+        if(isset($_POST['modifier'])){
+            $id = $request->request->get('id');
+            $user = $entityManager->getRepository(User::class)->find($id);
 
-        if ($form->getClickedButton() && 'modifier' === $form->getClickedButton()->getName()) 
-        {
-            
-        }elseif ($form->getClickedButton() && 'supprimer' === $form->getClickedButton()->getName()) {
-            
+            $response = $this->forward('App\Controller\AdministrateurController::modificationDesPartenaires', [
+                'user'  => $user,
+            ]);
+
+            return $response;
+        }
+
+        if(isset($_POST['supprimer'])){
+            $id = $request->request->get('id');
+            $user = $entityManager->getRepository(User::class)->find($id);
+
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('gestion_des_partenaires');
         }
 
         return $this->render('administrateur/gestion_des_partenaires.html.twig', [
@@ -295,7 +304,7 @@ class AdministrateurController extends AbstractController
                 ],
             ])
             ->add('inscription', SubmitType::class, array('label' => 'Inscription'))
-            ->getForm();;
+            ->getForm();
 
         $form->handleRequest($request);
 
@@ -334,13 +343,81 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administrateur/gestion/partenaires/modification", name="modification_des_partenaires")
      */
-    public function modificationDesPartenaires()
+    public function modificationDesPartenaires(User $user, Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
 
-        return $this->render('administrateur/gestion_des_partenaires.html.twig', [
-            'partenaires' => $partenaires,
+        $form = $this->createFormBuilder($user)
+            ->add('siret', NumberType::class, array('attr' => array('placeholder' => $user->getSIRET())))
+            ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
+            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
+            ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
+            ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
+            ->add('ville', TextType::class, array('attr' => array('placeholder' => $user->getVille())))
+            ->add('codepostal', TextType::class, array('attr' => array('placeholder' => $user->getCodepostal())))
+            ->add('modification', SubmitType::class, array('label' => 'Modifier'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+
+            $user_modifie->setId($userid);
+            $user_modifie->setSIRET(0);
+            $user_modifie->setUsername();
+            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
+            $user_modifie->setPassword($userpassword);
+
+            if($form->get('nom')->getData() == $user->getNom()){
+                $user_modifie->setNom($user->getNom());
+            }else{
+                $user_modifie->setNom($form->get('nom')->getData());
+            }
+
+            if($form->get('prenom')->getData() == $user->getPrenom()){
+                $user_modifie->setPrenom($user->getPrenom());
+            }else{
+                $user_modifie->setPrenom($form->get('prenom')->getData());
+            }
+
+            if($form->get('telephone')->getData() == $user->getTelephone()){
+                $user_modifie->setTelephone($user->getTelephone());
+            }else{
+                $user_modifie->setTelephone($form->get('telephone')->getData());
+            }
+
+            if($form->get('email')->getData() == $user->getEmail()){
+                $user_modifie->setEmail($user->getEmail());
+            }else{
+                $user_modifie->setEmail($form->get('email')->getData());
+            }
+
+            if($form->get('adresse')->getData() == $user->getAdresse()){
+                $user_modifie->setAdresse($user->getAdresse());
+            }else{
+                $user_modifie->setAdresse($form->get('adresse')->getData());
+            }
+
+            if($form->get('ville')->getData() == $user->getVille()){
+                $user_modifie->setVille($user->getVille());
+            }else{
+                $user_modifie->setVille($form->get('ville')->getData());
+            }
+
+            if($form->get('codepostal')->getData() == $user->getCodepostal()){
+                $user_modifie->setCodepostal($user->getCodepostal());
+            }else{
+                $user_modifie->setCodepostal($form->get('codepostal')->getData());
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->merge($user_modifie);
+            $entityManager->flush();
+
+        }
+
+        return $this->render('administrateur/modification_des_informations_partenaires.html.twig', [
+            'form' => $form->createView(),
             'controller_name' => 'AdministrateurController',
         ]);
     }

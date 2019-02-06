@@ -81,7 +81,7 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
   \t\t<thead>
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
-\t\t      \t<th scope=\"col\">SIET</th>
+\t\t      \t<th scope=\"col\">SIRET</th>
 \t\t      \t<th scope=\"col\">Nom</th>
 \t\t      \t<th scope=\"col\">Tél</th>
 \t\t      \t<th scope=\"col\">Email</th>
@@ -98,66 +98,58 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
         $context['_seq'] = twig_ensure_traversable((isset($context["partenaires"]) || array_key_exists("partenaires", $context) ? $context["partenaires"] : (function () { throw new Twig_Error_Runtime('Variable "partenaires" does not exist.', 24, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["partenaire"]) {
             // line 25
-            echo "\t\t    \t\t<tr>
-\t      \t\t\t\t<th scope=\"row\">";
+            echo "\t\t    \t\t<form method=\"POST\">
+\t\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
             // line 26
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
+            echo "\">
+\t\t\t    \t\t<tr>
+\t\t      \t\t\t\t<th scope=\"row\">";
+            // line 28
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
             echo "</th>
-\t      \t\t\t\t<td>";
-            // line 27
+\t\t      \t\t\t\t<td>";
+            // line 29
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "siret", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 28
+\t\t      \t\t\t\t<td>";
+            // line 30
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "nom", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>0";
-            // line 29
+\t\t      \t\t\t\t<td>0";
+            // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "telephone", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 30
+\t\t      \t\t\t\t<td>";
+            // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "email", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 31
+\t\t      \t\t\t\t<td>";
+            // line 33
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "adresse", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 32
+\t\t      \t\t\t\t<td>";
+            // line 34
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "ville", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 33
+\t\t      \t\t\t\t<td>";
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "codepostal", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>";
-            // line 34
+\t\t      \t\t\t\t<td>";
+            // line 36
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>
-\t      \t\t\t\t\t<form method=\"POST\">
-\t      \t\t\t\t\t\t<button name=\"modifier\" value=\"";
-            // line 37
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
-            echo "\">Modifier</button>
-\t      \t\t\t\t\t</form>
-\t      \t\t\t\t</td>
-\t      \t\t\t\t<td>
-\t      \t\t\t\t\t<form method=\"POST\">
-\t      \t\t\t\t\t\t<button name=\"supprimer\" value=\"";
-            // line 42
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
-            echo "\">Supprimer</button>
-\t      \t\t\t\t\t</form>
-\t      \t\t\t\t</td>
-\t    \t\t\t</tr>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t\t    \t\t\t</tr>
+\t\t    \t\t</form>
 \t\t    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['partenaire'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 47
+        // line 42
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -181,7 +173,7 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
 
     public function getDebugInfo()
     {
-        return array (  161 => 47,  150 => 42,  142 => 37,  136 => 34,  132 => 33,  128 => 32,  124 => 31,  120 => 30,  116 => 29,  112 => 28,  108 => 27,  104 => 26,  101 => 25,  97 => 24,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
+        return array (  153 => 42,  141 => 36,  137 => 35,  133 => 34,  129 => 33,  125 => 32,  121 => 31,  117 => 30,  113 => 29,  109 => 28,  104 => 26,  101 => 25,  97 => 24,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -198,7 +190,7 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
   \t\t<thead>
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
-\t\t      \t<th scope=\"col\">SIET</th>
+\t\t      \t<th scope=\"col\">SIRET</th>
 \t\t      \t<th scope=\"col\">Nom</th>
 \t\t      \t<th scope=\"col\">Tél</th>
 \t\t      \t<th scope=\"col\">Email</th>
@@ -210,27 +202,22 @@ class __TwigTemplate_8647d8469d8fdfbc44674c5d269e6be72e54db52d1ef005a88e57151c03
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t{% for partenaire in partenaires %}
-\t\t    \t\t<tr>
-\t      \t\t\t\t<th scope=\"row\">{{ partenaire.id }}</th>
-\t      \t\t\t\t<td>{{ partenaire.siret }}</td>
-\t      \t\t\t\t<td>{{ partenaire.nom }}</td>
-\t      \t\t\t\t<td>0{{ partenaire.telephone }}</td>
-\t      \t\t\t\t<td>{{ partenaire.email }}</td>
-\t      \t\t\t\t<td>{{ partenaire.adresse }}</td>
-\t      \t\t\t\t<td>{{ partenaire.ville }}</td>
-\t      \t\t\t\t<td>{{ partenaire.codepostal }}</td>
-\t      \t\t\t\t<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
-\t      \t\t\t\t<td>
-\t      \t\t\t\t\t<form method=\"POST\">
-\t      \t\t\t\t\t\t<button name=\"modifier\" value=\"{{ partenaire.id }}\">Modifier</button>
-\t      \t\t\t\t\t</form>
-\t      \t\t\t\t</td>
-\t      \t\t\t\t<td>
-\t      \t\t\t\t\t<form method=\"POST\">
-\t      \t\t\t\t\t\t<button name=\"supprimer\" value=\"{{ partenaire.id }}\">Supprimer</button>
-\t      \t\t\t\t\t</form>
-\t      \t\t\t\t</td>
-\t    \t\t\t</tr>
+\t\t    \t\t<form method=\"POST\">
+\t\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"{{ partenaire.id }}\">
+\t\t\t    \t\t<tr>
+\t\t      \t\t\t\t<th scope=\"row\">{{ partenaire.id }}</th>
+\t\t      \t\t\t\t<td>{{ partenaire.siret }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.nom }}</td>
+\t\t      \t\t\t\t<td>0{{ partenaire.telephone }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.email }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.adresse }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.ville }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.codepostal }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t\t    \t\t\t</tr>
+\t\t    \t\t</form>
 \t\t    {% endfor %}
 \t  \t</tbody>
 \t</table>
