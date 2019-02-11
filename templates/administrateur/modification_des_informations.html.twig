@@ -15,18 +15,18 @@
   	<body>
         <h1>Vos informations</h1>
         {% block body %}
-        {{ form_start(registrationForm) }}
-		  	{{ form_widget(registrationForm.nom) }}
-		    {{ form_widget(registrationForm.prenom) }}
-		    {{ form_widget(registrationForm.telephone) }}
-			 {{ form_widget(registrationForm.email) }}
-			 {{ form_widget(registrationForm.adresse) }}
-			 {{ form_widget(registrationForm.ville) }}
-			 {{ form_widget(registrationForm.codepostal) }}
-			 {{ form_widget(registrationForm.modification) }}
-			<a href="{{ path('accueil') }}">Retour</a>
-		  {{ form_end(registrationForm) }}
-      {% endblock %}
+          {{ form_start(registrationForm) }}
+    		  	{{ form_widget(registrationForm.nom) }}
+    		    {{ form_widget(registrationForm.prenom) }}
+    		      {{ form_widget(registrationForm.telephone) }}
+    			   {{ form_widget(registrationForm.email) }}
+    			   {{ form_widget(registrationForm.adresse) }}
+    			   {{ form_widget(registrationForm.ville) }}
+    			   {{ form_widget(registrationForm.codepostal) }}
+    			   {{ form_widget(registrationForm.modification) }}
+    			   <a href="{{ path('accueil') }}">Retour</a>
+  		    {{ form_end(registrationForm) }}
+        {% endblock %}
 
       	<footer>
         	<p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>

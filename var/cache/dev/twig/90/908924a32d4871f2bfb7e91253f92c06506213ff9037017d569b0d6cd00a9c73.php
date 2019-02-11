@@ -111,42 +111,50 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
         $context['_seq'] = twig_ensure_traversable((isset($context["offres"]) || array_key_exists("offres", $context) ? $context["offres"] : (function () { throw new Twig_Error_Runtime('Variable "offres" does not exist.', 23, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["offre"]) {
             // line 24
-            echo "\t\t    \t\t<tr>
-\t      \t\t\t\t<th scope=\"row\">";
+            echo "\t  \t\t\t<form method=\"POST\">
+\t  \t\t\t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
             // line 25
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "id", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t<tr>
+\t      \t\t\t\t<th scope=\"row\">";
+            // line 27
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t<td>";
-            // line 26
+            // line 28
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomU", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 27
+            // line 29
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomF", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 28
+            // line 30
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 29
+            // line 31
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "debut", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 30
+            // line 32
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "fin", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 31
+            // line 33
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['offre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 34
+        // line 39
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -170,7 +178,7 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
 
     public function getDebugInfo()
     {
-        return array (  150 => 34,  141 => 31,  137 => 30,  133 => 29,  129 => 28,  125 => 27,  121 => 26,  117 => 25,  114 => 24,  110 => 23,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
+        return array (  158 => 39,  146 => 33,  142 => 32,  138 => 31,  134 => 30,  130 => 29,  126 => 28,  122 => 27,  117 => 25,  114 => 24,  110 => 23,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -198,6 +206,8 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t{% for offre in offres %}
+\t  \t\t\t<form method=\"POST\">
+\t  \t\t\t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"{{ offre.id }}\">
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">{{ offre.id }}</th>
 \t      \t\t\t\t<td>{{ offre.nomU }}</td>
@@ -206,7 +216,10 @@ class __TwigTemplate_7f410359926551083975641235b571b7d9417818d0a2f976643a4653a24
 \t      \t\t\t\t<td>{{ offre.debut|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.fin|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.dateajout|date('Y-m-d') }}</td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    {% endfor %}
 \t  \t</tbody>
 \t</table>

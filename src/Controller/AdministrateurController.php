@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Formation;
 use App\Entity\User;
 use App\Entity\Offre;
 use App\Form\RegistrationFormType;
@@ -492,21 +493,126 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administrateur/gestion/offres", name="gestion_des_offres")
      */
-    public function gestionDesOffres()
+    public function gestionDesOffres(Request $request)
     {
-      $entityManager = $this->getDoctrine()->getManager();
-
+        $entityManager = $this->getDoctrine()->getManager();
         $query = $entityManager->createQuery(
             'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
              FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
         );
+        $offres = $query->execute();
 
-        // returns an array of Product objects
-       $offres = $query->execute();
-       dump($offres) ;
+        if(isset($_POST['modifier'])){
+            $id = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
+
+            $response = $this->forward('App\Controller\AdministrateurController::modificationDesOffres', [
+                'offre'  => $offre,
+            ]);
+
+            return $response;
+        }
+
+        if(isset($_POST['supprimer'])){
+            $id = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
+
+            $entityManager->remove($offre);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('gestion_des_partenaires');
+        }
 
         return $this->render('administrateur/gestion_des_offres.html.twig', [
             'offres' => $offres,
+            'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
+    /**
+     * @Route("/administrateur/gestion/offres/modification", name="modification_des_offres")
+     */
+    public function modificationDesOffres(Offre $offre, Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository(Formation::class);
+        $formations = $repository->findAll();
+
+        $debut=$offre->getDebut()->format('Y-m-d');
+        $fin=$offre->getFin()->format('Y-m-d');
+
+        $form = $this->createFormBuilder($offre)
+            ->add('nom', TextType::class, array('attr' => array('placeholder' => $offre->getNom())))
+            ->add('adresse', TextType::class, array('attr' => array('placeholder' => $offre->getAdresse())))
+            ->add('ville', TextType::class, array('attr' => array('placeholder' => $offre->getVille())))
+            ->add('codepostal', TextType::class, array('attr' => array('placeholder' => $offre->getCodepostal())))
+            ->add('debut', DateType::class, array('placeholder' => $debut))
+            ->add('fin', DateType::class, array('placeholder' => $fin))
+            ->add('description', TextareaType::class, array('attr' => array('placeholder' => $offre->getCodepostal())))
+            ->add('modification', SubmitType::class, array('label' => 'Modifier'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+
+            $user_modifie->setId($userid);
+            $user_modifie->setSIRET(0);
+            $user_modifie->setUsername();
+            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
+            $user_modifie->setPassword($userpassword);
+
+            if($form->get('nom')->getData() == $user->getNom()){
+                $user_modifie->setNom($user->getNom());
+            }else{
+                $user_modifie->setNom($form->get('nom')->getData());
+            }
+
+            if($form->get('prenom')->getData() == $user->getPrenom()){
+                $user_modifie->setPrenom($user->getPrenom());
+            }else{
+                $user_modifie->setPrenom($form->get('prenom')->getData());
+            }
+
+            if($form->get('telephone')->getData() == $user->getTelephone()){
+                $user_modifie->setTelephone($user->getTelephone());
+            }else{
+                $user_modifie->setTelephone($form->get('telephone')->getData());
+            }
+
+            if($form->get('email')->getData() == $user->getEmail()){
+                $user_modifie->setEmail($user->getEmail());
+            }else{
+                $user_modifie->setEmail($form->get('email')->getData());
+            }
+
+            if($form->get('adresse')->getData() == $user->getAdresse()){
+                $user_modifie->setAdresse($user->getAdresse());
+            }else{
+                $user_modifie->setAdresse($form->get('adresse')->getData());
+            }
+
+            if($form->get('ville')->getData() == $user->getVille()){
+                $user_modifie->setVille($user->getVille());
+            }else{
+                $user_modifie->setVille($form->get('ville')->getData());
+            }
+
+            if($form->get('codepostal')->getData() == $user->getCodepostal()){
+                $user_modifie->setCodepostal($user->getCodepostal());
+            }else{
+                $user_modifie->setCodepostal($form->get('codepostal')->getData());
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->merge($user_modifie);
+            $entityManager->flush();
+
+        }
+
+        return $this->render('administrateur/modification_des_informations_offres.html.twig', [
+            'formations' => $formations,
+            'form' => $form->createView(),
             'controller_name' => 'AdministrateurController',
         ]);
     }

@@ -57,6 +57,10 @@ class __TwigTemplate_5e240c95d41b41a2b3bd4c675a87eda9d68af0a8c658cc356f90cd970fc
         // line 5
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new Twig_Error_Runtime('Variable "form" does not exist.', 5, $this->source); })()), 'form_end');
         echo "
+\t<a href=\"";
+        // line 6
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_partenaires");
+        echo "\">Retour</a>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -78,7 +82,7 @@ class __TwigTemplate_5e240c95d41b41a2b3bd4c675a87eda9d68af0a8c658cc356f90cd970fc
 
     public function getDebugInfo()
     {
-        return array (  58 => 5,  53 => 4,  44 => 3,  15 => 1,);
+        return array (  62 => 6,  58 => 5,  53 => 4,  44 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -88,6 +92,7 @@ class __TwigTemplate_5e240c95d41b41a2b3bd4c675a87eda9d68af0a8c658cc356f90cd970fc
 {% block body %}
 \t{{ form_start(form) }}
 \t{{ form_end(form) }}
+\t<a href=\"{{ path('gestion_des_partenaires') }}\">Retour</a>
 {% endblock %}", "administrateur/modification_des_informations_partenaires.html.twig", "C:\\wamp64\\www\\ppe2\\templates\\administrateur\\modification_des_informations_partenaires.html.twig");
     }
 }

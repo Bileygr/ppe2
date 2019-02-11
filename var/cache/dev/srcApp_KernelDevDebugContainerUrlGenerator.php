@@ -29,6 +29,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'gestion_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesJeunes'), array(), array(array('text', '/administrateur/gestion/jeunes')), array(), array()),
         'inscription_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesJeunes'), array(), array(array('text', '/administrateur/gestion/jeunes/inscription')), array(), array()),
         'gestion_des_offres' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesOffres'), array(), array(array('text', '/administrateur/gestion/offres')), array(), array()),
+        'modification_des_offres' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::modificationDesOffres'), array(), array(array('text', '/administrateur/gestion/offres/modification')), array(), array()),
         'accueil' => array(array(), array('_controller' => 'App\\Controller\\DefaultController::index'), array(), array(array('text', '/accueil')), array(), array()),
         'jeune_profil' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::profil'), array(), array(array('text', '/jeune/profil')), array(), array()),
         'offre' => array(array(), array('_controller' => 'App\\Controller\\OffreController::index'), array(), array(array('text', '/offre')), array(), array()),

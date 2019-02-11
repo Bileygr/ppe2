@@ -1,0 +1,21 @@
+{% extends 'administrateur/modification_des_informations.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+		{{ form_widget(form.nom) }}
+		{{ form_widget(form.adresse) }}
+		{{ form_widget(form.ville) }}
+		{{ form_widget(form.codepostal) }}
+		{{ form_widget(form.debut) }}
+		{{ form_widget(form.fin) }}
+		<select class="form-control" id="exampleSelect1" name='formation' value=''>
+			<option selected="select" disabled>Sélectionnez la formation</option>
+		    <hr />
+		    {% for formation in formations %}
+		    	<option id="formation" name="formation" value="{{ formation.id }}">{{ formation.nom }}</option>
+			{% endfor %}
+		</select>
+		{{ form_widget(form.description) }}
+	{{ form_end(form) }}
+	<a href="{{ path('gestion_des_partenaires') }}">Retour</a>
+{% endblock %}
