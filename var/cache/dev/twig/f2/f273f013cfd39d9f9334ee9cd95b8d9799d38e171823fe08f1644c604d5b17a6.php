@@ -16,7 +16,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'css' => array($this, 'block_css'),
-            'h1' => array($this, 'block_h1'),
+            'titre' => array($this, 'block_titre'),
             'body' => array($this, 'block_body'),
             'javascript' => array($this, 'block_javascript'),
         );
@@ -50,7 +50,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
   \t<body>
   \t\t<h1 class=\"text-muted\">";
         // line 12
-        $this->displayBlock('h1', $context, $blocks);
+        $this->displayBlock('titre', $context, $blocks);
         echo "</h1>
 
   \t\t";
@@ -114,13 +114,13 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
     }
 
     // line 12
-    public function block_h1($context, array $blocks = array())
+    public function block_titre($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "h1"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "h1"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
 
         echo "Accueil";
         
@@ -270,7 +270,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
   \t</head>
 
   \t<body>
-  \t\t<h1 class=\"text-muted\">{% block h1 %}Accueil{% endblock %}</h1>
+  \t\t<h1 class=\"text-muted\">{% block titre %}Accueil{% endblock %}</h1>
 
   \t\t{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}

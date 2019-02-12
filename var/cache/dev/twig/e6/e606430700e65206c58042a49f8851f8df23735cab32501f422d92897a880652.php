@@ -15,6 +15,7 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
         $this->parent = $this->loadTemplate("default/index.html.twig", "administrateur/gestion_des_administrateurs.html.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'titre' => array($this, 'block_titre'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -60,6 +61,24 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
     }
 
     // line 5
+    public function block_titre($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        echo "Gestion des administrateurs";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 7
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -68,12 +87,12 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 8
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("inscription_des_administrateurs");
         echo "\" class=\"btn btn-primary\">Ajout</a>\t
     <a href=\"";
-        // line 7
+        // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
         echo "\" class=\"btn btn-warning\">Retour</a>
 
@@ -94,50 +113,50 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 25
+        // line 27
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 25, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 27, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["administrateur"]) {
-            // line 26
+            // line 28
             echo "\t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">";
-            // line 27
+            // line 29
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t<td>";
-            // line 28
+            // line 30
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "username", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 29
+            // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "nom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 30
+            // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "prenom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>0";
-            // line 31
+            // line 33
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "telephone", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 32
+            // line 34
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "email", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 33
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "adresse", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 34
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "ville", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 35
+            // line 37
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "codepostal", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 36
+            // line 38
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t    \t\t\t</tr>
@@ -146,7 +165,7 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['administrateur'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
+        // line 41
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -170,7 +189,7 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
 
     public function getDebugInfo()
     {
-        return array (  150 => 39,  141 => 36,  137 => 35,  133 => 34,  129 => 33,  125 => 32,  121 => 31,  117 => 30,  113 => 29,  109 => 28,  105 => 27,  102 => 26,  98 => 25,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
+        return array (  169 => 41,  160 => 38,  156 => 37,  152 => 36,  148 => 35,  144 => 34,  140 => 33,  136 => 32,  132 => 31,  128 => 30,  124 => 29,  121 => 28,  117 => 27,  96 => 9,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -178,6 +197,8 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
         return new Twig_Source("{% extends 'default/index.html.twig' %}
 
 {% block title %}Gestion des administrateurs{% endblock %}
+
+{% block titre %}Gestion des administrateurs{% endblock %}
 
 {% block body %}
 \t<a href=\"{{ path('inscription_des_administrateurs') }}\" class=\"btn btn-primary\">Ajout</a>\t

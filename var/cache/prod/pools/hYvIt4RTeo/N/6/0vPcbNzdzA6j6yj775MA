@@ -1,0 +1,151 @@
+<?php return array(PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\Candidature',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\Candidature',
+                ],
+                'identifier' => [
+                    [
+                        'id',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'id' => [
+                            'fieldName' => 'id',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'id',
+                            'id' => true,
+                        ],
+                        'idoffre' => [
+                            'fieldName' => 'idoffre',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'idoffre',
+                        ],
+                        'idjeune' => [
+                            'fieldName' => 'idjeune',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'idjeune',
+                        ],
+                        'idpartenaire' => [
+                            'fieldName' => 'idpartenaire',
+                            'type' => 'integer',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'idpartenaire',
+                        ],
+                        'status' => [
+                            'fieldName' => 'status',
+                            'type' => 'smallint',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'status',
+                        ],
+                        'dateajout' => [
+                            'fieldName' => 'dateajout',
+                            'type' => 'datetime',
+                            'scale' => 0,
+                            'length' => null,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'dateajout',
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'id' => 'id',
+                        'idoffre' => 'idoffre',
+                        'idjeune' => 'idjeune',
+                        'idpartenaire' => 'idpartenaire',
+                        'status' => 'status',
+                        'dateajout' => 'dateajout',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'id' => 'id',
+                        'idoffre' => 'idoffre',
+                        'idjeune' => 'idjeune',
+                        'idpartenaire' => 'idpartenaire',
+                        'status' => 'status',
+                        'dateajout' => 'dateajout',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'candidature',
+                        'indexes' => [
+                            'FK_candidature_idoffre' => [
+                                'columns' => [
+                                    'idoffre',
+                                ],
+                            ],
+                            'FK_candidature_idpartenaire' => [
+                                'columns' => [
+                                    'idpartenaire',
+                                ],
+                            ],
+                            'FK_candidature_idjeune' => [
+                                'columns' => [
+                                    'idjeune',
+                                ],
+                            ],
+                        ],
+                        'uniqueConstraints' => [
+                            'id' => [
+                                'columns' => [
+                                    'id',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+});

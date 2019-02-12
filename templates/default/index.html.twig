@@ -9,7 +9,7 @@
   	</head>
 
   	<body>
-  		<h1 class="text-muted">{% block h1 %}Accueil{% endblock %}</h1>
+  		<h1 class="text-muted">{% block titre %}Accueil{% endblock %}</h1>
 
   		{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}

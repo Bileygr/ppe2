@@ -64,10 +64,10 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'prenom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'SIRET', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'telephone', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\User' . "\0" . 'ville', '' . "\0" . 'App\\Entity\\User' . "\0" . 'codepostal', '' . "\0" . 'App\\Entity\\User' . "\0" . 'derniereconnexion', '' . "\0" . 'App\\Entity\\User' . "\0" . 'dateajout'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'prenom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'SIRET', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'telephone', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\User' . "\0" . 'ville', '' . "\0" . 'App\\Entity\\User' . "\0" . 'codepostal', '' . "\0" . 'App\\Entity\\User' . "\0" . 'dateajout'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'prenom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'SIRET', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'telephone', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\User' . "\0" . 'ville', '' . "\0" . 'App\\Entity\\User' . "\0" . 'codepostal', '' . "\0" . 'App\\Entity\\User' . "\0" . 'derniereconnexion', '' . "\0" . 'App\\Entity\\User' . "\0" . 'dateajout'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\User' . "\0" . 'id', '' . "\0" . 'App\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'prenom', '' . "\0" . 'App\\Entity\\User' . "\0" . 'username', '' . "\0" . 'App\\Entity\\User' . "\0" . 'SIRET', '' . "\0" . 'App\\Entity\\User' . "\0" . 'roles', '' . "\0" . 'App\\Entity\\User' . "\0" . 'password', '' . "\0" . 'App\\Entity\\User' . "\0" . 'telephone', '' . "\0" . 'App\\Entity\\User' . "\0" . 'email', '' . "\0" . 'App\\Entity\\User' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\User' . "\0" . 'ville', '' . "\0" . 'App\\Entity\\User' . "\0" . 'codepostal', '' . "\0" . 'App\\Entity\\User' . "\0" . 'dateajout'];
     }
 
     /**
@@ -173,6 +173,17 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
+    /**
+     * {@inheritDoc}
+     */
+    public function setId(int $id): \App\Entity\User
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', [$id]);
+
+        return parent::setId($id);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -450,28 +461,6 @@ class User extends \App\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCodepostal', [$codepostal]);
 
         return parent::setCodepostal($codepostal);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDerniereconnexion(): ?\DateTimeInterface
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDerniereconnexion', []);
-
-        return parent::getDerniereconnexion();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDerniereconnexion(\DateTimeInterface $derniereconnexion): \App\Entity\User
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDerniereconnexion', [$derniereconnexion]);
-
-        return parent::setDerniereconnexion($derniereconnexion);
     }
 
     /**

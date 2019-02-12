@@ -6,7 +6,7 @@ use App\Entity\Formation;
 use App\Entity\User;
 use App\Entity\Offre;
 use App\Form\RegistrationFormType;
-use App\Repository\UserRepository;
+use App\Repository\UserRepository; 
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,8 +59,7 @@ class AdministrateurController extends AbstractController
         $form = $this->createFormBuilder($user)
             ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
             ->add('prenom', TextType::class, array('attr' => array('placeholder' => $user->getPrenom())))
-            //->add('motdepasse', PasswordType::class)
-            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
+            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $usercotsssssddsdssssgetTelephone())))
             ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
             ->add('ville', TextType::class, array('attr' => array('placeholder' => $user->getVille())))
@@ -72,71 +71,7 @@ class AdministrateurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $user_modifie->setId($userid);
-            $user_modifie->setSIRET(0);
-            $user_modifie->setUsername();
-            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
-            $user_modifie->setPassword($userpassword);
-
-            if($form->get('nom')->getData() == $user->getNom()){
-                $user_modifie->setNom($user->getNom());
-            }else{
-                $user_modifie->setNom($form->get('nom')->getData());
-            }
-
-            if($form->get('prenom')->getData() == $user->getPrenom()){
-                $user_modifie->setPrenom($user->getPrenom());
-            }else{
-                $user_modifie->setPrenom($form->get('prenom')->getData());
-            }
-
-            /*(
-                if($form->get('motdepasse')->getData() == $user->getPassword()){
-                    $user_modifie->setPassword($user->getPassword());
-                }else{
-                    $user_modifie->setPassword($form->get('motdepasse')->getData());
-                }
-            */
-
-            if($form->get('telephone')->getData() == $user->getTelephone()){
-                $user_modifie->setTelephone($user->getTelephone());
-            }else{
-                $user_modifie->setTelephone($form->get('telephone')->getData());
-            }
-
-            if($form->get('email')->getData() == $user->getEmail()){
-                $user_modifie->setEmail($user->getEmail());
-            }else{
-                $user_modifie->setEmail($form->get('email')->getData());
-            }
-
-            if($form->get('adresse')->getData() == $user->getAdresse()){
-                $user_modifie->setAdresse($user->getAdresse());
-            }else{
-                $user_modifie->setAdresse($form->get('adresse')->getData());
-            }
-
-            if($form->get('ville')->getData() == $user->getVille()){
-                $user_modifie->setVille($user->getVille());
-            }else{
-                $user_modifie->setVille($form->get('ville')->getData());
-            }
-
-            if($form->get('codepostal')->getData() == $user->getCodepostal()){
-                $user_modifie->setCodepostal($user->getCodepostal());
-            }else{
-                $user_modifie->setCodepostal($form->get('codepostal')->getData());
-            }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->merge($user_modifie);
-            $entityManager->flush();
-
-            /*
-                if($form->get('motdepasse')->getData() != $user->getPassword()){
-                    return $this->redirectToRoute('logout');
-                }
-            */
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('accueil');
         }
@@ -209,7 +144,7 @@ class AdministrateurController extends AbstractController
                 'user'  => $user,
             ]);
 
-            return $response;
+            //return $response;
         }
 
         if(isset($_POST['supprimer'])){
@@ -346,6 +281,7 @@ class AdministrateurController extends AbstractController
      */
     public function modificationDesPartenaires(User $user, Request $request)
     {
+        dump($user);
 
         $form = $this->createFormBuilder($user)
             ->add('siret', NumberType::class, array('attr' => array('placeholder' => $user->getSIRET())))
@@ -362,59 +298,11 @@ class AdministrateurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            dump($form->getData());
 
-            $user_modifie->setId($userid);
-            $user_modifie->setSIRET(0);
-            $user_modifie->setUsername();
-            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
-            $user_modifie->setPassword($userpassword);
+            $this->getDoctrine()->getManager()->flush();
 
-            if($form->get('nom')->getData() == $user->getNom()){
-                $user_modifie->setNom($user->getNom());
-            }else{
-                $user_modifie->setNom($form->get('nom')->getData());
-            }
-
-            if($form->get('prenom')->getData() == $user->getPrenom()){
-                $user_modifie->setPrenom($user->getPrenom());
-            }else{
-                $user_modifie->setPrenom($form->get('prenom')->getData());
-            }
-
-            if($form->get('telephone')->getData() == $user->getTelephone()){
-                $user_modifie->setTelephone($user->getTelephone());
-            }else{
-                $user_modifie->setTelephone($form->get('telephone')->getData());
-            }
-
-            if($form->get('email')->getData() == $user->getEmail()){
-                $user_modifie->setEmail($user->getEmail());
-            }else{
-                $user_modifie->setEmail($form->get('email')->getData());
-            }
-
-            if($form->get('adresse')->getData() == $user->getAdresse()){
-                $user_modifie->setAdresse($user->getAdresse());
-            }else{
-                $user_modifie->setAdresse($form->get('adresse')->getData());
-            }
-
-            if($form->get('ville')->getData() == $user->getVille()){
-                $user_modifie->setVille($user->getVille());
-            }else{
-                $user_modifie->setVille($form->get('ville')->getData());
-            }
-
-            if($form->get('codepostal')->getData() == $user->getCodepostal()){
-                $user_modifie->setCodepostal($user->getCodepostal());
-            }else{
-                $user_modifie->setCodepostal($form->get('codepostal')->getData());
-            }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->merge($user_modifie);
-            $entityManager->flush();
-
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('administrateur/modification_des_informations_partenaires.html.twig', [

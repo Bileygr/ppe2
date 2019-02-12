@@ -1,0 +1,67 @@
+<?php return array(PHP_INT_MAX, static function () {
+
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+            clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'name' => [
+                    'App\\Entity\\MigrationVersions',
+                ],
+                'namespace' => [
+                    'App\\Entity',
+                ],
+                'rootEntityName' => [
+                    'App\\Entity\\MigrationVersions',
+                ],
+                'identifier' => [
+                    [
+                        'version',
+                    ],
+                ],
+                'generatorType' => [
+                    4,
+                ],
+                'fieldMappings' => [
+                    [
+                        'version' => [
+                            'fieldName' => 'version',
+                            'type' => 'string',
+                            'scale' => 0,
+                            'length' => 255,
+                            'unique' => false,
+                            'nullable' => false,
+                            'precision' => 0,
+                            'columnName' => 'version',
+                            'id' => true,
+                        ],
+                    ],
+                ],
+                'fieldNames' => [
+                    [
+                        'version' => 'version',
+                    ],
+                ],
+                'columnNames' => [
+                    [
+                        'version' => 'version',
+                    ],
+                ],
+                'table' => [
+                    [
+                        'name' => 'migration_versions',
+                    ],
+                ],
+                'idGenerator' => [
+                    $o[1],
+                ],
+            ],
+        ],
+        $o[0],
+        []
+    );
+
+});
