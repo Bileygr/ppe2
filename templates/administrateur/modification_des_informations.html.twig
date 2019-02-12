@@ -2,7 +2,7 @@
 <html lang="fr">
 	<head>
     	<meta charset="utf-8">
-    	<title>Modifier vos informations</title>
+    	<title>{% block title %}Modifier vos informations{% endblock %}</title>
 
     	<!-- CSS -->
     	<style type="text/css">
@@ -13,7 +13,7 @@
   	</head>
 
   	<body>
-        <h1>Vos informations</h1>
+        <h1>{% block titre %}Vos informations{% endblock %}</h1>
         {% block body %}
           {{ form_start(registrationForm) }}
     		  	{{ form_widget(registrationForm.nom) }}

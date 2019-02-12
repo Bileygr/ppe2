@@ -8,7 +8,7 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/administrateur/gestion/offres/modification',
+                    '/administrateur/gestion/offres/modification-des-informations',
                 ],
                 'name' => [
                     'modification_des_offres',

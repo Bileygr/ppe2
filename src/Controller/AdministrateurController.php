@@ -59,7 +59,7 @@ class AdministrateurController extends AbstractController
         $form = $this->createFormBuilder($user)
             ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
             ->add('prenom', TextType::class, array('attr' => array('placeholder' => $user->getPrenom())))
-            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $usercotsssssddsdssssgetTelephone())))
+            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
             ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
             ->add('ville', TextType::class, array('attr' => array('placeholder' => $user->getVille())))
@@ -72,7 +72,6 @@ class AdministrateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) 
         {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('accueil');
         }
 
@@ -140,11 +139,8 @@ class AdministrateurController extends AbstractController
             $id = $request->request->get('id');
             $user = $entityManager->getRepository(User::class)->find($id);
 
-            $response = $this->forward('App\Controller\AdministrateurController::modificationDesPartenaires', [
-                'user'  => $user,
-            ]);
-
-            //return $response;
+            $this->container->get('session')->set('partenaireId', $user->getId());
+            return $this->redirectToRoute('modification_des_partenaires');
         }
 
         if(isset($_POST['supprimer'])){
@@ -277,11 +273,13 @@ class AdministrateurController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/gestion/partenaires/modification", name="modification_des_partenaires")
+     * @Route("/administrateur/gestion/partenaires/modification-des-informations", name="modification_des_partenaires")
      */
-    public function modificationDesPartenaires(User $user, Request $request)
+    public function modificationDesPartenaires(Request $request)
     {
-        dump($user);
+        $id = $this->container->get('session')->get('partenaireId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($id);
 
         $form = $this->createFormBuilder($user)
             ->add('siret', NumberType::class, array('attr' => array('placeholder' => $user->getSIRET())))
@@ -298,11 +296,8 @@ class AdministrateurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            dump($form->getData());
-
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('accueil');
+            $entityManager->flush();
+            return $this->redirectToRoute('gestion_des_partenaires');
         }
 
         return $this->render('administrateur/modification_des_informations_partenaires.html.twig', [
@@ -318,14 +313,33 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administrateur/gestion/jeunes", name="gestion_des_jeunes")
      */
-    public function gestionDesJeunes()
+    public function gestionDesJeunes(Request $request)
     {
+        $entityManager = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $nomDelUtilisateur = $user->getNom();
         $prenomDelUtilisateur = $user->getPrenom();
 
         $repository = $this->getDoctrine()->getRepository(User::class);
         $jeunes = $repository->findByRole('ROLE_JEUNE');
+
+        if(isset($_POST['modifier'])){
+            $id = $request->request->get('id');
+            $user = $entityManager->getRepository(User::class)->find($id);
+
+            $this->container->get('session')->set('userId', $user->getId());
+            return $this->redirectToRoute('modification_des_jeunes');
+        }
+
+        if(isset($_POST['supprimer'])){
+            $id = $request->request->get('id');
+            $user = $entityManager->getRepository(User::class)->find($id);
+
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('gestion_des_jeunes');
+        }
 
         return $this->render('administrateur/gestion_des_jeunes.html.twig', [
             'jeunes' => $jeunes,
@@ -374,6 +388,41 @@ class AdministrateurController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/administrateur/gestion/jeunes/modification-des-informations", name="modification_des_jeunes")
+     */
+    public function modificationDesJeunes(Request $request)
+    {
+        $id = $this->container->get('session')->get('userId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createFormBuilder($user)
+            ->add('nom', TextType::class, array('attr' => array('placeholder' => $user->getNom())))
+            ->add('prenom', TextType::class, array('attr' => array('placeholder' => $user->getPrenom())))
+            ->add('telephone', TextType::class, array('attr' => array('placeholder' => $user->getTelephone())))
+            ->add('email', TextType::class, array('attr' => array('placeholder' => $user->getEmail())))
+            ->add('adresse', TextType::class, array('attr' => array('placeholder' => $user->getAdresse())))
+            ->add('ville', TextType::class, array('attr' => array('placeholder' => $user->getVille())))
+            ->add('codepostal', TextType::class, array('attr' => array('placeholder' => $user->getCodepostal())))
+            ->add('modification', SubmitType::class, array('label' => 'Modifier'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('gestion_des_jeunes');
+
+        }
+
+        return $this->render('administrateur/modification_des_informations_jeunes.html.twig', [
+            'form' => $form->createView(),
+            'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
     /*
         SECTION: OFFRES
     */
@@ -394,11 +443,8 @@ class AdministrateurController extends AbstractController
             $id = $request->request->get('id');
             $offre = $entityManager->getRepository(Offre::class)->find($id);
 
-            $response = $this->forward('App\Controller\AdministrateurController::modificationDesOffres', [
-                'offre'  => $offre,
-            ]);
-
-            return $response;
+            $this->container->get('session')->set('offreId', $offre->getId());
+            return $this->redirectToRoute('modification_des_offres');
         }
 
         if(isset($_POST['supprimer'])){
@@ -408,7 +454,7 @@ class AdministrateurController extends AbstractController
             $entityManager->remove($offre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('gestion_des_partenaires');
+            return $this->redirectToRoute('gestion_des_offres');
         }
 
         return $this->render('administrateur/gestion_des_offres.html.twig', [
@@ -418,10 +464,15 @@ class AdministrateurController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/gestion/offres/modification", name="modification_des_offres")
+     * @Route("/administrateur/gestion/offres/modification-des-informations", name="modification_des_offres")
      */
-    public function modificationDesOffres(Offre $offre, Request $request)
+    public function modificationDesOffres(Request $request)
     {
+        $id = $this->container->get('session')->get('offreId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $offre = $entityManager->getRepository(Offre::class)->find($id);
+        $offreFormationId = $offre->getIdformation();
+
         $repository = $this->getDoctrine()->getRepository(Formation::class);
         $formations = $repository->findAll();
 
@@ -443,63 +494,15 @@ class AdministrateurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-
-            $user_modifie->setId($userid);
-            $user_modifie->setSIRET(0);
-            $user_modifie->setUsername();
-            $user_modifie->setRoles(array("ROLE_ADMINISTRATEUR"));
-            $user_modifie->setPassword($userpassword);
-
-            if($form->get('nom')->getData() == $user->getNom()){
-                $user_modifie->setNom($user->getNom());
-            }else{
-                $user_modifie->setNom($form->get('nom')->getData());
-            }
-
-            if($form->get('prenom')->getData() == $user->getPrenom()){
-                $user_modifie->setPrenom($user->getPrenom());
-            }else{
-                $user_modifie->setPrenom($form->get('prenom')->getData());
-            }
-
-            if($form->get('telephone')->getData() == $user->getTelephone()){
-                $user_modifie->setTelephone($user->getTelephone());
-            }else{
-                $user_modifie->setTelephone($form->get('telephone')->getData());
-            }
-
-            if($form->get('email')->getData() == $user->getEmail()){
-                $user_modifie->setEmail($user->getEmail());
-            }else{
-                $user_modifie->setEmail($form->get('email')->getData());
-            }
-
-            if($form->get('adresse')->getData() == $user->getAdresse()){
-                $user_modifie->setAdresse($user->getAdresse());
-            }else{
-                $user_modifie->setAdresse($form->get('adresse')->getData());
-            }
-
-            if($form->get('ville')->getData() == $user->getVille()){
-                $user_modifie->setVille($user->getVille());
-            }else{
-                $user_modifie->setVille($form->get('ville')->getData());
-            }
-
-            if($form->get('codepostal')->getData() == $user->getCodepostal()){
-                $user_modifie->setCodepostal($user->getCodepostal());
-            }else{
-                $user_modifie->setCodepostal($form->get('codepostal')->getData());
-            }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->merge($user_modifie);
+            $offre->setIdformation($request->request->get('formation'));
             $entityManager->flush();
+            return $this->redirectToRoute('gestion_des_offres');
 
         }
 
         return $this->render('administrateur/modification_des_informations_offres.html.twig', [
             'formations' => $formations,
+            'offreFormationId' => $offreFormationId,
             'form' => $form->createView(),
             'controller_name' => 'AdministrateurController',
         ]);

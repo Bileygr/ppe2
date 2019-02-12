@@ -23,15 +23,14 @@ class OffreRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        $entityManager = $this->getEntityManager();
-
+        $entityManager = $this->getDoctrine()->getManager();
         $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom, u.nom, f.nom, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM offre o ,user u, formation f where o.idpartenaire = u.id  and o.idformation = f.id'
+            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
         );
+        $offres = $query->execute();
 
-        // returns an array of Product objects
-        return $query->execute();
+        return $offres;
     }
 
     // /**

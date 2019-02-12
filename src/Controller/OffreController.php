@@ -24,10 +24,13 @@ use Symfony\Component\Validator\Constraints\Length;
 class OffreController extends AbstractController
 {
     /**
-     * @Route("/offre", name="offre")
+     * @Route("/offres", name="offres")
      */
     public function index()
-    {
+    {	
+    	$repository = $this->getDoctrine()->getRepository(Offre::class);
+    	$offre = $repository->findAll();
+
         return $this->render('offre/index.html.twig', [
             'controller_name' => 'OffreController',
         ]);

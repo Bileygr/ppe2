@@ -1,0 +1,8 @@
+{% extends 'administrateur/modification_des_informations.html.twig' %}
+{% block title %}Modification des informations des jeunes{% endblock %}
+{% block titre %}Modification des informations des jeunes{% endblock %}
+{% block body %}
+	{{ form_start(form) }}
+	{{ form_end(form) }}
+	<a href="{{ path('gestion_des_jeunes') }}">Retour</a>
+{% endblock %}

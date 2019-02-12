@@ -15,6 +15,7 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
         $this->parent = $this->loadTemplate("default/index.html.twig", "administrateur/gestion_des_jeunes.html.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'titre' => array($this, 'block_titre'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -50,7 +51,7 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Gestion Jeunes";
+        echo "Gestion des jeunes";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -60,6 +61,24 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
     }
 
     // line 5
+    public function block_titre($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        echo "Gestion des jeunes";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 7
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -68,12 +87,12 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
+        // line 8
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("inscription_des_jeunes");
         echo "\" class=\"btn btn-primary\">Ajout</a>\t
     <a href=\"";
-        // line 7
+        // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
         echo "\" class=\"btn btn-warning\">Retour</a>
 
@@ -94,59 +113,67 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 25
+        // line 27
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["jeunes"]) || array_key_exists("jeunes", $context) ? $context["jeunes"] : (function () { throw new Twig_Error_Runtime('Variable "jeunes" does not exist.', 25, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["jeunes"]) || array_key_exists("jeunes", $context) ? $context["jeunes"] : (function () { throw new Twig_Error_Runtime('Variable "jeunes" does not exist.', 27, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["jeune"]) {
-            // line 26
-            echo "\t\t    \t\t<tr>
+            // line 28
+            echo "\t  \t\t\t<form method=\"POST\">
+\t\t\t    \t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
+            // line 29
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "id", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">";
-            // line 27
+            // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t<td>";
-            // line 28
+            // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "username", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 29
+            // line 33
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "nom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 30
+            // line 34
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "prenom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>0";
-            // line 31
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "telephone", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 32
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "email", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 33
+            // line 37
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "adresse", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 34
+            // line 38
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "ville", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 35
+            // line 39
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "codepostal", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 36
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "dateajout", array()), "Y-m-d"), "html", null, true);
+            // line 40
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jeune'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 39
+        // line 46
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -170,14 +197,16 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
 
     public function getDebugInfo()
     {
-        return array (  150 => 39,  141 => 36,  137 => 35,  133 => 34,  129 => 33,  125 => 32,  121 => 31,  117 => 30,  113 => 29,  109 => 28,  105 => 27,  102 => 26,  98 => 25,  77 => 7,  72 => 6,  63 => 5,  45 => 3,  15 => 1,);
+        return array (  177 => 46,  165 => 40,  161 => 39,  157 => 38,  153 => 37,  149 => 36,  145 => 35,  141 => 34,  137 => 33,  133 => 32,  129 => 31,  124 => 29,  121 => 28,  117 => 27,  96 => 9,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'default/index.html.twig' %}
 
-{% block title %}Gestion Jeunes{% endblock %}
+{% block title %}Gestion des jeunes{% endblock %}
+
+{% block titre %}Gestion des jeunes{% endblock %}
 
 {% block body %}
 \t<a href=\"{{ path('inscription_des_jeunes') }}\" class=\"btn btn-primary\">Ajout</a>\t
@@ -200,6 +229,8 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t{% for jeune in jeunes %}
+\t  \t\t\t<form method=\"POST\">
+\t\t\t    \t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"{{ jeune.id }}\">
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">{{ jeune.id }}</th>
 \t      \t\t\t\t<td>{{ jeune.username }}</td>
@@ -210,8 +241,11 @@ class __TwigTemplate_17ee7295930aabd4081bb80b21241c7424c094cb9d46438ee044df6c04c
 \t      \t\t\t\t<td>{{ jeune.adresse }}</td>
 \t      \t\t\t\t<td>{{ jeune.ville }}</td>
 \t      \t\t\t\t<td>{{ jeune.codepostal }}</td>
-\t      \t\t\t\t<td>{{ jeune.dateajout|date('Y-m-d') }}</td>
+\t      \t\t\t\t<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    {% endfor %}
 \t  \t</tbody>
 \t</table>

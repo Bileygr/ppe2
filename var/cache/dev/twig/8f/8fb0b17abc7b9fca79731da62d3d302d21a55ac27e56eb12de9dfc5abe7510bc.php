@@ -14,6 +14,8 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
         $this->parent = false;
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'titre' => array($this, 'block_titre'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -31,7 +33,10 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
 <html lang=\"fr\">
 \t<head>
     \t<meta charset=\"utf-8\">
-    \t<title>Modifier vos informations</title>
+    \t<title>";
+        // line 5
+        $this->displayBlock('title', $context, $blocks);
+        echo "</title>
 
     \t<!-- CSS -->
     \t<style type=\"text/css\">
@@ -42,7 +47,10 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
   \t</head>
 
   \t<body>
-        <h1>Vos informations</h1>
+        <h1>";
+        // line 16
+        $this->displayBlock('titre', $context, $blocks);
+        echo "</h1>
         ";
         // line 17
         $this->displayBlock('body', $context, $blocks);
@@ -63,6 +71,42 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
 
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 5
+    public function block_title($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+
+        echo "Modifier vos informations";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 16
+    public function block_titre($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        echo "Vos informations";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
     }
 
@@ -140,7 +184,7 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
 
     public function getDebugInfo()
     {
-        return array (  120 => 28,  116 => 27,  112 => 26,  108 => 25,  104 => 24,  100 => 23,  96 => 22,  92 => 21,  88 => 20,  84 => 19,  79 => 18,  70 => 17,  54 => 32,  50 => 30,  48 => 17,  30 => 1,);
+        return array (  164 => 28,  160 => 27,  156 => 26,  152 => 25,  148 => 24,  144 => 23,  140 => 22,  136 => 21,  132 => 20,  128 => 19,  123 => 18,  114 => 17,  96 => 16,  78 => 5,  62 => 32,  58 => 30,  56 => 17,  52 => 16,  38 => 5,  32 => 1,);
     }
 
     public function getSourceContext()
@@ -149,7 +193,7 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
 <html lang=\"fr\">
 \t<head>
     \t<meta charset=\"utf-8\">
-    \t<title>Modifier vos informations</title>
+    \t<title>{% block title %}Modifier vos informations{% endblock %}</title>
 
     \t<!-- CSS -->
     \t<style type=\"text/css\">
@@ -160,7 +204,7 @@ class __TwigTemplate_18e78f791dc21688f9a90a3140b4d47e532bac8ef387e9ed6f338af4d32
   \t</head>
 
   \t<body>
-        <h1>Vos informations</h1>
+        <h1>{% block titre %}Vos informations{% endblock %}</h1>
         {% block body %}
           {{ form_start(registrationForm) }}
     \t\t  \t{{ form_widget(registrationForm.nom) }}

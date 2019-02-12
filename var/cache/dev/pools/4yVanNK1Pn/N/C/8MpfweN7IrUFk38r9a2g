@@ -8,7 +8,7 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/administrateur/gestion/partenaires/modification',
+                    '/administrateur/gestion/partenaires/modification-des-informations',
                 ],
                 'name' => [
                     'modification_des_partenaires',

@@ -4036,33 +4036,19 @@
         <argument key="passwordEncoder" type="service" id="security.user_password_encoder.generic"/>
       </argument>
     </service>
-    <service id=".service_locator.wypGnUQ" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="user" type="service" id=".errored..service_locator.wypGnUQ.App\Entity\User"/>
-      </argument>
-    </service>
-    <service id=".service_locator.h3jh2b7" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="offre" type="service" id=".errored..service_locator.h3jh2b7.App\Entity\Offre"/>
-      </argument>
-    </service>
     <service id=".service_locator.EbLunuf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.OfyOIFw" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.j0vKHLL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdministrateurController::inscriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController::inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController::inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController::modificationDesInformationsAdministrateur" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\AdministrateurController::modificationDesOffres" type="service" id=".service_locator.h3jh2b7"/>
-        <argument key="App\Controller\AdministrateurController::modificationDesPartenaires" type="service" id=".service_locator.wypGnUQ"/>
         <argument key="App\Controller\PartenaireController::ajoutOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\PartenaireController::listeOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.lm3AYgL"/>
@@ -4071,8 +4057,6 @@
         <argument key="App\Controller\AdministrateurController:inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController:inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController:modificationDesInformationsAdministrateur" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\AdministrateurController:modificationDesOffres" type="service" id=".service_locator.h3jh2b7"/>
-        <argument key="App\Controller\AdministrateurController:modificationDesPartenaires" type="service" id=".service_locator.wypGnUQ"/>
         <argument key="App\Controller\PartenaireController:ajoutOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\PartenaireController:listeOffres" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.lm3AYgL"/>
@@ -5046,12 +5030,10 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.OfyOIFw"/>
+      <argument type="service" id=".service_locator.j0vKHLL"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
-    <service id=".errored..service_locator.wypGnUQ.App\Entity\User" class="App\Entity\User"/>
-    <service id=".errored..service_locator.h3jh2b7.App\Entity\Offre" class="App\Entity\Offre"/>
     <service id=".service_locator.HKoUR8q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5388,7 +5370,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.OfyOIFw"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.j0vKHLL"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>
