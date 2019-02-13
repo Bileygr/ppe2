@@ -11,7 +11,7 @@
                     '/partenaire/gestion/offres/ajout',
                 ],
                 'name' => [
-                    'ajout_des_offres',
+                    'partenaire_ajout_d_offres',
                 ],
             ],
         ],

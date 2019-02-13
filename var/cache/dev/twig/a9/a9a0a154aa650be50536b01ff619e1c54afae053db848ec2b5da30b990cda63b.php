@@ -15,6 +15,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
         $this->parent = $this->loadTemplate("default/index.html.twig", "offre/index.html.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'titre' => array($this, 'block_titre'),
             'body' => array($this, 'block_body'),
         );
     }
@@ -50,7 +51,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Gestion Jeunes";
+        echo "Offres";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -60,6 +61,24 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
     }
 
     // line 5
+    public function block_titre($context, array $blocks = array())
+    {
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "titre"));
+
+        echo "Offres";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
+    // line 7
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -70,7 +89,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
 
         echo "\t
     <a href=\"";
-        // line 6
+        // line 8
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
         echo "\" class=\"btn btn-warning\">Retour</a>
 
@@ -78,72 +97,57 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
   \t\t<thead>
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
-\t\t      \t<th scope=\"col\">Identifiant</th>
+\t\t      \t<th scope=\"col\">Entreprise</th>
+\t\t      \t<th scope=\"col\">Formation</th>
 \t\t      \t<th scope=\"col\">Nom</th>
-\t\t      \t<th scope=\"col\">Prénom</th>
-\t\t      \t<th scope=\"col\">Tél</th>
-\t\t      \t<th scope=\"col\">Email</th>
-\t\t      \t<th scope=\"col\">Adresse</th>
-\t\t      \t<th scope=\"col\">Ville</th>
-\t\t      \t<th scope=\"col\">Code Postal</th>
+\t\t      \t<th scope=\"col\">Debut</th>
+\t\t      \t<th scope=\"col\">Fin</th>
 \t\t      \t<th scope=\"col\">Date d'ajout</th>
 \t    \t</tr>
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 24
+        // line 23
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["jeunes"]) || array_key_exists("jeunes", $context) ? $context["jeunes"] : (function () { throw new Twig_Error_Runtime('Variable "jeunes" does not exist.', 24, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["jeune"]) {
-            // line 25
+        $context['_seq'] = twig_ensure_traversable((isset($context["offres"]) || array_key_exists("offres", $context) ? $context["offres"] : (function () { throw new Twig_Error_Runtime('Variable "offres" does not exist.', 23, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["offre"]) {
+            // line 24
             echo "\t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">";
-            // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "id", array()), "html", null, true);
+            // line 25
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t<td>";
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomU", array()), "html", null, true);
+            echo "</td>
+\t      \t\t\t\t<td>";
             // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "username", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomF", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "nom", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 29
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "prenom", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "debut", array()), "Y-m-d"), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>0";
+\t      \t\t\t\t<td>";
             // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "telephone", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "fin", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "email", array()), "html", null, true);
-            echo "</td>
-\t      \t\t\t\t<td>";
-            // line 32
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "adresse", array()), "html", null, true);
-            echo "</td>
-\t      \t\t\t\t<td>";
-            // line 33
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "ville", array()), "html", null, true);
-            echo "</td>
-\t      \t\t\t\t<td>";
-            // line 34
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "codepostal", array()), "html", null, true);
-            echo "</td>
-\t      \t\t\t\t<td>";
-            // line 35
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "dateajout", array()), "Y-m-d"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
 \t    \t\t\t</tr>
 \t\t    ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['jeune'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['offre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 38
+        // line 34
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -167,14 +171,16 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
 
     public function getDebugInfo()
     {
-        return array (  147 => 38,  138 => 35,  134 => 34,  130 => 33,  126 => 32,  122 => 31,  118 => 30,  114 => 29,  110 => 28,  106 => 27,  102 => 26,  99 => 25,  95 => 24,  74 => 6,  63 => 5,  45 => 3,  15 => 1,);
+        return array (  151 => 34,  142 => 31,  138 => 30,  134 => 29,  130 => 28,  126 => 27,  122 => 26,  118 => 25,  115 => 24,  111 => 23,  93 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'default/index.html.twig' %}
 
-{% block title %}Gestion Jeunes{% endblock %}
+{% block title %}Offres{% endblock %}
+
+{% block titre %}Offres{% endblock %}
 
 {% block body %}\t
     <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning\">Retour</a>
@@ -183,30 +189,24 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
   \t\t<thead>
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
-\t\t      \t<th scope=\"col\">Identifiant</th>
+\t\t      \t<th scope=\"col\">Entreprise</th>
+\t\t      \t<th scope=\"col\">Formation</th>
 \t\t      \t<th scope=\"col\">Nom</th>
-\t\t      \t<th scope=\"col\">Prénom</th>
-\t\t      \t<th scope=\"col\">Tél</th>
-\t\t      \t<th scope=\"col\">Email</th>
-\t\t      \t<th scope=\"col\">Adresse</th>
-\t\t      \t<th scope=\"col\">Ville</th>
-\t\t      \t<th scope=\"col\">Code Postal</th>
+\t\t      \t<th scope=\"col\">Debut</th>
+\t\t      \t<th scope=\"col\">Fin</th>
 \t\t      \t<th scope=\"col\">Date d'ajout</th>
 \t    \t</tr>
   \t\t</thead>
 \t  \t<tbody>
-\t  \t\t{% for jeune in jeunes %}
+\t  \t\t{% for offre in offres %}
 \t\t    \t\t<tr>
-\t      \t\t\t\t<th scope=\"row\">{{ jeune.id }}</th>
-\t      \t\t\t\t<td>{{ jeune.username }}</td>
-\t      \t\t\t\t<td>{{ jeune.nom }}</td>
-\t      \t\t\t\t<td>{{ jeune.prenom }}</td>
-\t      \t\t\t\t<td>0{{ jeune.telephone }}</td>
-\t      \t\t\t\t<td>{{ jeune.email }}</td>
-\t      \t\t\t\t<td>{{ jeune.adresse }}</td>
-\t      \t\t\t\t<td>{{ jeune.ville }}</td>
-\t      \t\t\t\t<td>{{ jeune.codepostal }}</td>
-\t      \t\t\t\t<td>{{ jeune.dateajout|date('Y-m-d') }}</td>
+\t      \t\t\t\t<th scope=\"row\">{{ offre.id }}</th>
+\t      \t\t\t\t<td>{{ offre.nomU }}</td>
+\t      \t\t\t\t<td>{{ offre.nomF }}</td>
+\t      \t\t\t\t<td>{{ offre.nomO }}</td>
+\t      \t\t\t\t<td>{{ offre.debut|date('Y-m-d') }}</td>
+\t      \t\t\t\t<td>{{ offre.fin|date('Y-m-d') }}</td>
+\t      \t\t\t\t<td>{{ offre.dateajout|date('d-m-Y') }}</td>
 \t    \t\t\t</tr>
 \t\t    {% endfor %}
 \t  \t</tbody>

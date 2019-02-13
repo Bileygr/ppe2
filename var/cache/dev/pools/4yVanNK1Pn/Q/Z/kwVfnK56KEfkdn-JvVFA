@@ -11,7 +11,7 @@
                     '/administrateur/gestion/administrateurs',
                 ],
                 'name' => [
-                    'gestion_des_administrateurs',
+                    'administrateur_gestion',
                 ],
             ],
         ],

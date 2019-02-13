@@ -1,6 +1,8 @@
 {% extends 'default/index.html.twig' %}
 
-{% block title %}Gestion Jeunes{% endblock %}
+{% block title %}Offres{% endblock %}
+
+{% block titre %}Offres{% endblock %}
 
 {% block body %}	
     <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
@@ -9,30 +11,24 @@
   		<thead>
 	    	<tr>
 		      	<th scope="col">ID</th>
-		      	<th scope="col">Identifiant</th>
+		      	<th scope="col">Entreprise</th>
+		      	<th scope="col">Formation</th>
 		      	<th scope="col">Nom</th>
-		      	<th scope="col">Prénom</th>
-		      	<th scope="col">Tél</th>
-		      	<th scope="col">Email</th>
-		      	<th scope="col">Adresse</th>
-		      	<th scope="col">Ville</th>
-		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Debut</th>
+		      	<th scope="col">Fin</th>
 		      	<th scope="col">Date d'ajout</th>
 	    	</tr>
   		</thead>
 	  	<tbody>
-	  		{% for jeune in jeunes %}
+	  		{% for offre in offres %}
 		    		<tr>
-	      				<th scope="row">{{ jeune.id }}</th>
-	      				<td>{{ jeune.username }}</td>
-	      				<td>{{ jeune.nom }}</td>
-	      				<td>{{ jeune.prenom }}</td>
-	      				<td>0{{ jeune.telephone }}</td>
-	      				<td>{{ jeune.email }}</td>
-	      				<td>{{ jeune.adresse }}</td>
-	      				<td>{{ jeune.ville }}</td>
-	      				<td>{{ jeune.codepostal }}</td>
-	      				<td>{{ jeune.dateajout|date('Y-m-d') }}</td>
+	      				<th scope="row">{{ offre.id }}</th>
+	      				<td>{{ offre.nomU }}</td>
+	      				<td>{{ offre.nomF }}</td>
+	      				<td>{{ offre.nomO }}</td>
+	      				<td>{{ offre.debut|date('Y-m-d') }}</td>
+	      				<td>{{ offre.fin|date('Y-m-d') }}</td>
+	      				<td>{{ offre.dateajout|date('d-m-Y') }}</td>
 	    			</tr>
 		    {% endfor %}
 	  	</tbody>

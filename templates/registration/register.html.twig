@@ -25,15 +25,15 @@
   	<body>
     	{% block body %}
         	<h1>
-        		{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
+        		{% if app.request.get('_route') == 'administrateur_inscription' %}
     				Inscription des administrateurs
-				{% elseif app.request.get('_route') == 'inscription_des_jeunes' %}
+				{% elseif app.request.get('_route') == 'jeune_inscription' %}
     				Inscription des jeunes
-    			{% elseif app.request.get('_route') == 'inscription_des_partenaires'%}
+    			{% elseif app.request.get('_route') == 'partenaire_inscription'%}
     				Inscription des partenaires
 				{% endif %}
         	</h1>
-        	{% if (app.request.get('_route') == 'inscription_des_administrateurs') or (app.request.get('_route') == 'inscription_des_jeunes') %}
+        	{% if (app.request.get('_route') == 'administrateur_inscription') or (app.request.get('_route') == 'jeune_inscription') %}
 		        {{ form_start(registrationForm) }}
 		          	{{ form_widget(registrationForm.nom) }}
 		            {{ form_widget(registrationForm.prenom ) }}
@@ -45,15 +45,15 @@
 				    {{ form_widget(registrationForm.codepostal ) }}
 				    {{ form_widget(registrationForm.inscription) }}
 
-				    {% if app.request.get('_route') == 'inscription_des_jeunes' %}
-				         <a href="{{ path('gestion_des_jeunes') }}">Retour</a>
+				    {% if app.request.get('_route') == 'jeune_inscription' %}
+				         <a href="{{ path('jeune_gestion') }}">Retour</a>
 				    {% endif %}
 
-					{% if app.request.get('_route') == 'inscription_des_administrateurs' %}
-				        <a href="{{ path('gestion_des_administrateurs') }}">Retour</a>
+					{% if app.request.get('_route') == 'administrateur_inscription' %}
+				        <a href="{{ path('administrateur_gestion') }}">Retour</a>
 				    {% endif %}
 		       	{{ form_end(registrationForm) }}
-		    {% elseif app.request.get('_route') == 'inscription_des_partenaires'%}
+		    {% elseif app.request.get('_route') == 'partenaire_inscription'%}
 		    	{{ form_start(registrationForm) }}
 		    		{{ form_widget(registrationForm.siret) }}
 		        	{{ form_widget(registrationForm.nom) }}
@@ -64,7 +64,7 @@
 					{{ form_widget(registrationForm.ville) }}
 					{{ form_widget(registrationForm.codepostal) }}
 					{{ form_widget(registrationForm.inscription) }}
-					<a href="{{ path('gestion_des_partenaires') }}">Retour</a>
+					<a href="{{ path('partenaire_gestion') }}">Retour</a>
 				{{ form_end(registrationForm) }}
 		    {% endif %}
 	    {% endblock %}

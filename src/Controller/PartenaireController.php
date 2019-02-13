@@ -5,32 +5,87 @@ namespace App\Controller;
 use App\Entity\Formation;
 use App\Entity\Offre;
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\PartenaireRegistrationFormType;
+use App\Repository\UserRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PartenaireController extends AbstractController
 {
     /**
-     * @Route("/partenaire/gestion/offres", name="partenaire_gestion_offres")
+     * @Route("administrateur/gestion/partenaires/inscription", name="partenaire_inscription")
      */
-    public function gestionOffres()
+    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = new User();
+
+        $form = $this->createForm(PartenaireRegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $user->setNom($form->get('nom')->getData());
+            $user->setPrenom("");
+            $user->setUsername();
+            $user->setSIRET($form->get('siret')->getData());
+            $user->setRoles(array('ROLE_PARTENAIRE'));
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('motdepasse')->getData()
+                )
+            );
+            $user->setTelephone($form->get('telephone')->getData());
+            $user->setEmail($form->get('email')->getData());
+            $user->setAdresse($form->get('adresse')->getData());
+            $user->setVille($form->get('ville')->getData());
+            $user->setCodepostal($form->get('codepostal')->getData());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/administrateur/gestion/partenaires/modification-des-informations", name="partenaire_modification")
+     */
+    public function modification(Request $request)
+    {
+        $id = $this->container->get('session')->get('partenaire_id');
+        $entityManager = $this->getDoctrine()->getManager();
+        $partenaire = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(PartenaireRegistrationFormType::class, $partenaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('partenaire_gestion');
+        }
+
+        return $this->render('partenaire/modification.html.twig', [
+            'partenaire' => $partenaire,
+            'form' => $form->createView(),
+            'controller_name' => 'PartenaireController',
+        ]);
+    }
+
+    /**
+     * @Route("/partenaire/gestion/offres", name="partenaire_gestion_des_offres")
+     */
+    public function gestionDesOffres()
     {
         return $this->render('partenaire/gestion_des_offres.html.twig', [
             'controller_name' => 'PartenaireController',
@@ -38,80 +93,34 @@ class PartenaireController extends AbstractController
     }
 
     /**
-     * @Route("/partenaire/gestion/offres/ajout", name="ajout_des_offres")
+     * @Route("/administrateur/gestion/partenaires", name="partenaire_gestion")
      */
-    public function ajoutOffres(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function gestionDesPartenaires(Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userid = $user->getId();
-        
-        $repository = $this->getDoctrine()->getRepository(Formation::class);
-        $formations = $repository->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
 
-        $offre = new Offre();
+        if(isset($_POST['modifier'])){
+            $id = $request->request->get('id');
+            $partenaire = $entityManager->getRepository(User::class)->find($id);
 
-        $form = $this->createFormBuilder($offre)
-            ->add('nom', TextType::class, array('attr' => array('placeholder' => 'Nom')))
-            ->add('adresse', TextType::class, array('attr' => array('placeholder' => 'Adresse')))
-            ->add('ville', TextType::class, array('attr' => array('placeholder' => 'Ville')))
-            ->add('codepostal', TextType::class, array('attr' => array('placeholder' => 'Code Postal')))
-            ->add('debut', DateType::class)
-            ->add('fin', DateType::class)
-            ->add('description', TextareaType::class, array('attr' => array('placeholder' => 'Description du poste...')))
-            ->add('ajout', SubmitType::class, array('label' => 'Déposer l\'offre'))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-            $debut = $form->get('debut')->getData();
-            $fin = $form->get('fin')->getData();
-
-            $offre->setNom($form->get('nom')->getData());
-            $offre->setAdresse($form->get('adresse')->getData());
-            $offre->setVille($form->get('ville')->getData());
-            $offre->setCodepostal($form->get('codepostal')->getData());
-            $offre->setDebut($debut);
-            $offre->setFin($fin);
-            $offre->setIdformation($request->request->get('formation'));
-            $offre->setDescription($form->get('description')->getData());
-            $offre->setIdpartenaire($userid);
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($offre);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('partenaire_gestion_offres');
+            $this->container->get('session')->set('partenaire_id', $partenaire->getId());
+            return $this->redirectToRoute('partenaire_modification');
         }
 
-        return $this->render('offre/ajout_des_offres.html.twig', [
-            'formations' => $formations, 'registrationForm' => $form->createView()
-        ]);
-    }
+        if(isset($_POST['supprimer'])){
+            $id = $request->request->get('id');
+            $partenaire = $entityManager->getRepository(User::class)->find($id);
 
-     /**
-     * @Route("/partenaire/gestion/offres/liste", name="liste_des_offres_partenaire")
-     */
-    public function listeOffres(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userid = $user->getId();
-        
-        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($partenaire);
+            $entityManager->flush();
 
-        $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f WHERE o.idpartenaire = u.id  AND o.idformation = f.id AND o.idpartenaire = '.$userid.''
-        );
+            return $this->redirectToRoute('gestion_des_partenaires');
+        }
 
-        // returns an array of Product objects
-       $offres = $query->execute();
-       dump($offres) ;
-
-        return $this->render('partenaire/liste_des_offres.html.twig', [
-            'offres' => $offres,
-            'controller_name' => 'PartenaireController',
+        return $this->render('partenaire/gestion.html.twig', [
+            'partenaires' => $partenaires
         ]);
     }
 }

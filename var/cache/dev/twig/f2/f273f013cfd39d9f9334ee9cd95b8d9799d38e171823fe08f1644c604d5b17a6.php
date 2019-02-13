@@ -144,26 +144,28 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         echo "        ";
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMINISTRATEUR")) {
             // line 16
-            echo "          <a href=\"\">Voir les offres</a>
+            echo "          <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offres");
+            echo "\">Voir les offres</a>
           <a href=\"";
             // line 17
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_jeunes");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_gestion");
             echo "\">Gérer les jeunes</a>
           <a href=\"";
             // line 18
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_offres");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offre_gestion");
             echo "\">Gérer les offres</a>
           <a href=\"";
             // line 19
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_partenaires");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion");
             echo "\">Gérer les partenaires</a>
           <a href=\"";
             // line 20
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("gestion_des_administrateurs");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administrateur_gestion");
             echo "\">Gérer les administrateurs</a>
           <a href=\"";
             // line 21
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("modification_des_informations_administrateur");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administrateur_modification");
             echo "\">Vos informations</a>
           <a href=\"";
             // line 22
@@ -172,15 +174,17 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_PARTENAIRE")) {
             // line 24
-            echo "          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+            echo "          <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offres");
+            echo "\">Voir les offres</a>
           <a href=\"";
             // line 25
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion_offres");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offre_liste_partenaire_connecte");
             echo "\">Gérer les offres</a>
           <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
           <a href=\"";
             // line 27
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("modification_des_informations_administrateur");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_modification");
             echo "\">Vos informations</a>
           <a href=\"";
             // line 28
@@ -189,11 +193,13 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
         ";
         } elseif ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JEUNE")) {
             // line 30
-            echo "          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+            echo "          <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offres");
+            echo "\">Voir les offres</a>
           <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
           <a href=\"";
             // line 32
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_modification");
             echo "\">Vos informations</a>
           <a href=\"";
             // line 33
@@ -254,7 +260,7 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
     public function getDebugInfo()
     {
-        return array (  229 => 44,  219 => 39,  214 => 37,  210 => 36,  205 => 35,  200 => 33,  196 => 32,  192 => 30,  187 => 28,  183 => 27,  178 => 25,  175 => 24,  170 => 22,  166 => 21,  162 => 20,  158 => 19,  154 => 18,  150 => 17,  147 => 16,  144 => 15,  135 => 14,  117 => 12,  100 => 8,  82 => 5,  71 => 45,  69 => 44,  63 => 41,  60 => 40,  58 => 14,  53 => 12,  48 => 9,  46 => 8,  40 => 5,  34 => 1,);
+        return array (  235 => 44,  225 => 39,  220 => 37,  216 => 36,  211 => 35,  206 => 33,  202 => 32,  196 => 30,  191 => 28,  187 => 27,  182 => 25,  177 => 24,  172 => 22,  168 => 21,  164 => 20,  160 => 19,  156 => 18,  152 => 17,  147 => 16,  144 => 15,  135 => 14,  117 => 12,  100 => 8,  82 => 5,  71 => 45,  69 => 44,  63 => 41,  60 => 40,  58 => 14,  53 => 12,  48 => 9,  46 => 8,  40 => 5,  34 => 1,);
     }
 
     public function getSourceContext()
@@ -274,23 +280,23 @@ class __TwigTemplate_c25ca9b0f370560156e49e37cdc6d4b497ae80882e7d7a43fd0183cbe34
 
   \t\t{% block body %}
         {% if is_granted('ROLE_ADMINISTRATEUR') %}
-          <a href=\"\">Voir les offres</a>
-          <a href=\"{{ path('gestion_des_jeunes') }}\">Gérer les jeunes</a>
-          <a href=\"{{ path('gestion_des_offres') }}\">Gérer les offres</a>
-          <a href=\"{{ path('gestion_des_partenaires') }}\">Gérer les partenaires</a>
-          <a href=\"{{ path('gestion_des_administrateurs') }}\">Gérer les administrateurs</a>
-          <a href=\"{{ path('modification_des_informations_administrateur') }}\">Vos informations</a>
+          <a href=\"{{ path('offres') }}\">Voir les offres</a>
+          <a href=\"{{ path('jeune_gestion') }}\">Gérer les jeunes</a>
+          <a href=\"{{ path('offre_gestion') }}\">Gérer les offres</a>
+          <a href=\"{{ path('partenaire_gestion') }}\">Gérer les partenaires</a>
+          <a href=\"{{ path('administrateur_gestion') }}\">Gérer les administrateurs</a>
+          <a href=\"{{ path('administrateur_modification') }}\">Vos informations</a>
           <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
         {% elseif  is_granted('ROLE_PARTENAIRE') %}
-          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
-          <a href=\"{{ path('partenaire_gestion_offres') }}\">Gérer les offres</a>
+          <a href=\"{{ path('offres') }}\">Voir les offres</a>
+          <a href=\"{{ path('offre_liste_partenaire_connecte') }}\">Gérer les offres</a>
           <a href=\"administrateuradmin.php\">Gérer les candidatures</a>
-          <a href=\"{{ path('modification_des_informations_administrateur') }}\">Vos informations</a>
+          <a href=\"{{ path('partenaire_modification') }}\">Vos informations</a>
           <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
         {% elseif  is_granted('ROLE_JEUNE') %}
-          <a href=\"administrateurpartenaire.php\">Voir les offres</a>
+          <a href=\"{{ path('offres') }}\">Voir les offres</a>
           <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
-          <a href=\"{{ path('app_login') }}\">Vos informations</a>
+          <a href=\"{{ path('jeune_modification') }}\">Vos informations</a>
           <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
         {% else %}
           <a href=\"{{ path('app_login') }}\">Jeune</a>

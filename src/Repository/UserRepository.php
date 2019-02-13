@@ -30,11 +30,6 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
-    public function updateAdmin(User $user)
-    {
-        
-    }
-
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

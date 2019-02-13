@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+  		<meta charset="utf-8">
+    	<title>{% block title %}Accueil{% endblock %}</title>
+
+    	<!-- CSS -->
+      {% block css %}{% endblock %}
+  	</head>
+
+  	<body>
+  		<h1 class="text-muted">{% block titre %}Accueil{% endblock %}</h1>
+
+  		{% block body %}
+        {% if is_granted('ROLE_ADMINISTRATEUR') %}
+          <a href="{{ path('offres') }}">Voir les offres</a>
+          <a href="{{ path('jeune_gestion') }}">Gérer les jeunes</a>
+          <a href="{{ path('offre_gestion') }}">Gérer les offres</a>
+          <a href="{{ path('partenaire_gestion') }}">Gérer les partenaires</a>
+          <a href="{{ path('administrateur_gestion') }}">Gérer les administrateurs</a>
+          <a href="{{ path('administrateur_modification') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% elseif  is_granted('ROLE_PARTENAIRE') %}
+          <a href="{{ path('offres') }}">Voir les offres</a>
+          <a href="{{ path('offre_liste_partenaire_connecte') }}">Gérer les offres</a>
+          <a href="administrateuradmin.php">Gérer les candidatures</a>
+          <a href="{{ path('partenaire_modification') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% elseif  is_granted('ROLE_JEUNE') %}
+          <a href="{{ path('offres') }}">Voir les offres</a>
+          <a href="administrateuradmin.php">Gérer ses candidatures</a>
+          <a href="{{ path('jeune_modification') }}">Vos informations</a>
+          <a href="{{ path('app_logout') }}">Déconnexion</a>
+        {% else %}
+          <a href="{{ path('app_login') }}">Jeune</a>
+          <a href="{{ path('app_login') }}">Partenaire</a>
+          <a href="{{ path('app_login') }}">Administrateur</a>
+        {% endif %}
+      {% endblock %}
+
+      <footer><p>&copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p></footer>
+
+    	<!-- Scripts -->
+    	{% block javascript %}{% endblock %}
+  	</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'default/accueil.html.twig' %}
+
+{% block title %}Gestion des administrateurs{% endblock %}
+
+{% block titre %}Gestion des administrateurs{% endblock %}
+
+{% block body %}
+	<a href="{{ path('administrateur_inscription') }}" class="btn btn-primary">Ajout</a>	
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Rôle</th>
+		      	<th scope="col">Identifiant</th>
+		      	<th scope="col">Nom</th>
+		      	<th scope="col">Prénom</th>
+		      	<th scope="col">Tél</th>
+		      	<th scope="col">Email</th>
+		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Ville</th>
+		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Date d'ajout</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for administrateur in administrateurs %}
+	  			<form method="POST">
+	  				<input type="text" hidden="hidden" name="id" value="{{ administrateur.id }}">
+		    		<tr>
+	      				<th scope="row">{{ administrateur.id }}</th>
+	      				{% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
+	      					<td>Super administrateur</td>
+	      				{% elseif administrateur.roles|join(', ') == 'ROLE_ADMINISTRATEUR' %}
+	      					<td>Administrateur</td>
+	      				{% endif %}
+	      				<td>{{ administrateur.username }}</td>
+	      				<td>{{ administrateur.nom }}</td>
+	      				<td>{{ administrateur.prenom }}</td>
+	      				<td>0{{ administrateur.telephone }}</td>
+	      				<td>{{ administrateur.email }}</td>
+	      				<td>{{ administrateur.adresse }}</td>
+	      				<td>{{ administrateur.ville }}</td>
+	      				<td>{{ administrateur.codepostal }}</td>
+	      				<td>{{ administrateur.dateajout|date('d-m-Y') }}</td>
+	      				{% if is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
+	      					<td><input type="submit" name="modifier" value="Modifier"></td>
+		      				<td><input type="submit" name="supprimer" value="Supprimer"></td>
+	      				{% endif %}
+	    			</tr>
+	    		</form>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

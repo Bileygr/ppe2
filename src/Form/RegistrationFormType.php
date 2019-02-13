@@ -23,31 +23,6 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('nom', TextType::class, array('attr' => array('placeholder' => 'Nom')))
             ->add('prenom', TextType::class, array('attr' => array('placeholder' => 'Prénom')))
-            /*
-            ->add('motdepasse', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'required' => true,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-                ), [
-                    'mapped' => false,
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            'max' => 4096,
-                        ]),
-                    ],
-            ])
-            */
-
-            // Trouver une facon de cacher le champ en dessous si il ne s'agit pas d'un partenaire
-            //->add('siret', NumberType::class, array('attr' => array('placeholder' => 'SIRET')))
-            
             ->add('motdepasse', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [
