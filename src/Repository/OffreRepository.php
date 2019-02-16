@@ -19,6 +19,52 @@ class OffreRepository extends ServiceEntityRepository
         parent::__construct($registry, Offre::class);
     }
 
+    public function findAll()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $query = $entityManager->createQuery(
+            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
+        );
+        $offres = $query->execute();
+
+        return $offres;
+    }
+
+    public function vaTeFaireFoutre($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+                FROM App\Entity\Offre o, App\Entity\User u, App\Entity\Formation f 
+                WHERE o.idpartenaire = u.id  
+                AND o.idformation = f.id 
+                AND o.idpartenaire = :id';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+
+        /*
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+               'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+                FROM App\Entity\Offre o, App\Entity\User u, App\Entity\Formation f 
+                WHERE o.idpartenaire = u.id  
+                AND o.idformation = f.id 
+                AND o.idpartenaire = :id')
+                ->setParameter('id', $id)
+                ->getResult();    
+
+        $test = $query->execute();
+        dump($test);
+
+        return $test;
+        */
+    }
+
     // /**
     //  * @return Offre[] Returns an array of Offre objects
     //  */

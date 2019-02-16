@@ -42,6 +42,7 @@ $instance->setQuoteStrategy(new \Doctrine\ORM\Mapping\DefaultQuoteStrategy());
 $instance->setEntityListenerResolver(new \Doctrine\Bundle\DoctrineBundle\Mapping\ContainerAwareEntityListenerResolver($this));
 $instance->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, array(
     'App\\Repository\\CandidatureRepository' => array('privates', 'App\\Repository\\CandidatureRepository', 'getCandidatureRepositoryService.php', true),
+    'App\\Repository\\DocumentRepository' => array('privates', 'App\\Repository\\DocumentRepository', 'getDocumentRepositoryService.php', true),
     'App\\Repository\\FormationRepository' => array('privates', 'App\\Repository\\FormationRepository', 'getFormationRepositoryService.php', true),
     'App\\Repository\\OffreRepository' => array('privates', 'App\\Repository\\OffreRepository', 'getOffreRepositoryService.php', true),
     'App\\Repository\\UserRepository' => array('privates', 'App\\Repository\\UserRepository', 'getUserRepositoryService.php', true),
