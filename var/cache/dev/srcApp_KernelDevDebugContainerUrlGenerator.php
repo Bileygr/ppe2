@@ -20,18 +20,18 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         $this->defaultLocale = $defaultLocale;
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = array(
-        'administrateur_gestion' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), array(), array(array('text', '/administrateur/gestion/administrateurs')), array(), array()),
+        'administrateur_gestion' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestion'), array(), array(array('text', '/administrateur/gestion/administrateurs')), array(), array()),
         'administrateur_inscription' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscription'), array(), array(array('text', '/administrateur/gestion/administrateurs/inscription')), array(), array()),
         'administrateur_modification' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::modification'), array(), array(array('text', '/administrateur/modifier-mes-informations')), array(), array()),
         'accueil' => array(array(), array('_controller' => 'App\\Controller\\DefaultController::accueil'), array(), array(array('text', '/accueil')), array(), array()),
         'jeune_inscription' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::inscription'), array(), array(array('text', '/administrateur/gestion/jeunes/inscription')), array(), array()),
         'modification_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::modification'), array(), array(array('text', '/administrateur/gestion/jeunes/modification-des-informations')), array(), array()),
         'jeune_gestion' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::gestionDesJeunes'), array(), array(array('text', '/administrateur/gestion/jeunes')), array(), array()),
-        'offre_ajout' => array(array(), array('_controller' => 'App\\Controller\\OffreController::ajout'), array(), array(array('text', '/partenaire/gestion/offres/ajout')), array(), array()),
-        'offre_modification' => array(array(), array('_controller' => 'App\\Controller\\OffreController::modification'), array(), array(array('text', '/administrateur/gestion/offres/modification-des-informations')), array(), array()),
+        'offre_ajout' => array(array(), array('_controller' => 'App\\Controller\\OffreController::ajout'), array(), array(array('text', '/offre/ajout')), array(), array()),
+        'offre_modification' => array(array(), array('_controller' => 'App\\Controller\\OffreController::modification'), array(), array(array('text', '/offre/modification-des-informations')), array(), array()),
         'offres' => array(array(), array('_controller' => 'App\\Controller\\OffreController::listeDeTouteLesOffres'), array(), array(array('text', '/offres')), array(), array()),
         'offre_liste_partenaire_connecte' => array(array(), array('_controller' => 'App\\Controller\\OffreController::listeDesOffresParPartenaire'), array(), array(array('text', '/partenaire/gestion/offres/liste')), array(), array()),
-        'offre_gestion' => array(array(), array('_controller' => 'App\\Controller\\OffreController::gestionDesOffres'), array(), array(array('text', '/administrateur/gestion/offres')), array(), array()),
+        'offre_gestion' => array(array(), array('_controller' => 'App\\Controller\\OffreController::gestion'), array(), array(array('text', '/administrateur/gestion/offres')), array(), array()),
         'partenaire_inscription' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::inscription'), array(), array(array('text', '/administrateur/gestion/partenaires/inscription')), array(), array()),
         'partenaire_modification' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::modification'), array(), array(array('text', '/administrateur/gestion/partenaires/modification-des-informations')), array(), array()),
         'partenaire_gestion_des_offres' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::gestionDesOffres'), array(), array(array('text', '/partenaire/gestion/offres')), array(), array()),

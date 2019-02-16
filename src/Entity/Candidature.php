@@ -5,94 +5,77 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Candidature
- *
- * @ORM\Table(name="candidature", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})}, indexes={@ORM\Index(name="FK_candidature_idoffre", columns={"idoffre"}), @ORM\Index(name="FK_candidature_idpartenaire", columns={"idpartenaire"}), @ORM\Index(name="FK_candidature_idjeune", columns={"idjeune"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CandidatureRepository")
  */
 class Candidature
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idoffre", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Offre", inversedBy="candidatures")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idoffre;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idjeune", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="candidatures")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idjeune;
+    private $iduserjeune;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idpartenaire", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="candidatures")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idpartenaire;
+    private $iduserpartenaire;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="status", type="smallint", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $status;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
-     */
-    private $dateajout;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdoffre(): ?int
+    public function getIdoffre(): ?Offre
     {
         return $this->idoffre;
     }
 
-    public function setIdoffre(int $idoffre): self
+    public function setIdoffre(?Offre $idoffre): self
     {
         $this->idoffre = $idoffre;
 
         return $this;
     }
 
-    public function getIdjeune(): ?int
+    public function getIduserjeune(): ?User
     {
-        return $this->idjeune;
+        return $this->iduserjeune;
     }
 
-    public function setIdjeune(int $idjeune): self
+    public function setIduserjeune(?User $iduserjeune): self
     {
-        $this->idjeune = $idjeune;
+        $this->iduserjeune = $iduserjeune;
 
         return $this;
     }
 
-    public function getIdpartenaire(): ?int
+    public function getIduserpartenaire(): ?User
     {
-        return $this->idpartenaire;
+        return $this->iduserpartenaire;
     }
 
-    public function setIdpartenaire(int $idpartenaire): self
+    public function setIduserpartenaire(?User $iduserpartenaire): self
     {
-        $this->idpartenaire = $idpartenaire;
+        $this->iduserpartenaire = $iduserpartenaire;
 
         return $this;
     }
@@ -102,24 +85,10 @@ class Candidature
         return $this->status;
     }
 
-    public function setStatus(int $status): self
+    public function setStatus(?int $status): self
     {
         $this->status = $status;
 
         return $this;
     }
-
-    public function getDateajout(): ?\DateTimeInterface
-    {
-        return $this->dateajout;
-    }
-
-    public function setDateajout(\DateTimeInterface $dateajout): self
-    {
-        $this->dateajout = $dateajout;
-
-        return $this;
-    }
-
-
 }

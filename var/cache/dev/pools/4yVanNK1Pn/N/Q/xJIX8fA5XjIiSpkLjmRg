@@ -7,14 +7,8 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'description',
-                ],
                 'type' => [
                     'text',
-                ],
-                'length' => [
-                    65535,
                 ],
             ],
         ],

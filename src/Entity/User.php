@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -20,28 +20,9 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $prenom;
-
-    /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $SIRET;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
+    private $email;
 
     /**
      * @ORM\Column(type="json")
@@ -55,14 +36,29 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="integer", length=10)
+     * @ORM\Column(type="string", length=50)
      */
-    private $telephone;
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $prenom;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
-    private $email;
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=9, nullable=true)
+     */
+    private $SIRET;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $telephone;
 
     /**
      * @ORM\Column(type="string", length=38)
@@ -75,25 +71,36 @@ class User implements UserInterface
     private $ville;
 
     /**
-     * @ORM\Column(type="integer", length=5)
+     * @ORM\Column(type="string", length=5)
      */
     private $codepostal;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $dateajout;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Offre", mappedBy="iduser", orphanRemoval=true)
+     */
+    private $offres;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="iduserjeune", orphanRemoval=true)
+     */
+    private $candidatures;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Document", mappedBy="iduser", orphanRemoval=true)
+     */
+    private $documents;
+
     public function __construct()
     {
+        $this->offres = new ArrayCollection();
+        $this->candidatures = new ArrayCollection();
+        $this->documents = new ArrayCollection();
         $this->dateajout = new \DateTime();
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getId(): ?int
@@ -101,38 +108,14 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getEmail(): ?string
     {
-        return $this->nom;
+        return $this->email;
     }
 
-    public function setNom(string $nom): self
+    public function setEmail(string $email): self
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(?string $prenom): self
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getSIRET(): ?int
-    {
-        return $this->SIRET;
-    }
-
-    public function setSIRET(?int $SIRET): self
-    {
-        $this->SIRET = $SIRET;
+        $this->email = $email;
 
         return $this;
     }
@@ -144,23 +127,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
-    }
-
-    public function setUsername()
-    {
-        if($this->prenom != "")
-        {
-            $premiereLettreDuPrenomEnMinuscule = strtolower($this->prenom[0]);
-            $nomDeFamilleEnMinuscule = strtolower($this->nom);
-            
-            $this->username = $premiereLettreDuPrenomEnMinuscule.$nomDeFamilleEnMinuscule;
-        }else{
-            $nomEnMinuscule = strtolower($this->nom);
-            $this->username = $nomEnMinuscule;
-        }
-
-        return $this;
+        return (string) $this->email;
     }
 
     /**
@@ -174,7 +141,7 @@ class User implements UserInterface
 
         return array_unique($roles);
     }
-    
+
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -214,26 +181,72 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getTelephone(): ?int
+    public function getNom(): ?string
     {
-        return $this->telephone;
+        return $this->nom;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setNom(string $nom): self
     {
-        $this->telephone = $telephone;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->email;
+        return $this->prenom;
     }
 
-    public function setEmail(string $email): self
+    public function setPrenom(?string $prenom): self
     {
-        $this->email = $email;
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function setUsername(): self
+    {
+        if($this->prenom != "")
+        {
+            $premiereLettreDuPrenomEnMinuscule = strtolower($this->prenom[0]);
+            $nomDeFamilleEnMinuscule = strtolower($this->nom);
+            
+            $this->username = $premiereLettreDuPrenomEnMinuscule.$nomDeFamilleEnMinuscule;
+        }else{
+            $nomEnMinuscule = strtolower($this->nom);
+            $this->username = $nomEnMinuscule;
+        }
+
+        return $this;
+
+        /*
+        $this->username = $username;
+
+        return $this;
+        */
+    }
+
+    public function getSIRET(): ?string
+    {
+        return $this->SIRET;
+    }
+
+    public function setSIRET(?string $SIRET): self
+    {
+        $this->SIRET = $SIRET;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -262,12 +275,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCodepostal(): ?int
+    public function getCodepostal(): ?string
     {
         return $this->codepostal;
     }
 
-    public function setCodepostal(int $codepostal): self
+    public function setCodepostal(string $codepostal): self
     {
         $this->codepostal = $codepostal;
 
@@ -282,6 +295,99 @@ class User implements UserInterface
     public function setDateajout(\DateTimeInterface $dateajout): self
     {
         $this->dateajout = $dateajout;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offre[]
+     */
+    public function getOffres(): Collection
+    {
+        return $this->offres;
+    }
+
+    public function addOffre(Offre $offre): self
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setIduser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->contains($offre)) {
+            $this->offres->removeElement($offre);
+            // set the owning side to null (unless already changed)
+            if ($offre->getIduser() === $this) {
+                $offre->setIduser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Candidature[]
+     */
+    public function getCandidatures(): Collection
+    {
+        return $this->candidatures;
+    }
+
+    public function addCandidature(Candidature $candidature): self
+    {
+        if (!$this->candidatures->contains($candidature)) {
+            $this->candidatures[] = $candidature;
+            $candidature->setIduserjeune($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): self
+    {
+        if ($this->candidatures->contains($candidature)) {
+            $this->candidatures->removeElement($candidature);
+            // set the owning side to null (unless already changed)
+            if ($candidature->getIduserjeune() === $this) {
+                $candidature->setIduserjeune(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setIduser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->documents->contains($document)) {
+            $this->documents->removeElement($document);
+            // set the owning side to null (unless already changed)
+            if ($document->getIduser() === $this) {
+                $document->setIduser(null);
+            }
+        }
 
         return $this;
     }

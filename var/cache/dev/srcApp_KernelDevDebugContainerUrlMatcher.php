@@ -15,18 +15,18 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
     {
         $this->context = $context;
         $this->staticRoutes = array(
-            '/administrateur/gestion/administrateurs' => array(array(array('_route' => 'administrateur_gestion', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), null, null, null, false, false, null)),
+            '/administrateur/gestion/administrateurs' => array(array(array('_route' => 'administrateur_gestion', '_controller' => 'App\\Controller\\AdministrateurController::gestion'), null, null, null, false, false, null)),
             '/administrateur/gestion/administrateurs/inscription' => array(array(array('_route' => 'administrateur_inscription', '_controller' => 'App\\Controller\\AdministrateurController::inscription'), null, null, null, false, false, null)),
             '/administrateur/modifier-mes-informations' => array(array(array('_route' => 'administrateur_modification', '_controller' => 'App\\Controller\\AdministrateurController::modification'), null, null, null, false, false, null)),
             '/accueil' => array(array(array('_route' => 'accueil', '_controller' => 'App\\Controller\\DefaultController::accueil'), null, null, null, false, false, null)),
             '/administrateur/gestion/jeunes/inscription' => array(array(array('_route' => 'jeune_inscription', '_controller' => 'App\\Controller\\JeuneController::inscription'), null, null, null, false, false, null)),
             '/administrateur/gestion/jeunes/modification-des-informations' => array(array(array('_route' => 'modification_des_jeunes', '_controller' => 'App\\Controller\\JeuneController::modification'), null, null, null, false, false, null)),
             '/administrateur/gestion/jeunes' => array(array(array('_route' => 'jeune_gestion', '_controller' => 'App\\Controller\\JeuneController::gestionDesJeunes'), null, null, null, false, false, null)),
-            '/partenaire/gestion/offres/ajout' => array(array(array('_route' => 'offre_ajout', '_controller' => 'App\\Controller\\OffreController::ajout'), null, null, null, false, false, null)),
-            '/administrateur/gestion/offres/modification-des-informations' => array(array(array('_route' => 'offre_modification', '_controller' => 'App\\Controller\\OffreController::modification'), null, null, null, false, false, null)),
+            '/offre/ajout' => array(array(array('_route' => 'offre_ajout', '_controller' => 'App\\Controller\\OffreController::ajout'), null, null, null, false, false, null)),
+            '/offre/modification-des-informations' => array(array(array('_route' => 'offre_modification', '_controller' => 'App\\Controller\\OffreController::modification'), null, null, null, false, false, null)),
             '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::listeDeTouteLesOffres'), null, null, null, false, false, null)),
             '/partenaire/gestion/offres/liste' => array(array(array('_route' => 'offre_liste_partenaire_connecte', '_controller' => 'App\\Controller\\OffreController::listeDesOffresParPartenaire'), null, null, null, false, false, null)),
-            '/administrateur/gestion/offres' => array(array(array('_route' => 'offre_gestion', '_controller' => 'App\\Controller\\OffreController::gestionDesOffres'), null, null, null, false, false, null)),
+            '/administrateur/gestion/offres' => array(array(array('_route' => 'offre_gestion', '_controller' => 'App\\Controller\\OffreController::gestion'), null, null, null, false, false, null)),
             '/administrateur/gestion/partenaires/inscription' => array(array(array('_route' => 'partenaire_inscription', '_controller' => 'App\\Controller\\PartenaireController::inscription'), null, null, null, false, false, null)),
             '/administrateur/gestion/partenaires/modification-des-informations' => array(array(array('_route' => 'partenaire_modification', '_controller' => 'App\\Controller\\PartenaireController::modification'), null, null, null, false, false, null)),
             '/partenaire/gestion/offres' => array(array(array('_route' => 'partenaire_gestion_des_offres', '_controller' => 'App\\Controller\\PartenaireController::gestionDesOffres'), null, null, null, false, false, null)),

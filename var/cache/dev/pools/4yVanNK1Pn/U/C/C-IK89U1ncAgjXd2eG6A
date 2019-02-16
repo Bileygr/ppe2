@@ -7,11 +7,11 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'status',
-                ],
                 'type' => [
-                    'smallint',
+                    'integer',
+                ],
+                'nullable' => [
+                    true,
                 ],
             ],
         ],

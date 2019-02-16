@@ -7,9 +7,6 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'idpartenaire',
-                ],
                 'type' => [
                     'integer',
                 ],

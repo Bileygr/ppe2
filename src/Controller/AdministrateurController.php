@@ -16,7 +16,7 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administrateur/gestion/administrateurs", name="administrateur_gestion")
      */
-    public function gestionDesAdministrateurs()
+    public function gestion()
     {
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateurs = $repository->findByRole('ADMINISTRATEUR');
@@ -82,7 +82,7 @@ class AdministrateurController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateur = $repository->find($userid);
 
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $administrateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 

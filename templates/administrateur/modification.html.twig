@@ -6,7 +6,7 @@
 
     	<!-- CSS -->
     	<style type="text/css">
-    		input { 
+    		input { -
     			text-align: center; 
 			}
     	</style>
@@ -16,15 +16,15 @@
         <h1>{% block titre %}Vos informations{% endblock %}</h1>
         {% block body %}
           {{ form_start(registrationForm) }}
-    		  	{{ form_widget(registrationForm.nom, {'attr': {'placeholder': administrateur.nom }}) }}
-    		    {{ form_widget(registrationForm.prenom, {'attr': {'placeholder': administrateur.prenom }}) }}
+    		  	{{ form_widget(registrationForm.nom) }}
+    		    {{ form_widget(registrationForm.prenom) }}
             {{ form_widget(registrationForm.motdepasse) }}
-    		    {{ form_widget(registrationForm.telephone, {'attr': {'placeholder': administrateur.telephone }}) }}
-    			  {{ form_widget(registrationForm.email, {'attr': {'placeholder': administrateur.email }}) }}
-    			  {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': administrateur.adresse }}) }}
-    			  {{ form_widget(registrationForm.ville, {'attr': {'placeholder': administrateur.ville }}) }}
-    			  {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': administrateur.codepostal }}) }}
-    			  {{ form_widget(registrationForm.inscription, {'attr': {'label': 'Modifier' }}) }}
+    		    {{ form_widget(registrationForm.telephone) }}
+    			  {{ form_widget(registrationForm.email) }}
+    			  {{ form_widget(registrationForm.adresse) }}
+    			  {{ form_widget(registrationForm.ville) }}
+    			  {{ form_widget(registrationForm.codepostal) }}
+    			  {{ form_widget(registrationForm.inscription, {'label': 'Modifier' }) }}
     			  <a href="{{ path('accueil') }}">Retour</a>
   		    {{ form_end(registrationForm) }}
         {% endblock %}

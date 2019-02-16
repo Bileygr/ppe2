@@ -2,97 +2,82 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Offre
- *
- * @ORM\Table(name="offre", uniqueConstraints={@ORM\UniqueConstraint(name="id", columns={"id"})}, indexes={@ORM\Index(name="FK_offre_idpartenaire", columns={"idpartenaire"}), @ORM\Index(name="FK_offre_idformation", columns={"idformation"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\OffreRepository")
  */
 class Offre
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idpartenaire", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idpartenaire;
+    private $iduser;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idformation", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Formation", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idformation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $libelle;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @ORM\Column(type="text")
      */
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=38, nullable=false)
+     * @ORM\Column(type="string", length=38)
      */
     private $adresse;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ville", type="string", length=32, nullable=false)
+     * @ORM\Column(type="string", length=32)
      */
     private $ville;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="codepostal", type="integer", nullable=false)
+     * @ORM\Column(type="string", length=5)
      */
     private $codepostal;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="debut", type="date", nullable=false)
+     * @ORM\Column(type="date")
      */
     private $debut;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fin", type="date", nullable=false)
+     * @ORM\Column(type="date")
      */
     private $fin;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
     private $dateajout;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="idoffre", orphanRemoval=true)
+     */
+    private $candidatures;
+
     public function __construct()
     {
+        $this->candidatures = new ArrayCollection();
         $this->dateajout = new \DateTime();
     }
 
@@ -101,38 +86,38 @@ class Offre
         return $this->id;
     }
 
-    public function getIdpartenaire(): ?int
+    public function getIduser(): ?User
     {
-        return $this->idpartenaire;
+        return $this->iduser;
     }
 
-    public function setIdpartenaire(int $idpartenaire): self
+    public function setIduser(?User $iduser): self
     {
-        $this->idpartenaire = $idpartenaire;
+        $this->iduser = $iduser;
 
         return $this;
     }
 
-    public function getIdformation(): ?int
+    public function getIdformation(): ?Formation
     {
         return $this->idformation;
     }
 
-    public function setIdformation(int $idformation): self
+    public function setIdformation(?Formation $idformation): self
     {
         $this->idformation = $idformation;
 
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->nom;
+        return $this->libelle;
     }
 
-    public function setNom(string $nom): self
+    public function setLibelle(string $libelle): self
     {
-        $this->nom = $nom;
+        $this->libelle = $libelle;
 
         return $this;
     }
@@ -173,12 +158,12 @@ class Offre
         return $this;
     }
 
-    public function getCodepostal(): ?int
+    public function getCodepostal(): ?string
     {
         return $this->codepostal;
     }
 
-    public function setCodepostal(int $codepostal): self
+    public function setCodepostal(string $codepostal): self
     {
         $this->codepostal = $codepostal;
 
@@ -221,5 +206,34 @@ class Offre
         return $this;
     }
 
+    /**
+     * @return Collection|Candidature[]
+     */
+    public function getCandidatures(): Collection
+    {
+        return $this->candidatures;
+    }
 
+    public function addCandidature(Candidature $candidature): self
+    {
+        if (!$this->candidatures->contains($candidature)) {
+            $this->candidatures[] = $candidature;
+            $candidature->setIdoffre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidature(Candidature $candidature): self
+    {
+        if ($this->candidatures->contains($candidature)) {
+            $this->candidatures->removeElement($candidature);
+            // set the owning side to null (unless already changed)
+            if ($candidature->getIdoffre() === $this) {
+                $candidature->setIdoffre(null);
+            }
+        }
+
+        return $this;
+    }
 }

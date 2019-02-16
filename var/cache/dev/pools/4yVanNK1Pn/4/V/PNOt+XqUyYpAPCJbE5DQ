@@ -7,9 +7,6 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'ville',
-                ],
                 'length' => [
                     32,
                 ],

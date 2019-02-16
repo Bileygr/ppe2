@@ -7,9 +7,6 @@
         null,
         [
             'stdClass' => [
-                'type' => [
-                    'integer',
-                ],
                 'length' => [
                     10,
                 ],

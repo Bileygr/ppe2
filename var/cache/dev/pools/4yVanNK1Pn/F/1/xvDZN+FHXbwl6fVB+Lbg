@@ -7,9 +7,6 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'fin',
-                ],
                 'type' => [
                     'date',
                 ],

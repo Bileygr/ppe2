@@ -5,47 +5,35 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Document
- *
- * @ORM\Table(name="document", indexes={@ORM\Index(name="FK_document_iduser", columns={"iduser"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
 class Document
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="iduser", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="documents")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $iduser;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $libelle;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="chemin", type="string", length=250, nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
     private $chemin;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateajout", type="datetime", nullable=false)
+     * @ORM\Column(type="datetime")
      */
     private $dateajout;
 
@@ -54,26 +42,26 @@ class Document
         return $this->id;
     }
 
-    public function getIduser(): ?int
+    public function getIduser(): ?User
     {
         return $this->iduser;
     }
 
-    public function setIduser(int $iduser): self
+    public function setIduser(?User $iduser): self
     {
         $this->iduser = $iduser;
 
         return $this;
     }
 
-    public function getNom(): ?string
+    public function getLibelle(): ?string
     {
-        return $this->nom;
+        return $this->libelle;
     }
 
-    public function setNom(string $nom): self
+    public function setLibelle(string $libelle): self
     {
-        $this->nom = $nom;
+        $this->libelle = $libelle;
 
         return $this;
     }
@@ -101,6 +89,4 @@ class Document
 
         return $this;
     }
-
-
 }

@@ -26,7 +26,6 @@ class UserFixtures extends Fixture
         $usersuperadmin->setNom("Guerfi");
         $usersuperadmin->setPrenom("Souhila");
         $usersuperadmin->setUsername();
-        $usersuperadmin->setSIRET(0);
         $usersuperadmin->setRoles(array('ROLE_SUPER_ADMINISTRATEUR'));
         $usersuperadmin->setPassword($this->passwordEncoder->encodePassword(
             $usersuperadmin,
@@ -41,7 +40,6 @@ class UserFixtures extends Fixture
         $useradmin->setNom("Keita");
         $useradmin->setPrenom("Cheik-Siramakan");
         $useradmin->setUsername();
-        $useradmin->setSIRET(0);
         $useradmin->setRoles(array('ROLE_ADMINISTRATEUR'));
         $useradmin->setPassword($this->passwordEncoder->encodePassword(
             $useradmin,
@@ -57,7 +55,6 @@ class UserFixtures extends Fixture
         $userjeune->setNom("Ghislain");
         $userjeune->setPrenom("Ghislain");
         $userjeune->setUsername();
-        $userjeune->setSIRET(0);
         $userjeune->setRoles(array('ROLE_JEUNE'));
         $userjeune->setPassword($this->passwordEncoder->encodePassword(
         	$userjeune,
@@ -70,7 +67,6 @@ class UserFixtures extends Fixture
         $userjeune->setCodepostal("91000");
         
         $userpartenaire->setNom("ImmoCorp");
-        $userpartenaire->setPrenom("");
         $userpartenaire->setUsername();
         $userpartenaire->setSIRET("123456789");
         $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));

@@ -7,11 +7,8 @@
         null,
         [
             'stdClass' => [
-                'name' => [
-                    'codepostal',
-                ],
-                'type' => [
-                    'integer',
+                'length' => [
+                    5,
                 ],
             ],
         ],

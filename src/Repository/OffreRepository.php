@@ -2,18 +2,16 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
 use App\Entity\Offre;
-use App\Entity\Formation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method User|null find($id, $lockMode = null, $lockVersion = null)
- * @method User|null findOneBy(array $criteria, array $orderBy = null)
- * @method User[] findAll()
- * @method User[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */ 
+ * @method Offre|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Offre|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Offre[]    findAll()
+ * @method Offre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 class OffreRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
@@ -21,28 +19,16 @@ class OffreRepository extends ServiceEntityRepository
         parent::__construct($registry, Offre::class);
     }
 
-    public function findAll()
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
-        );
-        $offres = $query->execute();
-
-        return $offres;
-    }
-
     // /**
-    //  * @return User[] Returns an array of User objects
+    //  * @return Offre[] Returns an array of Offre objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
+            ->orderBy('o.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -51,10 +37,10 @@ class OffreRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?User
+    public function findOneBySomeField($value): ?Offre
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
@@ -62,5 +48,3 @@ class OffreRepository extends ServiceEntityRepository
     }
     */
 }
-
-?>

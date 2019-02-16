@@ -3,13 +3,15 @@ security:
         App\Entity\User:
             algorithm: bcrypt
 
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: username
+                property: email
+        # used to reload user from session & other features (e.g. switch_user)
 
     role_hierarchy:
         ROLE_ADMINISTRATEUR: [ROLE_JEUNE, ROLE_PARTENAIRE]

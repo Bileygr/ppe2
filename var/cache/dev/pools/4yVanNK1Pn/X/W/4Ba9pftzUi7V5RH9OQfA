@@ -8,10 +8,7 @@
         [
             'stdClass' => [
                 'length' => [
-                    180,
-                ],
-                'unique' => [
-                    true,
+                    50,
                 ],
             ],
         ],
