@@ -50,3 +50,11 @@ ddb32d,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-adminis
 e47e6d,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-administrateurs,1550480173,,200
 f53f8c,127.0.0.1,GET,http://127.0.0.1:8000/logout,1550480188,,302
 ab87ed,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1550480192,,200
+ebbdd7,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-administrateurs,1550505005,,200
+94cd33,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1550505007,4eb83b,200
+4eb83b,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1550505007,,404
+d7e21f,127.0.0.1,GET,http://127.0.0.1:8000/administration/modifier-ses-informations,1550505009,,200
+a3c995,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1550505016,,200
+7f8204,127.0.0.1,POST,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1550505018,,302
+479068,127.0.0.1,GET,http://127.0.0.1:8000/administration/modification-des-informations-d-un-partenaire,1550505018,,200
+9be5de,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1550505164,,200
