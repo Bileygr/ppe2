@@ -1,15 +1,11 @@
 {% extends 'default/accueil.html.twig' %}
-
 {% block title %}Gestion des administrateurs{% endblock %}
-
 {% block titre %}Gestion des administrateurs{% endblock %}
-
 {% block body %}
-	<a href="{{ path('administrateur_inscription') }}" class="btn btn-primary">Ajout</a>	
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+	<a href="{{ path('administrateur_inscription') }}" class="btn btn-primary">Ajout</a>
 
-    <table class="table">
-  		<thead>
+    <table class="table table-hover">
+  		<thead class="thead-inverse">
 	    	<tr>
 		      	<th scope="col">ID</th>
 		      	<th scope="col">Rôle</th>

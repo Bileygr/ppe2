@@ -6,7 +6,6 @@
 
 {% block body %}
 	<a href="{{ path('partenaire_inscription') }}" class="btn btn-primary">Ajout</a>	
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
 
     <table class="table">
   		<thead>
@@ -36,8 +35,8 @@
 		      				<td>{{ partenaire.ville }}</td>
 		      				<td>{{ partenaire.codepostal }}</td>
 		      				<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
-		      				<td><input type="submit" name="modifier" value="Modifier"></td>
-		      				<td><input type="submit" name="supprimer" value="Supprimer"></td>
+		      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
+		      				<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
 		    			</tr>
 		    		</form>
 		    {% endfor %}

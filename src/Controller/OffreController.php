@@ -16,9 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class OffreController extends AbstractController
 {
     /**
-     * @Route("/offre/ajout", name="offre_ajout")
+     * @Route("/ajout-d-une-offre", name="offre_ajout")
      */
-    public function ajout(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function ajouter(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userid = $user->getId();
@@ -63,18 +63,19 @@ class OffreController extends AbstractController
         }
 
         return $this->render('offre/ajout.html.twig', [
-            'formations' => $formations, 'registrationForm' => $form->createView()
+            'formations' => $formations, 
+            'registrationForm' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/offre/modification-des-informations", name="offre_modification")
+     * @Route("/modifier-les-informations-d-une-offre", name="offre_modification")
      */
-    public function modification(Request $request)
+    public function modifier(Request $request)
     {
-        $id = $this->container->get('session')->get('offreId');
+        $offre_id = $this->container->get('session')->get('offre_id');
         $entityManager = $this->getDoctrine()->getManager();
-        $offre = $entityManager->getRepository(Offre::class)->find($id);
+        $offre = $entityManager->getRepository(Offre::class)->find($offre_id);
 
         $repository = $this->getDoctrine()->getRepository(Formation::class);
         $formations = $repository->findAll();
@@ -89,6 +90,7 @@ class OffreController extends AbstractController
         {
             $offre->setIdformation($request->request->get('formation'));
             $entityManager->flush();
+
             return $this->redirectToRoute('offre_liste_partenaire_connecte');
         }
 
@@ -103,14 +105,10 @@ class OffreController extends AbstractController
     /**
      * @Route("/offres", name="offres")
      */
-    public function listeDeTouteLesOffres()
+    public function listerTouteLesOffres()
     {   
-        $entityManager = $this->getDoctrine()->getManager();
-        $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
-        );
-        $offres = $query->execute();
+        $repository = $this->getDoctrine()->getRepository(Offre::class);
+        $offres = $repository->findAll();
 
         return $this->render('offre/index.html.twig', [
             'offres' => $offres,
@@ -119,44 +117,32 @@ class OffreController extends AbstractController
     }
 
     /**
-     * @Route("/partenaire/gestion/offres/liste", name="offre_liste_partenaire_connecte")
+     * @Route("/partenaire/gestion-des-offres", name="offre_liste_partenaire_connecte")
      */
-    public function listeDesOffresParPartenaire(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function listerLesOffresDuPartenaire(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userid = $user->getId();
+        $user_id = $user->getId();
 
         $entityManager = $this->getDoctrine()->getManager();
-        $offres = $this->getDoctrine()->getRepository(Offre::class)->vaTeFaireFoutre($userid);
-        
-        /*
-            $entityManager = $this->getDoctrine()->getManager();
-            $query = $entityManager->createQuery(
-                'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-                 FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f WHERE o.idpartenaire = u.id  AND o.idformation = f.id AND o.idpartenaire = '.$userid.''
-            );
-            $offres = $query->execute();
-        */
+        $offres = $this->getDoctrine()->getRepository(Offre::class)->findById($user_id);
 
         if(isset($_POST['modifier'])){
-            $id = $request->request->get('id');
-            $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $offre_id = $request->request->get('id');
+            $this->container->get('session')->set('offre_id', $offre_id);
 
-            $this->container->get('session')->set('offreId', $offre->getId());
             return $this->redirectToRoute('offre_modification');
         }
 
         if(isset($_POST['supprimer'])){
-            $id = $request->request->get('id');
-            $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $offre_id = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($offre_id);
 
             $entityManager->remove($offre);
             $entityManager->flush();
 
             return $this->redirectToRoute('gestion_des_offres');
         }
-
-       dump($offres);
 
         return $this->render('offre/gestion.html.twig', [
             'offres' => $offres,
@@ -165,22 +151,19 @@ class OffreController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/gestion/offres", name="offre_gestion")
+     * @Route("/administration/gérer-les-offres", name="offre_gestion")
      */
-    public function gestion(Request $request)
+    public function gerer(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
-        );
-        $offres = $query->execute();
+        $repository = $this->getDoctrine()->getRepository(Offre::class);
+        $offres = $repository->findAll();
 
         if(isset($_POST['modifier'])){
             $id = $request->request->get('id');
             $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $this->container->get('session')->set('offre_id', $offre->getId());
 
-            $this->container->get('session')->set('offreId', $offre->getId());
             return $this->redirectToRoute('modification_des_offres');
         }
 

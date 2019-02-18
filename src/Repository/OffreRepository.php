@@ -21,17 +21,18 @@ class OffreRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $query = $entityManager->createQuery(
-            'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-             FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f where o.idpartenaire = u.id  and o.idformation = f.id'
-        );
-        $offres = $query->execute();
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT o.id, o.libelle nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
+                FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f 
+                WHERE o.iduser_id = u.id  
+                AND o.idformation = f.id';
 
-        return $offres;
+        $stmt = $conn->prepare($sql);
+        
+        return $stmt->fetchAll();
     }
 
-    public function vaTeFaireFoutre($id)
+    public function findById($id)
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -43,26 +44,7 @@ class OffreRepository extends ServiceEntityRepository
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
 
-        // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll();
-
-        /*
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-               'SELECT o.id, o.nom nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-                FROM App\Entity\Offre o, App\Entity\User u, App\Entity\Formation f 
-                WHERE o.idpartenaire = u.id  
-                AND o.idformation = f.id 
-                AND o.idpartenaire = :id')
-                ->setParameter('id', $id)
-                ->getResult();    
-
-        $test = $query->execute();
-        dump($test);
-
-        return $test;
-        */
     }
 
     // /**

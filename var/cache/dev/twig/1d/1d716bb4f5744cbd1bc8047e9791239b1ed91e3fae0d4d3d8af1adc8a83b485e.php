@@ -91,10 +91,6 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_inscription");
         echo "\" class=\"btn btn-primary\">Ajout</a>\t
-    <a href=\"";
-        // line 9
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
-        echo "\" class=\"btn btn-warning\">Retour</a>
 
     <table class=\"table\">
   \t\t<thead>
@@ -112,55 +108,55 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 26
+        // line 25
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["partenaires"]) || array_key_exists("partenaires", $context) ? $context["partenaires"] : (function () { throw new Twig_Error_Runtime('Variable "partenaires" does not exist.', 26, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["partenaires"]) || array_key_exists("partenaires", $context) ? $context["partenaires"] : (function () { throw new Twig_Error_Runtime('Variable "partenaires" does not exist.', 25, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["partenaire"]) {
-            // line 27
+            // line 26
             echo "\t\t    \t\t<form method=\"POST\">
 \t\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
-            // line 28
+            // line 27
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
             echo "\">
 \t\t\t    \t\t<tr>
 \t\t      \t\t\t\t<th scope=\"row\">";
-            // line 30
+            // line 29
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "id", array()), "html", null, true);
             echo "</th>
 \t\t      \t\t\t\t<td>";
-            // line 31
+            // line 30
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "siret", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 32
+            // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "nom", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>0";
-            // line 33
+            // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "telephone", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 34
+            // line 33
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "email", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 35
+            // line 34
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "adresse", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 36
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "ville", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 37
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "codepostal", array()), "html", null, true);
             echo "</td>
 \t\t      \t\t\t\t<td>";
-            // line 38
+            // line 37
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t\t    \t\t\t</tr>
 \t\t    \t\t</form>
 \t\t    ";
@@ -168,7 +164,7 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['partenaire'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 44
+        // line 43
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -192,7 +188,7 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
 
     public function getDebugInfo()
     {
-        return array (  172 => 44,  160 => 38,  156 => 37,  152 => 36,  148 => 35,  144 => 34,  140 => 33,  136 => 32,  132 => 31,  128 => 30,  123 => 28,  120 => 27,  116 => 26,  96 => 9,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
+        return array (  168 => 43,  156 => 37,  152 => 36,  148 => 35,  144 => 34,  140 => 33,  136 => 32,  132 => 31,  128 => 30,  124 => 29,  119 => 27,  116 => 26,  112 => 25,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -205,7 +201,6 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
 
 {% block body %}
 \t<a href=\"{{ path('partenaire_inscription') }}\" class=\"btn btn-primary\">Ajout</a>\t
-    <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning\">Retour</a>
 
     <table class=\"table\">
   \t\t<thead>
@@ -235,8 +230,8 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
 \t\t      \t\t\t\t<td>{{ partenaire.ville }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.codepostal }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t\t    \t\t\t</tr>
 \t\t    \t\t</form>
 \t\t    {% endfor %}

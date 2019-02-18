@@ -12,7 +12,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
         $this->source = $this->getSourceContext();
 
         // line 1
-        $this->parent = $this->loadTemplate("default/index.html.twig", "offre/index.html.twig", 1);
+        $this->parent = $this->loadTemplate("default/accueil.html.twig", "offre/index.html.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'titre' => array($this, 'block_titre'),
@@ -22,7 +22,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
 
     protected function doGetParent(array $context)
     {
-        return "default/index.html.twig";
+        return "default/accueil.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -176,7 +176,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% extends 'default/index.html.twig' %}
+        return new Twig_Source("{% extends 'default/accueil.html.twig' %}
 
 {% block title %}Offres{% endblock %}
 

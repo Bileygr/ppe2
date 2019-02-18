@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class PartenaireController extends AbstractController
 {
     /**
-     * @Route("administrateur/gestion/partenaires/inscription", name="partenaire_inscription")
+     * @Route("administration/inscription-des-parteniares", name="partenaire_inscription")
      */
     public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -29,7 +29,6 @@ class PartenaireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) 
         {
             $user->setNom($form->get('nom')->getData());
-            $user->setPrenom("");
             $user->setUsername();
             $user->setSIRET($form->get('siret')->getData());
             $user->setRoles(array('ROLE_PARTENAIRE'));
@@ -58,7 +57,7 @@ class PartenaireController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/gestion/partenaires/modification-des-informations", name="partenaire_modification")
+     * @Route("/administration/modification-des-informations-d-un-partenaire", name="partenaire_modification")
      */
     public function modification(Request $request)
     {
@@ -75,7 +74,7 @@ class PartenaireController extends AbstractController
             return $this->redirectToRoute('partenaire_gestion');
         }
 
-        return $this->render('partenaire/modification.html.twig', [
+        return $this->render('default/modification.html.twig', [
             'partenaire' => $partenaire,
             'form' => $form->createView(),
             'controller_name' => 'PartenaireController',
@@ -83,17 +82,7 @@ class PartenaireController extends AbstractController
     }
 
     /**
-     * @Route("/partenaire/gestion/offres", name="partenaire_gestion_des_offres")
-     */
-    public function gestionDesOffres()
-    {
-        return $this->render('partenaire/gestion_des_offres.html.twig', [
-            'controller_name' => 'PartenaireController',
-        ]);
-    }
-
-    /**
-     * @Route("/administrateur/gestion/partenaires", name="partenaire_gestion")
+     * @Route("/administration/gérer-les-partenaires", name="partenaire_gestion")
      */
     public function gestionDesPartenaires(Request $request)
     {
@@ -102,21 +91,20 @@ class PartenaireController extends AbstractController
         $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
 
         if(isset($_POST['modifier'])){
-            $id = $request->request->get('id');
-            $partenaire = $entityManager->getRepository(User::class)->find($id);
+            $partenaire_id = $request->request->get('id');
+            $this->container->get('session')->set('partenaire_id', $partenaire_id);
 
-            $this->container->get('session')->set('partenaire_id', $partenaire->getId());
             return $this->redirectToRoute('partenaire_modification');
         }
 
         if(isset($_POST['supprimer'])){
-            $id = $request->request->get('id');
-            $partenaire = $entityManager->getRepository(User::class)->find($id);
+            $partenaire_id = $request->request->get('id');
+            $partenaire = $entityManager->getRepository(User::class)->find($partenaire_id);
 
             $entityManager->remove($partenaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('gestion_des_partenaires');
+            return $this->redirectToRoute('partenaire_gestion');
         }
 
         return $this->render('partenaire/gestion.html.twig', [

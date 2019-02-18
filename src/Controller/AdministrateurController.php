@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdministrateurController extends AbstractController
 {
     /**
-     * @Route("/administrateur/gestion/administrateurs", name="administrateur_gestion")
+     * @Route("/administration/gérer-les-administrateurs", name="administrateur_gestion")
      */
     public function gestion()
     {
@@ -28,7 +28,7 @@ class AdministrateurController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/gestion/administrateurs/inscription", name="administrateur_inscription")
+     * @Route("/administration/inscription-des-administrateurs", name="administrateur_inscription")
      */
     public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
@@ -42,7 +42,6 @@ class AdministrateurController extends AbstractController
             $user->setNom($form->get('nom')->getData());
             $user->setPrenom($form->get('prenom')->getData());
             $user->setUsername();
-            $user->setSIRET(0);
             $user->setRoles(array('ROLE_ADMINISTRATEUR'));
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -69,18 +68,18 @@ class AdministrateurController extends AbstractController
     }
 
     /**
-     * @Route("/administrateur/modifier-mes-informations", name="administrateur_modification")
+     * @Route("/administration/modifier-ses-informations", name="administrateur_modification")
      */
     public function modification(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userid = $user->getId();
+        $user_id = $user->getId();
         $userpassword = $user->getPassword();
         
         $user_modifie = new User();
 
         $repository = $this->getDoctrine()->getRepository(User::class);
-        $administrateur = $repository->find($userid);
+        $administrateur = $repository->find($user_id);
 
         $form = $this->createForm(RegistrationFormType::class, $administrateur);
         $form->handleRequest($request);
@@ -91,7 +90,7 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('administrateur/modification.html.twig', [
+        return $this->render('default/modification.html.twig', [
             'administrateur' => $administrateur,
             'registrationForm' => $form->createView(),
         ]);

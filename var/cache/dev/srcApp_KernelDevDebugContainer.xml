@@ -4054,22 +4054,22 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.wnMMAzx" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.qXKZ22x" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdministrateurController::inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController::modification" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\JeuneController::inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\OffreController::ajout" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\OffreController::listeDesOffresParPartenaire" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\OffreController::ajouter" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\OffreController::listerLesOffresDuPartenaire" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\PartenaireController::inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\AdministrateurController:inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\AdministrateurController:modification" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\JeuneController:inscription" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\OffreController:ajout" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\OffreController:listeDesOffresParPartenaire" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\OffreController:ajouter" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\OffreController:listerLesOffresDuPartenaire" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\PartenaireController:inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
@@ -5074,7 +5074,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.wnMMAzx"/>
+      <argument type="service" id=".service_locator.qXKZ22x"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5414,7 +5414,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.wnMMAzx"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.qXKZ22x"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

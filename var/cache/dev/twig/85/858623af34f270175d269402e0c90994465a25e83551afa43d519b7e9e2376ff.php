@@ -42,7 +42,7 @@ class __TwigTemplate_72a1306e597508f590cee9ec823081c1238b896ec74a5f1fd34507f5c58
 
     }
 
-    // line 3
+    // line 2
     public function block_title($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -60,7 +60,7 @@ class __TwigTemplate_72a1306e597508f590cee9ec823081c1238b896ec74a5f1fd34507f5c58
 
     }
 
-    // line 5
+    // line 3
     public function block_titre($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -78,7 +78,7 @@ class __TwigTemplate_72a1306e597508f590cee9ec823081c1238b896ec74a5f1fd34507f5c58
 
     }
 
-    // line 7
+    // line 4
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -87,17 +87,13 @@ class __TwigTemplate_72a1306e597508f590cee9ec823081c1238b896ec74a5f1fd34507f5c58
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 8
+        // line 5
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administrateur_inscription");
-        echo "\" class=\"btn btn-primary\">Ajout</a>\t
-    <a href=\"";
-        // line 9
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
-        echo "\" class=\"btn btn-warning\">Retour</a>
+        echo "\" class=\"btn btn-primary\">Ajout</a>
 
-    <table class=\"table\">
-  \t\t<thead>
+    <table class=\"table table-hover\">
+  \t\t<thead class=\"thead-inverse\">
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
 \t\t      \t<th scope=\"col\">Rôle</th>
@@ -114,78 +110,78 @@ class __TwigTemplate_72a1306e597508f590cee9ec823081c1238b896ec74a5f1fd34507f5c58
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 28
+        // line 24
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 28, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 24, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["administrateur"]) {
-            // line 29
+            // line 25
             echo "\t  \t\t\t<form method=\"POST\">
 \t  \t\t\t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
-            // line 30
+            // line 26
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "id", array()), "html", null, true);
             echo "\">
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">";
-            // line 32
+            // line 28
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t";
-            // line 33
+            // line 29
             if ((twig_join_filter(twig_get_attribute($this->env, $this->source, $context["administrateur"], "roles", array()), ", ") == "ROLE_SUPER_ADMINISTRATEUR")) {
-                // line 34
+                // line 30
                 echo "\t      \t\t\t\t\t<td>Super administrateur</td>
 \t      \t\t\t\t";
-            } elseif ((twig_join_filter(twig_get_attribute($this->env, $this->source,             // line 35
+            } elseif ((twig_join_filter(twig_get_attribute($this->env, $this->source,             // line 31
 $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) {
-                // line 36
+                // line 32
                 echo "\t      \t\t\t\t\t<td>Administrateur</td>
 \t      \t\t\t\t";
             }
-            // line 38
+            // line 34
             echo "\t      \t\t\t\t<td>";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "username", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 39
+            // line 35
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "nom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 40
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "prenom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>0";
-            // line 41
+            // line 37
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "telephone", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 42
+            // line 38
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "email", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 43
+            // line 39
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "adresse", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 44
+            // line 40
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "ville", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 45
+            // line 41
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "codepostal", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 46
+            // line 42
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t";
-            // line 47
+            // line 43
             if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMINISTRATEUR")) {
-                // line 48
+                // line 44
                 echo "\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
 \t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
 \t      \t\t\t\t";
             }
-            // line 51
+            // line 47
             echo "\t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    ";
@@ -193,7 +189,7 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['administrateur'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 54
+        // line 50
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -217,23 +213,19 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
 
     public function getDebugInfo()
     {
-        return array (  197 => 54,  189 => 51,  184 => 48,  182 => 47,  178 => 46,  174 => 45,  170 => 44,  166 => 43,  162 => 42,  158 => 41,  154 => 40,  150 => 39,  145 => 38,  141 => 36,  139 => 35,  136 => 34,  134 => 33,  130 => 32,  125 => 30,  122 => 29,  118 => 28,  96 => 9,  91 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
+        return array (  193 => 50,  185 => 47,  180 => 44,  178 => 43,  174 => 42,  170 => 41,  166 => 40,  162 => 39,  158 => 38,  154 => 37,  150 => 36,  146 => 35,  141 => 34,  137 => 32,  135 => 31,  132 => 30,  130 => 29,  126 => 28,  121 => 26,  118 => 25,  114 => 24,  91 => 5,  82 => 4,  64 => 3,  46 => 2,  15 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Twig_Source("{% extends 'default/accueil.html.twig' %}
-
 {% block title %}Gestion des administrateurs{% endblock %}
-
 {% block titre %}Gestion des administrateurs{% endblock %}
-
 {% block body %}
-\t<a href=\"{{ path('administrateur_inscription') }}\" class=\"btn btn-primary\">Ajout</a>\t
-    <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning\">Retour</a>
+\t<a href=\"{{ path('administrateur_inscription') }}\" class=\"btn btn-primary\">Ajout</a>
 
-    <table class=\"table\">
-  \t\t<thead>
+    <table class=\"table table-hover\">
+  \t\t<thead class=\"thead-inverse\">
 \t    \t<tr>
 \t\t      \t<th scope=\"col\">ID</th>
 \t\t      \t<th scope=\"col\">Rôle</th>
