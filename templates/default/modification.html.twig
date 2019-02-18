@@ -44,7 +44,7 @@
                 {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
             </div>
 
-    		{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
+    		{{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
   		{{ form_end(registrationForm) }}
     {% elseif app.request.get('_route') == 'partenaire_modification' %}
         {{ form_start(form) }}
@@ -58,10 +58,14 @@
                 {{ form_widget(form.nom, {'attr': {'placeholder': partenaire.nom, 'class' : 'form-control'}}) }}
             </div>                  
 
-            {% if is_granted('ROLE_PARTENAIRE') %}
+            {% if is_granted('ROLE_PARTENAIRE') and is_granted("ROLE_ADMINISTRATEUR") == false and is_granted("ROLE_SUPER_ADMINISTRATEUR") == false %}
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    {{ form_widget(form.motdepasse, {'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
+                    {{ form_widget(form.motdepasse, {'disabled': 'disabled', 'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
+                </div>
+            {% else %}
+                <div class="form-group">
+                    {{ form_widget(form.motdepasse, {'attr': {'value': partenaire.password, 'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
                 </div>
             {% endif %}
 
@@ -90,7 +94,7 @@
                 {{ form_widget(form.codepostal, {'attr': {'placeholder': partenaire.codepostal, 'class' : 'form-control'}}) }}
             </div>
 
-            {{ form_widget(form.inscription, {'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
+            {{ form_widget(form.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
         {{ form_end(form) }}
     {% endif %}
 {% endblock %}
