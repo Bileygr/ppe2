@@ -58,3 +58,16 @@ a3c995,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partena
 7f8204,127.0.0.1,POST,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1550505018,,302
 479068,127.0.0.1,GET,http://127.0.0.1:8000/administration/modification-des-informations-d-un-partenaire,1550505018,,200
 9be5de,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1550505164,,200
+8401f8,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551629809,,200
+bbac33,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1551629812,a951c0,200
+a951c0,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1551629812,,404
+ada3d5,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1551629812,,200
+487d1a,127.0.0.1,POST,http://127.0.0.1:8000/connexion,1551629824,,302
+43bfc0,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551629824,0b3245,200
+0b3245,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551629824,,500
+28a0ca,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551629881,,200
+2900d9,127.0.0.1,GET,http://127.0.0.1:8000/logout,1551666668,,302
+02bafe,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551666668,,200
+a04d90,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1551666674,,200
+b98be0,127.0.0.1,POST,http://127.0.0.1:8000/connexion,1551666688,,302
+6e861a,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1551666688,,200

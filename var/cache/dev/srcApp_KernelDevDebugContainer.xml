@@ -2817,7 +2817,7 @@
         <argument key="App\Entity\User" type="collection">
           <argument key="class">Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder</argument>
           <argument key="arguments" type="collection">
-            <argument>13</argument>
+            <argument>10</argument>
           </argument>
         </argument>
       </argument>

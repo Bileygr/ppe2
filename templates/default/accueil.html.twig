@@ -37,7 +37,7 @@
               {% elseif  is_granted('ROLE_JEUNE') %}
                 <a href="{{ path('offres') }}">Voir les offres</a>
                 <a href="administrateuradmin.php">Gérer ses candidatures</a>
-                <a href="{{ path('jeune_modification') }}">Vos informations</a>
+                <a href="">Vos informations</a>
                 <a href="{{ path('app_logout') }}">Déconnexion</a>
               {% else %}
                 <a href="{{ path('app_login') }}" class="btn btn-info btn-lg btn-block">Jeune</a>

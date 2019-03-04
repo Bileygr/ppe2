@@ -212,10 +212,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offres");
             echo "\">Voir les offres</a>
                 <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
-                <a href=\"";
-            // line 40
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_modification");
-            echo "\">Vos informations</a>
+                <a href=\"\">Vos informations</a>
                 <a href=\"";
             // line 41
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
@@ -280,7 +277,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
 
     public function getDebugInfo()
     {
-        return array (  259 => 59,  250 => 58,  240 => 47,  235 => 45,  231 => 44,  226 => 43,  221 => 41,  217 => 40,  211 => 38,  206 => 36,  202 => 35,  197 => 33,  192 => 32,  187 => 30,  183 => 29,  178 => 27,  174 => 26,  170 => 25,  166 => 24,  161 => 23,  158 => 22,  149 => 21,  131 => 17,  119 => 9,  110 => 8,  92 => 5,  81 => 63,  79 => 58,  71 => 53,  64 => 48,  62 => 21,  55 => 17,  48 => 12,  46 => 8,  40 => 5,  34 => 1,);
+        return array (  256 => 59,  247 => 58,  237 => 47,  232 => 45,  228 => 44,  223 => 43,  218 => 41,  211 => 38,  206 => 36,  202 => 35,  197 => 33,  192 => 32,  187 => 30,  183 => 29,  178 => 27,  174 => 26,  170 => 25,  166 => 24,  161 => 23,  158 => 22,  149 => 21,  131 => 17,  119 => 9,  110 => 8,  92 => 5,  81 => 63,  79 => 58,  71 => 53,  64 => 48,  62 => 21,  55 => 17,  48 => 12,  46 => 8,  40 => 5,  34 => 1,);
     }
 
     public function getSourceContext()
@@ -324,7 +321,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
               {% elseif  is_granted('ROLE_JEUNE') %}
                 <a href=\"{{ path('offres') }}\">Voir les offres</a>
                 <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
-                <a href=\"{{ path('jeune_modification') }}\">Vos informations</a>
+                <a href=\"\">Vos informations</a>
                 <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
               {% else %}
                 <a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
