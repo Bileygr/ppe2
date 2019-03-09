@@ -42,7 +42,11 @@ class AdministrateurController extends AbstractController
             $user->setNom($form->get('nom')->getData());
             $user->setPrenom($form->get('prenom')->getData());
             $user->setUsername();
-            $user->setRoles(array('ROLE_ADMINISTRATEUR'));
+            if($request->request->get('super_admin') != null){
+                $user->setRoles(array($request->request->get('super_admin')));
+            }else{
+                $user->setRoles(array('ROLE_ADMINISTRATEUR'));
+            }
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -58,6 +62,8 @@ class AdministrateurController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            //dump($request->request->get('super_admin'));
 
             return $this->redirectToRoute('app_login');
         }

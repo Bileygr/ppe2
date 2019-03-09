@@ -149,7 +149,7 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
             // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "prenom", array()), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td>0";
+\t      \t\t\t\t<td>";
             // line 37
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "telephone", array()), "html", null, true);
             echo "</td>
@@ -177,8 +177,8 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
             // line 43
             if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMINISTRATEUR")) {
                 // line 44
-                echo "\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+                echo "\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t      \t\t\t\t";
             }
             // line 47
@@ -254,15 +254,15 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
 \t      \t\t\t\t<td>{{ administrateur.username }}</td>
 \t      \t\t\t\t<td>{{ administrateur.nom }}</td>
 \t      \t\t\t\t<td>{{ administrateur.prenom }}</td>
-\t      \t\t\t\t<td>0{{ administrateur.telephone }}</td>
+\t      \t\t\t\t<td>{{ administrateur.telephone }}</td>
 \t      \t\t\t\t<td>{{ administrateur.email }}</td>
 \t      \t\t\t\t<td>{{ administrateur.adresse }}</td>
 \t      \t\t\t\t<td>{{ administrateur.ville }}</td>
 \t      \t\t\t\t<td>{{ administrateur.codepostal }}</td>
 \t      \t\t\t\t<td>{{ administrateur.dateajout|date('d-m-Y') }}</td>
 \t      \t\t\t\t{% if is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
-\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t      \t\t\t\t{% endif %}
 \t    \t\t\t</tr>
 \t    \t\t</form>
