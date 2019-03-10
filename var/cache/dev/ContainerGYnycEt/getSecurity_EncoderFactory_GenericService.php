@@ -9,4 +9,4 @@ use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 include_once $this->targetDirs[3].'\\vendor\\symfony\\security-core\\Encoder\\EncoderFactoryInterface.php';
 include_once $this->targetDirs[3].'\\vendor\\symfony\\security-core\\Encoder\\EncoderFactory.php';
 
-return $this->privates['security.encoder_factory.generic'] = new \Symfony\Component\Security\Core\Encoder\EncoderFactory(array('App\\Entity\\User' => array('class' => 'Symfony\\Component\\Security\\Core\\Encoder\\BCryptPasswordEncoder', 'arguments' => array(0 => 13))));
+return $this->privates['security.encoder_factory.generic'] = new \Symfony\Component\Security\Core\Encoder\EncoderFactory(array('App\\Entity\\User' => array('class' => 'Symfony\\Component\\Security\\Core\\Encoder\\BCryptPasswordEncoder', 'arguments' => array(0 => 10))));

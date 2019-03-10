@@ -2,7 +2,7 @@
 {% block title %}Modifier vos informations{% endblock %}
 {% block heading %}Vos informations{% endblock %}
 {% block body %}
-    {% if app.request.get('_route') == 'administrateur_modification' or app.request.get('_route') == 'jeune_modification' %}
+    {% if app.request.get('_route') == 'administrateur_modification' or app.request.get('_route') == 'jeune_modification' or app.request.get('_route') == 'administrateur_modification_d_un_administrateur' %}
         {{ form_start(registrationForm) }}
     		<div class="form-group">
                 <label>Nom</label>
@@ -14,10 +14,16 @@
                 {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'form-control' }}) }}
             </div>
 
-            <div class="form-group">
-                <label>Mot de passe</label>
-                {{ form_widget(registrationForm.motdepasse, {'attr': {'placeholder': 'Mot de passe', 'class': 'form-control'}}) }}
-            </div>
+            {% if is_granted('ROLE_JEUNE') and is_granted("ROLE_ADMINISTRATEUR") == false and is_granted("ROLE_SUPER_ADMINISTRATEUR") == false %}
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    {{ form_widget(registrationForm.motdepasse, {'disabled': 'disabled', 'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
+                </div>
+            {% elseif is_granted("ROLE_ADMINISTRATEUR") == true or is_granted("ROLE_SUPER_ADMINISTRATEUR") == true %}
+                <div class="form-group">
+                    {{ form_widget(registrationForm.motdepasse, {'attr': {'value': administrateur.password, 'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+                </div>
+            {% endif %}
 
             <div class="form-group">
                 <label>Téléphone</label>
@@ -43,6 +49,19 @@
                 <label>Code postal</label>
                 {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
             </div>
+
+            {% if (app.request.get('_route') == 'administrateur_modification') or (app.request.get('_route') == 'administrateur_modification_d_un_administrateur') and (is_granted('ROLE_SUPER_ADMINISTRATEUR')) %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="ROLE_SUPER_ADMINISTRATEUR" name="super_admin" id="super_admin"
+                    {% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
+                        checked
+                    {% endif %}
+                  >
+                  <label class="form-check-label" for="super_admin">
+                    Super Administrateur
+                  </label>
+                </div>
+            {% endif %}
 
     		{{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
   		{{ form_end(registrationForm) }}

@@ -131,7 +131,7 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
             // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "nom", array()), "html", null, true);
             echo "</td>
-\t\t      \t\t\t\t<td>0";
+\t\t      \t\t\t\t<td>";
             // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["partenaire"], "telephone", array()), "html", null, true);
             echo "</td>
@@ -224,7 +224,7 @@ class __TwigTemplate_dddbd001b91dc6fe9cd884f140a1849381166d43a1e6156c8af8d73bff3
 \t\t      \t\t\t\t<th scope=\"row\">{{ partenaire.id }}</th>
 \t\t      \t\t\t\t<td>{{ partenaire.siret }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.nom }}</td>
-\t\t      \t\t\t\t<td>0{{ partenaire.telephone }}</td>
+\t\t      \t\t\t\t<td>{{ partenaire.telephone }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.email }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.adresse }}</td>
 \t\t      \t\t\t\t<td>{{ partenaire.ville }}</td>

@@ -16,10 +16,28 @@ class AdministrateurController extends AbstractController
     /**
      * @Route("/administration/gérer-les-administrateurs", name="administrateur_gestion")
      */
-    public function gestion()
+    public function gestion(Request $request)
     {
+        $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateurs = $repository->findByRole('ADMINISTRATEUR');
+
+        if(isset($_POST['modifier'])){
+            $administrateur_id = $request->request->get('id');
+            $this->container->get('session')->set('administrateur_id', $administrateur_id);
+
+            return $this->redirectToRoute('administrateur_modification_d_un_administrateur');
+        }
+
+        if(isset($_POST['supprimer'])){
+            $administrateur_id = $request->request->get('id');
+            $administrateur = $entityManager->getRepository(User::class)->find($administrateur_id);
+
+            $entityManager->remove($administrateur);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administrateur_gestion');
+        }
 
         return $this->render('administrateur/gestion.html.twig', [
             'administrateurs' => $administrateurs,
@@ -63,8 +81,6 @@ class AdministrateurController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            //dump($request->request->get('super_admin'));
-
             return $this->redirectToRoute('app_login');
         }
 
@@ -99,6 +115,36 @@ class AdministrateurController extends AbstractController
         return $this->render('default/modification.html.twig', [
             'administrateur' => $administrateur,
             'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/administration/modification-des-informations-d-un-administrateur", name="administrateur_modification_d_un_administrateur")
+     */
+    public function modificationDeUnAdministrateur(Request $request)
+    {
+        $id = $this->container->get('session')->get('administrateur_id');
+        $entityManager = $this->getDoctrine()->getManager();
+        $administrateur = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(RegistrationFormType::class, $administrateur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            if($request->request->get('super_admin') != null){
+                $administrateur->setRoles(array($request->request->get('super_admin')));
+            }else{
+                $administrateur->setRoles(array('ROLE_ADMINISTRATEUR'));
+            }
+            $entityManager->flush();
+            return $this->redirectToRoute('administrateur_gestion');
+        }
+
+        return $this->render('default/modification.html.twig', [
+            'administrateur' => $administrateur,
+            'registrationForm' => $form->createView(),
+            'controller_name' => 'AdministrateurController',
         ]);
     }
 }
