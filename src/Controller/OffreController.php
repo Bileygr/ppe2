@@ -91,7 +91,7 @@ class OffreController extends AbstractController
             $offre->setIdformation($request->request->get('formation'));
             $entityManager->flush();
 
-            return $this->redirectToRoute('offre_liste_partenaire_connecte');
+            return $this->redirectToRoute('offre_gestion');
         }
 
         return $this->render('offre/modification.html.twig', [
@@ -164,7 +164,7 @@ class OffreController extends AbstractController
             $offre = $entityManager->getRepository(Offre::class)->find($id);
             $this->container->get('session')->set('offre_id', $offre->getId());
 
-            return $this->redirectToRoute('modification_des_offres');
+            return $this->redirectToRoute('offre_modification');
         }
 
         if(isset($_POST['supprimer'])){
@@ -174,7 +174,7 @@ class OffreController extends AbstractController
             $entityManager->remove($offre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('gestion_des_offres');
+            return $this->redirectToRoute('offre_gestion');
         }
 
         return $this->render('offre/gestion.html.twig', [

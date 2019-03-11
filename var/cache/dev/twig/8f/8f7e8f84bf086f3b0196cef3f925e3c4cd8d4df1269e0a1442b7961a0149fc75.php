@@ -135,7 +135,7 @@ class __TwigTemplate_942999cebc2fb4abf3eeb1f11fdecee72be5887afea3aa6781aee796a5b
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 31
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "libelle", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
             // line 32
@@ -149,8 +149,8 @@ class __TwigTemplate_942999cebc2fb4abf3eeb1f11fdecee72be5887afea3aa6781aee796a5b
             // line 34
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "dateajout", array()), "Y-m-d"), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    ";
@@ -217,12 +217,12 @@ class __TwigTemplate_942999cebc2fb4abf3eeb1f11fdecee72be5887afea3aa6781aee796a5b
 \t      \t\t\t\t<th scope=\"row\">{{ offre.id }}</th>
 \t      \t\t\t\t<td>{{ offre.nomU }}</td>
 \t      \t\t\t\t<td>{{ offre.nomF }}</td>
-\t      \t\t\t\t<td>{{ offre.nomO }}</td>
+\t      \t\t\t\t<td>{{ offre.libelle }}</td>
 \t      \t\t\t\t<td>{{ offre.debut|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.fin|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.dateajout|date('Y-m-d') }}</td>
-\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    {% endfor %}

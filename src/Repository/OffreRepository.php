@@ -22,12 +22,13 @@ class OffreRepository extends ServiceEntityRepository
     public function findAll()
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT o.id, o.libelle nomO, u.nom nomU, f.nom nomF, o.description, o.adresse, o.ville, o.codepostal, o.debut, o.fin, o.dateajout
-                FROM App\Entity\Offre o ,App\Entity\User u, App\Entity\Formation f 
-                WHERE o.iduser_id = u.id  
-                AND o.idformation = f.id';
+        $sql = 'SELECT offre.id, offre.libelle, user.nom AS \'nomU\', formation.nom AS \'nomF\', offre.description, offre.adresse, offre.ville, offre.codepostal, offre.debut, offre.fin, offre.dateajout
+            FROM offre 
+            JOIN user ON user.id = offre.iduser_id 
+            JOIN formation ON formation.id = offre.idformation_id';
 
         $stmt = $conn->prepare($sql);
+        $stmt->execute();
         
         return $stmt->fetchAll();
     }

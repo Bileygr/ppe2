@@ -16,6 +16,16 @@ class UserFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    function generateRandomString($length = 10) {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     public function load(ObjectManager $manager)
     {
         $usersuperadmin = new User();
@@ -66,24 +76,58 @@ class UserFixtures extends Fixture
         $userjeune->setVille("Evry");
         $userjeune->setCodepostal("91000");
         
-        $userpartenaire->setNom("ImmoCorp");
-        $userpartenaire->setUsername();
-        $userpartenaire->setSIRET("123456789");
-        $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
-        $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
-        	$userpartenaire,
-            'motdepasse'
-         ));
-        $userpartenaire->setTelephone("0605557804");
-        $userpartenaire->setEmail("immocorp@gmail.com");
-        $userpartenaire->setAdresse("140 Allée des Champs Elysées");
-        $userpartenaire->setVille("Evry");
-        $userpartenaire->setCodepostal("91000");
+        /*
+            $userpartenaire->setNom("ImmoCorp");
+            $userpartenaire->setUsername();
+            $userpartenaire->setSIRET("123456789");
+            $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
+            $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
+            	$userpartenaire,
+                'motdepasse'
+             ));
+            $userpartenaire->setTelephone("0605557804");
+            $userpartenaire->setEmail("immocorp@gmail.com");
+            $userpartenaire->setAdresse("140 Allée des Champs Elysées");
+            $userpartenaire->setVille("Evry");
+            $userpartenaire->setCodepostal("91000");
+        */
+
+        /*
+            Creer 500  partenaires
+        */
+        $i=0;
+
+        while($i <= 500){
+            $userpartenaire = new User();
+            $nom = UserFixtures::generateRandomString(10);
+            $siret = rand(9, 9);
+            $telephone = rand(10,10);
+            $telephoneToString = (string)$telephone;
+            $siretToString = (string)$siret;
+
+            $userpartenaire->setNom($nom);
+            $userpartenaire->setUsername();
+            $userpartenaire->setSIRET($siretToString);
+            $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
+            $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
+                $userpartenaire,
+                'motdepasse'
+             ));
+            $userpartenaire->setTelephone($telephoneToString);
+            $userpartenaire->setEmail($nom."@test.com");
+            $userpartenaire->setAdresse("140 Allée des Champs Elysées");
+            $userpartenaire->setVille("Evry");
+            $userpartenaire->setCodepostal("91000");
+
+            $manager->persist($userpartenaire);
+
+            $i = $i+1;
+        }
 
         $manager->persist($usersuperadmin);
         $manager->persist($useradmin);
         $manager->persist($userjeune);
-        $manager->persist($userpartenaire);
+        // $manager->persist($userpartenaire);
         $manager->flush();
     }
 }

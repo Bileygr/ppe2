@@ -93,7 +93,7 @@ class __TwigTemplate_3c1a60cc691ed73dc08f794672e034741d1f688fd8edf95e7d82fdd07e3
         echo "
 \t\t";
         // line 9
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new Twig_Error_Runtime('Variable "form" does not exist.', 9, $this->source); })()), "nom", array()), 'widget');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new Twig_Error_Runtime('Variable "form" does not exist.', 9, $this->source); })()), "libelle", array()), 'widget');
         echo "
 \t\t";
         // line 10
@@ -194,7 +194,7 @@ class __TwigTemplate_3c1a60cc691ed73dc08f794672e034741d1f688fd8edf95e7d82fdd07e3
 
 {% block body %}
 \t{{ form_start(form) }}
-\t\t{{ form_widget(form.nom) }}
+\t\t{{ form_widget(form.libelle) }}
 \t\t{{ form_widget(form.adresse) }}
 \t\t{{ form_widget(form.ville) }}
 \t\t{{ form_widget(form.codepostal) }}

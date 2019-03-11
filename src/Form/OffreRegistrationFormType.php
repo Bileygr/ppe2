@@ -23,7 +23,7 @@ class OffreRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class, array('attr' => array('placeholder' => 'Nom')))
+            ->add('libelle', TextType::class, array('attr' => array('placeholder' => 'Libelle')))
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => 'Adresse')))
             ->add('ville', TextType::class, array('attr' => array('placeholder' => 'Ville')))
             ->add('codepostal', TextType::class, array('attr' => array('placeholder' => 'Code Postal')))

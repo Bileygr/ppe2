@@ -8,7 +8,7 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/administrateur/gestion/jeunes',
+                    '/administrateur/gérer-les-jeunes',
                 ],
                 'name' => [
                     'jeune_gestion',

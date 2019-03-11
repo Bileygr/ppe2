@@ -28,7 +28,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'jeune_inscription' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::inscription'), array(), array(array('text', '/administrateur/inscription-des-jeunes')), array(), array()),
         'jeune_modification' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::modification'), array(), array(array('text', '/administrateur/gestion/jeunes/modification-des-informations')), array(), array()),
         'jeune_modification_d_un_jeune' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::modificationDeJeune'), array(), array(array('text', '/administration/modification-des-informations-d-un-jeune')), array(), array()),
-        'jeune_gestion' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::gestionDesJeunes'), array(), array(array('text', '/administrateur/gestion/jeunes')), array(), array()),
+        'jeune_gestion' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::gestionDesJeunes'), array(), array(array('text', '/administrateur/gérer-les-jeunes')), array(), array()),
         'offre_ajout' => array(array(), array('_controller' => 'App\\Controller\\OffreController::ajouter'), array(), array(array('text', '/ajout-d-une-offre')), array(), array()),
         'offre_modification' => array(array(), array('_controller' => 'App\\Controller\\OffreController::modifier'), array(), array(array('text', '/modifier-les-informations-d-une-offre')), array(), array()),
         'offres' => array(array(), array('_controller' => 'App\\Controller\\OffreController::listerTouteLesOffres'), array(), array(array('text', '/offres')), array(), array()),
