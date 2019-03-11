@@ -47,6 +47,28 @@ class OffreRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
+    public function countFormation()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT formation.nom, COUNT(*) AS \'nombre\' FROM offre JOIN formation ON offre.idformation_id = formation.id GROUP BY formation.nom';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    public function countPartenaire()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT user.nom, COUNT(*) AS \'nombre\' FROM offre JOIN user ON offre.iduser_id = user.id WHERE user.roles LIKE "%ROLE_PARTENAIRE%" GROUP BY user.nom';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
     // /**
     //  * @return Offre[] Returns an array of Offre objects
     //  */

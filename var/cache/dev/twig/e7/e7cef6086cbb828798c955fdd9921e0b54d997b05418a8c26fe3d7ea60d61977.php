@@ -12,7 +12,7 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
         $this->source = $this->getSourceContext();
 
         // line 1
-        $this->parent = $this->loadTemplate("default/index.html.twig", "jeune/gestion.html.twig", 1);
+        $this->parent = $this->loadTemplate("default/accueil.html.twig", "jeune/gestion.html.twig", 1);
         $this->blocks = array(
             'title' => array($this, 'block_title'),
             'titre' => array($this, 'block_titre'),
@@ -22,7 +22,7 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
 
     protected function doGetParent(array $context)
     {
-        return "default/index.html.twig";
+        return "default/accueil.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -89,7 +89,7 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
 
         // line 8
         echo "\t<a href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("inscription_des_jeunes");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_inscription");
         echo "\" class=\"btn btn-primary\">Ajout</a>\t
     <a href=\"";
         // line 9
@@ -164,8 +164,8 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
             // line 40
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["jeune"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
-\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    ";
@@ -202,14 +202,14 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% extends 'default/index.html.twig' %}
+        return new Twig_Source("{% extends 'default/accueil.html.twig' %}
 
 {% block title %}Gestion des jeunes{% endblock %}
 
 {% block titre %}Gestion des jeunes{% endblock %}
 
 {% block body %}
-\t<a href=\"{{ path('inscription_des_jeunes') }}\" class=\"btn btn-primary\">Ajout</a>\t
+\t<a href=\"{{ path('jeune_inscription') }}\" class=\"btn btn-primary\">Ajout</a>\t
     <a href=\"{{ path('accueil') }}\" class=\"btn btn-warning\">Retour</a>
 
     <table class=\"table\">
@@ -242,8 +242,8 @@ class __TwigTemplate_1f83b21e4c7b50b889ab2ca3377f12d3b26eea57e21b976f7903f941120
 \t      \t\t\t\t<td>{{ jeune.ville }}</td>
 \t      \t\t\t\t<td>{{ jeune.codepostal }}</td>
 \t      \t\t\t\t<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
-\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" value=\"Modifier\"></td>
-\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" value=\"Supprimer\"></td>
+\t      \t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
+\t\t      \t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    {% endfor %}

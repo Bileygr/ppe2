@@ -11,7 +11,7 @@
                     '/administrateur/gestion/jeunes/modification-des-informations',
                 ],
                 'name' => [
-                    'modification_des_jeunes',
+                    'jeune_modification',
                 ],
             ],
         ],

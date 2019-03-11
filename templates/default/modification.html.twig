@@ -1,8 +1,14 @@
 {% extends 'default/accueil.html.twig' %}
 {% block title %}Modifier vos informations{% endblock %}
-{% block heading %}Vos informations{% endblock %}
+{% block heading %}
+    {% if app.request.get('_route') == 'administrateur_modification' or app.request.get('_route') == 'jeune_modification'%}
+        Vos informations
+    {% elseif app.request.get('_route') == 'administrateur_modification_d_un_administrateur' %}
+        Modifier les informations de cet utilisateur
+    {% endif %}
+{% endblock %}
 {% block body %}
-    {% if app.request.get('_route') == 'administrateur_modification' or app.request.get('_route') == 'jeune_modification' or app.request.get('_route') == 'administrateur_modification_d_un_administrateur' %}
+    {% if app.request.get('_route') == 'administrateur_modification' or app.request.get('_route') == 'jeune_modification' or app.request.get('_route') == 'administrateur_modification_d_un_administrateur' or app.request.get('_route') == 'jeune_modification_d_un_jeune' %}
         {{ form_start(registrationForm) }}
     		<div class="form-group">
                 <label>Nom</label>
@@ -19,10 +25,12 @@
                     <label>Mot de passe</label>
                     {{ form_widget(registrationForm.motdepasse, {'disabled': 'disabled', 'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
                 </div>
-            {% elseif is_granted("ROLE_ADMINISTRATEUR") == true or is_granted("ROLE_SUPER_ADMINISTRATEUR") == true %}
+            {% elseif is_granted("ROLE_ADMINISTRATEUR") == true or is_granted("ROLE_SUPER_ADMINISTRATEUR") == true and app.request.get('_route') == 'jeune_modification_d_un_jeune'%}
                 <div class="form-group">
-                    {{ form_widget(registrationForm.motdepasse, {'attr': {'value': administrateur.password, 'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+                    {{ form_widget(registrationForm.motdepasse, {'attr': {'value': jeune.password, 'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
                 </div>
+
+            {% elseif is_granted("ROLE_ADMINISTRATEUR") == true or is_granted("ROLE_SUPER_ADMINISTRATEUR") == true and app.request.get('_route') == 'administrateur_modification_d_un_administrateur'%}
             {% endif %}
 
             <div class="form-group">

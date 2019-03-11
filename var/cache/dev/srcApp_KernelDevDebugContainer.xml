@@ -4042,6 +4042,7 @@
     <service id=".abstract.instanceof.App\Controller\PartenaireController" class="App\Controller\PartenaireController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.lm3AYgL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4622,6 +4623,15 @@
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\SecurityController"/>
       </call>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" abstract="true"/>
+    <service id="App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\StatistiquesController"/>
+      </call>
+    </service>
     <service id="maker.auto_command.make_auth" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false">
       <tag name="console.command" command="make:auth"/>
       <argument type="service" id="maker.maker.make_authenticator"/>
@@ -5033,6 +5043,12 @@
     <service id=".service_locator.KTVqfp6.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
       <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\StatistiquesController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\StatistiquesController"/>
+      <argument>App\Controller\StatistiquesController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>
