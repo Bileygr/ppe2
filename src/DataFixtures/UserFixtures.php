@@ -16,39 +16,51 @@ class UserFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    function generateRandomString($length = 10) {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
+    function generateNom() {
+        $nomDeFamille = array("Martin", "Bernard", "Thomas", "Petit", "Robert", "Richard", "Durand", "Dubois", "Moreau", "Laurent", "Simon", "Michel", "Lefebvre", "Leroy", "Roux", "David", "Bertrand", "Morel", "Fournier", "Girard", "Bonnet", "Dupont", "Lambert", "Fontaine", "Rousseau", "Vincent", "Muller", "Lefevre", "Faure", "Andre", "Mercier", "Blanc", "Guerin", "Boyer", "Garnier", "Chevalier", "François", "Legrand", "Gauthier", "Garcia", "Perrin", "Robin", "Clément", "Morin", "Nicolas", "Henry", "Roussel", "Mathieu", "Gautier", "Masson");
+        $prenom = array("Gabriel", "Emma", "Louis", "Raphaël", "Jules", "Adam", "Lucas", "Léo", "Louise", "Jade", "Hugo", "Arthur", "Nathan", "Alice", "Liam", "Ethan", "Paul", "Chloé", "Lina", "Mila", "Tom", "Léa", "Manon", "Sacha", "Noah", "Gabin", "Nolan", "Enzo", "Mohamed", "Rose", "Anna", "Aaron", "Inès", "Camille", "Lola", "Timéo", "Théo", "Ambre", "Léna", "Zoé", "Mathis", "Juliette", "Axel", "Julia", "Victor", "Lou", "Antoine", "Valentin", "Sarah", "Lucie");
+        $rng1 = rand(0,49);
+        $rng2 = rand(0,49);
+
+        $nom = array($nomDeFamille[$rng1], $prenom[$rng2]);
+
+        return $nom;
     }
 
-    function generateRandomTelephone($length = 10) {
+    function generateTelephone() {
         $characters = '0123456789';
         $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        $telephone = '';
+        $suffix = "";
+        $rng = rand(0,1);
+
+        for ($i = 0; $i < 8; $i++) {
+            $telephone .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString;
+
+        if($rng == 0){
+            $suffix = "01"; 
+        }elseif ($rng == 1) {
+            $suffix = "06";
+        }
+
+        return $suffix.$telephone;
     }
 
-    function generateRandomSiret($length = 9) {
+    function generateSiret() {
         $characters = '0123456789';
         $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        $siret = '';
+        for ($i = 0; $i < 9; $i++) {
+            $siret .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString;
+
+        return $siret;
     }
 
     function generateAdresse(){
         $numero = rand(1,2000);
-        $rues = UserFixtures::generateRandomString(10);
+        $rues = "Boulevard de l'Yerres";
         $villes = ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Montpellier", "Strasbourg", "Bordeaux", "Lille"];
         $departement = array("75" => "Paris", "13" => "Marseille", "69" =>"Lyon", "31" => "Toulouse", "06" => "Nice", "44" => "Nantes", "34" => "Montpellier", "67" => "Strasbourg", "33" => "Bordeaux", "59" => "Lille");
         $codepostal = rand(1,95);
@@ -63,13 +75,49 @@ class UserFixtures extends Fixture
         $codepostalToString = (string)$codepostal;
         $rng = rand(0, 9);
 
-        $adresse = $numeroToString." ".$rues." ".$departement[$rng];
+        $adresse = array($numeroToString, $rues, $departement);
 
         return $adresse;
     }
 
     public function load(ObjectManager $manager)
     {
+        $i=0;
+
+        while($i <= 500){
+            $userpartenaire = new User();
+            $nom = UserFixtures::generateNom();
+            $siret = UserFixtures::generateSiret(9);
+            $telephone = UserFixtures::generateTelephone();
+            $adresse = UserFixtures::generateAdresse();
+            $departement = "";
+            $suffix = "";
+            foreach($adresse[2] as $departement => $ville){
+                $departement;
+            }
+            $rng = rand(0, 9);
+            $rng2 = rand(0,3000);
+            $emailId = (string)$rng2;
+
+            $userpartenaire->setNom($nom[0]."Corporation");
+            $userpartenaire->setUsername();
+            $userpartenaire->setSIRET($siret);
+            $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
+            $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
+                $userpartenaire,
+                'motdepasse'
+             ));
+            $userpartenaire->setTelephone($suffix.$telephone);
+            $userpartenaire->setEmail($nom[0].$emailId."@test.com");
+            $userpartenaire->setAdresse($adresse[0]." ".$adresse[1]);
+            $userpartenaire->setVille("Evry");
+            $userpartenaire->setCodepostal($departement);
+
+            $manager->persist($userpartenaire);
+
+            $i = $i+1;
+        }
+
         $usersuperadmin = new User();
         $useradmin = new User();
         $userjeune = new User();
@@ -118,54 +166,20 @@ class UserFixtures extends Fixture
         $userjeune->setVille("Evry");
         $userjeune->setCodepostal("91000");
         
-        /*
-            $userpartenaire->setNom("ImmoCorp");
-            $userpartenaire->setUsername();
-            $userpartenaire->setSIRET("123456789");
-            $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
-            $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
-            	$userpartenaire,
-                'motdepasse'
-             ));
-            $userpartenaire->setTelephone("0605557804");
-            $userpartenaire->setEmail("immocorp@gmail.com");
-            $userpartenaire->setAdresse("140 Allée des Champs Elysées");
-            $userpartenaire->setVille("Evry");
-            $userpartenaire->setCodepostal("91000");
-        */
-
-        /*
-            Creer 500  partenaires
-        */
-        $i=0;
-
-        while($i <= 500){
-            $userpartenaire = new User();
-            $nom = UserFixtures::generateRandomString(10);
-            $siret = UserFixtures::generateRandomSiret(9);
-            $telephone = UserFixtures::generateRandomString(10);
-            $adresse = UserFixtures::generateAdresse();
-            //$telephoneToString = (string)$telephone;
-            //$siretToString = (string)$siret;
-
-            $userpartenaire->setNom($nom);
-            $userpartenaire->setUsername();
-            $userpartenaire->setSIRET($siret);
-            $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
-            $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
-                $userpartenaire,
-                'motdepasse'
-             ));
-            $userpartenaire->setTelephone($telephone);
-            $userpartenaire->setEmail($nom."@test.com");
-            $userpartenaire->setAdresse($adresse);
-            $userpartenaire->setVille("Evry");
-            $userpartenaire->setCodepostal("91000");
-
-            $manager->persist($userpartenaire);
-
-            $i = $i+1;
-        }
+        
+        $userpartenaire->setNom("ImmoCorp");
+        $userpartenaire->setUsername();
+        $userpartenaire->setSIRET("123456789");
+        $userpartenaire->setRoles(array('ROLE_PARTENAIRE'));
+        $userpartenaire->setPassword($this->passwordEncoder->encodePassword(
+        $userpartenaire,
+            'motdepasse'
+        ));
+        $userpartenaire->setTelephone("0605557804");
+        $userpartenaire->setEmail("immocorp@gmail.com");
+        $userpartenaire->setAdresse("140 Allée des Champs Elysées");
+        $userpartenaire->setVille("Evry");
+        $userpartenaire->setCodepostal("91000");
 
         $manager->persist($usersuperadmin);
         $manager->persist($useradmin);
