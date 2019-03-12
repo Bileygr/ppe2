@@ -25,3 +25,10 @@ b001d6,127.0.0.1,GET,http://127.0.0.1:8000/modifier-les-informations-d-une-offre
 94f385,127.0.0.1,GET,http://127.0.0.1:8000/statistiques,1552297367,,200
 61c682,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-offres,1552297808,,200
 d9d82c,127.0.0.1,GET,http://127.0.0.1:8000/administration/g%C3%A9rer-les-partenaires,1552299029,,200
+5ae719,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1552380766,,200
+c5fba4,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1552380773,50c676,200
+50c676,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1552380774,,404
+103c2c,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1552402978,,200
+af6a07,127.0.0.1,GET,http://127.0.0.1:8000/connexion,1552402990,,200
+a486e4,127.0.0.1,POST,http://127.0.0.1:8000/connexion,1552402999,,302
+67427c,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1552403001,,200
