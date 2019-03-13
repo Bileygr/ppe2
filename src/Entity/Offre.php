@@ -91,7 +91,7 @@ class Offre
         return $this->iduser;
     }
 
-    public function setIduser(?User $iduser): self
+    public function setIduser($iduser)
     {
         $this->iduser = $iduser;
 
@@ -103,7 +103,7 @@ class Offre
         return $this->idformation;
     }
 
-    public function setIdformation(?Formation $idformation): self
+    public function setIdformation($idformation)
     {
         $this->idformation = $idformation;
 
@@ -175,7 +175,7 @@ class Offre
         return $this->debut;
     }
 
-    public function setDebut(\DateTimeInterface $debut): self
+    public function setDebut($debut)
     {
         $this->debut = $debut;
 
@@ -187,7 +187,7 @@ class Offre
         return $this->fin;
     }
 
-    public function setFin(\DateTimeInterface $fin): self
+    public function setFin(\DateTimeInterface$fin): self
     {
         $this->fin = $fin;
 

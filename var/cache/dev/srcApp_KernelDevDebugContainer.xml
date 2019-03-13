@@ -4011,18 +4011,6 @@
             <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
             <argument key="groups" type="collection"/>
           </argument>
-          <argument type="collection">
-            <argument key="fixture" type="service" id="App\DataFixtures\FormationFixtures"/>
-            <argument key="groups" type="collection"/>
-          </argument>
-          <argument type="collection">
-            <argument key="fixture" type="service" id="App\DataFixtures\OffreFixtures"/>
-            <argument key="groups" type="collection"/>
-          </argument>
-          <argument type="collection">
-            <argument key="fixture" type="service" id="App\DataFixtures\UserFixtures"/>
-            <argument key="groups" type="collection"/>
-          </argument>
         </argument>
       </call>
     </service>
@@ -4031,9 +4019,6 @@
       <argument>C:\wamp64\www\ppe2\var\log/dev.log</argument>
     </service>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\DataFixtures\FormationFixtures" class="App\DataFixtures\FormationFixtures" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\DataFixtures\OffreFixtures" class="App\DataFixtures\OffreFixtures" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\OffreRegistrationFormType" class="App\Form\OffreRegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\PartenaireRegistrationFormType" class="App\Form\PartenaireRegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4525,19 +4510,6 @@
     </service>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
-      <tag name="doctrine.fixture.orm"/>
-    </service>
-    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\FormationFixtures" class="App\DataFixtures\FormationFixtures" autowire="true" abstract="true"/>
-    <service id="App\DataFixtures\FormationFixtures" class="App\DataFixtures\FormationFixtures" autowire="true" autoconfigure="true">
-      <tag name="doctrine.fixture.orm"/>
-    </service>
-    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\OffreFixtures" class="App\DataFixtures\OffreFixtures" autowire="true" abstract="true"/>
-    <service id="App\DataFixtures\OffreFixtures" class="App\DataFixtures\OffreFixtures" autowire="true" autoconfigure="true">
-      <tag name="doctrine.fixture.orm"/>
-      <argument type="service" id="security.user_password_encoder.generic"/>
-    </service>
-    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" abstract="true"/>
-    <service id="App\DataFixtures\UserFixtures" class="App\DataFixtures\UserFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
     </service>
