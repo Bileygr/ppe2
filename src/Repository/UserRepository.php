@@ -30,6 +30,17 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findIdByRole($role)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT id FROM user WHERE roles LIKE %:role%';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['role' => $role]);
+        
+        return $stmt->fetchAll();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

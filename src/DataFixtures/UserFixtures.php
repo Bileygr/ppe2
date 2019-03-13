@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Formation;
 use App\Entity\User;
+use App\Entity\Offre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -14,6 +16,21 @@ class UserFixtures extends Fixture
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
+    }
+
+    function generateDates( $first, $last, $step, $format = 'Y/m/d' ) {
+
+        $dates = array();
+        $current = strtotime( $first );
+        $last = strtotime( $last );
+
+        while( $current <= $last ) {
+
+            $dates[] = date( $format, $current );
+            $current = strtotime( $step, $current );
+        }
+
+        return $dates;
     }
 
     function generateNom() {
@@ -156,6 +173,69 @@ class UserFixtures extends Fixture
             $userjeune->setCodepostal($adresse[3]);
 
             $manager->persist($userjeune);
+
+            $i = $i+1;
+        }
+
+        $i=0;
+
+        while($i <= 24){
+            $offre = new Offre();
+            $role = "PARTENAIRE";
+            $rng_date_range = rand(30, 90);
+            $date = dateRange( '2019/05/13', '2020/08/20', $rng_date_range);
+            $repository_formation = $this->getDoctrine()->getRepository(Formation::class);
+            $repository_user = $this->getDoctrine()->getRepository(User::class);
+            $libelle = "Lorem ipsum dolor sit amet.";
+            $description = 
+            "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
+
+            Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex."
+            $formation_id = $repository_formation->findId();
+            $user_id = $repository_user->findIdByRole($role);
+
+            $formation_ids = array();
+            $user_ids = array();
+
+            $adresse = UserFixtures::generateAdresse();
+
+            while($formation_id.next()){
+                $formation_ids[] = $formation_id["id"];
+            }
+
+            while($user_ids.next()){
+                $user_ids[] = $user_id["id"];
+            }
+
+            $rng_user_id  = rand(1, sizeof($user_ids)-1);
+            $rng_formation_id = rand(1, sizeof($formation_ids)-1);
+
+            $test = array(false, false);
+
+            $offre->setLibelle($libelle);
+            $offre->setIduser($user_ids[$rng_user_id]);
+            $offre->setIdformation($formation_ids[$rng_formation_id]);
+            $offre->setDescription($description);
+            $offre->setAdresse($adresse[0]." Rue ".$adresse[1]." ".$adresse[2]);
+            $offre->setVille($adresse[2]);
+            $offre->setCodepostal($adresse[3]);
+
+            while($test[0] == false and $test[1] == false){   
+                $rng_date_debut = rand(0, sizeof($date)-1);
+                $rng_date_fin = rand(0, sizeof($date)-1);
+
+                if ($rng_date_debut % 2 == 0 and $rng_date_debut < $rng_date_fin){
+                   $offre->setDebut($date[$rng_date_debut]);
+                   $test[0] = true;
+                }
+
+                if ($rng_date_fin % 2 == 1 and $rng_date_debut < $rng_date_fin){
+                   $offre->setFin($date[$rng_date_fin]);
+                    $test[1] = true;
+                }
+            }
+
+            $manager->persist($offre);
 
             $i = $i+1;
         }
