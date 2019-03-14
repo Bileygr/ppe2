@@ -236,13 +236,19 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             // line 40
             echo "                <a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offres");
-            echo "\">Voir les offres</a>
-                <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
-                <a href=\"\">Vos informations</a>
+            echo "\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
+                <a href=\"";
+            // line 41
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_candidatures");
+            echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
+                <a href=\"";
+            // line 42
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_modification");
+            echo "\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
                 <a href=\"";
             // line 43
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\">Déconnexion</a>
+            echo "\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
               ";
         } else {
             // line 45
@@ -303,7 +309,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
 
     public function getDebugInfo()
     {
-        return array (  282 => 61,  273 => 60,  263 => 49,  258 => 47,  254 => 46,  249 => 45,  244 => 43,  237 => 40,  232 => 38,  228 => 37,  223 => 35,  218 => 34,  213 => 32,  209 => 31,  205 => 30,  201 => 29,  197 => 28,  193 => 27,  189 => 26,  184 => 25,  181 => 24,  172 => 23,  154 => 19,  144 => 13,  135 => 12,  123 => 9,  114 => 8,  96 => 5,  85 => 65,  83 => 60,  75 => 55,  68 => 50,  66 => 23,  59 => 19,  52 => 14,  49 => 12,  47 => 8,  41 => 5,  35 => 1,);
+        return array (  288 => 61,  279 => 60,  269 => 49,  264 => 47,  260 => 46,  255 => 45,  250 => 43,  246 => 42,  242 => 41,  237 => 40,  232 => 38,  228 => 37,  223 => 35,  218 => 34,  213 => 32,  209 => 31,  205 => 30,  201 => 29,  197 => 28,  193 => 27,  189 => 26,  184 => 25,  181 => 24,  172 => 23,  154 => 19,  144 => 13,  135 => 12,  123 => 9,  114 => 8,  96 => 5,  85 => 65,  83 => 60,  75 => 55,  68 => 50,  66 => 23,  59 => 19,  52 => 14,  49 => 12,  47 => 8,  41 => 5,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -347,10 +353,10 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
                 <a href=\"{{ path('partenaire_modification') }}\">Vos informations</a>
                 <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
               {% elseif  is_granted('ROLE_JEUNE') %}
-                <a href=\"{{ path('offres') }}\">Voir les offres</a>
-                <a href=\"administrateuradmin.php\">Gérer ses candidatures</a>
-                <a href=\"\">Vos informations</a>
-                <a href=\"{{ path('app_logout') }}\">Déconnexion</a>
+                <a href=\"{{ path('offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
+                <a href=\"{{ path('jeune_candidatures') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
+                <a href=\"{{ path('jeune_modification') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
+                <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
               {% else %}
                 <a href=\"{{ path('app_login') }}\" class=\"btn btn-info btn-lg btn-block\">Jeune</a>
                 <a href=\"{{ path('app_login') }}\" class=\"btn btn-warning btn-lg btn-block\">Partenaire</a>

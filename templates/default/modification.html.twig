@@ -23,7 +23,7 @@
             {% if is_granted('ROLE_JEUNE') and is_granted("ROLE_ADMINISTRATEUR") == false and is_granted("ROLE_SUPER_ADMINISTRATEUR") == false %}
                 <div class="form-group">
                     <label>Mot de passe</label>
-                    {{ form_widget(registrationForm.motdepasse, {'disabled': 'disabled', 'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
+                    {{ form_widget(registrationForm.motdepasse, {'attr': {'placeholder': 'Mot de passe', 'class' : 'form-control'}}) }}
                 </div>
             {% elseif app.request.get('_route') == 'administrateur_modification'%}
                 <div class="form-group">

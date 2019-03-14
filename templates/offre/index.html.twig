@@ -21,15 +21,23 @@
   		</thead>
 	  	<tbody>
 	  		{% for offre in offres %}
+	  			<form method="POST">
+		    		<input type="text" hidden="hidden" name="idoffre" value="{{ offre.id }}">
+		    		<input type="text" hidden="hidden" name="idpartenaire" value="{{ offre.idpartenaire }}">
+
 		    		<tr>
 	      				<th scope="row">{{ offre.id }}</th>
 	      				<td>{{ offre.nomU }}</td>
 	      				<td>{{ offre.nomF }}</td>
-	      				<td>{{ offre.nomO }}</td>
+	      				<td>{{ offre.libelle }}</td>
 	      				<td>{{ offre.debut|date('Y-m-d') }}</td>
 	      				<td>{{ offre.fin|date('Y-m-d') }}</td>
 	      				<td>{{ offre.dateajout|date('d-m-Y') }}</td>
+	      				{% if is_granted('ROLE_JEUNE') %}
+	      					<td><input type="submit" name="Candidature" class="btn btn-secondary btn-sm" value="Candidature"></td>
+	      				{% endif %}
 	    			</tr>
+	    		</form>
 		    {% endfor %}
 	  	</tbody>
 	</table>

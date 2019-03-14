@@ -47,8 +47,6 @@ security:
 
          # Droits d'accès du partenaire
          - { path: ^/partenaire, roles: ROLE_PARTENAIRE }
-         - { path: ^/offres, roles: ROLE_PARTENAIRE }
 
          # Droits d'accès du jeune
          - { path: ^/jeune, roles: ROLE_JEUNE }
-         - { path: ^/offres, roles: ROLE_JEUNE }
