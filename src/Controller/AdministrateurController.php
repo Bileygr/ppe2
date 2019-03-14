@@ -21,6 +21,7 @@ class AdministrateurController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateurs = $repository->findByRole('ADMINISTRATEUR');
+        dump($administrateurs);
 
         if(isset($_POST['modifier'])){
             $administrateur_id = $request->request->get('id');

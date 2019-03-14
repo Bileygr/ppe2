@@ -187,7 +187,7 @@ class Offre
         return $this->fin;
     }
 
-    public function setFin(\DateTimeInterface$fin): self
+    public function setFin($fin)
     {
         $this->fin = $fin;
 

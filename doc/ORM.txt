@@ -1,0 +1,5 @@
+@ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)
+     
+@ORM\ManyToOne(targetEntity="App\Entity\Formation", inversedBy="offres")
+     * @ORM\JoinColumn(nullable=false)

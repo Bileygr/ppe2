@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Formation;
 use App\Entity\User;
 use App\Entity\Offre; 
+use App\Repository\UserRepository; 
+use App\Repository\FormationRepository; 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -118,7 +120,7 @@ class AppFixtures extends Fixture
     {
         $i=0;
 
-        while($i <= 25){
+        while($i <= 24){
             $userpartenaire = new User();
             $nom = AppFixtures::generateNom();
             $siret = rand(100000000,999999999);
@@ -184,7 +186,7 @@ class AppFixtures extends Fixture
 
         $i=0;
 
-        while($i <= 50){
+        while($i <= 49){
             $userjeune = new User();
             $nom = AppFixtures::generateNom();
             $siret = rand(100000000,999999999);
@@ -212,18 +214,17 @@ class AppFixtures extends Fixture
             $i = $i+1;
         }
         
-        /*
+        
         $i=0;
 
-        while($i <= 24){
+        while($i <= 75){
             $offre = new Offre();
             $role = "PARTENAIRE";
-            $rng_date_range = rand(30, 90);
-            $date_debut = '2020/08/13';
-            $date_fin = '2019/08/20' ;
-            /*
-            $repository_formation = $this->getDoctrine()->getRepository(Formation::class);
-            $repository_user = $this->getDoctrine()->getRepository(User::class);
+            $date_debut = "13/05/2019";
+            $date_fin = "20/08/2020";
+            
+            //$repository_formation = $this->getDoctrine()->getRepository(Formation::class);
+            //$repository_user = $this->getDoctrine()->getRepository(User::class);
             
             $libelle = "Lorem ipsum dolor sit amet.";
             $description = 
@@ -231,48 +232,48 @@ class AppFixtures extends Fixture
 
             Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex.";
 
-            $formation_ids = array();
-            $user_ids = array();
+            //$formation_ids = $repository_formation->findId();
+            //$user_ids = $repository_formation->findIdByRole($role);
 
             $adresse = AppFixtures::generateAdresse();
 
-            $rng_user_id  = rand(1, 26);
-            $rng_formation_id = rand(1, 3);
+            //$rng_user_id  = rand(1, 26);
+            //$rng_formation_id = rand(1, 3);
 
-            $test = array(false, false);
+            $user_id = rand(3310, 3334);
+            $formation_id = rand(118, 120);
+
+            //$test = array(false, false);
 
             $offre->setLibelle($libelle);
-            $offre->setIduser($rng_user_id);
-            $offre->setIdformation($rng_formation_id);
+            $offre->setIduser($user_id);
+            $offre->setIdformation($formation_id);
             $offre->setDescription($description);
             $offre->setAdresse($adresse[0]." Rue ".$adresse[1]." ".$adresse[2]);
             $offre->setVille($adresse[2]);
             $offre->setCodepostal($adresse[3]);
             $offre->setDebut($date_debut);
-            $offre->setFin($date_debut);
+            $offre->setFin($date_fin);
+            /*
+                while($test[0] == false and $test[1] == false){   
+                    $rng_date_debut = rand(0, sizeof($date)-1);
+                    $rng_date_fin = rand(0, sizeof($date)-1);
 
+                    if ($rng_date_debut % 2 == 0 and $rng_date_debut < $rng_date_fin){
+                       $offre->setDebut($date[$rng_date_debut]);
+                       $test[0] = true;
+                    }
 
-            
-            while($test[0] == false and $test[1] == false){   
-                $rng_date_debut = rand(0, sizeof($date)-1);
-                $rng_date_fin = rand(0, sizeof($date)-1);
-
-                if ($rng_date_debut % 2 == 0 and $rng_date_debut < $rng_date_fin){
-                   $offre->setDebut($date[$rng_date_debut]);
-                   $test[0] = true;
+                    if ($rng_date_fin % 2 == 1 and $rng_date_debut < $rng_date_fin){
+                       $offre->setFin($date[$rng_date_fin]);
+                        $test[1] = true;
+                    }
                 }
-
-                if ($rng_date_fin % 2 == 1 and $rng_date_debut < $rng_date_fin){
-                   $offre->setFin($date[$rng_date_fin]);
-                    $test[1] = true;
-                }
-            }
-			
+			*/
             $manager->persist($offre);
 
             $i = $i+1;
         }
-        */
 
         $admin1 = new User();
         $admin2 = new User();

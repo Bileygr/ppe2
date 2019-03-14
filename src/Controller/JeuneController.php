@@ -141,7 +141,7 @@ class JeuneController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('gestion_des_jeunes');
+            return $this->redirectToRoute('jeune_gestion');
         }
 
         return $this->render('jeune/gestion.html.twig', [
