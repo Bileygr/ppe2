@@ -198,7 +198,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
                 <a href=\"";
             // line 29
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administrateur_gestion");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administration_gestion_des_administrateurs");
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
                 <a href=\"";
             // line 30
@@ -342,7 +342,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
                 <a href=\"{{ path('jeune_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
                 <a href=\"{{ path('offre_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"{{ path('partenaire_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
-                <a href=\"{{ path('administrateur_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
+                <a href=\"{{ path('administration_gestion_des_administrateurs') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
                 <a href=\"{{ path('statistiques') }}\" class=\"btn btn-primary btn-lg btn-block\">Statistiques</a>
                 <a href=\"{{ path('administrateur_modification') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
                 <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>

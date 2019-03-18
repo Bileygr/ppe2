@@ -20,8 +20,11 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         $this->defaultLocale = $defaultLocale;
         if (null === self::$declaredRoutes) {
             self::$declaredRoutes = array(
-        'administrateur_gestion' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestion'), array(), array(array('text', '/administration/gérer-les-administrateurs')), array(), array()),
-        'administrateur_inscription' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscription'), array(), array(array('text', '/administration/inscription-des-administrateurs')), array(), array()),
+        'administration_gestion_des_administrateurs' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), array(), array(array('text', '/administration/gérer-les-administrateurs')), array(), array()),
+        'administration_gestion_des_partenaires' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), array(), array(array('text', '/administration/gérer-les-partenaires')), array(), array()),
+        'administration_gestion_des_jeunes' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesJeunes'), array(), array(array('text', '/administration/gérer-les-jeunes')), array(), array()),
+        'administration_gestoin_des_offres' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::gestionDesOffres'), array(), array(array('text', '/administration/gérer-les-offres')), array(), array()),
+        'administration_inscription_d_un_administrateur' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesAdministrateurs'), array(), array(array('text', '/administration/inscription-des-administrateurs')), array(), array()),
         'administrateur_modification' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::modification'), array(), array(array('text', '/administration/modifier-ses-informations')), array(), array()),
         'administrateur_modification_d_un_administrateur' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::modificationDeUnAdministrateur'), array(), array(array('text', '/administration/modification-des-informations-d-un-administrateur')), array(), array()),
         'accueil' => array(array(), array('_controller' => 'App\\Controller\\DefaultController::accueil'), array(), array(array('text', '/accueil')), array(), array()),

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-<?php return array(PHP_INT_MAX, 1552639230);
-=======
-<?php return array(PHP_INT_MAX, 1552556358);
->>>>>>> 03b056677e8fc14fb9b6350ec0aaea1bb38d94f6
+<?php return array(PHP_INT_MAX, 1552904197);

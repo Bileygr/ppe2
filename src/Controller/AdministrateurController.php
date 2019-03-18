@@ -88,7 +88,7 @@ class AdministrateurController extends AbstractController
             $jeuneId = $request->request->get('id');
             $this->container->get('session')->set('jeuneId', $jeuneId);
 
-            return $this->redirectToRoute('administration_modification_des_informations_d_un_jeune');-
+            return $this->redirectToRoute('administration_modification_des_informations_d_un_jeune');
         }
 
         if(isset($_POST['supprimer'])){
@@ -107,7 +107,7 @@ class AdministrateurController extends AbstractController
     }
 
      /**
-     * @Route("/administration/gérer-les-offres", name="administration_gestioin_des_offres")
+     * @Route("/administration/gérer-les-offres", name="administration_gestoin_des_offres")
      */
     public function gestionDesOffres(Request $request)
     {
