@@ -39,6 +39,16 @@ class Candidature
      */
     private $status;
 
+    /**
+    * @ORM\Column(type="date")
+    */
+    private $dateajout;
+
+    public function __construct()
+    {
+        $this->dateajout = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +98,18 @@ class Candidature
     public function setStatus(?int $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDateajout(): ?\DateTimeInterface
+    {
+        return $this->dateajout;
+    }
+
+    public function setDateajout(\DateTimeInterface $dateajout): self
+    {
+        $this->dateajout = $dateajout;
 
         return $this;
     }

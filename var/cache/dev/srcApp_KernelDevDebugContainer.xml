@@ -1885,14 +1885,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -2956,21 +2948,7 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id=".security.request_matcher.JcFqqVU"/>
-        <argument type="collection">
-          <argument>ROLE_PARTENAIRE</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
         <argument type="service" id=".security.request_matcher.UoNbjkO"/>
-        <argument type="collection">
-          <argument>ROLE_JEUNE</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.JcFqqVU"/>
         <argument type="collection">
           <argument>ROLE_JEUNE</argument>
         </argument>
@@ -3259,9 +3237,6 @@
     </service>
     <service id=".security.request_matcher.f4domFx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/partenaire</argument>
-    </service>
-    <service id=".security.request_matcher.JcFqqVU" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/offres</argument>
     </service>
     <service id=".security.request_matcher.UoNbjkO" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/jeune</argument>

@@ -1,0 +1,57 @@
+{% extends 'default/accueil.html.twig' %}
+
+{% block title %}Gestion de vos candidatures{% endblock %}
+
+{% block titre %}Gestion de vos candidatures{% endblock %}
+
+{% block body %}
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Status</th>
+		      	<th scope="col">Entreprise</th>
+		      	<th scope="col">Jeune</th>
+		      	<th scope="col">Offre</th>
+		      	<th scope="col">Tél</th>
+		      	<th scope="col">Email</th>
+		      	<th scope="col">Adresse</th>
+		      	<th scope="col">Ville</th>
+		      	<th scope="col">Code Postal</th>
+		      	<th scope="col">Date d'ajout</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for candidature in candidatures %}
+	  			<form method="POST">
+			    	<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+		    		<tr>
+	      				<th scope="row">{{ candidature.id }}</th>
+	      				<td>
+	      					{% if candidature.status == 2 %}
+	      						En attente
+	      					{% elseif candidature.status == 1 %}
+	      						Accepte
+	      					{% elseif candidature == 0 %}
+	      						Refuse
+	      					{% endif %}
+	      				</td>
+	      				<td>{{ candidature.nomEntreprise }}</td>
+	      				<td>{{ candidature.nomJeune }}</td>
+	      				<td>0{{ candidature.nomOffre }}</td>
+	      				<td>{{ candidature.telephoneEntreprise }}</td>
+	      				<td>{{ candidature.emailEntreprise }}</td>
+	      				<td>{{ candidature.adresseOffre }}</td>
+	      				<td>{{ candidature.villeOffre }}</td>
+	      				<td>{{ candidature.codepostal }}</td>
+	      				<td>{{ candidature.dateajout|date('d-m-Y') }}</td>
+	      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
+		      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
+	    			</tr>
+	    		</form>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

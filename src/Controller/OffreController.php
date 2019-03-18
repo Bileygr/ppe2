@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
 use App\Entity\Formation;
 use App\Entity\Offre;
 use App\Form\OffreRegistrationFormType;
@@ -88,6 +89,13 @@ class OffreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            /*
+                $formation = $repository->findById($request->request->get('formation'));
+                $formation_instance = new Formation;
+                $formation_instance->setId($formation["id"]);
+                $formation_instance->setNom($formation["nom"]);
+            */
+
             $offre->setIdformation($request->request->get('formation'));
             $entityManager->flush();
 
@@ -107,8 +115,28 @@ class OffreController extends AbstractController
      */
     public function listerTouteLesOffres()
     {   
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offres = $repository->findAll();
+
+        if(isset($_POST['candidature'])){
+            $candidature = new Candidature();
+
+            $idoffre = $request->request->get('idoffre');
+            $idpartenaire = $request->request->get('idpartenaire');
+            $idjeune = $request->request->get('idjeune');
+
+            $candidature->setIdoffre($idoffre);
+            $candidature->setIduserpartenaire($idpartenaire);
+            $candidature->setIduderjeune($user->getId());
+            $candidature->setStatus(2);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($candidature);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('offres');
+        }
 
         return $this->render('offre/index.html.twig', [
             'offres' => $offres,

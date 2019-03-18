@@ -112,42 +112,69 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
         $context['_seq'] = twig_ensure_traversable((isset($context["offres"]) || array_key_exists("offres", $context) ? $context["offres"] : (function () { throw new Twig_Error_Runtime('Variable "offres" does not exist.', 23, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["offre"]) {
             // line 24
-            echo "\t\t    \t\t<tr>
-\t      \t\t\t\t<th scope=\"row\">";
+            echo "\t  \t\t\t<form method=\"POST\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idoffre\" value=\"";
             // line 25
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "id", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idpartenaire\" value=\"";
+            // line 26
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "idpartenaire", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idjeune\" value=\"";
+            // line 27
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["jeune"]) || array_key_exists("jeune", $context) ? $context["jeune"] : (function () { throw new Twig_Error_Runtime('Variable "jeune" does not exist.', 27, $this->source); })()), "idjeune", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
+            // line 28
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["jeune"]) || array_key_exists("jeune", $context) ? $context["jeune"] : (function () { throw new Twig_Error_Runtime('Variable "jeune" does not exist.', 28, $this->source); })()), "id", array()), "html", null, true);
+            echo "\">
+\t\t    \t\t
+\t\t    \t\t<tr>
+\t      \t\t\t\t<th scope=\"row\">";
+            // line 31
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t<td>";
-            // line 26
+            // line 32
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomU", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 27
+            // line 33
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomF", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 28
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "nomO", array()), "html", null, true);
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "libelle", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 29
+            // line 35
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "debut", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 30
+            // line 36
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "fin", array()), "Y-m-d"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 31
+            // line 37
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["offre"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
-\t    \t\t\t</tr>
+\t      \t\t\t\t";
+            // line 38
+            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_JEUNE")) {
+                // line 39
+                echo "\t      \t\t\t\t\t<td><input type=\"submit\" name=\"Candidature\" class=\"btn btn-secondary btn-sm\" value=\"Candidature\"></td>
+\t      \t\t\t\t";
+            }
+            // line 41
+            echo "\t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['offre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 34
+        // line 44
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -171,7 +198,7 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
 
     public function getDebugInfo()
     {
-        return array (  151 => 34,  142 => 31,  138 => 30,  134 => 29,  130 => 28,  126 => 27,  122 => 26,  118 => 25,  115 => 24,  111 => 23,  93 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
+        return array (  178 => 44,  170 => 41,  166 => 39,  164 => 38,  160 => 37,  156 => 36,  152 => 35,  148 => 34,  144 => 33,  140 => 32,  136 => 31,  130 => 28,  126 => 27,  122 => 26,  118 => 25,  115 => 24,  111 => 23,  93 => 8,  82 => 7,  64 => 5,  46 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -199,15 +226,25 @@ class __TwigTemplate_4e2175b326611bbdc560f0f8bbbd8dc0168f5684f0f9cb41874551dbb6c
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t{% for offre in offres %}
+\t  \t\t\t<form method=\"POST\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idoffre\" value=\"{{ offre.id }}\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idpartenaire\" value=\"{{ offre.idpartenaire }}\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"idjeune\" value=\"{{ jeune.idjeune }}\">
+\t\t    \t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"{{ jeune.id }}\">
+\t\t    \t\t
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">{{ offre.id }}</th>
 \t      \t\t\t\t<td>{{ offre.nomU }}</td>
 \t      \t\t\t\t<td>{{ offre.nomF }}</td>
-\t      \t\t\t\t<td>{{ offre.nomO }}</td>
+\t      \t\t\t\t<td>{{ offre.libelle }}</td>
 \t      \t\t\t\t<td>{{ offre.debut|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.fin|date('Y-m-d') }}</td>
 \t      \t\t\t\t<td>{{ offre.dateajout|date('d-m-Y') }}</td>
+\t      \t\t\t\t{% if is_granted('ROLE_JEUNE') %}
+\t      \t\t\t\t\t<td><input type=\"submit\" name=\"Candidature\" class=\"btn btn-secondary btn-sm\" value=\"Candidature\"></td>
+\t      \t\t\t\t{% endif %}
 \t    \t\t\t</tr>
+\t    \t\t</form>
 \t\t    {% endfor %}
 \t  \t</tbody>
 \t</table>
