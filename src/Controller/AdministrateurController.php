@@ -14,72 +14,163 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdministrateurController extends AbstractController
 {
     /**
-     * @Route("/administration/gérer-les-administrateurs", name="administrateur_gestion")
+     * @Route("/administration/gérer-les-administrateurs", name="administration_gestion_des_administrateurs")
      */
-    public function gestion(Request $request)
+    public function gestionDesAdministrateurs(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateurs = $repository->findByRole('ADMINISTRATEUR');
-        dump($administrateurs);
 
         if(isset($_POST['modifier'])){
-            $administrateur_id = $request->request->get('id');
-            $this->container->get('session')->set('administrateur_id', $administrateur_id);
+            $administrateurId = $request->request->get('id');
+            $this->container->get('session')->set('administrateurId', $administrateurId);
 
-            return $this->redirectToRoute('administrateur_modification_d_un_administrateur');
+            return $this->redirectToRoute('administration_modification_des_informations_d_un_administrateur');
         }
 
         if(isset($_POST['supprimer'])){
-            $administrateur_id = $request->request->get('id');
-            $administrateur = $entityManager->getRepository(User::class)->find($administrateur_id);
+            $administrateurId = $request->request->get('id');
+            $administrateur = $entityManager->getRepository(User::class)->find($administrateurId);
 
             $entityManager->remove($administrateur);
             $entityManager->flush();
 
-            return $this->redirectToRoute('administrateur_gestion');
+            return $this->redirectToRoute('administration_gestion_des_administrateurs');
         }
 
-        return $this->render('administrateur/gestion.html.twig', [
-            'administrateurs' => $administrateurs,
-            'controller_name' => 'AdministrateurController',
+        return $this->render('administrateur/gestion_des_administrateurs.html.twig', [
+            'administrateurs' => $administrateurs
         ]);
     }
 
     /**
-     * @Route("/administration/inscription-des-administrateurs", name="administrateur_inscription")
+     * @Route("/administration/gérer-les-partenaires", name="administration_gestion_des_partenaires")
      */
-    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function gestionDesPartenaires(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
+
+        if(isset($_POST['modifier'])){
+            $partenaireId = $request->request->get('id');
+            $this->container->get('session')->set('partenaireId', $partenaireId);
+
+            return $this->redirectToRoute('administration_modification_des_informations_d_un_partenaire');
+        }
+
+        if(isset($_POST['supprimer'])){
+            $partenaire_id = $request->request->get('id');
+            $partenaire = $entityManager->getRepository(User::class)->find($partenaire_id);
+
+            $entityManager->remove($partenaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administration_gestion_des_partenaires');
+        }
+
+        return $this->render('partenaire/gestion.html.twig', [
+            'partenaires' => $partenaires
+        ]);
+    }
+
+    /**
+     * @Route("/administration/gérer-les-jeunes", name="administration_gestion_des_jeunes")
+     */
+    public function gestionDesJeunes(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $jeunes = $repository->findByRole('ROLE_JEUNE');
+
+        if(isset($_POST['modifier'])){
+            $jeuneId = $request->request->get('id');
+            $this->container->get('session')->set('jeuneId', $jeuneId);
+
+            return $this->redirectToRoute('administration_modification_des_informations_d_un_jeune');-
+        }
+
+        if(isset($_POST['supprimer'])){
+            $jeuneId = $request->request->get('id');
+            $jeune = $entityManager->getRepository(User::class)->find($jeuneId);
+
+            $entityManager->remove($jeune);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administration_gestion_des_jeunes');
+        }
+
+        return $this->render('administrateur/gestion_des_jeunes.html.twig', [
+            'jeunes' => $jeunes
+        ]);
+    }
+
+     /**
+     * @Route("/administration/gérer-les-offres", name="administration_gestioin_des_offres")
+     */
+    public function gestionDesOffres(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Offre::class);
+        $offres = $repository->findAll();
+
+        if(isset($_POST['modifier'])){
+            $offreId = $request->request->get('id');
+            $this->container->get('session')->set('offreId', $offreId);
+
+            return $this->redirectToRoute('administration_modification_des_informations_d_une_offre');
+        }
+
+        if(isset($_POST['supprimer'])){
+            $offreId = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($offreId);
+
+            $entityManager->remove($offre);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administration_gestioin_des_offres');
+        }
+
+        return $this->render('administrateur/gestion_des_offres.html.twig', [
+            'offres' => $offres
+        ]);
+    }
+
+    /**
+     * @Route("/administration/inscription-des-administrateurs", name="administration_inscription_d_un_administrateur")
+     */
+    public function inscriptionDesAdministrateurs(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $administrateur = new User();
+        $form = $this->createForm(RegistrationFormType::class, $administrateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
 
-            $user->setNom($form->get('nom')->getData());
-            $user->setPrenom($form->get('prenom')->getData());
-            $user->setUsername();
-            if($request->request->get('super_admin') != null){
-                $user->setRoles(array($request->request->get('super_admin')));
+            $administrateur->setNom($form->get('nom')->getData());
+            $administrateur->setPrenom($form->get('prenom')->getData());
+            $administrateur->setUsername();
+            if($request->request->get('superAdmin') != null){
+                $administrateur->setRoles(array($request->request->get('superAdmin')));
             }else{
-                $user->setRoles(array('ROLE_ADMINISTRATEUR'));
+                $administrateur->setRoles(array('ROLE_ADMINISTRATEUR'));
             }
-            $user->setPassword(
+            $administrateur->setPassword(
                 $passwordEncoder->encodePassword(
-                    $user,
+                    $administrateur,
                     $form->get('motdepasse')->getData()
                 )
             );
-            $user->setTelephone($form->get('telephone')->getData());
-            $user->setEmail($form->get('email')->getData());
-            $user->setAdresse($form->get('adresse')->getData());
-            $user->setVille($form->get('ville')->getData());
-            $user->setCodepostal($form->get('codepostal')->getData());
+            $administrateur->setTelephone($form->get('telephone')->getData());
+            $administrateur->setEmail($form->get('email')->getData());
+            $administrateur->setAdresse($form->get('adresse')->getData());
+            $administrateur->setVille($form->get('ville')->getData());
+            $administrateur->setCodepostal($form->get('codepostal')->getData());
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($administrateur);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_login');

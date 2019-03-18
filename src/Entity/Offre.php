@@ -86,7 +86,7 @@ class Offre
         return $this->id;
     }
 
-    public function getIduser(): ?User
+    public function getIduser()
     {
         return $this->iduser;
     }
@@ -98,7 +98,7 @@ class Offre
         return $this;
     }
 
-    public function getIdformation(): ?Formation
+    public function getIdformation()
     {
         return $this->idformation;
     }
@@ -170,7 +170,7 @@ class Offre
         return $this;
     }
 
-    public function getDebut(): ?\DateTimeInterface
+    public function getDebut()//: ?\DateTimeInterface
     {
         return $this->debut;
     }
@@ -182,7 +182,7 @@ class Offre
         return $this;
     }
 
-    public function getFin(): ?\DateTimeInterface
+    public function getFin()//: ?\DateTimeInterface
     {
         return $this->fin;
     }

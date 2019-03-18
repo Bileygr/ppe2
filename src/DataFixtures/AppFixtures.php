@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use \PDO;
 use App\Entity\Formation;
 use App\Entity\User;
 use App\Entity\Offre; 
@@ -21,55 +22,17 @@ class AppFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    function formationGetId(){
-		$conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT id FROM formation';
+    // Cette fonction génère une date.
+    function generateDate($start_date, $end_date){
+        $min = strtotime($start_date);
+        $max = strtotime($end_date);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        return $stmt->fetchAll();
+        $val = rand($min, $max);
 
-        /*
-		$connection = AppFixtures::Connexion();
-		$requete = $connection->prepare("SELECT id FROM formation");
-		$requete->execute();
-		return $requete->fetchAll();
-		*/
-	}
-
-	function partenaireGetId(){
-		$conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT id FROM user WHERE roles LIKE \'%?%\'';
-
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['role' => 'PARTENAIRE']);
-        
-        return $stmt->fetchAll();
-
-        /*
-		$connection = AppFixtures::Connexion();
-		$requete = $connection->prepare("SELECT id FROM user WHERE roles LIKE '%?%'");
-		$requete->execute(array("PARTENAIRE"));
-		return $requete->fetchAll();
-		*/
-	}
-
-    function generateDates( $first, $last, $step, $format = 'Y/m/d' ) {
-
-        $dates = array();
-        $current = strtotime( $first );
-        $last = strtotime( $last );
-
-        //while( $current <= $last ) {
-
-            $dates[] = date( $format, $current );
-            $current = strtotime( $step, $current );
-        //}
-
-        return $dates;
+        return date('Y-m-d H:i:s', $val);
     }
 
+    // Cette fonction génère un nom pour un utilisateur.
     function generateNom() {
         $nomDeFamille = array("Martin", "Bernard", "Thomas", "Petit", "Robert", "Richard", "Durand", "Dubois", "Moreau", "Laurent", "Simon", "Michel", "Lefebvre", "Leroy", "Roux", "David", "Bertrand", "Morel", "Fournier", "Girard", "Bonnet", "Dupont", "Lambert", "Fontaine", "Rousseau", "Vincent", "Muller", "Lefevre", "Faure", "Andre", "Mercier", "Blanc", "Guerin", "Boyer", "Garnier", "Chevalier", "Francois", "Legrand", "Gauthier", "Garcia", "Perrin", "Robin", "Clement", "Morin", "Nicolas", "Henry", "Roussel", "Mathieu", "Gautier", "Masson");
         $prenom = array("Gabriel", "Emma", "Louis", "Raphael", "Jules", "Adam", "Lucas", "Leo", "Louise", "Jade", "Hugo", "Arthur", "Nathan", "Alice", "Liam", "Ethan", "Paul", "Chloe", "Lina", "Mila", "Tom", "Lea", "Manon", "Sacha", "Noah", "Gabin", "Nolan", "Enzo", "Mohamed", "Rose", "Anna", "Aaron", "Ines", "Camille", "Lola", "Timeo", "Theo", "Ambre", "Lena", "Zoe", "Mathis", "Juliette", "Axel", "Julia", "Victor", "Lou", "Antoine", "Valentin", "Sarah", "Lucie");
@@ -81,6 +44,7 @@ class AppFixtures extends Fixture
         return $nom;
     }
 
+    // Cette fonction génère un numéro de téléphone. 
     function generateTelephone() {
         $characters = '0123456789';
         $charactersLength = strlen($characters);
@@ -101,6 +65,7 @@ class AppFixtures extends Fixture
         return $suffix.$telephone;
     }
 
+    // Cette fonction génère une adresse.
     function generateAdresse(){
         $numero = rand(1,2000);
         $rue = array("Charles de Gaulle", "Louis Pasteur", "Victor Hugo", "Jean Jaures", "Jean Moulin", "Leon Gambetta", "General Leclerc", "Jules Ferry", "Marechal Foch", "Georges Clemenceau", "De l'Eglise", "du Moulin", "du Chateau", "de la Mairie", "des Ecoles", "de la Gare", "Principale", "du Stade", "de la Fontaine", "Pasteur", "des Jardins");
@@ -116,11 +81,51 @@ class AppFixtures extends Fixture
         return $adresse;
     }
 
+    // Cette fonction sert à se connecter à la base de données et retourne une instande PDO pour effectuer des requêtes SQL.
+    public static function connexion(){
+        $host = "127.0.0.1";
+        $port = "3306";
+        $bdd = "lycee_du_parc_de_villegenis";
+        $user = "root";
+        $password = "";
+
+        try{
+            $db = new PDO("mysql:host=".$host.";port=".$port.";dbname=".$bdd.";charset=utf8", $user, $password);
+        }catch(Exception $e){
+            echo "Échec lors de la connexion: ".$e->getMessage();
+        }
+
+        return $db;
+    }
+
+    // Cette fonction insert des offres dans la base de données.
+    public static function insertionDesOffres($offre){
+        $connection = AppFixtures::connexion();
+        $requete = $connection->prepare("INSERT INTO offre(iduser_id, idformation_id, libelle, description, adresse, ville, codepostal, debut, fin, dateajout) VALUES(:iduser, :idformation, :libelle, :description, :adresse, :ville, :codepostal, :debut, :fin, NOW())");
+        $resultat=$requete->execute(array("iduser" => $offre->getIduser(),
+                                              "idformation" => $offre->getIdformation(),
+                                              "libelle" => $offre->getLibelle(),
+                                              "description" => $offre->getDescription(),
+                                              "adresse" => $offre->getAdresse(),
+                                              "ville" => $offre->getVille(),
+                                              "codepostal" => $offre->getCodepostal(),
+                                              "debut" => $offre->getDebut(),
+                                              "fin" => $offre->getFin()));
+        return $resultat;
+    }
+
     public function load(ObjectManager $manager)
     {
+        // Valeur que chaque boucle doit atteindre avant d'arrêter d'exécuter le code à l'intérieur.
+        $nombreDePartenairesACreer = 24;
+        $nombreDeAdministrateurACreer = 8;
+        $nombreDeJeuneACreer = 49;
+        $nombreDOffresACreer = 75;
+
+        // Cette boucle crée des instances de 'user' qui ont le rôle de partenaire et les insert dans la base de données.
         $i=0;
 
-        while($i <= 24){
+        while($i <= $nombreDePartenairesACreer){
             $userpartenaire = new User();
             $nom = AppFixtures::generateNom();
             $siret = rand(100000000,999999999);
@@ -147,9 +152,10 @@ class AppFixtures extends Fixture
             $i = $i+1;
         }
 
+        // Cette boucle crée des instances de 'user' qui ont le rôle d'administrateur et les insert dans la base de données.
         $i=0;
 
-        while($i <= 8){
+        while($i <= $nombreDeAdministrateurACreer){
             $useradmin = new User();
             $role = "";
             $nom = AppFixtures::generateNom();
@@ -184,9 +190,10 @@ class AppFixtures extends Fixture
             $i = $i+1;
         }
 
+        // Cette boucle crée des instances de 'user' qui ont le rôle de jeune et les insert dans la base de données.
         $i=0;
 
-        while($i <= 49){
+        while($i <= $nombreDeJeuneACreer){
             $userjeune = new User();
             $nom = AppFixtures::generateNom();
             $siret = rand(100000000,999999999);
@@ -214,75 +221,54 @@ class AppFixtures extends Fixture
             $i = $i+1;
         }
         
-        
+        // Cette boucle crée des instances de 'offre' et les insert dans la base de données.
         $i=0;
 
-        while($i <= 75){
+        while($i <= $nombreDOffresACreer){
             $offre = new Offre();
-            $role = "PARTENAIRE";
-            $date_debut = "13/05/2019";
-            $date_fin = "20/08/2020";
-            
-            //$repository_formation = $this->getDoctrine()->getRepository(Formation::class);
-            //$repository_user = $this->getDoctrine()->getRepository(User::class);
-            
             $libelle = "Lorem ipsum dolor sit amet.";
+            /*
+            * Les IDs des utilisateurs qui pourront être attribué au champ 'iduser_id' des offres. 
+            * Les IDs des formations qui pourront être attribué au champ 'idformation_id' des offres.
+            */
+            $idDesUtilisateursEtDesFormations = array(rand(45, 70), rand(13, 15));
             $description = 
-            "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
+                "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
 
-            Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex.";
-
-            //$formation_ids = $repository_formation->findId();
-            //$user_ids = $repository_formation->findIdByRole($role);
-
+                Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex.";
             $adresse = AppFixtures::generateAdresse();
-
-            //$rng_user_id  = rand(1, 26);
-            //$rng_formation_id = rand(1, 3);
-
-            $user_id = rand(3310, 3334);
-            $formation_id = rand(118, 120);
-
-            //$test = array(false, false);
+            $date1 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
+            $date2 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
 
             $offre->setLibelle($libelle);
-            $offre->setIduser($user_id);
-            $offre->setIdformation($formation_id);
+            $offre->setIduser($idDesUtilisateursEtDesFormations[0]);
+            $offre->setIdformation($idDesUtilisateursEtDesFormations[1]);
             $offre->setDescription($description);
             $offre->setAdresse($adresse[0]." Rue ".$adresse[1]." ".$adresse[2]);
             $offre->setVille($adresse[2]);
             $offre->setCodepostal($adresse[3]);
-            $offre->setDebut($date_debut);
-            $offre->setFin($date_fin);
-            /*
-                while($test[0] == false and $test[1] == false){   
-                    $rng_date_debut = rand(0, sizeof($date)-1);
-                    $rng_date_fin = rand(0, sizeof($date)-1);
-
-                    if ($rng_date_debut % 2 == 0 and $rng_date_debut < $rng_date_fin){
-                       $offre->setDebut($date[$rng_date_debut]);
-                       $test[0] = true;
-                    }
-
-                    if ($rng_date_fin % 2 == 1 and $rng_date_debut < $rng_date_fin){
-                       $offre->setFin($date[$rng_date_fin]);
-                        $test[1] = true;
-                    }
-                }
-			*/
-            $manager->persist($offre);
+            if($date1 > $date2){
+                $offre->setDebut($date2);
+                $offre->setFin($date1);
+            }elseif($date1 < $date2){
+                $offre->setDebut($date1);
+                $offre->setFin($date2);
+            }
+            
+            $resultat = AppFixtures::insertionDesOffres($offre);
 
             $i = $i+1;
         }
 
+        // Le code en dessous créé des utilisateurs que je veux toujours avoir dans ma base de données.
         $admin1 = new User();
         $admin2 = new User();
         $partenaire = new User();
         $jeune = new User();
 
-        $formationDev = new Formation();
+        $formationDeveloppement = new Formation();
         $formationReseau = new Formation();
-        $formationDepannage = new Formation();
+        $formationDepannageInformatique = new Formation();
 
         $admin1->setNom("Guerfi");
         $admin1->setPrenom("Souhila");
@@ -340,16 +326,16 @@ class AppFixtures extends Fixture
         $jeune->setVille("Evry");
         $jeune->setCodepostal("91000");
 
-        $formationDepannage->setNom("Dépannage informatique");
-        $formationDev->setNom("Développement");
+        $formationDepannageInformatique->setNom("Dépannage informatique");
+        $formationDeveloppement->setNom("Développement");
         $formationReseau->setNom("Réseau");
 
         $manager->persist($admin1);
         $manager->persist($admin2);
         $manager->persist($partenaire);
         $manager->persist($jeune);
-        $manager->persist($formationDepannage);
-        $manager->persist($formationDev);
+        $manager->persist($formationDepannageInformatique);
+        $manager->persist($formationDeveloppement);
         $manager->persist($formationReseau);
         $manager->flush();
     }
