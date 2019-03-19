@@ -1,0 +1,60 @@
+{% extends 'default/accueil.html.twig' %}
+{% block title %}Modifier les informations d'un administrateur{% endblock %}
+{% block heading %}Modifier les informations d'un administrateur{% endblock %}
+{% block body %}
+    {{ form_start(registrationForm) }}
+        <div class="form-group">
+            <label>Nom</label>
+             {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+             <label>Prénom</label>
+            {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'form-control' }}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(registrationForm.motdepasse, {'attr': {'value': administrateur.password,'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+        </div>
+        
+        <div class="form-group">
+            <label>Téléphone</label>
+            {{ form_widget(registrationForm.telephone, {'attr': {'placeholder': 'Téléphone', 'class': 'form-control'}}) }}
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'class': 'form-control' }}) }}
+        </div>
+
+         <div class="form-group">
+            <label>Adresse</label>
+            {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': 'Adresse', 'class': 'form-control' }}) }}
+        </div>
+
+        <div class="form-group">
+            <label>Ville</label>
+                {{ form_widget(registrationForm.ville, {'attr': {'placeholder': 'Ville', 'class': 'form-control' }}) }}
+        </div>
+
+        <div class="form-group">
+            <label>Code postal</label>
+                {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
+            </div>
+
+        {% if is_granted('ROLE_SUPER_ADMINISTRATEUR')%}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="ROLE_SUPER_ADMINISTRATEUR" name="super_admin" id="super_admin"
+                    {% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
+                        checked
+                    {% endif %}
+                >
+                <label class="form-check-label" for="super_admin">
+                        Super Administrateur
+                </label>
+            </div>
+        {% endif %}
+
+        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
+    {{ form_end(registrationForm) }}
+{% endblock %}

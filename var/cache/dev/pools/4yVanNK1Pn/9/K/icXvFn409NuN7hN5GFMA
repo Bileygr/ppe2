@@ -11,7 +11,7 @@
                     '/administration/modification-des-informations-d-un-administrateur',
                 ],
                 'name' => [
-                    'administrateur_modification_d_un_administrateur',
+                    'administration_modification_des_informations_d_un_administrateur',
                 ],
             ],
         ],

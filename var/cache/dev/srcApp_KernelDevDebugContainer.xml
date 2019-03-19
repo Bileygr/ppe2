@@ -1885,14 +1885,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -4023,7 +4015,6 @@
     <service id=".abstract.instanceof.App\Controller\PartenaireController" class="App\Controller\PartenaireController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.lm3AYgL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -4036,23 +4027,23 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator..zR6Xpq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.xm_Gb0t" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\AdministrateurController::inscriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\AdministrateurController::modification" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\JeuneController::inscription" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController::modificationDeSesInformations" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\OffreController::ajouter" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\OffreController::listerLesOffresDuPartenaire" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\PartenaireController::inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController::register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
         <argument key="App\Controller\AdministrateurController:inscriptionDesAdministrateurs" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\AdministrateurController:modification" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\JeuneController:inscription" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:inscriptionDesJeunes" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:inscriptionDesPartenaires" type="service" id=".service_locator.lm3AYgL"/>
+        <argument key="App\Controller\AdministrateurController:modificationDeSesInformations" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\OffreController:ajouter" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\OffreController:listerLesOffresDuPartenaire" type="service" id=".service_locator.lm3AYgL"/>
-        <argument key="App\Controller\PartenaireController:inscription" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\RegistrationController:register" type="service" id=".service_locator.lm3AYgL"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
       </argument>
@@ -4596,15 +4587,6 @@
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\SecurityController"/>
       </call>
     </service>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" autowire="true" abstract="true"/>
-    <service id="App\Controller\StatistiquesController" class="App\Controller\StatistiquesController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\StatistiquesController"/>
-      </call>
-    </service>
     <service id="maker.auto_command.make_auth" class="Symfony\Bundle\MakerBundle\Command\MakerCommand" public="false">
       <tag name="console.command" command="make:auth"/>
       <argument type="service" id="maker.maker.make_authenticator"/>
@@ -5019,12 +5001,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>
-    <service id=".service_locator.KTVqfp6.App\Controller\StatistiquesController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\StatistiquesController"/>
-      <argument>App\Controller\StatistiquesController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.KTVqfp6" method="withContext"/>
-    </service>
     <service id="debug.validator.inner" class="Symfony\Component\Validator\Validator\ValidatorInterface" public="false">
       <factory service="validator.builder" method="getValidator"/>
     </service>
@@ -5063,7 +5039,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator..zR6Xpq"/>
+      <argument type="service" id=".service_locator.xm_Gb0t"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -5403,7 +5379,7 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Container\ContainerInterface" alias="service_container" public="false"/>
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator..zR6Xpq"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.xm_Gb0t"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>

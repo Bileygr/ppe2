@@ -1,24 +1,24 @@
 {% extends 'default/accueil.html.twig' %}
 {% block title %}
-    {% if app.request.get('_route') == 'administrateur_inscription' %}
+    {% if app.request.get('_route') == 'administration_inscription_d_un_administrateur' %}
     	Inscription des administrateurs
-	{% elseif app.request.get('_route') == 'jeune_inscription' %}
+	{% elseif app.request.get('_route') == 'administration_inscription_d_un_jeune' %}
     	Inscription des jeunes
     {% elseif app.request.get('_route') == 'partenaire_inscription' %}
     	Inscription des partenaires
 	{% endif %}
 {% endblock %}
 {% block heading %}
-	{% if app.request.get('_route') == 'administrateur_inscription' %}
+	{% if app.request.get('_route') == 'administration_inscription_d_un_administrateur' %}
     	Inscription des administrateurs
-	{% elseif app.request.get('_route') == 'jeune_inscription' %}
+	{% elseif app.request.get('_route') == 'administration_inscription_d_un_jeune' %}
     	Inscription des jeunes
     {% elseif app.request.get('_route') == 'partenaire_inscription'%}
     	Inscription des partenaires
 	{% endif %}
 {% endblock %}
 {% block body %}
-    {% if (app.request.get('_route') == 'administrateur_inscription') or (app.request.get('_route') == 'jeune_inscription') %}
+    {% if (app.request.get('_route') == 'administration_inscription_d_un_administrateur') or (app.request.get('_route') == 'administration_inscription_d_un_jeune') %}
 		{{ form_start(registrationForm) }}
 		    <div class="form-group">
 		        <label>Nom</label>
@@ -60,7 +60,7 @@
 				{{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
 			</div>
 
-			{% if (app.request.get('_route') == 'administrateur_inscription') and (is_granted('ROLE_SUPER_ADMINISTRATEUR')) %}
+			{% if (app.request.get('_route') == 'administration_inscription_d_un_administrateur') and (is_granted('ROLE_SUPER_ADMINISTRATEUR')) %}
 				<div class="form-check">
 				  <input class="form-check-input" type="checkbox" value="ROLE_SUPER_ADMINISTRATEUR" name="super_admin" id="super_admin">
 				  <label class="form-check-label" for="super_admin">

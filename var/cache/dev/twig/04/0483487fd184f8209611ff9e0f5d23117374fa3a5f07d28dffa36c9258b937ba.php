@@ -186,7 +186,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
                 <a href=\"";
             // line 26
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_gestion");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administration_gestion_des_jeunes");
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
                 <a href=\"";
             // line 27
@@ -194,7 +194,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"";
             // line 28
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administration_gestion_des_partenaires");
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
                 <a href=\"";
             // line 29
@@ -339,9 +339,9 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             {% block body %}
               {% if is_granted('ROLE_ADMINISTRATEUR') or is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
                 <a href=\"{{ path('offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-                <a href=\"{{ path('jeune_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
+                <a href=\"{{ path('administration_gestion_des_jeunes') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
                 <a href=\"{{ path('offre_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
-                <a href=\"{{ path('partenaire_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
+                <a href=\"{{ path('administration_gestion_des_partenaires') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
                 <a href=\"{{ path('administration_gestion_des_administrateurs') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
                 <a href=\"{{ path('statistiques') }}\" class=\"btn btn-primary btn-lg btn-block\">Statistiques</a>
                 <a href=\"{{ path('administrateur_modification') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>

@@ -13,47 +13,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class JeuneController extends AbstractController
 {
 	/**
-     * @Route("/administrateur/inscription-des-jeunes", name="jeune_inscription")
-     */
-    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-
-            $user->setNom($form->get('nom')->getData());
-            $user->setPrenom($form->get('prenom')->getData());
-            $user->setUsername();
-            $user->setSIRET(0);
-            $user->setRoles(array('ROLE_JEUNE'));
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('motdepasse')->getData()
-                )
-            );
-            $user->setTelephone($form->get('telephone')->getData());
-            $user->setEmail($form->get('email')->getData());
-            $user->setAdresse($form->get('adresse')->getData());
-            $user->setVille($form->get('ville')->getData());
-            $user->setCodepostal($form->get('codepostal')->getData());
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/jeune/modifier-mes-informations", name="jeune_modification")
      */
     public function modification(Request $request)

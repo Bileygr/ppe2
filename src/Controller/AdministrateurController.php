@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Offre;
+use App\Entity\Formation;
 use App\Form\RegistrationFormType;
+use App\Form\OffreRegistrationFormType;
+use App\Form\PartenaireRegistrationFormType;
 use App\Repository\UserRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +74,7 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('administration_gestion_des_partenaires');
         }
 
-        return $this->render('partenaire/gestion.html.twig', [
+        return $this->render('administrateur/gestion_des_partenaires.html.twig', [
             'partenaires' => $partenaires
         ]);
     }
@@ -106,8 +110,8 @@ class AdministrateurController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/administration/gérer-les-offres", name="administration_gestoin_des_offres")
+    /**
+     * @Route("/administration/gérer-les-offres", name="administration_gestion_des_offres")
      */
     public function gestionDesOffres(Request $request)
     {
@@ -116,24 +120,26 @@ class AdministrateurController extends AbstractController
         $offres = $repository->findAll();
 
         if(isset($_POST['modifier'])){
-            $offreId = $request->request->get('id');
-            $this->container->get('session')->set('offreId', $offreId);
+            $id = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $this->container->get('session')->set('offreId', $offre->getId());
 
             return $this->redirectToRoute('administration_modification_des_informations_d_une_offre');
         }
 
         if(isset($_POST['supprimer'])){
-            $offreId = $request->request->get('id');
-            $offre = $entityManager->getRepository(Offre::class)->find($offreId);
+            $id = $request->request->get('id');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
 
             $entityManager->remove($offre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('administration_gestioin_des_offres');
+            return $this->redirectToRoute('administration_gestion_des_offres');
         }
 
-        return $this->render('administrateur/gestion_des_offres.html.twig', [
-            'offres' => $offres
+        return $this->render('offre/gestion.html.twig', [
+            'offres' => $offres,
+            'controller_name' => 'AdministrateurController',
         ]);
     }
 
@@ -182,9 +188,90 @@ class AdministrateurController extends AbstractController
     }
 
     /**
+     * @Route("administration/inscription-des-parteniares", name="administration_inscription_d_un_partenaire")
+     */
+    public function inscriptionDesPartenaires(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = new User();
+
+        $form = $this->createForm(PartenaireRegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $user->setNom($form->get('nom')->getData());
+            $user->setUsername();
+            $user->setSIRET($form->get('siret')->getData());
+            $user->setRoles(array('ROLE_PARTENAIRE'));
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('motdepasse')->getData()
+                )
+            );
+            $user->setTelephone($form->get('telephone')->getData());
+            $user->setEmail($form->get('email')->getData());
+            $user->setAdresse($form->get('adresse')->getData());
+            $user->setVille($form->get('ville')->getData());
+            $user->setCodepostal($form->get('codepostal')->getData());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/administrateur/inscription-des-jeunes", name="administration_inscription_d_un_jeune")
+     */
+    public function inscriptionDesJeunes(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+
+            $user->setNom($form->get('nom')->getData());
+            $user->setPrenom($form->get('prenom')->getData());
+            $user->setUsername();
+            $user->setSIRET(0);
+            $user->setRoles(array('ROLE_JEUNE'));
+            $user->setPassword(
+                $passwordEncoder->encodePassword(
+                    $user,
+                    $form->get('motdepasse')->getData()
+                )
+            );
+            $user->setTelephone($form->get('telephone')->getData());
+            $user->setEmail($form->get('email')->getData());
+            $user->setAdresse($form->get('adresse')->getData());
+            $user->setVille($form->get('ville')->getData());
+            $user->setCodepostal($form->get('codepostal')->getData());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/administration/modifier-ses-informations", name="administrateur_modification")
      */
-    public function modification(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function modificationDeSesInformations(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user_id = $user->getId();
@@ -204,18 +291,18 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('default/modification.html.twig', [
+        return $this->render('default/modification_de_ses_informations.html.twig', [
             'administrateur' => $administrateur,
             'registrationForm' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/administration/modification-des-informations-d-un-administrateur", name="administrateur_modification_d_un_administrateur")
+     * @Route("/administration/modification-des-informations-d-un-administrateur", name="administration_modification_des_informations_d_un_administrateur")
      */
-    public function modificationDeUnAdministrateur(Request $request)
+    public function modificationDesInformationsAdministrateur(Request $request)
     {
-        $id = $this->container->get('session')->get('administrateur_id');
+        $id = $this->container->get('session')->get('administrateurId');
         $entityManager = $this->getDoctrine()->getManager();
         $administrateur = $entityManager->getRepository(User::class)->find($id);
 
@@ -230,13 +317,113 @@ class AdministrateurController extends AbstractController
                 $administrateur->setRoles(array('ROLE_ADMINISTRATEUR'));
             }
             $entityManager->flush();
-            return $this->redirectToRoute('administrateur_gestion');
+            return $this->redirectToRoute('administration_gestion_des_administrateurs');
         }
 
-        return $this->render('default/modification.html.twig', [
+        return $this->render('administrateur/modification_des_informations_d_un_administrateur.html.twig', [
             'administrateur' => $administrateur,
             'registrationForm' => $form->createView(),
             'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
+    /**
+     * @Route("/administration/modification-des-informations-d-un-partenaire", name="administration_modification_des_informations_d_un_partenaire")
+     */
+    public function modificationDesInformationsPartenaire(Request $request)
+    {
+        $id = $this->container->get('session')->get('partenaireId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $partenaire = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(PartenaireRegistrationFormType::class, $partenaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('administration_gestion_des_partenaires');
+        }
+
+        return $this->render('administrateur/modification_des_informations_d_un_partenaire.html.twig', [
+            'partenaire' => $partenaire,
+            'form' => $form->createView(),
+            'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
+    /**
+     * @Route("/administration/modification-des-informations-d-un-jeune", name="administration_modification_des_informations_d_un_jeune")
+     */
+    public function modificationDesInformationsJeune(Request $request)
+    {
+        $id = $this->container->get('session')->get('jeuneId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $jeune = $entityManager->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(RegistrationFormType::class, $jeune);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('administration_gestion_des_jeunes');
+        }
+
+        return $this->render('administrateur/modification_des_informations_d_un_jeune.html.twig', [
+            'partenaire' => $partenaire,
+            'form' => $form->createView(),
+            'controller_name' => 'AdministrateurController',
+        ]);
+    }
+
+    /**
+     * @Route("/administration/modification-des-informations-d-une-offre", name="administration_modification_des_informations_d_une_offre")
+     */
+    public function modificationDesInformationsOffres(Request $request)
+    {
+        $offre_id = $this->container->get('session')->get('offreId');
+        $entityManager = $this->getDoctrine()->getManager();
+        $offre = $entityManager->getRepository(Offre::class)->find($offre_id);
+
+        $repository = $this->getDoctrine()->getRepository(Formation::class);
+        $formations = $repository->findAll();
+
+        $debut=$offre->getDebut()->format('Y-m-d');
+        $fin=$offre->getFin()->format('Y-m-d');
+
+        $form = $this->createForm(OffreRegistrationFormType::class, $offre);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $offre->setIdformation($request->request->get('formation'));
+            $entityManager->flush();
+
+            return $this->redirectToRoute('administration_gestion_des_offres');
+        }
+
+        return $this->render('administrateur/modification_des_informations_d_une_offre.html.twig', [
+            'formations' => $formations,
+            'idformation' => $offre->getIdformation(),
+            'form' => $form->createView(),
+            'controller_name' => 'OffreController',
+        ]);
+    }
+
+    /**
+     * @Route("/administration/statistiques-des-offres", name="statistiques")
+     */
+    public function statistiquesDesOffres()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Offre::class);
+        $stats1 = $repository->countFormation();
+        $stats2 = $repository->countPartenaire();
+        return $this->render('administrateur/statistiques_des_offres.html.twig', [
+            'stats1' => $stats1,
+            'stats2' => $stats2,
+            'controller_name' => 'StatistiquesController',
         ]);
     }
 }

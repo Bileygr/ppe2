@@ -17,46 +17,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class PartenaireController extends AbstractController
 {
     /**
-     * @Route("administration/inscription-des-parteniares", name="partenaire_inscription")
-     */
-    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = new User();
-
-        $form = $this->createForm(PartenaireRegistrationFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-            $user->setNom($form->get('nom')->getData());
-            $user->setUsername();
-            $user->setSIRET($form->get('siret')->getData());
-            $user->setRoles(array('ROLE_PARTENAIRE'));
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('motdepasse')->getData()
-                )
-            );
-            $user->setTelephone($form->get('telephone')->getData());
-            $user->setEmail($form->get('email')->getData());
-            $user->setAdresse($form->get('adresse')->getData());
-            $user->setVille($form->get('ville')->getData());
-            $user->setCodepostal($form->get('codepostal')->getData());
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/administration/modification-des-informations-d-un-partenaire", name="partenaire_modification")
      */
     public function modification(Request $request)

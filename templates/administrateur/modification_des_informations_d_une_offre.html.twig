@@ -1,0 +1,26 @@
+{% extends 'administrateur/modification_de_ses_informations.html.twig' %}
+{% block title %}Modifier les informations d'une offre{% endblock %}
+{% block titre %}Modifier les informations d'une offre{% endblock %}
+{% block body %}
+	{{ form_start(form) }}
+		{{ form_widget(form.libelle) }}
+		{{ form_widget(form.adresse) }}
+		{{ form_widget(form.ville) }}
+		{{ form_widget(form.codepostal) }}
+		{{ form_widget(form.debut) }}
+		{{ form_widget(form.fin) }}
+		<select class="form-control" id="exampleSelect1" name='formation' value=''>
+		    <hr />
+		    {% for formation in formations %}
+		    	<option id="formation" name="formation" value="{{ formation.id }}"
+		    	{% if formation.id == idformation %}
+		    		selected="select"
+		    	{% endif %}
+		    	>{{ formation.nom }}</option>
+			{% endfor %}
+		</select>
+		{{ form_widget(form.description) }}<br>
+		{{ form_widget(form.ajout, {'label': 'Modifier'}) }}
+	{{ form_end(form) }}
+	<a href="{{ path('offre_liste_partenaire_connecte') }}">Retour</a>
+{% endblock %}

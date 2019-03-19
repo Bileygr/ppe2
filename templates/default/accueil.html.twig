@@ -23,9 +23,9 @@
             {% block body %}
               {% if is_granted('ROLE_ADMINISTRATEUR') or is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
                 <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
-                <a href="{{ path('jeune_gestion') }}" class="btn btn-primary btn-lg btn-block">Gérer les jeunes</a>
+                <a href="{{ path('administration_gestion_des_jeunes') }}" class="btn btn-primary btn-lg btn-block">Gérer les jeunes</a>
                 <a href="{{ path('offre_gestion') }}" class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
-                <a href="{{ path('partenaire_gestion') }}" class="btn btn-primary btn-lg btn-block">Gérer les partenaires</a>
+                <a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-primary btn-lg btn-block">Gérer les partenaires</a>
                 <a href="{{ path('administration_gestion_des_administrateurs') }}" class="btn btn-primary btn-lg btn-block">Gérer les administrateurs</a>
                 <a href="{{ path('statistiques') }}" class="btn btn-primary btn-lg btn-block">Statistiques</a>
                 <a href="{{ path('administrateur_modification') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>

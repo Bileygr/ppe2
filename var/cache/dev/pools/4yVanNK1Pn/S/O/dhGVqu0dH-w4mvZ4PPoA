@@ -11,7 +11,7 @@
                     '/administration/gérer-les-offres',
                 ],
                 'name' => [
-                    'administration_gestoin_des_offres',
+                    'administration_gestion_des_offres',
                 ],
             ],
         ],
