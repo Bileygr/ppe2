@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label>Code postal</label>
-                {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
+                {{ form_row(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
             </div>
 
         {% if is_granted('ROLE_SUPER_ADMINISTRATEUR')%}

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -91,6 +92,10 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('inscription', SubmitType::class, array('label' => 'Inscription'))
         ;
+
+        if($options["allow_file_upload"]){
+                $builder->add('cv', FileType::class, array('data_class' => null), ['label' => 'CV']);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

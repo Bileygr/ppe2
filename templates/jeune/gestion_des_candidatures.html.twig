@@ -1,0 +1,40 @@
+{% extends 'default/accueil.html.twig' %}
+{% block title %}Gestion des candidatures{% endblock %}
+{% block titre %}Gestion des candidatures{% endblock %}
+{% block body %}
+    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+    <table class="table">
+  		<thead>
+	    	<tr>
+		      	<th scope="col">ID</th>
+		      	<th scope="col">Offre</th>
+		      	<th scope="col">Entreprise</th>
+		      	<th scope="col">Début</th>
+		      	<th scope="col">Fin</th>
+		      	<th scope="col">Status</th>
+		      	<th scope="col">Date d'ajout</th>
+	    	</tr>
+  		</thead>
+	  	<tbody>
+	  		{% for candidature in candidatures %}
+	  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+		    	<tr>
+	      			<th scope="row">{{ candidature.id }}</th>
+	      			<td>{{ candidature.libelle }}</td>
+	      			<td>{{ candidature.nom }}</td>
+	      			<td>{{ candidature.debut|date('Y-m-d') }}</td>
+	      			<td>{{ candidature.fin|date('Y-m-d') }}</td>
+	      			{% if candidature.status == 0 %}
+	      				<td>Refusé</td>
+	      			{% elseif candidature.status == 1 %}
+	      				<td>Accepté</td>
+	      			{% elseif candidature.status == 2 %}
+	      				<td>En attente</td>
+	      			{% endif %}
+	      				<td>{{ candidature.dateajout|date('Y-m-d') }}</td>
+	    		</tr>
+		    {% endfor %}
+	  	</tbody>
+	</table>
+{% endblock %}

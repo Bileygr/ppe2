@@ -22,7 +22,7 @@ class CandidatureRepository extends ServiceEntityRepository
     public function findPartenaireId($id)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.prenom AS \'prenom\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserjeune_id WHERE candidature.iduserpartenaire_id = :id';
+        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.prenom AS \'prenom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserjeune_id WHERE candidature.iduserpartenaire_id = :id';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
@@ -30,10 +30,10 @@ class CandidatureRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
-    public function updateCandidatureStatus($id)
+    public function findJeuneId($id)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'UPDATE candidature SET status = 1 WHERE id = :id';
+        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserpartenaire_id WHERE candidature.iduserjeune_id = :id';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);

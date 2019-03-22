@@ -282,7 +282,7 @@ class AdministrateurController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(User::class);
         $administrateur = $repository->find($user_id);
 
-        $form = $this->createForm(RegistrationFormType::class, $administrateur);
+        $form = $this->createForm(RegistrationFormType::class, $administrateur, ['allow_file_upload' => false]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 

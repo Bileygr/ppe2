@@ -220,7 +220,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\"class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
                 <a href=\"";
             // line 35
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offre_liste_partenaire_connecte");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("partenaire_gestion_des_offres");
             echo "\"class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"";
             // line 36
@@ -351,7 +351,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
                 <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
               {% elseif  is_granted('ROLE_PARTENAIRE') %}
                 <a href=\"{{ path('offres') }}\"class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-                <a href=\"{{ path('offre_liste_partenaire_connecte') }}\"class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
+                <a href=\"{{ path('partenaire_gestion_des_offres') }}\"class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"{{ path('partenaire_gestion_des_candidatures') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les candidatures</a>
                 <a href=\"{{ path('partenaire_modification') }}\"class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
                 <a href=\"{{ path('app_logout') }}\"class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>

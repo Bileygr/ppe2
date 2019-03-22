@@ -53,6 +53,10 @@
       </div>
     {% endif %}
 
+    {% if app.request.get('route') == "administrateur_modification" %}
+      {{ form_row(registrationForm.cv, { 'attr': {'hidden': 'hidden'}}) }}
+    {% endif %}
+
     {{ form_widget(registrationForm.inscription, {'attr': {'label': 'Modifier', 'class': 'btn btn-primary btn-lg btn-block', 'placeholder': 'Modifier'}}) }}<br>
     <a href="{{ path('accueil') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
   {{ form_end(registrationForm) }}

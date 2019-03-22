@@ -21,11 +21,12 @@
 	  		{% for candidature in candidatures %}
 	  			<form method="POST">
 	  				<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+	  				<input type="text" hidden="hidden" name="cv" value="{{ candidature.cv }}">
 		    		<tr>
 	      				<th scope="row">{{ candidature.id }}</th>
 	      				<td>{{ candidature.libelle }}</td>
 	      				<td>{{ candidature.nom }} {{ candidature.prenom }}</td>
-	      				<td>gvfqzfbvq</td>
+	      				<td><input type="submit" name="download" value="Download" placeholder="Download"></td>
 	      				<td>{{ candidature.debut|date('Y-m-d') }}</td>
 	      				<td>{{ candidature.fin|date('Y-m-d') }}</td>
 	      				{% if candidature.status == 0 %}

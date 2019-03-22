@@ -69,6 +69,10 @@
 				</div>
 			{% endif %}
 
+			{% if app.request.get('route') == "administrateur_modification" %}
+				{{ form_widget(registrationForm.cv, { 'attr': {'class': 'hidden-row'}}) }}
+			{% endif %}
+
 			{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary btn-lg btn-block' }}) }}<br>
 		{{ form_end(registrationForm) }}
 		{% if app.request.get('_route') == 'administration_inscription_d_un_administrateur' %}

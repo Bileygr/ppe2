@@ -3,19 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Candidature;
 use App\Form\RegistrationFormType;
+use App\Repository\CandidatureRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class JeuneController extends AbstractController
 {
 	/**
-     * @Route("/jeune/modifier-mes-informations", name="jeune_modification")
+     * @Route("/jeune/modifier-ses-informations", name="jeune_modification")
      */
-    public function modification(Request $request)
+    public function modificationDeSesInformations(Request $request)
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user_id = $user->getId();
@@ -26,80 +32,32 @@ class JeuneController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(User::class);
         $jeune = $repository->find($user_id);
 
-        $form = $this->createForm(RegistrationFormType::class, $jeune);
+        $form = $this->createForm(RegistrationFormType::class, $jeune, ['allow_file_upload' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            $file = $form->get('cv')->getData();
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            try {
+                $file->move(
+                    $this->getParameter('cv_directory'),
+                    $fileName
+                );
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+
+            $jeune->setCV($fileName);
+            
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('default/modification.html.twig', [
+        return $this->render('jeune/modification_de_ses_informations.html.twig', [
             'jeune' => $jeune,
             'registrationForm' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/administration/modification-des-informations-d-un-jeune", name="jeune_modification_d_un_jeune")
-     */
-    public function modificationDeJeune(Request $request)
-    {
-        $id = $this->container->get('session')->get('jeune_id');
-        $entityManager = $this->getDoctrine()->getManager();
-        $jeune = $entityManager->getRepository(User::class)->find($id);
-
-        $form = $this->createForm(RegistrationFormType::class, $jeune);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-            $entityManager->flush();
-            return $this->redirectToRoute('jeune_gestion');
-        }
-
-        return $this->render('default/modification.html.twig', [
-            'jeune' => $jeune,
-            'registrationForm' => $form->createView(),
-            'controller_name' => 'JeuneController',
-        ]);
-    }
-
-    /**
-     * @Route("/administrateur/gérer-les-jeunes", name="jeune_gestion")
-     */
-    public function gestionDesJeunes(Request $request)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $nomDelUtilisateur = $user->getNom();
-        $prenomDelUtilisateur = $user->getPrenom();
-
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $jeunes = $repository->findByRole('ROLE_JEUNE');
-
-        if(isset($_POST['modifier'])){
-            $id = $request->request->get('id');
-            $jeune = $entityManager->getRepository(User::class)->find($id);
-
-            $this->container->get('session')->set('jeune_id', $jeune->getId());
-            return $this->redirectToRoute('jeune_modification_d_un_jeune');
-        }
-
-        if(isset($_POST['supprimer'])){
-            $id = $request->request->get('id');
-            $user = $entityManager->getRepository(User::class)->find($id);
-
-            $entityManager->remove($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('jeune_gestion');
-        }
-
-        return $this->render('jeune/gestion.html.twig', [
-            'jeunes' => $jeunes,
-            'controller_name' => 'AdministrateurController',
         ]);
     }
 
@@ -108,35 +66,50 @@ class JeuneController extends AbstractController
      */
     public function gestionDesCandidatures(Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        $nomDelUtilisateur = $user->getNom();
-        $prenomDelUtilisateur = $user->getPrenom();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Candidature::class);
+        $candidatures = $repository->findJeuneId($user->getId());
 
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $jeunes = $repository->findByRole('ROLE_JEUNE');
+        if(isset($_POST['accepter'])){
+            $candidatureId = $request->request->get('id');
+            $candidature = $repository->find($candidatureId);
+            $candidature->setStatus(1);
 
-        if(isset($_POST['modifier'])){
-            $id = $request->request->get('id');
-            $jeune = $entityManager->getRepository(User::class)->find($id);
-
-            $this->container->get('session')->set('jeune_id', $jeune->getId());
-            return $this->redirectToRoute('jeune_modification_d_un_jeune');
-        }
-
-        if(isset($_POST['supprimer'])){
-            $id = $request->request->get('id');
-            $user = $entityManager->getRepository(User::class)->find($id);
-
-            $entityManager->remove($user);
             $entityManager->flush();
-
-            return $this->redirectToRoute('jeune_gestion');
+            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
         }
 
-        return $this->render('jeune/gestion.html.twig', [
-            'jeunes' => $jeunes,
-            'controller_name' => 'AdministrateurController',
+        if(isset($_POST['refuser'])){
+            $candidatureId = $request->request->get('id');
+            $candidature = $repository->find($candidatureId);
+            $candidature->setStatus(0);
+
+            $entityManager->flush();
+            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
+        }
+
+        return $this->render('jeune/gestion_des_candidatures.html.twig', [
+            'candidatures' => $candidatures
         ]);
+    }
+
+    /**
+     * @Route("/download/", name="download")
+     */
+    public function download()
+    {
+        // send the file contents and force the browser to download it
+        return $this->file($this->getParameter('public/upload/cv/') . 'hello_world.xls');
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        // md5() reduces the similarity of the file names generated by
+        // uniqid(), which is based on timestamps
+        return md5(uniqid());
     }
 }
