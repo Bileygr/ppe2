@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            {{ form_widget(registrationForm.motdepasse, {'attr': {'value': administrateur.password,'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+            {{ form_widget(registrationForm.motdepasse, {'attr': {'value': jeune.password,'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
         </div>
         
         <div class="form-group">
@@ -40,21 +40,9 @@
         <div class="form-group">
             <label>Code postal</label>
                 {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
-            </div>
+        </div>
 
-        {% if is_granted('ROLE_SUPER_ADMINISTRATEUR')%}
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="ROLE_SUPER_ADMINISTRATEUR" name="super_admin" id="super_admin"
-                    {% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
-                        checked
-                    {% endif %}
-                >
-                <label class="form-check-label" for="super_admin">
-                        Super Administrateur
-                </label>
-            </div>
-        {% endif %}
-
-        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary', 'placeholder': 'Modifier'}}) }}
+        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'', 'placeholder': 'Modifier'}}) }}<br>
     {{ form_end(registrationForm) }}
+    <a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 {% endblock %}

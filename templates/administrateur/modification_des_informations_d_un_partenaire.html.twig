@@ -42,6 +42,7 @@
             {{ form_widget(form.codepostal, {'attr': {'placeholder': partenaire.codepostal, 'class' : 'form-control'}}) }}
         </div>
 
-        {{ form_widget(form.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}<br>
+        <a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-warning">Retour</a>
     {{ form_end(form) }}
 {% endblock %}

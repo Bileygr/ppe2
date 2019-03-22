@@ -31,11 +31,11 @@
                 <a href="{{ path('administrateur_modification') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
                 <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>
               {% elseif  is_granted('ROLE_PARTENAIRE') %}
-                <a href="{{ path('offres') }}">Voir les offres</a>
-                <a href="{{ path('offre_liste_partenaire_connecte') }}">Gérer les offres</a>
-                <a href="administrateuradmin.php">Gérer les candidatures</a>
-                <a href="{{ path('partenaire_modification') }}">Vos informations</a>
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                <a href="{{ path('offres') }}"class="btn btn-primary btn-lg btn-block">Voir les offres</a>
+                <a href="{{ path('offre_liste_partenaire_connecte') }}"class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
+                <a href="{{ path('partenaire_gestion_des_candidatures') }}" class="btn btn-primary btn-lg btn-block">Gérer les candidatures</a>
+                <a href="{{ path('partenaire_modification') }}"class="btn btn-primary btn-lg btn-block">Vos informations</a>
+                <a href="{{ path('app_logout') }}"class="btn btn-danger btn-lg btn-block">Déconnexion</a>
               {% elseif  is_granted('ROLE_JEUNE') %}
                 <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
                 <a href="{{ path('jeune_candidatures') }}" class="btn btn-primary btn-lg btn-block">Gérer ses candidatures</a>

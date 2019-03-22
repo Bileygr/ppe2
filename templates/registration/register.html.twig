@@ -4,7 +4,7 @@
     	Inscription des administrateurs
 	{% elseif app.request.get('_route') == 'administration_inscription_d_un_jeune' %}
     	Inscription des jeunes
-    {% elseif app.request.get('_route') == 'partenaire_inscription' %}
+    {% elseif app.request.get('_route') == 'administration_inscription_d_un_partenaire' %}
     	Inscription des partenaires
 	{% endif %}
 {% endblock %}
@@ -13,7 +13,7 @@
     	Inscription des administrateurs
 	{% elseif app.request.get('_route') == 'administration_inscription_d_un_jeune' %}
     	Inscription des jeunes
-    {% elseif app.request.get('_route') == 'partenaire_inscription'%}
+    {% elseif app.request.get('_route') == 'administration_inscription_d_un_partenaire'%}
     	Inscription des partenaires
 	{% endif %}
 {% endblock %}
@@ -69,9 +69,14 @@
 				</div>
 			{% endif %}
 
-			{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary' }}) }}
+			{{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary btn-lg btn-block' }}) }}<br>
 		{{ form_end(registrationForm) }}
-	{% elseif app.request.get('_route') == 'partenaire_inscription'%}
+		{% if app.request.get('_route') == 'administration_inscription_d_un_administrateur' %}
+			<a href="{{ path('administration_gestion_des_administrateurs') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
+		{% elseif app.request.get('_route') == 'administration_inscription_d_un_jeune' %}
+			<a href="{{ path('administration_gestion_des_jeunes') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
+		{% endif %}
+	{% elseif app.request.get('_route') == 'administration_inscription_d_un_partenaire'%}
 		{{ form_start(registrationForm) }}
 			 <div class="form-group">
                 <label>SIRET</label>
@@ -99,7 +104,7 @@
             </div>
 
             <div class="form-group">
-                <label>Adresseadresse</label>
+                <label>Adresse</label>
                 {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': 'Adresse', 'class' : 'form-control'}}) }}
             </div>
 
@@ -113,7 +118,8 @@
                 {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code Postal', 'class' : 'form-control'}}) }}
             </div>
 
-            {{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_widget(registrationForm.inscription, {'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
 		{{ form_end(registrationForm) }}
+		<a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 	{% endif %}
 {% endblock %}

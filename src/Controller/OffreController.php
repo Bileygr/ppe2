@@ -40,7 +40,7 @@ class OffreController extends AbstractController
 
             if($debut > $aujourdhui){
                 if($debut < $fin){
-                    $offre->setNom($form->get('nom')->getData());
+                    $offre->setLibelle($form->get('libelle')->getData());
                     $offre->setAdresse($form->get('adresse')->getData());
                     $offre->setVille($form->get('ville')->getData());
                     $offre->setCodepostal($form->get('codepostal')->getData());
@@ -48,7 +48,7 @@ class OffreController extends AbstractController
                     $offre->setFin($fin);
                     $offre->setIdformation($request->request->get('formation'));
                     $offre->setDescription($form->get('description')->getData());
-                    $offre->setIdpartenaire($userid);
+                    $offre->setIduser($user);
 
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($offre);

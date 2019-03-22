@@ -16,10 +16,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
         $this->context = $context;
         $this->staticRoutes = array(
             '/administration/gérer-les-administrateurs' => array(array(array('_route' => 'administration_gestion_des_administrateurs', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesAdministrateurs'), null, null, null, false, false, null)),
-            '/administration/gérer-les-partenaires' => array(
-                array(array('_route' => 'administration_gestion_des_partenaires', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), null, null, null, false, false, null),
-                array(array('_route' => 'partenaire_gestion', '_controller' => 'App\\Controller\\PartenaireController::gestionDesPartenaires'), null, null, null, false, false, null),
-            ),
+            '/administration/gérer-les-partenaires' => array(array(array('_route' => 'administration_gestion_des_partenaires', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesPartenaires'), null, null, null, false, false, null)),
             '/administration/gérer-les-jeunes' => array(array(array('_route' => 'administration_gestion_des_jeunes', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesJeunes'), null, null, null, false, false, null)),
             '/administration/gérer-les-offres' => array(
                 array(array('_route' => 'administration_gestion_des_offres', '_controller' => 'App\\Controller\\AdministrateurController::gestionDesOffres'), null, null, null, false, false, null),
@@ -30,10 +27,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/administrateur/inscription-des-jeunes' => array(array(array('_route' => 'administration_inscription_d_un_jeune', '_controller' => 'App\\Controller\\AdministrateurController::inscriptionDesJeunes'), null, null, null, false, false, null)),
             '/administration/modifier-ses-informations' => array(array(array('_route' => 'administrateur_modification', '_controller' => 'App\\Controller\\AdministrateurController::modificationDeSesInformations'), null, null, null, false, false, null)),
             '/administration/modification-des-informations-d-un-administrateur' => array(array(array('_route' => 'administration_modification_des_informations_d_un_administrateur', '_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsAdministrateur'), null, null, null, false, false, null)),
-            '/administration/modification-des-informations-d-un-partenaire' => array(
-                array(array('_route' => 'administration_modification_des_informations_d_un_partenaire', '_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsPartenaire'), null, null, null, false, false, null),
-                array(array('_route' => 'partenaire_modification', '_controller' => 'App\\Controller\\PartenaireController::modification'), null, null, null, false, false, null),
-            ),
+            '/administration/modification-des-informations-d-un-partenaire' => array(array(array('_route' => 'administration_modification_des_informations_d_un_partenaire', '_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsPartenaire'), null, null, null, false, false, null)),
             '/administration/modification-des-informations-d-un-jeune' => array(
                 array(array('_route' => 'administration_modification_des_informations_d_un_jeune', '_controller' => 'App\\Controller\\AdministrateurController::modificationDesInformationsJeune'), null, null, null, false, false, null),
                 array(array('_route' => 'jeune_modification_d_un_jeune', '_controller' => 'App\\Controller\\JeuneController::modificationDeJeune'), null, null, null, false, false, null),
@@ -48,6 +42,8 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/modifier-les-informations-d-une-offre' => array(array(array('_route' => 'offre_modification', '_controller' => 'App\\Controller\\OffreController::modifier'), null, null, null, false, false, null)),
             '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::listerTouteLesOffres'), null, null, null, false, false, null)),
             '/partenaire/gestion-des-offres' => array(array(array('_route' => 'offre_liste_partenaire_connecte', '_controller' => 'App\\Controller\\OffreController::listerLesOffresDuPartenaire'), null, null, null, false, false, null)),
+            '/partenaire/modifier-ses-informations' => array(array(array('_route' => 'partenaire_modification', '_controller' => 'App\\Controller\\PartenaireController::modificationDeSesInformations'), null, null, null, false, false, null)),
+            '/partenaire/gérer-les-candidatures' => array(array(array('_route' => 'partenaire_gestion_des_candidatures', '_controller' => 'App\\Controller\\PartenaireController::gestionDesCandidatures'), null, null, null, false, false, null)),
             '/register' => array(array(array('_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'), null, null, null, false, false, null)),
             '/connexion' => array(array(array('_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'), null, null, null, false, false, null)),
             '/_profiler' => array(array(array('_route' => '_profiler_home', '_controller' => 'web_profiler.controller.profiler::homeAction'), null, null, null, true, false, null)),

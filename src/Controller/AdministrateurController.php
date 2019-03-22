@@ -137,7 +137,7 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('administration_gestion_des_offres');
         }
 
-        return $this->render('offre/gestion.html.twig', [
+        return $this->render('administrateur/gestion_des_offres.html.twig', [
             'offres' => $offres,
             'controller_name' => 'AdministrateurController',
         ]);
@@ -291,7 +291,7 @@ class AdministrateurController extends AbstractController
             return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('default/modification_de_ses_informations.html.twig', [
+        return $this->render('administrateur/modification_de_ses_informations.html.twig', [
             'administrateur' => $administrateur,
             'registrationForm' => $form->createView(),
         ]);
@@ -371,8 +371,8 @@ class AdministrateurController extends AbstractController
         }
 
         return $this->render('administrateur/modification_des_informations_d_un_jeune.html.twig', [
-            'partenaire' => $partenaire,
-            'form' => $form->createView(),
+            'jeune' => $jeune,
+            'registrationForm' => $form->createView(),
             'controller_name' => 'AdministrateurController',
         ]);
     }
@@ -396,8 +396,17 @@ class AdministrateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
-        {
-            $offre->setIdformation($request->request->get('formation'));
+        {   
+            $formationInstance = new Formation();
+            $formationId = $request->request->get('formation');
+            $formationBDD = $repository->findById($formationId);
+
+            dump($formationBDD);
+            
+            $formationInstance->setId($formationBDD[0]['id']);
+            $formationInstance->setNom($formationBDD[0]['nom']);
+
+            $offre->setIdformation($formationInstance);
             $entityManager->flush();
 
             return $this->redirectToRoute('administration_gestion_des_offres');

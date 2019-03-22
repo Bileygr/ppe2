@@ -231,7 +231,7 @@ class AppFixtures extends Fixture
             * Les IDs des utilisateurs qui pourront être attribué au champ 'iduser_id' des offres. 
             * Les IDs des formations qui pourront être attribué au champ 'idformation_id' des offres.
             */
-            $idDesUtilisateursEtDesFormations = array(rand(45, 70), rand(13, 15));
+            $idDesUtilisateursEtDesFormations = array(rand(1, 25), rand(1, 3));
             $description = 
                 "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
 

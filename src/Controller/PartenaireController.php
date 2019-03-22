@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
 use App\Entity\Formation;
 use App\Entity\Offre;
 use App\Entity\User;
 use App\Form\PartenaireRegistrationFormType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository; 
+use App\Repository\CandidatureRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,58 +20,64 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class PartenaireController extends AbstractController
 {
     /**
-     * @Route("/administration/modification-des-informations-d-un-partenaire", name="partenaire_modification")
+     * @Route("/partenaire/modifier-ses-informations", name="partenaire_modification")
      */
-    public function modification(Request $request)
+    public function modificationDeSesInformations(Request $request)
     {
-        $id = $this->container->get('session')->get('partenaire_id');
-        $entityManager = $this->getDoctrine()->getManager();
-        $partenaire = $entityManager->getRepository(User::class)->find($id);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->getId();
+        $userPassword = $user->getPassword();
+        
+        $userModifie = new User();
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $partenaire = $repository->find($userId);
 
         $form = $this->createForm(PartenaireRegistrationFormType::class, $partenaire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $entityManager->flush();
-            return $this->redirectToRoute('partenaire_gestion');
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('accueil');
         }
 
-        return $this->render('default/modification.html.twig', [
+        return $this->render('partenaire/modification_de_ses_informations.html.twig', [
             'partenaire' => $partenaire,
             'form' => $form->createView(),
-            'controller_name' => 'PartenaireController',
         ]);
     }
 
     /**
-     * @Route("/administration/gérer-les-partenaires", name="partenaire_gestion")
+     * @Route("/partenaire/gérer-les-candidatures", name="partenaire_gestion_des_candidatures")
      */
-    public function gestionDesPartenaires(Request $request)
+    public function gestionDesCandidatures(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $entityManager = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository(User::class);
-        $partenaires = $repository->findByRole('ROLE_PARTENAIRE');
+        $repository = $this->getDoctrine()->getRepository(Candidature::class);
+        $candidatures = $repository->findPartenaireId($user->getId());
 
-        if(isset($_POST['modifier'])){
-            $partenaire_id = $request->request->get('id');
-            $this->container->get('session')->set('partenaire_id', $partenaire_id);
+        if(isset($_POST['accepter'])){
+            $candidatureId = $request->request->get('id');
+            $candidature = $repository->find($candidatureId);
+            $candidature->setStatus(1);
 
-            return $this->redirectToRoute('partenaire_modification');
-        }
-
-        if(isset($_POST['supprimer'])){
-            $partenaire_id = $request->request->get('id');
-            $partenaire = $entityManager->getRepository(User::class)->find($partenaire_id);
-
-            $entityManager->remove($partenaire);
             $entityManager->flush();
-
-            return $this->redirectToRoute('partenaire_gestion');
+            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
         }
 
-        return $this->render('partenaire/gestion.html.twig', [
-            'partenaires' => $partenaires
+        if(isset($_POST['refuser'])){
+            $candidatureId = $request->request->get('id');
+            $candidature = $repository->find($candidatureId);
+            $candidature->setStatus(0);
+
+            $entityManager->flush();
+            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
+        }
+
+        return $this->render('partenaire/gestion_des_candidatures.html.twig', [
+            'candidatures' => $candidatures
         ]);
     }
 }

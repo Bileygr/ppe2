@@ -1,9 +1,6 @@
-{% extends 'administrateur/modification.html.twig' %}
-
+{% extends 'default/accueil.html.twig' %}
 {% block title %}Modifier les informations d'une offre{% endblock %}
-
 {% block titre %}Modifier les informations d'une offre{% endblock %}
-
 {% block body %}
 	{{ form_start(form) }}
 		{{ form_widget(form.libelle) }}
@@ -25,5 +22,5 @@
 		{{ form_widget(form.description) }}<br>
 		{{ form_widget(form.ajout, {'label': 'Modifier'}) }}
 	{{ form_end(form) }}
-	<a href="{{ path('offre_liste_partenaire_connecte') }}">Retour</a>
+	<a href="{{ path('offre_liste_partenaire_connecte') }}" class="btn btn-warning">Retour</a>
 {% endblock %}

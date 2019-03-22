@@ -1,22 +1,49 @@
-{% extends 'administrateur/modification.html.twig' %}
-
-{% block title %}Modification des informations partenaire{% endblock %}
-
-{% block titre %}Modification des informations partenaire{% endblock %}
-
+{% extends 'default/accueil.html.twig' %}
+{% block title %}Modifier vos informations{% endblock %}
+{% block heading %}Modifier vos informations{% endblock %}
 {% block body %}
 	{{ form_start(form) }}
-		{{ form_widget(form.siret, {'attr': {'placeholder': partenaire.siret}}) }}
-		{{ form_widget(form.nom, {'attr': {'placeholder': partenaire.nom}}) }}
-		{% if is_granted('ROLE_PARTENAIRE') %}
-			{{ form_widget(form.motdepasse, {'attr': {'placeholder': 'Mot de passe'}} ) }}
-		{% endif %}
-		{{ form_widget(form.telephone, {'attr': {'placeholder': partenaire.telephone}}) }}
-		{{ form_widget(form.email, {'attr': {'placeholder': partenaire.email}}) }}
-		{{ form_widget(form.adresse, {'attr': {'placeholder': partenaire.adresse}}) }}
-		{{ form_widget(form.ville, {'attr': {'placeholder': partenaire.ville}}) }}
-		{{ form_widget(form.codepostal, {'attr': {'placeholder': partenaire.codepostal}}) }}
-		{{ form_widget(form.inscription, {'attr': {'placeholder': 'Modifier'}}) }}
+		<div class="form-group">
+        	<label>SIRET</label>
+			{{ form_widget(form.siret, {'attr' : {'class' : 'form-control', 'placeholder': 'SIRET'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Nom</label>
+			{{ form_widget(form.nom, {'attr': {'class' : 'form-control', 'placeholder': 'Nom'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Mot de passe</label>
+			{{ form_widget(form.motdepasse, {'attr': {'class' : 'form-control', 'placeholder': 'Mot de passe'}} ) }}
+		</div>
+		
+		<div class="form-group">
+            <label>Téléphone</label>
+			{{ form_widget(form.telephone, {'attr': {'class' : 'form-control', 'placeholder': 'Téléphone'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Email</label>
+			{{ form_widget(form.email, {'attr': {'class' : 'form-control', 'placeholder': 'Email'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Adresse</label>
+			{{ form_widget(form.adresse, {'attr': {'class' : 'form-control', 'placeholder': 'Adresse'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Ville</label>
+			{{ form_widget(form.ville, {'attr': {'class' : 'form-control', 'placeholder': 'Ville'}}) }}
+		</div>
+
+		<div class="form-group">
+            <label>Code postal</label>
+			{{ form_widget(form.codepostal, {'attr': {'class' : 'form-control', 'placeholder': 'Code postal'}}) }}
+		</div>
+
+		{{ form_widget(form.inscription, {'attr': {'label': 'Modifier', 'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
 	{{ form_end(form) }}
-	<a href="{{ path('partenaire_gestion') }}">Retour</a>
+	<a href="{{ path('accueil') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 {% endblock %}

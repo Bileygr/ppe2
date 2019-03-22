@@ -19,6 +19,28 @@ class CandidatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidature::class);
     }
 
+    public function findPartenaireId($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.prenom AS \'prenom\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserjeune_id WHERE candidature.iduserpartenaire_id = :id';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        
+        return $stmt->fetchAll();
+    }
+
+    public function updateCandidatureStatus($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'UPDATE candidature SET status = 1 WHERE id = :id';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        
+        return $stmt->fetchAll();
+    }
+
     // /**
     //  * @return Candidature[] Returns an array of Candidature objects
     //  */

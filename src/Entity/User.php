@@ -95,6 +95,11 @@ class User implements UserInterface
      */
     private $documents;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cv;
+
     public function __construct()
     {
         $this->offres = new ArrayCollection();
@@ -393,6 +398,18 @@ class User implements UserInterface
                 $document->setIduser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?string $cv): self
+    {
+        $this->cv = $cv;
 
         return $this;
     }

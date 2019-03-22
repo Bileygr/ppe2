@@ -91,6 +91,10 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
         echo "\t<a href=\"";
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administration_inscription_d_un_administrateur");
         echo "\" class=\"btn btn-primary\">Ajout</a>
+\t<a href=\"";
+        // line 6
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("accueil");
+        echo "\" class=\"btn btn-warning\">Retour</a>
 
     <table class=\"table table-hover\">
   \t\t<thead class=\"thead-inverse\">
@@ -110,78 +114,78 @@ class __TwigTemplate_e2dbe7896812cef5319f72ba9cc97f5465f660f38683169a82e45af7c5d
   \t\t</thead>
 \t  \t<tbody>
 \t  \t\t";
-        // line 24
+        // line 25
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 24, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["administrateurs"]) || array_key_exists("administrateurs", $context) ? $context["administrateurs"] : (function () { throw new Twig_Error_Runtime('Variable "administrateurs" does not exist.', 25, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["administrateur"]) {
-            // line 25
+            // line 26
             echo "\t  \t\t\t<form method=\"POST\">
 \t  \t\t\t\t<input type=\"text\" hidden=\"hidden\" name=\"id\" value=\"";
-            // line 26
+            // line 27
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "id", array()), "html", null, true);
             echo "\">
 \t\t    \t\t<tr>
 \t      \t\t\t\t<th scope=\"row\">";
-            // line 28
+            // line 29
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "id", array()), "html", null, true);
             echo "</th>
 \t      \t\t\t\t";
-            // line 29
+            // line 30
             if ((twig_join_filter(twig_get_attribute($this->env, $this->source, $context["administrateur"], "roles", array()), ", ") == "ROLE_SUPER_ADMINISTRATEUR")) {
-                // line 30
+                // line 31
                 echo "\t      \t\t\t\t\t<td>Super administrateur</td>
 \t      \t\t\t\t";
-            } elseif ((twig_join_filter(twig_get_attribute($this->env, $this->source,             // line 31
+            } elseif ((twig_join_filter(twig_get_attribute($this->env, $this->source,             // line 32
 $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) {
-                // line 32
+                // line 33
                 echo "\t      \t\t\t\t\t<td>Administrateur</td>
 \t      \t\t\t\t";
             }
-            // line 34
+            // line 35
             echo "\t      \t\t\t\t<td>";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "username", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 35
+            // line 36
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "nom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 36
+            // line 37
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "prenom", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 37
+            // line 38
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "telephone", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 38
+            // line 39
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "email", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 39
+            // line 40
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "adresse", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 40
+            // line 41
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "ville", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "codepostal", array()), "html", null, true);
             echo "</td>
 \t      \t\t\t\t<td>";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["administrateur"], "dateajout", array()), "d-m-Y"), "html", null, true);
             echo "</td>
 \t      \t\t\t\t";
-            // line 43
+            // line 44
             if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_SUPER_ADMINISTRATEUR")) {
-                // line 44
+                // line 45
                 echo "\t      \t\t\t\t\t<td><input type=\"submit\" name=\"modifier\" class=\"btn btn-secondary btn-sm\" value=\"Modifier\"></td>
 \t\t      \t\t\t\t<td><input type=\"submit\" name=\"supprimer\" class=\"btn btn-danger btn-sm\" value=\"Supprimer\"></td>
 \t      \t\t\t\t";
             }
-            // line 47
+            // line 48
             echo "\t    \t\t\t</tr>
 \t    \t\t</form>
 \t\t    ";
@@ -189,7 +193,7 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['administrateur'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 50
+        // line 51
         echo "\t  \t</tbody>
 \t</table>
 ";
@@ -213,7 +217,7 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
 
     public function getDebugInfo()
     {
-        return array (  193 => 50,  185 => 47,  180 => 44,  178 => 43,  174 => 42,  170 => 41,  166 => 40,  162 => 39,  158 => 38,  154 => 37,  150 => 36,  146 => 35,  141 => 34,  137 => 32,  135 => 31,  132 => 30,  130 => 29,  126 => 28,  121 => 26,  118 => 25,  114 => 24,  91 => 5,  82 => 4,  64 => 3,  46 => 2,  15 => 1,);
+        return array (  197 => 51,  189 => 48,  184 => 45,  182 => 44,  178 => 43,  174 => 42,  170 => 41,  166 => 40,  162 => 39,  158 => 38,  154 => 37,  150 => 36,  145 => 35,  141 => 33,  139 => 32,  136 => 31,  134 => 30,  130 => 29,  125 => 27,  122 => 26,  118 => 25,  96 => 6,  91 => 5,  82 => 4,  64 => 3,  46 => 2,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -223,6 +227,7 @@ $context["administrateur"], "roles", array()), ", ") == "ROLE_ADMINISTRATEUR")) 
 {% block titre %}Gestion des administrateurs{% endblock %}
 {% block body %}
 \t<a href=\"{{ path('administration_inscription_d_un_administrateur') }}\" class=\"btn btn-primary\">Ajout</a>
+\t<a href=\"{{ path('accueil') }}\" class=\"btn btn-warning\">Retour</a>
 
     <table class=\"table table-hover\">
   \t\t<thead class=\"thead-inverse\">
