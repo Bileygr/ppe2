@@ -1,44 +1,93 @@
-{% extends 'default/accueil.html.twig' %}
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Offres</title>
 
-{% block title %}Offres{% endblock %}
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+		<style>
+			/* Always set the map height explicitly to define the size of the div
+	       	* element that contains the map. */
+	      	#map {
+	        	height: 425px;
+	      	}
+	      	/* Optional: Makes the sample page fill the window. */
+	      	html, body {
+	        	height: 100%;
+	        	margin: 0;
+	        	padding: 0;
+	      	}
+		</style>
 
-{% block titre %}Offres{% endblock %}
+		<!-- Scripts -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAji-cL_4RBFG-hZRTmwvg7BcU58X0U_6o&callback=initMap"async defer></script>
+		<script>
+			var map;
+	      	function initMap() {
+	        	map = new google.maps.Map(document.getElementById('map'), {
+	          	center: {lat: -34.397, lng: 150.644},
+	          	zoom: 8
+	        	});
+	      	}
 
-{% block body %}	
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+	  		$(document).ready(function() {
+		    	$('#example').DataTable();
+			} );
+		</script>
+	</head>
 
-    <table class="table">
-  		<thead>
-	    	<tr>
-		      	<th scope="col">ID</th>
-		      	<th scope="col">Entreprise</th>
-		      	<th scope="col">Formation</th>
-		      	<th scope="col">Nom</th>
-		      	<th scope="col">Debut</th>
-		      	<th scope="col">Fin</th>
-		      	<th scope="col">Date d'ajout</th>
-	    	</tr>
-  		</thead>
-	  	<tbody>
-	  		{% for offre in offres %}
-	  			<form method="POST">
-		    		<input type="text" hidden="hidden" name="idoffre" value="{{ offre.id }}">
-		    		<input type="text" hidden="hidden" name="idpartenaire" value="{{ offre.idpartenaire }}">
+	<body>
+		<h1>Offres</h1>
+		<a href="{{ path('accueil') }}">Retour</a>
+		<div id="map"></div>
+		<table id="example" class="table table-striped table-bordered" style="width:100%">
+        	<thead>
+            	<tr>
+                	<th scope="col">ID</th>
+					<th scope="col">Entreprise</th>
+					<th scope="col">Formation</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Debut</th>
+					<th scope="col">Fin</th>
+					<th scope="col">Date d'ajout</th>
+            	</tr>
+        	</thead>
+        	<tbody>
+            	{% for offre in offres %}
+				  		<form method="POST">
+					    	<input type="text" hidden="hidden" name="idoffre" value="{{ offre.id }}">
+					    	<input type="text" hidden="hidden" name="idpartenaire" value="{{ offre.idpartenaire }}">
 
-		    		<tr>
-	      				<th scope="row">{{ offre.id }}</th>
-	      				<td>{{ offre.nomU }}</td>
-	      				<td>{{ offre.nomF }}</td>
-	      				<td>{{ offre.libelle }}</td>
-	      				<td>{{ offre.debut|date('Y-m-d') }}</td>
-	      				<td>{{ offre.fin|date('Y-m-d') }}</td>
-	      				<td>{{ offre.dateajout|date('d-m-Y') }}</td>
-	      				{% if is_granted('ROLE_JEUNE') %}
-	      					<td><input type="submit" name="Candidature" class="btn btn-secondary btn-sm" value="Candidature"></td>
-	      				{% endif %}
-	    			</tr>
-	    		</form>
-		    {% endfor %}
-	  	</tbody>
-	</table>
-{% endblock %}
+					    	<tr>
+				      			<th scope="row">{{ offre.id }}</th>
+				      			<td>{{ offre.nomU }}</td>
+				      			<td>{{ offre.nomF }}</td>
+				      			<td>{{ offre.libelle }}</td>
+				      			<td>{{ offre.debut|date('Y-m-d') }}</td>
+				      			<td>{{ offre.fin|date('Y-m-d') }}</td>
+				      			<td>{{ offre.dateajout|date('d-m-Y') }}</td>
+				      			{% if is_granted('ROLE_JEUNE') %}
+				      				<td><input type="submit" name="Candidature" class="btn btn-secondary btn-sm" value="Candidature"></td>
+				      			{% endif %}
+				    		</tr>
+				    	</form>
+					{% endfor %}
+        	</tbody>
+        	<tfoot>
+            	<tr>
+                	<th scope="col">ID</th>
+					<th scope="col">Entreprise</th>
+					<th scope="col">Formation</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Debut</th>
+					<th scope="col">Fin</th>
+					<th scope="col">Date d'ajout</th>
+            	</tr>
+        	</tfoot>
+    	</table>
+	</body>
+</html>
