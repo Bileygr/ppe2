@@ -5,21 +5,22 @@ namespace App\Controller;
 use App\Entity\Candidature;
 use App\Entity\Formation;
 use App\Entity\Offre;
+use App\Entity\User;
 use App\Form\OffreRegistrationFormType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OffreController extends AbstractController
 {
     /**
      * @Route("/offres", name="offres")
      */
-    public function listerTouteLesOffres()
+    public function index(Request $request)
     {   
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
@@ -27,17 +28,17 @@ class OffreController extends AbstractController
 
         if(isset($_POST['candidature'])){
             $candidature = new Candidature();
+            $offreId = $request->request->get('idoffre');
+            $offre = $repository->find($offreId);
+            $partenaire = $offre->getIduser();
 
-            $idoffre = $request->request->get('idoffre');
-            $idpartenaire = $request->request->get('idpartenaire');
-            $idjeune = $request->request->get('idjeune');
-
-            $candidature->setIdoffre($idoffre);
-            $candidature->setIduserpartenaire($idpartenaire);
-            $candidature->setIduderjeune($user->getId());
+            $candidature->setIdoffre($offre);
+            $candidature->setIduserpartenaire($partenaire);
+            $candidature->setIduserjeune($user);
             $candidature->setStatus(2);
 
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
             $entityManager->persist($candidature);
             $entityManager->flush();
 
@@ -45,8 +46,7 @@ class OffreController extends AbstractController
         }
 
         return $this->render('offre/index.html.twig', [
-            'offres' => $offres,
-            'controller_name' => 'OffreController',
+            'offres' => $offres
         ]);
     }
     

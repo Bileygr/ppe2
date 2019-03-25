@@ -32,7 +32,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/jeune/modifier-ses-informations' => array(array(array('_route' => 'jeune_modification', '_controller' => 'App\\Controller\\JeuneController::modificationDeSesInformations'), null, null, null, false, false, null)),
             '/jeune/mes-candidatures' => array(array(array('_route' => 'jeune_candidatures', '_controller' => 'App\\Controller\\JeuneController::gestionDesCandidatures'), null, null, null, false, false, null)),
             '/download' => array(array(array('_route' => 'download', '_controller' => 'App\\Controller\\JeuneController::download'), null, null, null, true, false, null)),
-            '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::listerTouteLesOffres'), null, null, null, false, false, null)),
+            '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::index'), null, null, null, false, false, null)),
             '/ajout-d-une-offre' => array(array(array('_route' => 'offre_ajout', '_controller' => 'App\\Controller\\OffreController::ajouter'), null, null, null, false, false, null)),
             '/partenaire/modifier-ses-informations' => array(array(array('_route' => 'partenaire_modification', '_controller' => 'App\\Controller\\PartenaireController::modificationDeSesInformations'), null, null, null, false, false, null)),
             '/partenaire/gérer-les-candidatures' => array(array(array('_route' => 'partenaire_gestion_des_candidatures', '_controller' => 'App\\Controller\\PartenaireController::gestionDesCandidatures'), null, null, null, false, false, null)),

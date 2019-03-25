@@ -22,7 +22,7 @@ class OffreRepository extends ServiceEntityRepository
     public function findAll()
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT offre.id, offre.libelle, user.id AS \'idpartenaire\', user.nom AS \'nomU\', formation.nom AS \'nomF\', offre.description, offre.adresse, offre.ville, offre.codepostal, offre.debut, offre.fin, offre.dateajout
+        $sql = 'SELECT offre.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nompartenaire\', formation.nom AS \'nomformation\', offre.description AS \'description\', offre.adresse AS \'adresse\', offre.ville AS \'ville\', offre.codepostal AS \'codepostal\', offre.debut AS \'debut\', offre.fin AS \'fin\', offre.dateajout AS \'dateajout\'
             FROM offre 
             JOIN user ON user.id = offre.iduser_id 
             JOIN formation ON formation.id = offre.idformation_id';
@@ -37,11 +37,26 @@ class OffreRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT offre.id, offre.libelle, user.id AS \'idpartenaire\', user.nom AS \'nomU\', formation.nom AS \'nomF\', offre.description, offre.adresse, offre.ville, offre.codepostal, offre.debut, offre.fin, offre.dateajout
+        $sql = 'SELECT offre.id AS \'id\', offre.libelle AS \'libelle\', user.id AS \'idpartenaire\', user.nom AS \'nomU\', formation.nom AS \'nomF\', offre.description AS \'description\', offre.adresse AS \'adresse\', offre.ville AS \'ville\', offre.codepostal AS \'codepostal\', offre.debut AS \'debut\', offre.fin AS \'fin\', offre.dateajout AS \'dateajout\'
             FROM offre 
             JOIN user ON user.id = offre.iduser_id 
             JOIN formation ON formation.id = offre.idformation_id
             WHERE offre.iduser_id = :id';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        return $stmt->fetchAll();
+    }
+
+    public function findByOffreId($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT offre.id AS \'id\', offre.libelle AS \'libelle\', user.id AS \'idpartenaire\', user.nom AS \'nomU\', formation.id AS \'formationId\', formation.nom AS \'nomF\', offre.description, offre.adresse, offre.ville, offre.codepostal, offre.debut, offre.fin, offre.dateajout AS \'dateajout\'
+            FROM offre 
+            JOIN user ON user.id = offre.iduser_id 
+            JOIN formation ON formation.id = offre.idformation_id
+            WHERE offre.id = :id';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
 

@@ -69,7 +69,7 @@ class JeuneController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Candidature::class);
-        $candidatures = $repository->findJeuneId($user->getId());
+        $candidatures = $repository->findByJeuneId($user->getId());
 
         if(isset($_POST['accepter'])){
             $candidatureId = $request->request->get('id');

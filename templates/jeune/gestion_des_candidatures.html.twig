@@ -23,8 +23,8 @@
 	      			<th scope="row">{{ candidature.id }}</th>
 	      			<td>{{ candidature.libelle }}</td>
 	      			<td>{{ candidature.nom }}</td>
-	      			<td>{{ candidature.debut|date('Y-m-d') }}</td>
-	      			<td>{{ candidature.fin|date('Y-m-d') }}</td>
+	      			<td>{{ candidature.debut|date('d-m-Y') }}</td>
+	      			<td>{{ candidature.fin|date('d-m-Y') }}</td>
 	      			{% if candidature.status == 0 %}
 	      				<td>Refusé</td>
 	      			{% elseif candidature.status == 1 %}
@@ -32,7 +32,7 @@
 	      			{% elseif candidature.status == 2 %}
 	      				<td>En attente</td>
 	      			{% endif %}
-	      				<td>{{ candidature.dateajout|date('Y-m-d') }}</td>
+	      				<td>{{ candidature.dateajout|date('d-m-Y') }}</td>
 	    		</tr>
 		    {% endfor %}
 	  	</tbody>

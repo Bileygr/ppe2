@@ -19,10 +19,10 @@ class CandidatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Candidature::class);
     }
 
-    public function findPartenaireId($id)
+    public function findByPartenaireId($id)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.prenom AS \'prenom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserjeune_id WHERE candidature.iduserpartenaire_id = :id';
+        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.prenom AS \'prenom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', candidature.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserjeune_id WHERE candidature.iduserpartenaire_id = :id';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
@@ -30,15 +30,29 @@ class CandidatureRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
-    public function findJeuneId($id)
+    public function findByJeuneId($id)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', offre.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserpartenaire_id WHERE candidature.iduserjeune_id = :id';
+        $sql = 'SELECT candidature.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nom\', user.cv AS \'cv\', offre.debut AS \'debut\', offre.fin \'fin\', candidature.status AS \'status\', candidature.dateajout AS \'dateajout\' FROM candidature JOIN offre ON offre.id = candidature.idoffre_id JOIN user ON user.id = candidature.iduserpartenaire_id WHERE candidature.iduserjeune_id = :id';
 
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
         
         return $stmt->fetchAll();
+    }
+
+    public function findByInsertCandidatureINTOYOURANUS(Candidature $candidature){
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'INSERT INTO candidature (idoffre_id, iduserjeune_id, iduserpartenaire_id, status, dateajout) 
+                VALUES(:idoffre, :idjeune, :idpartenaire, :status, NOW())';
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute(['idoffre' => $candidature->getIdoffre(), 
+                        'idjeune' => $candidature->getIduserjeune(),
+                        'idpartenaire' => $candidature->getIduserpartenaire(),
+                        'status' => $candidature->getStatus()]);
+        
+        return $result;
     }
 
     // /**

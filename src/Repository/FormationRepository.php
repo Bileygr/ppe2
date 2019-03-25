@@ -19,7 +19,7 @@ class FormationRepository extends ServiceEntityRepository
         parent::__construct($registry, Formation::class);
     }
 
-    public function findById(int $id){
+    public function findById($id){
         $conn = $this->getEntityManager()->getConnection();
         $sql = 'SELECT id, nom FROM formation WHERE id = :id';
 

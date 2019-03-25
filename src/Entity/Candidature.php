@@ -41,7 +41,7 @@ class Candidature
 
     /**
     * @ORM\Column(type="date")
-    */
+    */  
     private $dateajout;
 
     public function __construct()

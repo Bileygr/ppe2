@@ -86,24 +86,24 @@ class Offre
         return $this->id;
     }
 
-    public function getIduser()
+    public function getIduser(): ?User
     {
         return $this->iduser;
     }
 
-    public function setIduser($iduser)
+    public function setIduser(?User $iduser): self
     {
         $this->iduser = $iduser;
 
         return $this;
     }
 
-    public function getIdformation()
+    public function getIdformation(): ?Formation
     {
         return $this->idformation;
     }
 
-    public function setIdformation($idformation)
+    public function setIdformation(?Formation $idformation): self
     {
         $this->idformation = $idformation;
 
