@@ -62,31 +62,20 @@ class JeuneController extends AbstractController
     }
 
     /**
-     * @Route("/jeune/mes-candidatures", name="jeune_candidatures")
+     * @Route("/jeune/mes-candidatures", name="jeune_gestion_de_ses_candidatures")
      */
     public function gestionDesCandidatures(Request $request)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Candidature::class);
-        $candidatures = $repository->findByJeuneId($user->getId());
+        $candidatures = $repository->findByJeuneId($this->get('security.token_storage')->getToken()->getUser()->getId());
 
-        if(isset($_POST['accepter'])){
-            $candidatureId = $request->request->get('id');
-            $candidature = $repository->find($candidatureId);
-            $candidature->setStatus(1);
-
+        if(isset($_POST['annuler'])){
+            $candidature = $repository->find($request->request->get('id'));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($candidature);
             $entityManager->flush();
-            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
-        }
 
-        if(isset($_POST['refuser'])){
-            $candidatureId = $request->request->get('id');
-            $candidature = $repository->find($candidatureId);
-            $candidature->setStatus(0);
-
-            $entityManager->flush();
-            return $this->redirectToRoute('partenaire_gestion_des_candidatures');
+            return $this->redirectToRoute('jeune_gestion_de_ses_candidatures');
         }
 
         return $this->render('jeune/gestion_des_candidatures.html.twig', [

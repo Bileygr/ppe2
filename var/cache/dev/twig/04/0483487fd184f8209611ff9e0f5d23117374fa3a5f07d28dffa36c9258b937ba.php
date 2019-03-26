@@ -213,7 +213,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
                 <a href=\"";
             // line 29
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("offre_gestion");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("administration_gestion_des_offres");
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"";
             // line 30
@@ -265,7 +265,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
                 <a href=\"";
             // line 43
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_candidatures");
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("jeune_gestion_de_ses_candidatures");
             echo "\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
                 <a href=\"";
             // line 44
@@ -369,7 +369,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
               {% if is_granted('ROLE_ADMINISTRATEUR') or is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
                 <a href=\"{{ path('offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
                 <a href=\"{{ path('administration_gestion_des_jeunes') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les jeunes</a>
-                <a href=\"{{ path('offre_gestion') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
+                <a href=\"{{ path('administration_gestion_des_offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les offres</a>
                 <a href=\"{{ path('administration_gestion_des_partenaires') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les partenaires</a>
                 <a href=\"{{ path('administration_gestion_des_administrateurs') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer les administrateurs</a>
                 <a href=\"{{ path('statistiques') }}\" class=\"btn btn-primary btn-lg btn-block\">Statistiques</a>
@@ -383,7 +383,7 @@ class __TwigTemplate_a5c390a9404b7eef19253edd3a91fe789aa1607a1e85105d2d60240c792
                 <a href=\"{{ path('app_logout') }}\"class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
               {% elseif  is_granted('ROLE_JEUNE') %}
                 <a href=\"{{ path('offres') }}\" class=\"btn btn-primary btn-lg btn-block\">Voir les offres</a>
-                <a href=\"{{ path('jeune_candidatures') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
+                <a href=\"{{ path('jeune_gestion_de_ses_candidatures') }}\" class=\"btn btn-primary btn-lg btn-block\">Gérer ses candidatures</a>
                 <a href=\"{{ path('jeune_modification') }}\" class=\"btn btn-primary btn-lg btn-block\">Vos informations</a>
                 <a href=\"{{ path('app_logout') }}\" class=\"btn btn-danger btn-lg btn-block\">Déconnexion</a>
               {% else %}

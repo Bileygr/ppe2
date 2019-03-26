@@ -41,20 +41,6 @@ class CandidatureRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
-    public function findByInsertCandidatureINTOYOURANUS(Candidature $candidature){
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = 'INSERT INTO candidature (idoffre_id, iduserjeune_id, iduserpartenaire_id, status, dateajout) 
-                VALUES(:idoffre, :idjeune, :idpartenaire, :status, NOW())';
-
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute(['idoffre' => $candidature->getIdoffre(), 
-                        'idjeune' => $candidature->getIduserjeune(),
-                        'idpartenaire' => $candidature->getIduserpartenaire(),
-                        'status' => $candidature->getStatus()]);
-        
-        return $result;
-    }
-
     // /**
     //  * @return Candidature[] Returns an array of Candidature objects
     //  */

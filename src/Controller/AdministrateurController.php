@@ -31,6 +31,8 @@ class AdministrateurController extends AbstractController
             $this->container->get('session')->set('administrateurId', $administrateurId);
 
             return $this->redirectToRoute('administration_modification_des_informations_d_un_administrateur');
+        }else{
+            echo 'La condition a échouée.';
         }
 
         if(isset($_POST['supprimer'])){

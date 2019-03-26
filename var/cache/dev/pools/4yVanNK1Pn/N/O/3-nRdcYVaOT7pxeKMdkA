@@ -11,7 +11,7 @@
                     '/jeune/mes-candidatures',
                 ],
                 'name' => [
-                    'jeune_candidatures',
+                    'jeune_gestion_de_ses_candidatures',
                 ],
             ],
         ],

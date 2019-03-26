@@ -19,36 +19,6 @@ class FormationRepository extends ServiceEntityRepository
         parent::__construct($registry, Formation::class);
     }
 
-    public function findById($id){
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT id, nom FROM formation WHERE id = :id';
-
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        
-        return $stmt->fetchAll();
-    }
-
-    public function findAll(){
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT * FROM formation';
-
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        return $stmt->fetchAll();
-    }
-
-    public function findId(){
-        $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT id FROM formation';
-
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        return $stmt->fetchAll();
-    }
-
     // /**
     //  * @return Formation[] Returns an array of Formation objects
     //  */

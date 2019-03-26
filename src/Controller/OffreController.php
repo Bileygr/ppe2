@@ -22,7 +22,6 @@ class OffreController extends AbstractController
      */
     public function index(Request $request)
     {   
-        $user = $this->get('security.token_storage')->getToken()->getUser();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offres = $repository->findAll();
 
@@ -30,21 +29,19 @@ class OffreController extends AbstractController
             $candidature = new Candidature();
             $offreId = $request->request->get('idoffre');
             $offre = $repository->find($offreId);
-            $partenaire = $offre->getIduser();
 
             $candidature->setIdoffre($offre);
-            $candidature->setIduserpartenaire($partenaire);
-            $candidature->setIduserjeune($user);
+            $candidature->setIduserpartenaire($offre->getIduser());
+            $candidature->setIduserjeune($this->get('security.token_storage')->getToken()->getUser());
             $candidature->setStatus(2);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
             $entityManager->persist($candidature);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offres');
+            return $this->redirectToRoute('jeune_candidatures');
         }
-
+        
         return $this->render('offre/index.html.twig', [
             'offres' => $offres
         ]);

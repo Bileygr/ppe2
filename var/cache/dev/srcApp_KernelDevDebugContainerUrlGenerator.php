@@ -35,7 +35,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'statistiques' => array(array(), array('_controller' => 'App\\Controller\\AdministrateurController::statistiquesDesOffres'), array(), array(array('text', '/administration/statistiques-des-offres')), array(), array()),
         'accueil' => array(array(), array('_controller' => 'App\\Controller\\DefaultController::accueil'), array(), array(array('text', '/accueil')), array(), array()),
         'jeune_modification' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::modificationDeSesInformations'), array(), array(array('text', '/jeune/modifier-ses-informations')), array(), array()),
-        'jeune_candidatures' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::gestionDesCandidatures'), array(), array(array('text', '/jeune/mes-candidatures')), array(), array()),
+        'jeune_gestion_de_ses_candidatures' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::gestionDesCandidatures'), array(), array(array('text', '/jeune/mes-candidatures')), array(), array()),
         'download' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::download'), array(), array(array('text', '/download/')), array(), array()),
         'offres' => array(array(), array('_controller' => 'App\\Controller\\OffreController::index'), array(), array(array('text', '/offres')), array(), array()),
         'offre_ajout' => array(array(), array('_controller' => 'App\\Controller\\OffreController::ajouter'), array(), array(array('text', '/ajout-d-une-offre')), array(), array()),

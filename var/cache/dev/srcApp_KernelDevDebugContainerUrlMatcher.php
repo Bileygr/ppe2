@@ -30,7 +30,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/administration/statistiques-des-offres' => array(array(array('_route' => 'statistiques', '_controller' => 'App\\Controller\\AdministrateurController::statistiquesDesOffres'), null, null, null, false, false, null)),
             '/accueil' => array(array(array('_route' => 'accueil', '_controller' => 'App\\Controller\\DefaultController::accueil'), null, null, null, false, false, null)),
             '/jeune/modifier-ses-informations' => array(array(array('_route' => 'jeune_modification', '_controller' => 'App\\Controller\\JeuneController::modificationDeSesInformations'), null, null, null, false, false, null)),
-            '/jeune/mes-candidatures' => array(array(array('_route' => 'jeune_candidatures', '_controller' => 'App\\Controller\\JeuneController::gestionDesCandidatures'), null, null, null, false, false, null)),
+            '/jeune/mes-candidatures' => array(array(array('_route' => 'jeune_gestion_de_ses_candidatures', '_controller' => 'App\\Controller\\JeuneController::gestionDesCandidatures'), null, null, null, false, false, null)),
             '/download' => array(array(array('_route' => 'download', '_controller' => 'App\\Controller\\JeuneController::download'), null, null, null, true, false, null)),
             '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::index'), null, null, null, false, false, null)),
             '/ajout-d-une-offre' => array(array(array('_route' => 'offre_ajout', '_controller' => 'App\\Controller\\OffreController::ajouter'), null, null, null, false, false, null)),

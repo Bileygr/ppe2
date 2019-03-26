@@ -14,26 +14,30 @@
 		      	<th scope="col">Fin</th>
 		      	<th scope="col">Status</th>
 		      	<th scope="col">Date d'ajout</th>
+		      	<th scope="col">Annulation</th>
 	    	</tr>
   		</thead>
 	  	<tbody>
 	  		{% for candidature in candidatures %}
-	  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
-		    	<tr>
-	      			<th scope="row">{{ candidature.id }}</th>
-	      			<td>{{ candidature.libelle }}</td>
-	      			<td>{{ candidature.nom }}</td>
-	      			<td>{{ candidature.debut|date('d-m-Y') }}</td>
-	      			<td>{{ candidature.fin|date('d-m-Y') }}</td>
-	      			{% if candidature.status == 0 %}
-	      				<td>Refusé</td>
-	      			{% elseif candidature.status == 1 %}
-	      				<td>Accepté</td>
-	      			{% elseif candidature.status == 2 %}
-	      				<td>En attente</td>
-	      			{% endif %}
-	      				<td>{{ candidature.dateajout|date('d-m-Y') }}</td>
-	    		</tr>
+	  			<form method="POST">
+		  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+			    	<tr>
+		      			<th scope="row">{{ candidature.id }}</th>
+		      			<td>{{ candidature.libelle }}</td>
+		      			<td>{{ candidature.nom }}</td>
+		      			<td>{{ candidature.debut|date('d-m-Y') }}</td>
+		      			<td>{{ candidature.fin|date('d-m-Y') }}</td>
+		      			{% if candidature.status == 0 %}
+		      				<td>Refusé</td>
+		      			{% elseif candidature.status == 1 %}
+		      				<td>Accepté</td>
+		      			{% elseif candidature.status == 2 %}
+		      				<td>En attente</td>
+		      			{% endif %}
+		      			<td>{{ candidature.dateajout|date('d-m-Y') }}</td>
+		      			<td><input type="submit" name="annuler" value="Annuler" class="btn btn-danger btn-lg btn-block"></td>
+		    		</tr>
+		    	</form>
 		    {% endfor %}
 	  	</tbody>
 	</table>
