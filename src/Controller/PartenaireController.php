@@ -57,7 +57,7 @@ class PartenaireController extends AbstractController
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Candidature::class);
-        $candidatures = $repository->findPartenaireId($user->getId());
+        $candidatures = $repository->findByPartenaireId($user->getId());
 
         if(isset($_POST['download'])){
             $fileName = $request->request->get('cv');
