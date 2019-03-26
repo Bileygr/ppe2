@@ -28,8 +28,7 @@ class OffreController extends AbstractController
 
         if(isset($_POST['candidature'])){
             $candidature = new Candidature();
-            $offreId = $request->request->get('idoffre');
-            $offre = $repository->find($offreId);
+            $offre = $repository->find($request->request->get('idoffre'));
             $partenaire = $offre->getIduser();
 
             $candidature->setIdoffre($offre);
@@ -38,11 +37,10 @@ class OffreController extends AbstractController
             $candidature->setStatus(2);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->flush();
             $entityManager->persist($candidature);
             $entityManager->flush();
 
-            return $this->redirectToRoute('offres');
+            return $this->redirectToRoute('jeune_candidatures');
         }
 
         return $this->render('offre/index.html.twig', [

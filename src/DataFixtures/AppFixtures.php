@@ -81,39 +81,6 @@ class AppFixtures extends Fixture
         return $adresse;
     }
 
-    // Cette fonction sert à se connecter à la base de données et retourne une instande PDO pour effectuer des requêtes SQL.
-    public static function connexion(){
-        $host = "127.0.0.1";
-        $port = "3306";
-        $bdd = "lycee_du_parc_de_villegenis";
-        $user = "root";
-        $password = "";
-
-        try{
-            $db = new PDO("mysql:host=".$host.";port=".$port.";dbname=".$bdd.";charset=utf8", $user, $password);
-        }catch(Exception $e){
-            echo "Échec lors de la connexion: ".$e->getMessage();
-        }
-
-        return $db;
-    }
-
-    // Cette fonction insert des offres dans la base de données.
-    public static function insertionDesOffres($offre){
-        $connection = AppFixtures::connexion();
-        $requete = $connection->prepare("INSERT INTO offre(iduser_id, idformation_id, libelle, description, adresse, ville, codepostal, debut, fin, dateajout) VALUES(:iduser, :idformation, :libelle, :description, :adresse, :ville, :codepostal, :debut, :fin, NOW())");
-        $resultat=$requete->execute(array("iduser" => $offre->getIduser(),
-                                              "idformation" => $offre->getIdformation(),
-                                              "libelle" => $offre->getLibelle(),
-                                              "description" => $offre->getDescription(),
-                                              "adresse" => $offre->getAdresse(),
-                                              "ville" => $offre->getVille(),
-                                              "codepostal" => $offre->getCodepostal(),
-                                              "debut" => $offre->getDebut(),
-                                              "fin" => $offre->getFin()));
-        return $resultat;
-    }
-
     public function load(ObjectManager $manager)
     {
         // Valeur que chaque boucle doit atteindre avant d'arrêter d'exécuter le code à l'intérieur.
@@ -220,46 +187,52 @@ class AppFixtures extends Fixture
 
             $i = $i+1;
         }
-        
-        // Cette boucle crée des instances de 'offre' et les insert dans la base de données.
-        $i=0;
 
-        while($i <= $nombreDOffresACreer){
-            $offre = new Offre();
-            $libelle = "Lorem ipsum dolor sit amet.";
-            /*
-            * Les IDs des utilisateurs qui pourront être attribué au champ 'iduser_id' des offres. 
-            * Les IDs des formations qui pourront être attribué au champ 'idformation_id' des offres.
-            */
-            $idDesUtilisateursEtDesFormations = array(rand(1, 25), rand(1, 3));
-            $description = 
-                "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
+        /*
+            // Cette boucle crée des instances de 'offre' et les insert dans la base de données.
+            $i=0;
 
-                Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex.";
-            $adresse = AppFixtures::generateAdresse();
-            $date1 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
-            $date2 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
+            while($i <= $nombreDOffresACreer){
+                $offre = new Offre();
+                $rng1 = rand(1,25);
+                $rng2 = rand(1,3);
+                $partenaire = $this->getDoctrine()->getRepository(User::class)->find($rng1);
+                $formation =  $this->getDoctrine()->getRepository(Formation::class)->find($rng2);
+                $libelle = "Lorem ipsum dolor sit amet.";
+                
+                * Les IDs des utilisateurs qui pourront être attribué au champ 'iduser_id' des offres. 
+                * Les IDs des formations qui pourront être attribué au champ 'idformation_id' des offres.
+                
+                $idDesUtilisateursEtDesFormations = array(rand(1, 25), rand(1, 3));
+                $description = 
+                    "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
 
-            $offre->setLibelle($libelle);
-            $offre->setIduser($idDesUtilisateursEtDesFormations[0]);
-            $offre->setIdformation($idDesUtilisateursEtDesFormations[1]);
-            $offre->setDescription($description);
-            $offre->setAdresse($adresse[0]." Rue ".$adresse[1]." ".$adresse[2]);
-            $offre->setVille($adresse[2]);
-            $offre->setCodepostal($adresse[3]);
-            if($date1 > $date2){
-                $offre->setDebut($date2);
-                $offre->setFin($date1);
-            }elseif($date1 < $date2){
-                $offre->setDebut($date1);
-                $offre->setFin($date2);
+                    Eu mundi viris eruditi sit. Errem electram gubergren in nec, ex.";
+                $adresse = AppFixtures::generateAdresse();
+                $date1 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
+                $date2 = AppFixtures::generateDate("2019/05/13", "2020/08/20");
+
+                $offre->setLibelle($libelle);
+                $offre->setIduser($partenaire);
+                $offre->setIdformation($formation);
+                $offre->setDescription($description);
+                $offre->setAdresse($adresse[0]." Rue ".$adresse[1]." ".$adresse[2]);
+                $offre->setVille($adresse[2]);
+                $offre->setCodepostal($adresse[3]);
+                if($date1 > $date2){
+                    $offre->setDebut($date2);
+                    $offre->setFin($date1);
+                }elseif($date1 < $date2){
+                    $offre->setDebut($date1);
+                    $offre->setFin($date2);
+                }
+                
+                $manager->persist($offre);
+
+                $i = $i+1;
             }
-            
-            $resultat = AppFixtures::insertionDesOffres($offre);
-
-            $i = $i+1;
-        }
-
+        */
+        
         // Le code en dessous créé des utilisateurs que je veux toujours avoir dans ma base de données.
         $admin1 = new User();
         $admin2 = new User();
