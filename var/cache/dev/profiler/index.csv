@@ -1298,3 +1298,10 @@ b6388d,127.0.0.1,GET,http://127.0.0.1:8000/offres,1553604922,,200
 3c2023,127.0.0.1,GET,http://127.0.0.1:8000/accueil,1554751905,,200
 2315dd,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1554751908,186031,200
 186031,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1554751908,,404
+88a44e,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/connexion,1554912010,,200
+fccf24,82.123.6.58,POST,http://cheikkeita.ddns.net:8002/connexion,1554912025,,302
+82c269,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/accueil,1554912025,,200
+72b447,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/administration/g%C3%A9rer-les-jeunes,1554912028,,200
+6f393e,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/accueil,1554912030,,200
+2e7d64,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/administration/modifier-ses-informations,1554912032,,200
+534172,82.123.6.58,GET,http://cheikkeita.ddns.net:8002/offres,1554912036,,200
