@@ -42,7 +42,7 @@
                 {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
         </div>
 
-        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'', 'placeholder': 'Modifier'}}) }}<br>
+        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block', 'placeholder': 'Modifier'}}) }}<br>
     {{ form_end(registrationForm) }}
     <a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 {% endblock %}

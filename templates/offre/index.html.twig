@@ -70,7 +70,7 @@
   				      			<td>{{ offre.debut|date('d-m-Y') }}</td>
   				      			<td>{{ offre.fin|date('d-m-Y') }}</td>
   				      			<td>{{ offre.dateajout|date('d-m-Y') }}</td>
-  				      			{% if is_granted('ROLE_JEUNE') %}
+  				      			{% if (is_granted('ROLE_JEUNE') == true) and (is_granted('ROLE_ADMINISTRATEUR') != false) %}
   				      				<td><input type="submit" name="candidature" class="btn btn-secondary btn-lg btn-block" value="Déposer"></td>
   				      			{% endif %}
   				    		</tr>

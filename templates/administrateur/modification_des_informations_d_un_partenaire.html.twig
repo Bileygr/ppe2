@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <label>Adresseadresse</label>
+            <label>Adresse</label>
             {{ form_widget(form.adresse, {'attr': {'placeholder': partenaire.adresse, 'class' : 'form-control'}}) }}
         </div>
 
@@ -42,7 +42,7 @@
             {{ form_widget(form.codepostal, {'attr': {'placeholder': partenaire.codepostal, 'class' : 'form-control'}}) }}
         </div>
 
-        {{ form_widget(form.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary'}}) }}<br>
-        <a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-warning">Retour</a>
+        {{ form_widget(form.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
+        <a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
     {{ form_end(form) }}
 {% endblock %}

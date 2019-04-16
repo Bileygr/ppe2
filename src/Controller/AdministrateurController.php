@@ -31,8 +31,6 @@ class AdministrateurController extends AbstractController
             $this->container->get('session')->set('administrateurId', $administrateurId);
 
             return $this->redirectToRoute('administration_modification_des_informations_d_un_administrateur');
-        }else{
-            echo 'La condition a échouée.';
         }
 
         if(isset($_POST['supprimer'])){
@@ -120,6 +118,7 @@ class AdministrateurController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offres = $repository->findAll();
+        dump($offres);
 
         if(isset($_POST['modifier'])){
             $id = $request->request->get('id');
@@ -398,25 +397,16 @@ class AdministrateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) 
-        {   
-            $formationInstance = new Formation();
+        {  
             $formationId = $request->request->get('formation');
-            $formationBDD = $repository->findById($formationId);
-
-            dump($formationBDD);
-            
-            $formationInstance->setId($formationBDD[0]['id']);
-            $formationInstance->setNom($formationBDD[0]['nom']);
-
-            $offre->setIdformation($formationInstance);
+            $offre->setIdformation($repository->find($formationId));
             $entityManager->flush();
-
             return $this->redirectToRoute('administration_gestion_des_offres');
         }
 
         return $this->render('administrateur/modification_des_informations_d_une_offre.html.twig', [
             'formations' => $formations,
-            'idformation' => $offre->getIdformation(),
+            'idformation' => $offre->getIdformation()->getId(),
             'form' => $form->createView(),
             'controller_name' => 'OffreController',
         ]);
