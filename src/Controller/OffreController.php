@@ -24,9 +24,7 @@ class OffreController extends AbstractController
     {   
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offres = $repository->findAll();
-        var_dump("Okay");
         if(isset($_POST['candidature'])){
-            var_dump("Okay 2");
             $candidature = new Candidature();
             $offreId = $request->request->get('idoffre');
             $offre = $repository->find($offreId);

@@ -1,45 +1,56 @@
-{% extends 'default/accueil.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}Gestion des jeunes{% endblock %}
-{% block titre %}Gestion des jeunes{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
 {% block body %}
-	<a href="{{ path('administration_inscription_d_un_jeune') }}" class="btn btn-primary">Ajout</a>	
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+	<div class="container">
+		<div class="header clearfix">
+            <h1 class="text-muted">Gestion des Jeunes</h1>
+        </div>
 
-    <table class="table">
-  		<thead>
-	    	<tr>
-		      	<th scope="col">ID</th>
-		      	<th scope="col">Identifiant</th>
-		      	<th scope="col">Nom</th>
-		      	<th scope="col">Prénom</th>
-		      	<th scope="col">Tél</th>
-		      	<th scope="col">Email</th>
-		      	<th scope="col">Adresse</th>
-		      	<th scope="col">Ville</th>
-		      	<th scope="col">Code Postal</th>
-		      	<th scope="col">Date d'ajout</th>
-	    	</tr>
-  		</thead>
-	  	<tbody>
-	  		{% for jeune in jeunes %}
-	  			<form method="POST">
-			    	<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
-		    		<tr>
-	      				<th scope="row">{{ jeune.id }}</th>
-	      				<td>{{ jeune.username }}</td>
-	      				<td>{{ jeune.nom }}</td>
-	      				<td>{{ jeune.prenom }}</td>
-	      				<td>0{{ jeune.telephone }}</td>
-	      				<td>{{ jeune.email }}</td>
-	      				<td>{{ jeune.adresse }}</td>
-	      				<td>{{ jeune.ville }}</td>
-	      				<td>{{ jeune.codepostal }}</td>
-	      				<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
-	      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
-		      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
-	    			</tr>
-	    		</form>
-		    {% endfor %}
-	  	</tbody>
-	</table>
+		<a href="{{ path('administration_inscription_d_un_jeune') }}" class="btn btn-primary">Ajout</a>	
+	    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+	    <table id="table_id" class="display">
+	  		<thead>
+		    	<tr>
+			      	<th>ID</th>
+			      	<th>Identifiant</th>
+			      	<th>Nom</th>
+			      	<th>Prénom</th>
+			      	<th>Tél</th>
+			      	<th>Email</th>
+			      	<th>Adresse</th>
+			      	<th>Ville</th>
+			      	<th>Code Postal</th>
+			      	<th>Date d'ajout</th>
+		    	</tr>
+	  		</thead>
+		  	<tbody>
+		  		{% for jeune in jeunes %}
+		  			<form method="POST">
+				    	<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
+			    		<tr>
+		      				<th>{{ jeune.id }}</th>
+		      				<td>{{ jeune.username }}</td>
+		      				<td>{{ jeune.nom }}</td>
+		      				<td>{{ jeune.prenom }}</td>
+		      				<td>0{{ jeune.telephone }}</td>
+		      				<td>{{ jeune.email }}</td>
+		      				<td>{{ jeune.adresse }}</td>
+		      				<td>{{ jeune.ville }}</td>
+		      				<td>{{ jeune.codepostal }}</td>
+		      				<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
+		      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
+			      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
+		    			</tr>
+		    		</form>
+			    {% endfor %}
+		  	</tbody>
+		</table>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
 {% endblock %}

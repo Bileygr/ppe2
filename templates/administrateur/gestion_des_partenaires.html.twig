@@ -1,46 +1,62 @@
-{% extends 'default/accueil.html.twig' %}
-
-{% block title %}Gestion des partenaires{% endblock %}
-
-{% block titre %}Gestion des partenaires{% endblock %}
-
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }}
+{% endblock %}
 {% block body %}
-	<a href="{{ path('administration_inscription_d_un_partenaire') }}" class="btn btn-primary">Ajout</a>	
-	<a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+	<div class="container">
+        <div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
+        </div>
+    
+        <div class="jumbotron">
+            <div class="header clearfix">
+                <h1 class="text-muted">Gestion des partenaires</h1>
+            </div>
 
-    <table class="table">
-  		<thead>
-	    	<tr>
-		      	<th scope="col">ID</th>
-		      	<th scope="col">SIRET</th>
-		      	<th scope="col">Nom</th>
-		      	<th scope="col">Tél</th>
-		      	<th scope="col">Email</th>
-		      	<th scope="col">Adresse</th>
-		      	<th scope="col">Ville</th>
-		      	<th scope="col">Code Postal</th>
-		      	<th scope="col">Date d'ajout</th>
-	    	</tr>
-  		</thead>
-	  	<tbody>
-	  		{% for partenaire in partenaires %}
-		    		<form method="POST">
-			    		<input type="text" hidden="hidden" name="id" value="{{ partenaire.id }}">
-			    		<tr>
-		      				<th scope="row">{{ partenaire.id }}</th>
-		      				<td>{{ partenaire.siret }}</td>
-		      				<td>{{ partenaire.nom }}</td>
-		      				<td>{{ partenaire.telephone }}</td>
-		      				<td>{{ partenaire.email }}</td>
-		      				<td>{{ partenaire.adresse }}</td>
-		      				<td>{{ partenaire.ville }}</td>
-		      				<td>{{ partenaire.codepostal }}</td>
-		      				<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
-		      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
-		      				<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
-		    			</tr>
-		    		</form>
-		    {% endfor %}
-	  	</tbody>
-	</table>
+			<a href="{{ path('administration_inscription_d_un_partenaire') }}" class="btn btn-primary">Ajout</a>	
+			<a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+		    <table class="table">
+		  		<thead>
+			    	<tr>
+				      	<th scope="col">ID</th>
+				      	<th scope="col">SIRET</th>
+				      	<th scope="col">Nom</th>
+				      	<th scope="col">Tél</th>
+				      	<th scope="col">Email</th>
+				      	<th scope="col">Adresse</th>
+				      	<th scope="col">Ville</th>
+				      	<th scope="col">Code Postal</th>
+				      	<th scope="col">Date d'ajout</th>
+				      	<th scope="col">Modifier</th>
+				      	<th scope="col">Supprimer</th>
+			    	</tr>
+		  		</thead>
+			  	<tbody>
+			  		{% for partenaire in partenaires %}
+				    		<form method="POST">
+					    		<input type="text" hidden="hidden" name="id" value="{{ partenaire.id }}">
+					    		<tr>
+				      				<th scope="row">{{ partenaire.id }}</th>
+				      				<td>{{ partenaire.siret }}</td>
+				      				<td>{{ partenaire.nom }}</td>
+				      				<td>{{ partenaire.telephone }}</td>
+				      				<td>{{ partenaire.email }}</td>
+				      				<td>{{ partenaire.adresse }}</td>
+				      				<td>{{ partenaire.ville }}</td>
+				      				<td>{{ partenaire.codepostal }}</td>
+				      				<td>{{ partenaire.dateajout|date('Y-m-d') }}</td>
+				      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
+				      				<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
+				    			</tr>
+				    		</form>
+				    {% endfor %}
+			  	</tbody>
+			</table>
+		</div>
+
+		<footer>
+            <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+	</div>
 {% endblock %}
