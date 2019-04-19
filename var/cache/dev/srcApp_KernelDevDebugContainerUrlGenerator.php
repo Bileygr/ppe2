@@ -39,6 +39,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'download' => array(array(), array('_controller' => 'App\\Controller\\JeuneController::download'), array(), array(array('text', '/download/')), array(), array()),
         'offres' => array(array(), array('_controller' => 'App\\Controller\\OffreController::index'), array(), array(array('text', '/offres')), array(), array()),
         'offre_ajout' => array(array(), array('_controller' => 'App\\Controller\\OffreController::ajouter'), array(), array(array('text', '/ajout-d-une-offre')), array(), array()),
+        'offre_detail' => array(array(), array('_controller' => 'App\\Controller\\OffreController::offreDetail'), array(), array(array('text', '/offre-detail')), array(), array()),
         'partenaire_modification' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::modificationDeSesInformations'), array(), array(array('text', '/partenaire/modifier-ses-informations')), array(), array()),
         'partenaire_gestion_des_candidatures' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::gestionDesCandidatures'), array(), array(array('text', '/partenaire/gérer-les-candidatures')), array(), array()),
         'partenaire_gestion_des_offres' => array(array(), array('_controller' => 'App\\Controller\\PartenaireController::gestionDesOffres'), array(), array(array('text', '/partenaire/gérer-les-offres')), array(), array()),

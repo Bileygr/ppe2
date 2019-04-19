@@ -34,6 +34,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/download' => array(array(array('_route' => 'download', '_controller' => 'App\\Controller\\JeuneController::download'), null, null, null, true, false, null)),
             '/offres' => array(array(array('_route' => 'offres', '_controller' => 'App\\Controller\\OffreController::index'), null, null, null, false, false, null)),
             '/ajout-d-une-offre' => array(array(array('_route' => 'offre_ajout', '_controller' => 'App\\Controller\\OffreController::ajouter'), null, null, null, false, false, null)),
+            '/offre-detail' => array(array(array('_route' => 'offre_detail', '_controller' => 'App\\Controller\\OffreController::offreDetail'), null, null, null, false, false, null)),
             '/partenaire/modifier-ses-informations' => array(array(array('_route' => 'partenaire_modification', '_controller' => 'App\\Controller\\PartenaireController::modificationDeSesInformations'), null, null, null, false, false, null)),
             '/partenaire/gérer-les-candidatures' => array(array(array('_route' => 'partenaire_gestion_des_candidatures', '_controller' => 'App\\Controller\\PartenaireController::gestionDesCandidatures'), null, null, null, false, false, null)),
             '/partenaire/gérer-les-offres' => array(array(array('_route' => 'partenaire_gestion_des_offres', '_controller' => 'App\\Controller\\PartenaireController::gestionDesOffres'), null, null, null, false, false, null)),

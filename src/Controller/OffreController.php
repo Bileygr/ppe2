@@ -22,8 +22,10 @@ class OffreController extends AbstractController
      */
     public function index(Request $request)
     {   
+        $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offres = $repository->findAll();
+        $offres = $repository->findAllOffres();
+        
         if(isset($_POST['candidature'])){
             $candidature = new Candidature();
             $offreId = $request->request->get('idoffre');
@@ -38,7 +40,15 @@ class OffreController extends AbstractController
             $entityManager->persist($candidature);
             $entityManager->flush();
 
-            return $this->redirectToRoute('jeune_candidatures');
+            return $this->redirectToRoute('jeune_gestion_de_ses_candidatures');
+        }
+
+        if(isset($_POST['detail'])){
+            $id = $request->request->get('idoffre');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $this->container->get('session')->set('offreId', $offre->getId());
+
+            return $this->redirectToRoute('offre_detail');
         }
         
         return $this->render('offre/index.html.twig', [
@@ -97,6 +107,39 @@ class OffreController extends AbstractController
         return $this->render('offre/ajout.html.twig', [
             'formations' => $formations, 
             'registrationForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/offre-detail", name="offre_detail")
+     */
+    public function offreDetail(Request $request)
+    {   
+        $offreId = $this->container->get('session')->get('offreId');
+        $offre = $this->getDoctrine()->getRepository(Offre::class)->find($offreId);
+        $partenaire = $this->getDoctrine()->getRepository(User::class)->find($offre->getIduser()->getId());
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->find($offre->getIdformation()->getId());
+
+        dump($offre, $partenaire, $formation);
+        
+        if(isset($_POST['candidature'])){
+            $candidature = new Candidature();
+            $candidature->setIdoffre($offre);
+            $candidature->setIduserpartenaire($partenaire);
+            $candidature->setIduserjeune($this->get('security.token_storage')->getToken()->getUser());
+            $candidature->setStatus(2);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($candidature);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('jeune_gestion_de_ses_candidatures');
+        }
+        
+        return $this->render('offre/detail.html.twig', [
+            'offre' => $offre,
+            'partenaire' => $partenaire,
+            'formation' => $formation,
         ]);
     }
 }

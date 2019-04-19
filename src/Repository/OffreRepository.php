@@ -19,7 +19,7 @@ class OffreRepository extends ServiceEntityRepository
         parent::__construct($registry, Offre::class);
     }
 
-    public function findAll()
+    public function findAllOffres()
     {
         $conn = $this->getEntityManager()->getConnection();
         $sql = 'SELECT offre.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nompartenaire\', formation.nom AS \'nomformation\', offre.description AS \'description\', offre.adresse AS \'adresse\', offre.ville AS \'ville\', offre.codepostal AS \'codepostal\', offre.debut AS \'debut\', offre.fin AS \'fin\', offre.dateajout AS \'dateajout\'

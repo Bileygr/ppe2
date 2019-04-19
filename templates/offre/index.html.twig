@@ -1,93 +1,77 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<title>Offres</title>
-
-		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-		<style>
-			/* Always set the map height explicitly to define the size of the div
-	       	* element that contains the map. */
-	      	#map {
-	        	height: 600px;
-	      	}
-	      	/* Optional: Makes the sample page fill the window. */
-	      	html, body {
-	        	height: 100%;
-	        	margin: 0;
-	        	padding: 0;
-	      	}
-		</style>
-
-		<!-- Scripts -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=initMap"async defer></script>
-		<script>
-			var map;
-	      	function initMap() {
-	        	map = new google.maps.Map(document.getElementById('map'), {
-	          	center: {lat: 48.864716, lng: 2.349014},
+{% extends 'default/accueil.html.twig' %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		/* Always set the map height explicitly to define the size of the div
+	    * element that contains the map. */
+	    #map {
+	    	height: 600px;
+	    }
+	    /* Optional: Makes the sample page fill the window. */
+	    html, body {
+	        height: 100%;
+	        margin: 0;
+	    	padding: 0;
+	    }
+	</style>
+{% endblock %}
+{% block scripts %}
+	<script>
+		var map;
+	    function initMap() {
+	    	map = new google.maps.Map(document.getElementById('map'), {
+	        	center: {lat: 48.864716, lng: 2.349014},
 	          	zoom: 8
-	        	});
-	      	}
+	        });
+	    }
+	</script>
+{% endblock %}
+{% block body %}
+	<table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+            		<th scope="col">Entreprise</th>
+            		<th scope="col">Formation</th>
+            		<th scope="col">Nom</th>
+            		<th scope="col">Debut</th>
+            		<th scope="col">Fin</th>
+            		<th scope="col">Date d'ajout</th>
+            		{% if is_granted('ROLE_JEUNE') %}
+            			<th scope="col">Candidature</th>
+            		{% endif %}
+                <th scope="col">Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for offre in offres %}
+  				<form method="POST">
+  					<input type="text" hidden="hidden" name="idoffre" value="{{ offre.id }}">
 
-	  		$(document).ready(function() {
-		    	$('#example').DataTable();
-			} );
-		</script>
-	</head>
+  					<tr>
+  				      	<th scope="row">{{ offre.id }}</th>
+  				      	<td>{{ offre.nompartenaire }}</td>
+  				      	<td>{{ offre.nomformation }}</td>
+  				      	<td>{{ offre.libelle }}</td>
+  				      	<td>{{ offre.debut|date('d-m-Y') }}</td>
+  				      	<td>{{ offre.fin|date('d-m-Y') }}</td>
+  				      	<td>{{ offre.dateajout|date('d-m-Y') }}</td>
+  				      	{% if is_granted('ROLE_JEUNE') %}
+  				      		<td><input type="submit" name="candidature" class="btn btn-secondary btn-lg btn-block" value="Déposer"></td>
+  				      	{% endif %}
+                  <td><input type="submit" name="detail" class="btn btn-secondary btn-lg btn-block" value="Detail"></td>
+  				   	</tr>
+  				</form>
+			{% endfor %}
+        </tbody>
+    </table>
 
-	<body>
-		<div id="map"></div><br>
-		<table id="example" class="table table-striped table-bordered" style="width:100%">
-        	<thead>
-            	<tr>
-                	<th scope="col">ID</th>
-        					<th scope="col">Entreprise</th>
-        					<th scope="col">Formation</th>
-        					<th scope="col">Nom</th>
-        					<th scope="col">Debut</th>
-        					<th scope="col">Fin</th>
-        					<th scope="col">Date d'ajout</th>
-        					{% if is_granted('ROLE_JEUNE') %}
-        						<th scope="col">Candidature</th>
-        					{% endif %}
-            	</tr>
-        	</thead>
-        	<tbody>
-            	{% for offre in offres %}
-  				  		<form method="POST">
-  					    	<input type="text" hidden="hidden" name="idoffre" value="{{ offre.id }}">
-
-  					    	<tr>
-  				      			<th scope="row">{{ offre.id }}</th>
-  				      			<td>{{ offre.nompartenaire }}</td>
-  				      			<td>{{ offre.nomformation }}</td>
-  				      			<td>{{ offre.libelle }}</td>
-  				      			<td>{{ offre.debut|date('d-m-Y') }}</td>
-  				      			<td>{{ offre.fin|date('d-m-Y') }}</td>
-  				      			<td>{{ offre.dateajout|date('d-m-Y') }}</td>
-  				      			{% if (is_granted('ROLE_JEUNE') == true) and (is_granted('ROLE_ADMINISTRATEUR') != false) %}
-  				      				<td><input type="submit" name="candidature" class="btn btn-secondary btn-lg btn-block" value="Déposer"></td>
-  				      			{% endif %}
-  				    		</tr>
-  				    	</form>
-					{% endfor %}
-        	</tbody>
-        	<tfoot>
-            	<tr>
-                	<th scope="col">ID</th>
-					<th scope="col">Entreprise</th>
-					<th scope="col">Formation</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Debut</th>
-					<th scope="col">Fin</th>
-					<th scope="col">Date d'ajout</th>
-            	</tr>
-        	</tfoot>
-    	</table>
-	</body>
-</html>
+    <footer>
+      <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+    </footer>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSWaHpZ1NPnlUJC6OE45NqHJVwGOHwhmc&callback=initMap"async defer></script>
+{% endblock %}
