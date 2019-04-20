@@ -117,7 +117,7 @@ class AdministrateurController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offres = $repository->findAll();
+        $offres = $repository->findAllOffres();
         dump($offres);
 
         if(isset($_POST['modifier'])){

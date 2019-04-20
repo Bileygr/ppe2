@@ -18,31 +18,31 @@
 {% endblock %}
 {% block scripts %}
 	<script>
-    var geocoder;
     var address = "{{ offre.adresse }}";
+    var geocoder;
 		var map;
 	  function initMap() {
 	    map = new google.maps.Map(document.getElementById('map'), {
-	       center: {lat: 48.864716, lng: 2.349014},
-	         zoom: 12
+	     center: {lat: 48.864716, lng: 2.349014},
+	     zoom: 12
 	    });
-
       geocoder = new google.maps.Geocoder();
       codeAddress(geocoder, map);
 	  }
 
     function codeAddress(geocoder, map) {
-      -geocoder.geocode({'address': address}, function(results, status) {
+      geocoder.geocode({'address': address}, function(results, status) {
         if (status === 'OK') {
           map.setCenter(results[0].geometry.location);
           var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+            map: map,
+            position: results[0].geometry.location
+          });
+        }else{
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
 	</script>
 {% endblock %}
 {% block body %}
@@ -87,10 +87,9 @@
         <b><u>Date d'ajout</u>: </b> {{ offre.dateajout|date('d-m-Y') }}
       </p>
 
-      <br>
-
       <form method="POST">
         {% if is_granted('ROLE_JEUNE') %}
+          <br>
           <td><input type="submit" name="candidature" class="btn btn-secondary" value="Déposer une candidature"></td>
         {% endif %}
       </form>

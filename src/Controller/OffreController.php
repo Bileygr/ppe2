@@ -49,8 +49,8 @@ class OffreController extends AbstractController
             $this->container->get('session')->set('offreId', $offre->getId());
 
             return $this->redirectToRoute('offre_detail');
-        }
-        
+        }   
+
         return $this->render('offre/index.html.twig', [
             'offres' => $offres
         ]);

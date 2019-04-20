@@ -2,6 +2,7 @@
 {% block title %}{{ parent() }}{% endblock %}
 {% block stylesheets %}
 	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 {% endblock %}
 {% block body %}
 	<div class="container">
@@ -9,7 +10,7 @@
             <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
         </div>
     
-        <div class="jumbotron">
+        <!--<div class="jumbotron">-->
             <div class="header clearfix">
                 <h1 class="text-muted">Gestion des administrateurs</h1>
             </div>
@@ -17,56 +18,65 @@
 			<a href="{{ path('administration_inscription_d_un_administrateur') }}" class="btn btn-primary">Ajout</a>
 			<a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
 
-    		<table class="table table-hover">
-  				<thead class="thead-inverse">
-	    			<tr>
-		      			<th scope="col">ID</th>
-		      			<th scope="col">Rôle</th>
-		      			<th scope="col">Identifiant</th>
-		      			<th scope="col">Nom</th>
-		      			<th scope="col">Prénom</th>
-		      			<th scope="col">Tél</th>
-		      			<th scope="col">Email</th>
-		      			<th scope="col">Adresse</th>
-		      			<th scope="col">Ville</th>
-		      			<th scope="col">Code Postal</th>
-		      			<th scope="col">Date d'ajout</th>
+			<hr>
+
+			<table id="table_id" class="display">
+        		<thead>
+            		<tr>
+              			<th>ID</th>
+		      			<th>Rôle</th>
+		      			<th>Identifiant</th>
+		      			<th>Nom</th>
+		      			<th>Prénom</th>
+		      			<th>Tél</th>
+		      			<th>Email</th>
+		      			<th>Adresse</th>
+		      			<th>Ville</th>
+		      			<th>Code Postal</th>
+		      			<th>Date d'ajout</th>
 		      			{% if is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
-	      					<th scope="col">Modifier</th>
-	      					<th scope="col">Suprimmer</th>
+	      					<th>Modifier</th>
+	      					<th>Suprimmer</th>
 	      				{% endif %}
-	    			</tr>
-  				</thead>
-	  			<tbody>
-	  				{% for administrateur in administrateurs %}
-	  					<form method="POST">
-	  						<input type="text" hidden="hidden" name="id" value="{{ administrateur.id }}">
-		    				<tr>
-	      						<th scope="row">{{ administrateur.id }}</th>
-	      						{% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
-	      							<td>Super administrateur</td>
-	      						{% elseif administrateur.roles|join(', ') == 'ROLE_ADMINISTRATEUR' %}
-	      							<td>Administrateur</td>
-	      						{% endif %}
-	      						<td>{{ administrateur.username }}</td>
-	      						<td>{{ administrateur.nom }}</td>
-	      						<td>{{ administrateur.prenom }}</td>
-	      						<td>{{ administrateur.telephone }}</td>
-	      						<td>{{ administrateur.email }}</td>
-	      						<td>{{ administrateur.adresse }}</td>
-	      						<td>{{ administrateur.ville }}</td>
-	      						<td>{{ administrateur.codepostal }}</td>
-	      						<td>{{ administrateur.dateajout|date('d-m-Y') }}</td>
-	      						{% if is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
-	      							<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
-		      						<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
-	      						{% endif %}
-	    					</tr>
-	    				</form>
+            		</tr>
+        		</thead>
+        		<tbody>
+          			{% for administrateur in administrateurs %}
+		    			<tr>
+	      					<th scope="row">{{ administrateur.id }}</th>
+	      					{% if administrateur.roles|join(', ') == 'ROLE_SUPER_ADMINISTRATEUR' %}
+	      						<td>Super administrateur</td>
+	      					{% elseif administrateur.roles|join(', ') == 'ROLE_ADMINISTRATEUR' %}
+	      						<td>Administrateur</td>
+	      					{% endif %}
+	      					<td>{{ administrateur.username }}</td>
+	      					<td>{{ administrateur.nom }}</td>
+	      					<td>{{ administrateur.prenom }}</td>
+	      					<td>{{ administrateur.telephone }}</td>
+	      					<td>{{ administrateur.email }}</td>
+	      					<td>{{ administrateur.adresse }}</td>
+	      					<td>{{ administrateur.ville }}</td>
+	      					<td>{{ administrateur.codepostal }}</td>
+	      					<td>{{ administrateur.dateajout|date('d-m-Y') }}</td>
+	      					{% if is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
+	      						<td>
+	      							<form method="POST">
+	  									<input type="text" hidden="hidden" name="id" value="{{ administrateur.id }}">
+	      								<input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier">
+	      							</form>
+	      						</td>
+		      					<td>
+		      						<form method="POST">
+	  									<input type="text" hidden="hidden" name="id" value="{{ administrateur.id }}">
+		      							<input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer">
+		      						</form>
+		      					</td>
+	      					{% endif %}
+	    				</tr>
 		    		{% endfor %}
-	  			</tbody>
-			</table>
-		</div>
+        		</tbody>
+      		</table>
+		<!--</div>-->
 
 		<footer>
             <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
@@ -75,4 +85,10 @@
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
+	<script>
+    	$(document).ready( function () {
+      		$('#table_id').DataTable();
+    	});
+  	</script>
+  	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 {% endblock %}
