@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-<?php return array(PHP_INT_MAX, 1554082833);
-=======
-<?php return array(PHP_INT_MAX, 1555356319);
->>>>>>> develop
+<?php return array(PHP_INT_MAX, 1555837574);
