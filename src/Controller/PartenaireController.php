@@ -127,6 +127,7 @@ class PartenaireController extends AbstractController
      */
     public function modificationDesInformationsOffres(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $offreId = $this->container->get('session')->get('offreId');
         $entityManager = $this->getDoctrine()->getManager();
         $offre = $entityManager->getRepository(Offre::class)->find($offreId);
@@ -142,24 +143,19 @@ class PartenaireController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {   
-            $formationInstance = new Formation();
-            $formationId = $request->request->get('formation');
-            $formationBDD = $repository->findById($formationId);
-
-            dump($formationBDD);
-            
-            $formationInstance->setId($formationBDD[0]['id']);
-            $formationInstance->setNom($formationBDD[0]['nom']);
-
-            $offre->setIdformation($formationInstance);
+            $offre->setIdformation($repository->find($request->request->get('formation')));
             $entityManager->flush();
 
-            return $this->redirectToRoute('administration_gestion_des_offres');
+            if($user->getRoles()[0] == "ROLE_PARTENAIRE"){
+                return $this->redirectToRoute('partenaire_gestion_des_offres');
+            }elseif($user->getRoles()[0] == "ROLE_ADMINISTRATEUR"){
+                return $this->redirectToRoute('administration_gestion_des_offres');
+            }
         }
 
         return $this->render('partenaire/modification_des_informations_d_une_offre.html.twig', [
             'formations' => $formations,
-            'idformation' => $offre->getIdformation(),
+            'idformation' => -$offre->getIdformation()->getId(),
             'form' => $form->createView(),
             'controller_name' => 'OffreController',
         ]);

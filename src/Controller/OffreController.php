@@ -22,11 +22,11 @@ class OffreController extends AbstractController
      */
     public function index(Request $request)
     {   
+        $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
-        $offres = $repository->findAll();
-        var_dump("Okay");
+        $offres = $repository->findAllOffres();
+        
         if(isset($_POST['candidature'])){
-            var_dump("Okay 2");
             $candidature = new Candidature();
             $offreId = $request->request->get('idoffre');
             $offre = $repository->find($offreId);
@@ -40,9 +40,17 @@ class OffreController extends AbstractController
             $entityManager->persist($candidature);
             $entityManager->flush();
 
-            return $this->redirectToRoute('jeune_candidatures');
+            return $this->redirectToRoute('jeune_gestion_de_ses_candidatures');
         }
-        
+
+        if(isset($_POST['detail'])){
+            $id = $request->request->get('idoffre');
+            $offre = $entityManager->getRepository(Offre::class)->find($id);
+            $this->container->get('session')->set('offreId', $offre->getId());
+
+            return $this->redirectToRoute('offre_detail');
+        }   
+
         return $this->render('offre/index.html.twig', [
             'offres' => $offres
         ]);
@@ -72,13 +80,14 @@ class OffreController extends AbstractController
 
             if($debut > $aujourdhui){
                 if($debut < $fin){
+                    $formation = $repository->find($request->request->get('formation'));
                     $offre->setLibelle($form->get('libelle')->getData());
                     $offre->setAdresse($form->get('adresse')->getData());
                     $offre->setVille($form->get('ville')->getData());
                     $offre->setCodepostal($form->get('codepostal')->getData());
                     $offre->setDebut($debut);
                     $offre->setFin($fin);
-                    $offre->setIdformation($request->request->get('formation'));
+                    $offre->setIdformation($formation);
                     $offre->setDescription($form->get('description')->getData());
                     $offre->setIduser($user);
 
@@ -86,9 +95,9 @@ class OffreController extends AbstractController
                     $entityManager->persist($offre);
                     $entityManager->flush();
 
-                    return $this->redirectToRoute('offre_liste_partenaire_connecte');
+                    return $this->redirectToRoute('partenaire_gestion_des_offres');
                 }else{
-                    return $this->redirectToRoute('offre_liste_partenaire_connecte');
+                    return $this->redirectToRoute('partenaire_gestion_des_offres');
                 }
             }else{
                 return $this->redirectToRoute('offre_ajout');
@@ -98,6 +107,39 @@ class OffreController extends AbstractController
         return $this->render('offre/ajout.html.twig', [
             'formations' => $formations, 
             'registrationForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/offre-detail", name="offre_detail")
+     */
+    public function offreDetail(Request $request)
+    {   
+        $offreId = $this->container->get('session')->get('offreId');
+        $offre = $this->getDoctrine()->getRepository(Offre::class)->find($offreId);
+        $partenaire = $this->getDoctrine()->getRepository(User::class)->find($offre->getIduser()->getId());
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->find($offre->getIdformation()->getId());
+
+        dump($offre, $partenaire, $formation);
+        
+        if(isset($_POST['candidature'])){
+            $candidature = new Candidature();
+            $candidature->setIdoffre($offre);
+            $candidature->setIduserpartenaire($partenaire);
+            $candidature->setIduserjeune($this->get('security.token_storage')->getToken()->getUser());
+            $candidature->setStatus(2);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($candidature);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('jeune_gestion_de_ses_candidatures');
+        }
+        
+        return $this->render('offre/detail.html.twig', [
+            'offre' => $offre,
+            'partenaire' => $partenaire,
+            'formation' => $formation,
         ]);
     }
 }

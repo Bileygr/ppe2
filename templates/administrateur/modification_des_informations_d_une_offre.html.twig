@@ -1,6 +1,6 @@
 {% extends 'default/accueil.html.twig' %}
 {% block title %}Modifier les informations d'une offre{% endblock %}
-{% block titre %}Modifier les informations d'une offre{% endblock %}
+{% block heading %}Modifier les informations d'une offre{% endblock %}
 {% block body %}
 	{{ form_start(form) }}
 		<div class="form-row">
@@ -48,7 +48,7 @@
 		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}, {'attr': {'rows': '7'}} ) }}
 		</div>
 
-		{{ form_widget(form.ajout, {'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
+		{{ form_widget(form.ajout, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
 	{{ form_end(form) }}
 	<a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 {% endblock %}

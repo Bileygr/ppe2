@@ -1,45 +1,77 @@
-{% extends 'default/accueil.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}Gestion des jeunes{% endblock %}
-{% block titre %}Gestion des jeunes{% endblock %}
-{% block body %}
-	<a href="{{ path('administration_inscription_d_un_jeune') }}" class="btn btn-primary">Ajout</a>	
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
-
-    <table class="table">
-  		<thead>
-	    	<tr>
-		      	<th scope="col">ID</th>
-		      	<th scope="col">Identifiant</th>
-		      	<th scope="col">Nom</th>
-		      	<th scope="col">Prénom</th>
-		      	<th scope="col">Tél</th>
-		      	<th scope="col">Email</th>
-		      	<th scope="col">Adresse</th>
-		      	<th scope="col">Ville</th>
-		      	<th scope="col">Code Postal</th>
-		      	<th scope="col">Date d'ajout</th>
-	    	</tr>
-  		</thead>
-	  	<tbody>
-	  		{% for jeune in jeunes %}
-	  			<form method="POST">
-			    	<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
-		    		<tr>
-	      				<th scope="row">{{ jeune.id }}</th>
-	      				<td>{{ jeune.username }}</td>
-	      				<td>{{ jeune.nom }}</td>
-	      				<td>{{ jeune.prenom }}</td>
-	      				<td>0{{ jeune.telephone }}</td>
-	      				<td>{{ jeune.email }}</td>
-	      				<td>{{ jeune.adresse }}</td>
-	      				<td>{{ jeune.ville }}</td>
-	      				<td>{{ jeune.codepostal }}</td>
-	      				<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
-	      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
-		      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
-	    			</tr>
-	    		</form>
-		    {% endfor %}
-	  	</tbody>
-	</table>
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 {% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
+        </div>
+		
+		<div class="header clearfix">
+            <h1 class="text-muted">Gestion des Jeunes</h1>
+        </div>
+
+		<a href="{{ path('administration_inscription_d_un_jeune') }}" class="btn btn-primary">Ajout</a>	
+	    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+
+	    <hr>
+
+	    <table id="table_id" class="display">
+	  		<thead>
+		    	<tr>
+			      	<th>ID</th>
+			      	<th>Identifiant</th>
+			      	<th>Nom</th>
+			      	<th>Prénom</th>
+			      	<th>Tél</th>
+			      	<th>Email</th>
+			      	<th>Adresse</th>
+			      	<th>Ville</th>
+			      	<th>Code Postal</th>
+			      	<th>Date d'ajout</th>
+			      	<th>Modifier</th>
+			      	<th>Supprimer</th>
+		    	</tr>
+	  		</thead>
+		  	<tbody>
+		  		{% for jeune in jeunes %}
+		  			<form method="POST">
+				    	<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
+			    		<tr>
+		      				<th>{{ jeune.id }}</th>
+		      				<td>{{ jeune.username }}</td>
+		      				<td>{{ jeune.nom }}</td>
+		      				<td>{{ jeune.prenom }}</td>
+		      				<td>0{{ jeune.telephone }}</td>
+		      				<td>{{ jeune.email }}</td>
+		      				<td>{{ jeune.adresse }}</td>
+		      				<td>{{ jeune.ville }}</td>
+		      				<td>{{ jeune.codepostal }}</td>
+		      				<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
+		      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
+			      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
+		    			</tr>
+		    		</form>
+			    {% endfor %}
+		  	</tbody>
+		</table>
+
+		<hr>
+
+		<footer>
+            <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+    	$(document).ready( function () {
+      		$('#table_id').DataTable();
+    	});
+  	</script>
+  	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+{% endblock %}	

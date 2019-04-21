@@ -41,12 +41,10 @@ class JeuneController extends AbstractController
             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
             try {
-                $file->move(
-                    $this->getParameter('cv_directory'),
-                    $fileName
-                );
+                $file->move($this->getParameter('cv_directory'), $fileName);
             } catch (FileException $e) {
                 // ... handle exception if something happens during file upload
+                return $this->redirectToRoute('jeune_modification');
             }
 
             $jeune->setCV($fileName);

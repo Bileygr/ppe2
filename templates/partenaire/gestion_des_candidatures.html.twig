@@ -1,47 +1,94 @@
-{% extends 'default/accueil.html.twig' %}
-{% block title %}Gestion des candidatures{% endblock %}
-{% block titre %}Gestion des candidatures{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }}{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+{% endblock %}
 {% block body %}
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
+	<div class="container">
+        <div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
+        </div>
+    
+        <!--<div class="jumbotron">-->
+            <div class="header clearfix">
+                <h1 class="text-muted">Gestion des candidatures</h1>
+            </div>
+		    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
 
-    <table class="table">
-  		<thead>
-	    	<tr>
-		      	<th scope="col">ID</th>
-		      	<th scope="col">Offre</th>
-		      	<th scope="col">Jeune</th>
-		      	<th scope="col">C.V</th>
-		      	<th scope="col">Début</th>
-		      	<th scope="col">Fin</th>
-		      	<th scope="col">Status</th>
-		      	<th scope="col">Date d'ajout</th>
-	    	</tr>
-  		</thead>
-	  	<tbody>
-	  		{% for candidature in candidatures %}
-	  			<form method="POST">
-	  				<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
-	  				<input type="text" hidden="hidden" name="cv" value="{{ candidature.cv }}">
-		    		<tr>
-	      				<th scope="row">{{ candidature.id }}</th>
-	      				<td>{{ candidature.libelle }}</td>
-	      				<td>{{ candidature.nom }} {{ candidature.prenom }}</td>
-	      				<td><input type="submit" name="download" value="Download" placeholder="Download"></td>
-	      				<td>{{ candidature.debut|date('Y-m-d') }}</td>
-	      				<td>{{ candidature.fin|date('Y-m-d') }}</td>
-	      				{% if candidature.status == 0 %}
-	      					<td>Refusé</td>
-	      				{% elseif candidature.status == 1 %}
-	      					<td>Accepté</td>
-	      				{% elseif candidature.status == 2 %}
-	      					<td>En attente</td>
-	      				{% endif %}
-	      				<td>{{ candidature.dateajout|date('Y-m-d') }}</td>
-	      				<td><input type="submit" name="accepter" class="btn btn-secondary btn-sm" value="Accepter"></td>
-		      			<td><input type="submit" name="refuser" class="btn btn-danger btn-sm" value="Refuser"></td>
-	    			</tr>
-	    		</form>
-		    {% endfor %}
-	  	</tbody>
-	</table>
+		    <hr>
+
+		    <table id="table_id" class="display">
+        		<thead>
+            		<tr>
+              			<th>ID</th>
+				      	<th>Offre</th>
+				      	<th>Jeune</th>
+				      	<th>C.V</th>
+				      	<th>Début</th>
+				      	<th>Fin</th>
+				      	<th>Status</th>
+				      	<th>Date d'ajout</th>
+				      	<th>Accepter</th>
+				      	<th>Refuser</th>
+            		</tr>
+        		</thead>
+        		<tbody>
+          			{% for candidature in candidatures %}
+				    	<tr>
+			      			<th scope="row">{{ candidature.id }}</th>
+			      			<td>{{ candidature.libelle }}</td>
+			      			<td>{{ candidature.nom }} {{ candidature.prenom }}</td>
+			      			<td>
+			      				<form method="POST">
+						  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+						  			<input type="text" hidden="hidden" name="cv" value="{{ candidature.cv }}">
+			      					<input type="submit" name="download" value="Download" placeholder="Download">
+			      				</form>
+			      			</td>
+			      			<td>{{ candidature.debut|date('Y-m-d') }}</td>
+			      			<td>{{ candidature.fin|date('Y-m-d') }}</td>
+			      			{% if candidature.status == 0 %}
+			      				<td>Refusé</td>
+			      			{% elseif candidature.status == 1 %}
+			      				<td>Accepté</td>
+			      			{% elseif candidature.status == 2 %}
+			      				<td>En attente</td>
+			      			{% endif %}
+			      			<td>{{ candidature.dateajout|date('Y-m-d') }}</td>
+			      			<td>
+			      				<form method="POST">
+						  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+						  			<input type="text" hidden="hidden" name="cv" value="{{ candidature.cv }}">
+			      					<input type="submit" name="accepter" class="btn btn-secondary btn-sm" value="Accepter">
+			      				</form>
+			      			</td>
+				      		<td>
+				      			<form method="POST">
+						  			<input type="text" hidden="hidden" name="id" value="{{ candidature.id }}">
+						  			<input type="text" hidden="hidden" name="cv" value="{{ candidature.cv }}">
+				      				<input type="submit" name="refuser" class="btn btn-danger btn-sm" value="Refuser">
+				      			</form>
+				      		</td>
+			    		</tr>
+				    {% endfor %}
+        		</tbody>
+      		</table>
+		<!--</div>-->
+
+		<hr>
+
+		<footer>
+            <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+    	$(document).ready( function () {
+      		$('#table_id').DataTable();
+    	});
+  	</script>
+  	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 {% endblock %}

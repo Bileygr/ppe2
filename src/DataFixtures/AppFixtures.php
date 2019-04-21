@@ -221,16 +221,16 @@ class AppFixtures extends Fixture
             $i = $i+1;
         }
         
-        // Cette boucle crée des instances de 'offre' et les insert dans la base de données.
+        /* Cette boucle crée des instances de 'offre' et les insert dans la base de données.
         $i=0;
 
         while($i <= $nombreDOffresACreer){
             $offre = new Offre();
             $libelle = "Lorem ipsum dolor sit amet.";
-            /*
+            
             * Les IDs des utilisateurs qui pourront être attribué au champ 'iduser_id' des offres. 
             * Les IDs des formations qui pourront être attribué au champ 'idformation_id' des offres.
-            */
+            
             $idDesUtilisateursEtDesFormations = array(rand(1, 25), rand(1, 3));
             $description = 
                 "Lorem ipsum dolor sit amet, facer dolorum mea ei. Eu assum altera sed. At vix volutpat intellegat. Ei vero lobortis adipiscing eum. Liber affert postea quo an, dolore consectetuer ex usu, iisque voluptatum et nec. Ut sit zril tollit.
@@ -259,7 +259,7 @@ class AppFixtures extends Fixture
 
             $i = $i+1;
         }
-
+	*/
         // Le code en dessous créé des utilisateurs que je veux toujours avoir dans ma base de données.
         $admin1 = new User();
         $admin2 = new User();

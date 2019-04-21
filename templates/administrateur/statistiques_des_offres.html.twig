@@ -1,45 +1,61 @@
-{% extends 'default/accueil.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block title %}Statistiques des offres{% endblock %}
-{% block heading %}Statistiques des offres{% endblock %}
-{% block scripts %}
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-	google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+{% block javascripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    	google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+        function drawChart() {
+        	var data = google.visualization.arrayToDataTable([
+        		['Formation', 'Nombre d\'offre'],
+        	  {% for stat in stats1 %}
+        	  	['{{ stat.nom }}',     {{ stat.nombre }}],
+    		  {% endfor %}
+            ]);
 
-    	var data = google.visualization.arrayToDataTable([
-    		['Formation', 'Nombre d\'offre'],
-    	  {% for stat in stats1 %}
-    	  	['{{ stat.nom }}',     {{ stat.nombre }}],
-		  {% endfor %}
-        ]);
+            var options = {
+              title: 'Statistique des formations les plus offertes'
+            };
 
-        var options = {
-          title: 'Statistique des formations les plus offertes'
-        };
+            var data2 = google.visualization.arrayToDataTable([
+        		['Partenaire', 'Nombre d\'offre'],
+        	  {% for stat in stats2 %}
+        	  	['{{ stat.nom }}',     {{ stat.nombre }}],
+    		  {% endfor %}
+            ]);
 
-        var data2 = google.visualization.arrayToDataTable([
-    		['Partenaire', 'Nombre d\'offre'],
-    	  {% for stat in stats2 %}
-    	  	['{{ stat.nom }}',     {{ stat.nombre }}],
-		  {% endfor %}
-        ]);
+            var options2 = {
+              title: 'Statistique des partenaires offrant le plus d\'offre'
+            };
 
-        var options2 = {
-          title: 'Statistique des partenaires offrant le plus d\'offre'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-		chart.draw(data, options);
-		chart2.draw(data2, options2);
-    }
-</script>
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+    		chart.draw(data, options);
+    		chart2.draw(data2, options2);
+        }
+    </script>
 {% endblock %}
 {% block body %}
-    <a href="{{ path('accueil') }}" class="btn btn-warning">Retour</a>
-	<div id="piechart" style="width: 900px; height: 500px;"></div>
-	<div id="piechart2" style="width: 900px; height: 500px;"></div>
+    <div class="container">
+        <div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
+        </div>
+    
+        <div class="jumbotron">
+            <div class="header clearfix">
+                <h1 class="text-muted">Statistiques des offres</h1>
+            </div>
+            <a href="{{ path('accueil') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
+
+            <br>
+        	
+            <div id="piechart" style="width: 640px; height: 500px;"></div><br>
+        	<div id="piechart2" style="width: 640px; height: 500px;"></div>
+        </div>
+
+        <footer>
+            <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+    </div>
 {% endblock %}
