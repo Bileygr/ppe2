@@ -1,54 +1,78 @@
-{% extends 'default/accueil.html.twig' %}
-{% block title %}Modifier les informations d'une offre{% endblock %}
-{% block heading %}Modifier les informations d'une offre{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
 {% block body %}
-	{{ form_start(form) }}
-		<div class="form-row">
-			<div class="form-group col-md-6">
-		    	<label>Libelle</label>
-		    	{{ form_widget(form.libelle, {'attr': {'class': 'form-control'}} ) }}
-		    </div>
+	<div class="container">
+        <div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
+        </div>
+        
+        <div class="jumbotron">
+          <div class="header clearfix">
+            <h1 class="text-muted">Modifiez les informations d'une offre</h1>
+          </div>
+			{{ form_start(form) }}
+				<div class="form-row">
+					<div class="form-group col-md-6">
+				    	<label>Libelle</label>
+				    	{{ form_widget(form.libelle, {'attr': {'class': 'form-control'}} ) }}
+				    </div>
 
-			<div class="form-group col-md-6">
-		    	<label>Adresse</label>
-		    	{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}} ) }}
-		    </div>
+					<div class="form-group col-md-6">
+				    	<label>Adresse</label>
+				    	{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}} ) }}
+				    </div>
 
-		    <div class="form-group col-md-6">
-		        <label>Ville</label>
-		        {{ form_widget(form.ville, {'attr': {'class': 'form-control'}} ) }}
-		    </div>
+				    <div class="form-group col-md-6">
+				        <label>Ville</label>
+				        {{ form_widget(form.ville, {'attr': {'class': 'form-control'}} ) }}
+				    </div>
 
-		    <div class="form-group col-md-6">
-		        <label>Code Postal</label>
-		        {{ form_widget(form.codepostal, {'attr': {'class': 'form-control'}} ) }}
-		    </div>
+				    <div class="form-group col-md-6">
+				        <label>Code Postal</label>
+				        {{ form_widget(form.codepostal, {'attr': {'class': 'form-control'}} ) }}
+				    </div>
+				</div>
+				<label for="form_debut_month" class="sr-only">Début</label>
+				{{ form_widget(form.debut, {'attr': {'class': 'form-control'}} ) }}
+
+				<label for="offre_fin" class="sr-only">Fin</label>
+				{{ form_widget(form.fin, {'attr': {'class': 'form-control'}} ) }}
+
+				<br>
+
+				<div class='form-group'>
+					<select class="form-control" id="exampleSelect1" name='formation' value=''>
+				    	<hr />
+				    	{% for formation in formations %}
+				    		<option id="formation" name="formation" value="{{ formation.id }}"
+				    		{% if formation.id == idformation %}
+				    			selected="select"
+				    		{% endif %}
+				    		>{{ formation.nom }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="form-group basic-textarea rounded-corners">
+				    <label>Descriptif du poste :</label>
+				    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}, {'attr': {'rows': '7'}} ) }}
+				</div>
+
+				{{ form_widget(form.ajout, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
+			{{ form_end(form) }}
+			<a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
 		</div>
-		<label for="form_debut_month" class="sr-only">Début</label>
-		{{ form_widget(form.debut, {'attr': {'class': 'form-control'}} ) }}
 
-		<label for="offre_fin" class="sr-only">Fin</label>
-		{{ form_widget(form.fin, {'attr': {'class': 'form-control'}} ) }}
-
-		<div class='form-group'>
-			<select class="form-control" id="exampleSelect1" name='formation' value=''>
-		    	<hr />
-		    	{% for formation in formations %}
-		    		<option id="formation" name="formation" value="{{ formation.id }}"
-		    		{% if formation.id == idformation %}
-		    			selected="select"
-		    		{% endif %}
-		    		>{{ formation.nom }}</option>
-				{% endfor %}
-			</select>
-		</div>
-
-		<div class="form-group basic-textarea rounded-corners">
-		    <label>Descriptif du poste :</label>
-		    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}, {'attr': {'rows': '7'}} ) }}
-		</div>
-
-		{{ form_widget(form.ajout, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block'}}) }}<br>
-	{{ form_end(form) }}
-	<a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
+		<footer>
+          <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+	</div>
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
 {% endblock %}

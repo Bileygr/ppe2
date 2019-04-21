@@ -1,48 +1,73 @@
-{% extends 'default/accueil.html.twig' %}
-{% block title %}Modifier les informations d'un administrateur{% endblock %}
-{% block heading %}Modifier les informations d'un administrateur{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+{% block stylesheets %}
+  {{ parent() }}
+{% endblock %}
 {% block body %}
-    {{ form_start(registrationForm) }}
-        <div class="form-group">
-            <label>Nom</label>
-             {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'form-control'}}) }}
-        </div>
-
-        <div class="form-group">
-             <label>Prénom</label>
-            {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'form-control' }}) }}
-        </div>
-
-        <div class="form-group">
-            {{ form_widget(registrationForm.motdepasse, {'attr': {'value': jeune.password,'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+    <div class="container">
+        <div class="header clearfix">
+            <h1 class="text-muted">Lycée du Parc de Vilegénis</h1>
         </div>
         
-        <div class="form-group">
-            <label>Téléphone</label>
-            {{ form_widget(registrationForm.telephone, {'attr': {'placeholder': 'Téléphone', 'class': 'form-control'}}) }}
+        <div class="jumbotron">
+          <div class="header clearfix">
+            <h1 class="text-muted">Modifiez les informations d'un jeune</h1>
+          </div>
+            
+            {{ form_start(registrationForm) }}
+                <div class="form-group">
+                    <label>Nom</label>
+                     {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                     <label>Prénom</label>
+                    {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'form-control' }}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(registrationForm.motdepasse, {'attr': {'value': jeune.password,'placeholder': 'Mot de passe', 'hidden': 'hidden', 'class' : 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    {{ form_widget(registrationForm.telephone, {'attr': {'placeholder': 'Téléphone', 'class': 'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'class': 'form-control' }}) }}
+                </div>
+
+                 <div class="form-group">
+                    <label>Adresse</label>
+                    {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': 'Adresse', 'class': 'form-control' }}) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Ville</label>
+                        {{ form_widget(registrationForm.ville, {'attr': {'placeholder': 'Ville', 'class': 'form-control' }}) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Code postal</label>
+                        {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
+                </div>
+
+                {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block', 'placeholder': 'Modifier'}}) }}<br>
+            {{ form_end(registrationForm) }}
+            
+            <a href="{{ path('administration_gestion_des_jeunes') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
         </div>
 
-        <div class="form-group">
-            <label>Email</label>
-            {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Email', 'class': 'form-control' }}) }}
-        </div>
-
-         <div class="form-group">
-            <label>Adresse</label>
-            {{ form_widget(registrationForm.adresse, {'attr': {'placeholder': 'Adresse', 'class': 'form-control' }}) }}
-        </div>
-
-        <div class="form-group">
-            <label>Ville</label>
-                {{ form_widget(registrationForm.ville, {'attr': {'placeholder': 'Ville', 'class': 'form-control' }}) }}
-        </div>
-
-        <div class="form-group">
-            <label>Code postal</label>
-                {{ form_widget(registrationForm.codepostal, {'attr': {'placeholder': 'Code postal', 'class': 'form-control' }}) }}
-        </div>
-
-        {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block', 'placeholder': 'Modifier'}}) }}<br>
-    {{ form_end(registrationForm) }}
-    <a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-warning btn-lg btn-block">Retour</a>
+        <footer>
+          <p>Copyright &copy; Cheik-Siramakan Keita 2018-{{ "now"|date('Y') }}</p>
+        </footer>
+    </div>  
+<
+{% endblock %}
+{% block javascripts %}
+  {{ parent() }}
 {% endblock %}

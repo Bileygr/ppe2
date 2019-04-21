@@ -38,23 +38,30 @@
 	  		</thead>
 		  	<tbody>
 		  		{% for jeune in jeunes %}
-		  			<form method="POST">
-				    	<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
-			    		<tr>
-		      				<th>{{ jeune.id }}</th>
-		      				<td>{{ jeune.username }}</td>
-		      				<td>{{ jeune.nom }}</td>
-		      				<td>{{ jeune.prenom }}</td>
-		      				<td>0{{ jeune.telephone }}</td>
-		      				<td>{{ jeune.email }}</td>
-		      				<td>{{ jeune.adresse }}</td>
-		      				<td>{{ jeune.ville }}</td>
-		      				<td>{{ jeune.codepostal }}</td>
-		      				<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
-		      				<td><input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier"></td>
-			      			<td><input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer"></td>
-		    			</tr>
-		    		</form>
+		  			<tr>
+		      			<td>{{ jeune.id }}</td>
+		      			<td>{{ jeune.username }}</td>
+		      			<td>{{ jeune.nom }}</td>
+		      			<td>{{ jeune.prenom }}</td>
+		      			<td>{{ jeune.telephone }}</td>
+		      			<td>{{ jeune.email }}</td>
+		      			<td>{{ jeune.adresse }}</td>
+		      			<td>{{ jeune.ville }}</td>
+		      			<td>{{ jeune.codepostal }}</td>
+		      			<td>{{ jeune.dateajout|date('d-m-Y') }}</td>
+		      			<td>
+		      				<form method="POST">
+				    			<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
+		      					<input type="submit" name="modifier" class="btn btn-secondary btn-sm" value="Modifier">
+		      				</form>
+		      			</td>
+		      			<td>
+		      				<form method="POST">
+				    			<input type="text" hidden="hidden" name="id" value="{{ jeune.id }}">
+			      				<input type="submit" name="supprimer" class="btn btn-danger btn-sm" value="Supprimer">
+			      			</form>
+			      		</td>
+		    		</tr>
 			    {% endfor %}
 		  	</tbody>
 		</table>
