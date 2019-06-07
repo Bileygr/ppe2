@@ -11,7 +11,7 @@
 
     <div class="jumbotron">
       {% if is_granted('ROLE_ADMINISTRATEUR') or is_granted('ROLE_SUPER_ADMINISTRATEUR') %}
-        <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
+        <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres: {{ nbOffres }}</a>
         <a href="{{ path('administration_gestion_des_jeunes') }}" class="btn btn-primary btn-lg btn-block">Gestion: Jeune</a>
         <a href="{{ path('administration_gestion_des_offres') }}" class="btn btn-primary btn-lg btn-block">Gestion: Offre</a>
         <a href="{{ path('administration_gestion_des_partenaires') }}" class="btn btn-primary btn-lg btn-block">Gestion: Partenaire</a>
@@ -20,13 +20,13 @@
         <a href="{{ path('administrateur_modification') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
         <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>
       {% elseif  is_granted('ROLE_PARTENAIRE') %}
-        <a href="{{ path('offres') }}"class="btn btn-primary btn-lg btn-block">Voir les offres</a>
+        <a href="{{ path('offres') }}"class="btn btn-primary btn-lg btn-block">Voir les offres: {{ nbOffres }}</a>
         <a href="{{ path('partenaire_gestion_des_offres') }}"class="btn btn-primary btn-lg btn-block">Gérer les offres</a>
         <a href="{{ path('partenaire_gestion_des_candidatures') }}" class="btn btn-primary btn-lg btn-block">Gérer les candidatures</a>
         <a href="{{ path('partenaire_modification') }}"class="btn btn-primary btn-lg btn-block">Vos informations</a>
         <a href="{{ path('app_logout') }}"class="btn btn-danger btn-lg btn-block">Déconnexion</a>
       {% elseif  is_granted('ROLE_JEUNE') %}
-        <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres</a>
+        <a href="{{ path('offres') }}" class="btn btn-primary btn-lg btn-block">Voir les offres: {{ nbOffres }}</a>
         <a href="{{ path('jeune_gestion_de_ses_candidatures') }}" class="btn btn-primary btn-lg btn-block">Gérer ses candidatures</a>
         <a href="{{ path('jeune_modification') }}" class="btn btn-primary btn-lg btn-block">Vos informations</a>
         <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg btn-block">Déconnexion</a>

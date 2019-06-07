@@ -19,6 +19,16 @@ class OffreRepository extends ServiceEntityRepository
         parent::__construct($registry, Offre::class);
     }
 
+    public function countOffres(){
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT COUNT(*) FROM offre';
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll();
+    }
+
     public function findAllOffres()
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -57,6 +67,21 @@ class OffreRepository extends ServiceEntityRepository
             JOIN user ON user.id = offre.iduser_id 
             JOIN formation ON formation.id = offre.idformation_id
             WHERE offre.id = :id';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        return $stmt->fetchAll();
+    }
+
+    public function findByOffreFormation($id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT offre.id AS \'id\', offre.libelle AS \'libelle\', user.nom AS \'nompartenaire\', formation.nom AS \'nomformation\', offre.description AS \'description\', offre.adresse AS \'adresse\', offre.ville AS \'ville\', offre.codepostal AS \'codepostal\', offre.debut AS \'debut\', offre.fin AS \'fin\', offre.dateajout AS \'dateajout\'
+            FROM offre 
+            JOIN user ON user.id = offre.iduser_id 
+            JOIN formation ON formation.id = offre.idformation_id
+            WHERE offre.idformation_id = :id';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id]);
 
