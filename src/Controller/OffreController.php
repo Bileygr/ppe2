@@ -25,6 +25,22 @@ class OffreController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Offre::class);
         $offres = $repository->findAllOffres();
+
+        if(isset($_POST['developpement'])){
+            $offres = $repository->findByOffreFormation("2");
+
+            return $this->render('offre/index.html.twig', [
+                'offres' => $offres
+            ]);
+        }
+
+        if(isset($_POST['reseau'])){
+            $offres = $repository->findByOffreFormation("3");
+
+            return $this->render('offre/index.html.twig', [
+                'offres' => $offres
+            ]);
+        }
         
         if(isset($_POST['candidature'])){
             $candidature = new Candidature();

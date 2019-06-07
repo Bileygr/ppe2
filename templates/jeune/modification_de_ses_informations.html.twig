@@ -66,7 +66,7 @@
               <label class="form-check-label" for="super_admin">Super Administrateur</label>
           </div>
         {% endif %}
-
+        {{ form_row(registrationForm.preference) }}
         {{ form_row(registrationForm.cv, {'attr': {'label': 'CV'}}) }}<br>
 
         {{ form_widget(registrationForm.inscription, {'label': 'Modifier', 'attr': {'class': 'btn btn-primary btn-lg btn-block', 'placeholder': 'Modifier'}}) }}<br>

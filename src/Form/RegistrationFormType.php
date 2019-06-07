@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -88,6 +89,14 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Veuillez entrer un code postal valide qui face au maximum 5 characteres.',
                         'max' => 5,
                     ]),
+                ],
+            ])
+            ->add('preference', ChoiceType::class, [
+                'choices'  => [
+                    'Aucune'=> null,
+                    'Developpement' => 3,
+                    'Reseau' => 2,
+                    'Depannage informatique' => 1,
                 ],
             ])
             ->add('inscription', SubmitType::class, array('label' => 'Inscription'))

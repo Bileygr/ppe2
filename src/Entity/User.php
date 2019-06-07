@@ -100,6 +100,11 @@ class User implements UserInterface
      */
     private $cv;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Formation", inversedBy="users")
+     */
+    private $preference;
+
     public function __construct()
     {
         $this->offres = new ArrayCollection();
@@ -411,6 +416,18 @@ class User implements UserInterface
     public function setCv(?string $cv): self
     {
         $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getPreference(): ?Formation
+    {
+        return $this->preference;
+    }
+
+    public function setPreference(?Formation $preference): self
+    {
+        $this->preference = $preference;
 
         return $this;
     }
